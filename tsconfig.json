@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "NodeNext",
+        "outDir": "./dist",
+        "rootDir": "./",
+        "declaration": true,
+        "sourceMap": true,
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "NodeNext",
+        "resolveJsonModule": true
+    },
+    "include": ["src", "bin"],
+    "exclude": ["../node_modules"]
+}
