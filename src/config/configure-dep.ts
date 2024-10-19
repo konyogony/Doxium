@@ -1,9 +1,11 @@
 import { execa } from 'execa';
+import fs from 'fs-extra';
+import { responseT } from '../utils/types.js';
 import { errorText, infoText, successText } from '../utils/utils.js';
 
-export const configureDep = async (response: Record<string, string>, pmi: string[]) => {
+export const configureDep = async (response: responseT, pmi: string[]) => {
     try {
-        console.log('\n', infoText('Installing dependencies...'));
+        console.log('\n' + infoText('Installing dependencies...'));
         await execa(
             pmi[0],
             [
@@ -51,20 +53,26 @@ export const configureDep = async (response: Record<string, string>, pmi: string
     }
 };
 
-export const removePrettier = async (pm: string) => {
+export const finalPrettier = async (response: responseT, pm: string) => {
     try {
-        await execa(
-            pm,
-            [
-                'remove',
-                'prettier',
-                '@ianvs/prettier-plugin-sort-imports',
-                'prettier-plugin-css-order',
-                'prettier-plugin-organize-attributes',
-                'prettier-plugin-tailwindcss',
-            ],
-            { stdio: 'ignore' },
-        );
+        if (!response['prettier']) {
+            await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+            await execa(
+                pm,
+                [
+                    'remove',
+                    'prettier',
+                    '@ianvs/prettier-plugin-sort-imports',
+                    'prettier-plugin-css-order',
+                    'prettier-plugin-organize-attributes',
+                    'prettier-plugin-tailwindcss',
+                ],
+                { stdio: 'ignore' },
+            );
+            await fs.remove('./.prettierrc.json');
+        } else {
+            console.log('\n' + successText('Prettier installed successfully!'));
+        }
     } catch (error) {
         console.error(errorText(`Error removing Prettier:`), error);
         process.exit(1);

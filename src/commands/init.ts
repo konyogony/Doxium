@@ -1,5 +1,5 @@
 import process from 'process';
-import { configureDep } from '../config/configure-dep.js';
+import { configureDep, finalPrettier } from '../config/configure-dep.js';
 import { configureNextjs } from '../config/configure-nextjs.js';
 import { configurePrettier } from '../config/configure-prettier.js';
 import { configureShadcn } from '../config/configure-shadcn.js';
@@ -23,14 +23,17 @@ export const init = async () => {
     // Configure Next.js
     await configureNextjs(response, pmx);
 
-    // Configure dependencies
-    await configureDep(response, pmi);
-
     // Configure Prettier
     await configurePrettier(response, pmi, pm);
 
+    // Configure dependencies
+    await configureDep(response, pmi);
+
     // Configure shadcn
-    await configureShadcn(response, pmx, pmi);
+    await configureShadcn(response, pmx, pm);
+
+    // Remove Prettier (if disabled)
+    finalPrettier(response, pm);
 
     console.log('\n' + successText('Installation of project successful!'));
 };

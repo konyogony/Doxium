@@ -1,8 +1,6 @@
-import { execa } from 'execa';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { errorText, successText } from '../utils/utils.js';
-import { removePrettier } from './configure-dep.js';
 
 export const configurePrettier = async (response: responseT, pmi: string[], pm: string) => {
     try {
@@ -20,28 +18,14 @@ export const configurePrettier = async (response: responseT, pmi: string[], pm: 
             "prettier-plugin-organize-attributes",
             "prettier-plugin-tailwindcss"
         ]
-    }
-    `;
+        }
+        `;
 
         try {
             await fs.writeFile('./.prettierrc.json', prettierConfigContent);
         } catch (error) {
             console.error(errorText(`Error creating ${'.prettierrc.json'} file:`), error);
             process.exit(1);
-        }
-
-        await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
-
-        if (!response['prettier']) {
-            try {
-                removePrettier(pm);
-                await fs.remove('./.prettierrc.json');
-            } catch (error) {
-                console.error(errorText(`Error removing ${'.prettierrc.json'} file:`), error);
-                process.exit(1);
-            }
-        } else {
-            console.log('\n' + successText('Prettier installed successfully!'));
         }
     } catch (error) {
         console.error(error);

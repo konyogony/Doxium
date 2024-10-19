@@ -1,3 +1,4 @@
 import { execa } from 'execa';
+import { responseT } from '../utils/types.js';
 
-export const configureMdx = async (response: Record<string, string>, pmi: string[]) => {};
+export const configureMdx = async (response: responseT, pmi: string[]) => {};

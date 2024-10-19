@@ -3,8 +3,9 @@ import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { blueText, boldText, errorText, infoText, successText } from '../utils/utils.js';
 
-export const configureShadcn = async (response: responseT, pmx: string[], pmi: string[]) => {
+export const configureShadcn = async (response: responseT, pmx: string[], pm: string) => {
     try {
+        await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         console.log('\n' + infoText('Installing shadcn...'));
 
         const tailwindConfigContent = `import type { Config } from "tailwindcss";
@@ -153,6 +154,8 @@ export const configureShadcn = async (response: responseT, pmx: string[], pmi: s
         console.log(successText('Components added successfully:'));
         console.log(`- ${blueText('Breadcrumb')}`);
         console.log(`- ${blueText('Button')}`);
+
+        await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
         console.log(successText('Shadcn installed successfully!'));
     } catch (error) {
