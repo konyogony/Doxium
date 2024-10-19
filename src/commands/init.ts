@@ -1,11 +1,12 @@
 import process from 'process';
 import { configureDep, finalPrettier } from '../config/configure-dep.js';
+import { configureMdx } from '../config/configure-mdx.js';
 import { configureNextjs } from '../config/configure-nextjs.js';
 import { configurePrettier } from '../config/configure-prettier.js';
 import { configureShadcn } from '../config/configure-shadcn.js';
 import { getPmInfo } from '../utils/get-pm-info.js';
 import { getResponse } from '../utils/get-response.js';
-import { errorText, isNextJsProject, successText } from '../utils/utils.js';
+import { blueText, boldText, errorText, infoText, isNextJsProject, successText } from '../utils/utils.js';
 
 export const init = async () => {
     // Get user response
@@ -32,8 +33,17 @@ export const init = async () => {
     // Configure shadcn
     await configureShadcn(response, pmx, pm);
 
+    // Configure MDX
+    await configureMdx();
+
     // Remove Prettier (if disabled)
-    finalPrettier(response, pm);
+    await finalPrettier(response, pm);
 
     console.log('\n' + successText('Installation of project successful!'));
+    console.log(infoText('Run the following commands to start the project:'));
+    console.log(boldText(`- cd ${blueText(response['app-name'])}`));
+    console.log(boldText(`- ${pm} install`));
+    console.log(boldText(`- ${pm} run dev`));
+
+    console.log('\n' + infoText(`Recommend reading the ${blueText('README.md')} file for more information.`));
 };

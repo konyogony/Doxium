@@ -42,6 +42,7 @@ export const configureDep = async (response: responseT, pmi: string[]) => {
                 'shiki',
                 'remark-gfm',
                 '@next/mdx',
+                '@mdx-js/loader',
             ].filter((str) => str !== '' && str !== undefined),
             { stdio: 'ignore' },
         );

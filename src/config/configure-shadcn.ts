@@ -8,31 +8,33 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
         await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         console.log('\n' + infoText('Installing shadcn...'));
 
-        const tailwindConfigContent = `import type { Config } from "tailwindcss";
-        import tailwindcssAnimate from "tailwindcss-animate";
+        const tailwindConfigContent = `import typogrophy from '@tailwindcss/typography';
+        import type { Config } from 'tailwindcss';
+        import tailwindcssAnimate from 'tailwindcss-animate';
 
         export default {
-            darkMode: ["class"],
+            darkMode: ['class'],
             content: [
-                "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-                "./components/**/*.{js,ts,jsx,tsx,mdx}",
-                "./app/**/*.{js,ts,jsx,tsx,mdx}",
+                './pages/**/*.{js,ts,jsx,tsx,mdx}',
+                './components/**/*.{js,ts,jsx,tsx,mdx}',
+                './app/**/*.{js,ts,jsx,tsx,mdx}',
             ],
             theme: {
                 extend: {
                     colors: {
-                        background: "var(--background)",
-                        foreground: "var(--foreground)",
+                        background: 'var(--background)',
+                        foreground: 'var(--foreground)',
                     },
                     borderRadius: {
-                        lg: "var(--radius)",
-                        md: "calc(var(--radius) - 2px)",
-                        sm: "calc(var(--radius) - 4px)",
+                        lg: 'var(--radius)',
+                        md: 'calc(var(--radius) - 2px)',
+                        sm: 'calc(var(--radius) - 4px)',
                     },
                 },
             },
-            plugins: [tailwindcssAnimate],
+            plugins: [tailwindcssAnimate, typogrophy],
         } satisfies Config;
+
         `;
 
         try {
@@ -52,7 +54,7 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            @apply font-sans bg-${response['base-color']}-950 text-zinc-200;
         }
 
         @layer utilities {

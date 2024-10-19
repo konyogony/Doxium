@@ -9,7 +9,7 @@ export const getResponse = async () => {
                 name: 'app-name',
                 message: `Name of your ${blueText('app')}:`,
                 initial: 'my-app',
-                validate: (value) => (value.match(/^[$A-Z_][0-9A-Z_$]*$/i) ? true : errorText('Invalid app name.')),
+                // validate: (value) => (value.match(/^[$A-Z_][0-9A-Z_$]*$/i) ? true : errorText('Invalid app name.')),
             },
             {
                 type: 'toggle',
