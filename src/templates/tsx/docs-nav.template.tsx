@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-const DocsNav = () => {
+export const DocsNav = () => {
     const [paths, setPaths] = useState<{
         prev: { path: string; name: string } | null;
         next: { path: string; name: string } | null;
@@ -50,7 +50,3 @@ const DocsNav = () => {
         </div>
     );
 };
-
-export default DocsNav;
-
-// Thanks Github Copilot

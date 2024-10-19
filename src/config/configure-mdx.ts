@@ -22,7 +22,7 @@ const files = [
     { content: 'docs-hashtag', type: 'tsx', path: './components/ui/docs-hashtag.tsx' },
     { content: 'docs-code-wrapper', type: 'tsx', path: './components/ui/docs-code-wrapper.tsx' },
     { content: 'docs-breadcrumbs', type: 'tsx', path: './components/ui/docs-breadcrumbs.tsx' },
-    { content: 'dialogue', type: 'tsx', path: './components/ui/dialogue.tsx' },
+    { content: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
     { content: 'next-config', type: 'mjs', path: './next.config.mjs' },
     { content: 'docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
     { content: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
@@ -49,7 +49,7 @@ export const configureMdx = async () => {
     await Promise.all(
         files.map(async (file) => {
             try {
-                const templatePath = path.join(templatesDir, `${file.content}.template.${file.type}`);
+                const templatePath = path.join(templatesDir, `${file.type}`, `${file.content}.template.${file.type}`);
                 const content = (await fs.readFile(templatePath, 'utf8')).replace(/\/\/ @ts-nocheck\n/, '');
 
                 await fs.writeFile(file.path, content);

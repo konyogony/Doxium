@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import DocsBreadcrumbs from '@/components/ui/docs-breadcrumbs';
-import DocsNav from '@/components/ui/docs-nav';
+import { DocsBreadcrumbs } from '@/components/ui/docs-breadcrumbs';
+import { DocsNav } from '@/components/ui/docs-nav';
 import { SecondarySidebar } from '@/components/ui/docs-secondary-sidebar';
 import { Sidebar } from '@/components/ui/docs-sidebar';
 

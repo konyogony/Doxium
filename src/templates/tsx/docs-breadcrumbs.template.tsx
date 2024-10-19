@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment } from 'react';
 
-const DocsBreadcrumbs = () => {
+export const DocsBreadcrumbs = () => {
     const pathname = usePathname();
     const path = pathname.split('/').filter((p) => p !== '');
     return (
@@ -25,19 +25,20 @@ const DocsBreadcrumbs = () => {
                         <Link href={'/'}>Home</Link>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
-                {path.map((v, i) => (
-                    <Fragment key={i}>
-                        <BreadcrumbSeparator />
-                        <BreadcrumbItem className={i === path.length - 1 ? 'text-zinc-50' : ''}>
-                            <BreadcrumbLink asChild>
-                                <Link href={`/docs/${v}`}>{prettifyText(v)}</Link>
-                            </BreadcrumbLink>
-                        </BreadcrumbItem>
-                    </Fragment>
-                ))}
+                {path.map((v, i) => {
+                    const href = `/${path.slice(0, i + 1).join('/')}`;
+                    return (
+                        <Fragment key={i}>
+                            <BreadcrumbSeparator />
+                            <BreadcrumbItem className={i === path.length - 1 ? 'text-zinc-50' : ''}>
+                                <BreadcrumbLink asChild>
+                                    <Link href={href}>{prettifyText(v)}</Link>
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+                        </Fragment>
+                    );
+                })}
             </BreadcrumbList>
         </Breadcrumb>
     );
 };
-
-export default DocsBreadcrumbs;
