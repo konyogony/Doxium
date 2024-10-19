@@ -7,22 +7,6 @@ export const configureShadcn = async (response: responseT, pmx: string[], pmi: s
     try {
         console.log('\n' + infoText('Installing shadcn...'));
 
-        await execa(
-            pmi[0],
-            [
-                pmi[1],
-                response['shadcn-style'] === 'new-york' ? '@radix-ui/react-icons' : '',
-                'class-variance-authority',
-                'clsx',
-                'lucide-react',
-                'tailwind-merge',
-                'tailwindcss-animate',
-            ].filter((str) => str !== '' && str !== undefined),
-            { stdio: 'ignore' },
-        );
-
-        console.log(successText('Installed dependencies'));
-
         const tailwindConfigContent = `import type { Config } from "tailwindcss";
         import tailwindcssAnimate from "tailwindcss-animate";
 
@@ -125,14 +109,14 @@ export const configureShadcn = async (response: responseT, pmx: string[], pmi: s
                 "css": "app/globals.css",
                 "baseColor": "${response['base-color']}",
                 "cssVariables": false,
-                "prefix": "",
+                "prefix": ""
             },
             "aliases": {
                 "components": "@/components",
                 "utils": "@/lib/utils",
                 "ui": "@/components/ui",
                 "lib": "@/lib",
-                "hooks": "@/hooks",
+                "hooks": "@/hooks"
             }
         }`;
 
@@ -161,17 +145,14 @@ export const configureShadcn = async (response: responseT, pmx: string[], pmi: s
             process.exit(1);
         }
 
-        console.log(
-            pmx[0],
-            [pmx[1], 'shadcn@latest', 'add', 'breadcrumb'].filter((str) => str !== '' && str !== undefined),
-            process.cwd(),
-        );
-
         await execa(
             pmx[0],
-            [pmx[1], 'shadcn@latest', 'add', 'breadcrumb'].filter((str) => str !== '' && str !== undefined),
+            [pmx[1], 'shadcn@latest', 'add', 'breadcrumb', 'button'].filter((str) => str !== '' && str !== undefined),
             { stdio: 'ignore' },
         );
+        console.log(successText('Components added successfully:'));
+        console.log(`- ${blueText('Breadcrumb')}`);
+        console.log(`- ${blueText('Button')}`);
 
         console.log(successText('Shadcn installed successfully!'));
     } catch (error) {
