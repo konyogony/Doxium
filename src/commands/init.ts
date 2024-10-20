@@ -34,7 +34,7 @@ export const init = async () => {
     await configureShadcn(response, pmx, pm);
 
     // Configure Components
-    await configureComp(response);
+    await configureComp(response, pm);
 
     // Remove Prettier (if disabled)
     await finalPrettier(response, pm);

@@ -1,11 +1,11 @@
 {
-    "name": "create-dokez-app",
+    "name": "create-doxium-app",
     "version": "1.0.0",
-    "description": "CLI tool to create a new Dokez app",
+    "description": "CLI tool to create a new Doxium app",
     "main": "index.js",
     "type": "module",
     "bin": {
-        "create-dokez-app": "./dist/bin/create-dokez-app.js"
+        "create-doxium-app": "./dist/bin/create-doxium-app.js"
     },
     "dependencies": {
         "@radix-ui/react-icons": "^1.3.0",

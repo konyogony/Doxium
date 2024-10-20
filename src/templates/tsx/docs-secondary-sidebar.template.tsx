@@ -56,13 +56,13 @@ export const SecondarySidebar = () => {
 
     return (
         <div className='sticky top-24 hidden h-fit w-fit min-w-[20vh] flex-shrink-0 flex-col items-start lg:flex'>
-            <span className='py-2 text-sm font-bold text-zinc-50'>On this page</span>
+            <span className='text-$COLOR-50 py-2 text-sm font-bold'>On this page</span>
             {headings.map((heading, i) => (
                 <a
                     href={`#${heading.id}`}
                     className={cn(
-                        'py-1 text-sm font-normal transition-all duration-300 hover:text-zinc-200',
-                        activeHeading === heading.id ? 'text-zinc-50' : 'text-zinc-400',
+                        'hover:text-$COLOR-200 py-1 text-sm font-normal transition-all duration-300',
+                        activeHeading === heading.id ? 'text-$COLOR-50' : 'text-$COLOR-400',
                     )}
                     key={i}
                 >
@@ -74,14 +74,14 @@ export const SecondarySidebar = () => {
                 href={`https://github.com/konyogony/konyogony.dev/tree/main/frontend/src/app/${pathname}/page.mdx`}
                 rel='noopener noreferrer'
                 target='_blank'
-                className='flex flex-row items-center gap-1 text-sm text-zinc-400 hover:text-zinc-200'
+                className='text-$COLOR-400 hover:text-$COLOR-200 flex flex-row items-center gap-1 text-sm'
             >
                 Edit this page on GitHub <FiArrowUpRight />
             </a>
             {scrollHeight > 300 && (
                 <button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className='my-1 flex items-center gap-1 text-sm text-zinc-400 hover:text-zinc-200'
+                    className='text-$COLOR-400 hover:text-$COLOR-200 my-1 flex items-center gap-1 text-sm'
                 >
                     Back to top <FiArrowUp />
                 </button>

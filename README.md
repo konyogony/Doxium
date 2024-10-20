@@ -1,4 +1,4 @@
-# Dokez
+# Doxium
 
 An easy solution to modern staticly generated documentation for Next.js
 
@@ -9,25 +9,26 @@ Currently only supports typescript, tailwindcss and black theme
 -   [x] Configure Next.js
 -   [x] Configure Shadcn
 -   [x] Write files
--   [ ] Customise
 -   [ ] Link github (edit in gh)
--   [ ] Colors
+-   [x] Colors
 -   [ ] Codeblock customisation
 -   [x] Fonts
--   [ ] Main page
--   [ ] Docs
 -   [ ] Clean up cli
 -   [x] Bug-fixing
--   [ ] Setup npm & gh page
 -   [ ] Use vertisan icons
--   [ ] Make pages for folders (toggleable)
--   [ ] Make config file
--   [ ] Automate structure
--   [ ] Style
--   [ ] Theme
+-   [ ] Make pages for folders (toggleable)??
+-   [ ] Make config file?
+-   [ ] Automate structure!
+-   [ ] Themes?
 -   [ ] Mobile support
 -   [x] Home page toggleable
--   [ ] Upload
+-   [ ] API
+
+## Deployment
+
+-   [ ] Website
+-   [ ] Setup npm & gh page
+-   [ ] Docs
 
 ## Techstack
 

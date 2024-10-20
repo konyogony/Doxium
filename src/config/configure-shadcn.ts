@@ -54,7 +54,7 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
         }
 
         body {
-            @apply bg-${response['base-color']}-950 text-zinc-200;
+            @apply bg-${response['base-color']}-950 text-${response['base-color']}-200;
         }
 
         @layer utilities {

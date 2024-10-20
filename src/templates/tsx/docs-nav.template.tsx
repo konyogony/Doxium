@@ -31,8 +31,8 @@ export const DocsNav = () => {
         <div className='not-prose flex w-full flex-row items-center'>
             {paths.prev && (
                 <Link href={paths.prev.path} className='flex w-fit flex-col items-end'>
-                    <span className='text-sm text-zinc-500'>Previous</span>
-                    <div className='flex flex-row items-center text-zinc-300 decoration-dotted transition-all duration-200 hover:text-blue-600 hover:underline'>
+                    <span className='text-$COLOR-500 text-sm'>Previous</span>
+                    <div className='text-$COLOR-300 flex flex-row items-center decoration-dotted transition-all duration-200 hover:text-blue-600 hover:underline'>
                         <FiChevronLeft size={16} />
                         {prettifyText(paths.prev.name)}
                     </div>
@@ -40,8 +40,8 @@ export const DocsNav = () => {
             )}
             {paths.next && (
                 <Link href={paths.next.path} className='ml-auto flex w-fit flex-col items-start'>
-                    <span className='text-sm text-zinc-500'>Next</span>
-                    <div className='flex flex-row items-center text-zinc-300 decoration-dotted transition-all duration-200 hover:text-blue-600 hover:underline'>
+                    <span className='text-$COLOR-500 text-sm'>Next</span>
+                    <div className='text-$COLOR-300 flex flex-row items-center decoration-dotted transition-all duration-200 hover:text-blue-600 hover:underline'>
                         {prettifyText(paths.next.name)}
                         <FiChevronRight size={16} />
                     </div>

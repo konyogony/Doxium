@@ -56,11 +56,11 @@ export const Cmdk = ({ ...props }: DialogProps) => {
                 variant='outline'
                 onClick={() => setOpen(true)}
                 {...props}
-                className='group ml-auto hidden w-32 cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 bg-zinc-900/50 px-2 py-1 text-sm font-normal text-zinc-400 backdrop-blur-md transition-all duration-300 hover:bg-zinc-800/60 hover:text-zinc-200 lg:flex xl:w-fit xl:gap-10'
+                className='bg-$COLOR-900/50 text-$COLOR-400 hover:bg-$COLOR-800/60 hover:text-$COLOR-200 group ml-auto hidden w-32 cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 px-2 py-1 text-sm font-normal backdrop-blur-md transition-all duration-300 lg:flex xl:w-fit xl:gap-10'
             >
                 <span className='hidden xl:flex'>Search documentation...</span>
                 <span className='flex text-xs xl:hidden'>Search</span>
-                <kbd className='ml-auto flex flex-row items-center -space-x-0.5 rounded-sm bg-zinc-700/50 px-2 py-0.5 text-[10px] backdrop-blur-sm'>
+                <kbd className='bg-$COLOR-700/50 ml-auto flex flex-row items-center -space-x-0.5 rounded-sm px-2 py-0.5 text-[10px] backdrop-blur-sm'>
                     ⌘ K
                 </kbd>
             </Button>

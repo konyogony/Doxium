@@ -30,7 +30,7 @@ export const DocsBreadcrumbs = () => {
                     return (
                         <Fragment key={i}>
                             <BreadcrumbSeparator />
-                            <BreadcrumbItem className={i === path.length - 1 ? 'text-zinc-50' : ''}>
+                            <BreadcrumbItem className={i === path.length - 1 ? 'text-$COLOR-50' : ''}>
                                 <BreadcrumbLink asChild>
                                     <Link href={href}>{prettifyText(v)}</Link>
                                 </BreadcrumbLink>

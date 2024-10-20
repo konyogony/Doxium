@@ -1,4 +1,5 @@
 import path from 'path';
+import { execa } from 'execa';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { infoText, successText } from '../utils/utils.js';
@@ -65,7 +66,7 @@ const filesHome = [
 
 const templatesDir = path.resolve(__dirname, '../templates');
 
-export const configureComp = async (response: responseT) => {
+export const configureComp = async (response: responseT, pm: string) => {
     console.log('\n' + infoText('Configuring Components...'));
     try {
         await fs.rename('./next.config.ts', './next.config.mjs');
@@ -80,7 +81,9 @@ export const configureComp = async (response: responseT) => {
                         `${file.type}`,
                         `${file.content}.template.${file.type}`,
                     );
-                    const content = (await fs.readFile(templatePath, 'utf8')).replace(/\/\/ @ts-nocheck\n/, '');
+                    const content = (await fs.readFile(templatePath, 'utf8'))
+                        .replaceAll(/\/\/ @ts-nocheck\n/g, '')
+                        .replaceAll(/\$COLOR/g, response['base-color']);
 
                     await fs.writeFile(file.path, content);
                 } catch (error) {
@@ -89,6 +92,8 @@ export const configureComp = async (response: responseT) => {
                 }
             }),
         );
+
+        await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
         if (response['home-page']) {
             await fs.mkdir('app/docs');
@@ -104,7 +109,9 @@ export const configureComp = async (response: responseT) => {
                             `${file.type}`,
                             `${file.content}.template.${file.type}`,
                         );
-                        const content = (await fs.readFile(templatePath, 'utf8')).replace(/\/\/ @ts-nocheck\n/, '');
+                        const content = (await fs.readFile(templatePath, 'utf8'))
+                            .replaceAll(/\/\/ @ts-nocheck\n/g, '')
+                            .replaceAll(/\$COLOR/g, response['base-color']);
 
                         await fs.writeFile(file.path, content);
                     } catch (error) {
@@ -113,6 +120,7 @@ export const configureComp = async (response: responseT) => {
                     }
                 }),
             );
+            await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         } else {
             await fs.rm('./app/page.tsx');
             await fs.mkdir('app/about');
@@ -127,7 +135,9 @@ export const configureComp = async (response: responseT) => {
                             `${file.type}`,
                             `${file.content}.template.${file.type}`,
                         );
-                        const content = (await fs.readFile(templatePath, 'utf8')).replace(/\/\/ @ts-nocheck\n/, '');
+                        const content = (await fs.readFile(templatePath, 'utf8'))
+                            .replaceAll(/\/\/ @ts-nocheck\n/g, '')
+                            .replaceAll(/\$COLOR/g, response['base-color']);
 
                         await fs.writeFile(file.path, content);
                     } catch (error) {
@@ -136,6 +146,7 @@ export const configureComp = async (response: responseT) => {
                     }
                 }),
             );
+            await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         }
     } catch (error) {
         console.error('Error renaming and creating folders:', error);

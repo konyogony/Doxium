@@ -19,15 +19,17 @@ export const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
     return (
         <>
             {title ? (
-                <span className={'flex w-full py-1.5 pt-3 text-sm font-bold text-zinc-50 transition-all duration-300'}>
+                <span
+                    className={'text-$COLOR-50 flex w-full py-1.5 pt-3 text-sm font-bold transition-all duration-300'}
+                >
                     {prettifyText(name)}
                 </span>
             ) : (
                 <Link
                     href={path || ''}
                     className={cn(
-                        'flex w-full py-1.5 text-sm font-normal text-zinc-400 transition-all duration-300 hover:underline',
-                        pathname === path && 'font-medium text-zinc-300',
+                        'text-$COLOR-400 flex w-full py-1.5 text-sm font-normal transition-all duration-300 hover:underline',
+                        pathname === path && 'text-$COLOR-300 font-medium',
                     )}
                 >
                     {prettifyText(name)}
