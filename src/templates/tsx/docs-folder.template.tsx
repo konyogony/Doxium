@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { DocsLink } from '@/components/ui/docs-link';
+import { DocsLink } from '@/components/doxium/docs-link';
 import { DocsNode } from '@/types';
 
 export const DocsFolder = ({ node }: { node: DocsNode }) => {

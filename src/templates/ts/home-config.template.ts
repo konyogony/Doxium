@@ -6,22 +6,22 @@ import { DocsNode } from '@/types';
 export const structure: DocsNode[] = [
     {
         name: 'official-documentation',
-        path: '/',
+        path: '/docs',
     },
     {
         name: 'about',
-        path: '/about',
+        path: '/docs/about',
     },
     {
         name: 'features',
         nodes: [
             {
                 name: 'code-block',
-                path: '/features/code-block',
+                path: '/docs/features/code-block',
             },
             {
                 name: 'test',
-                path: '/features/test',
+                path: '/docs/features/test',
             },
         ],
     },

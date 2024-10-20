@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { CopyButton } from '@/components/ui/copy-button';
-import { wikiCodeWrapperIcon } from '@/components/ui/docs-code-wrapper-icon';
+import { CopyButton } from '@/components/doxium/copy-button';
+import { wikiCodeWrapperIcon } from '@/components/doxium/docs-code-wrapper-icon';
 import { CodeWrapperSingleton } from '@/lib/code-wrapper-singleton';
 
 interface WikiCodeWrapperProps {

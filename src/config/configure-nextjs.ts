@@ -22,14 +22,7 @@ export const configureNextjs = async (response: responseT, pmx: string[]) => {
             ].filter((str) => str !== '' && str !== undefined),
             { stdio: 'ignore' },
         );
-        console.log(successText(`Created app with the following options:`));
-        console.log(`- Name: ${blueText(response['app-name'])}`);
-        console.log(`- ESLint: ${response['eslint'] ? blueText('Enabled') : blueText('Disabled')}`);
-        console.log(`- Turbopack: ${response['turbopack'] ? blueText('Enabled') : blueText('Disabled')}`);
-        console.log(`- Prettier: ${response['prettier'] ? blueText('Enabled') : blueText('Disabled')}`);
-        console.log(`- Shadcn style: ${blueText(response['shadcn-style'])}`);
-        console.log(`- Base color: ${blueText(response['base-color'])}`);
-        console.log(`- Additional options: ${blueText('Typescript, Tailwind, App Router, no Source Directory')}`);
+        console.log(successText(`Created a new next.js app`));
         process.chdir(response['app-name']);
 
         console.log(successText('Next.js installed successfully!'));

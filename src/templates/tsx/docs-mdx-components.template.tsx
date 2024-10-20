@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { WikiCodeWrapper } from '@/components/ui/docs-code-wrapper';
-import { WikiHashTag } from '@/components/ui/docs-hashtag';
+import { WikiCodeWrapper } from '@/components/doxium/docs-code-wrapper';
+import { WikiHashTag } from '@/components/doxium/docs-hashtag';
 
 export const mdxComponents = {
     h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {

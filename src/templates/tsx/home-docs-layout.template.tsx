@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import { DocsBreadcrumbs } from '@/components/ui/docs-breadcrumbs';
-import { DocsNav } from '@/components/ui/docs-nav';
-import { SecondarySidebar } from '@/components/ui/docs-secondary-sidebar';
-import { Sidebar } from '@/components/ui/docs-sidebar';
+import { DocsBreadcrumbs } from '@/components/doxium/docs-breadcrumbs';
+import { DocsNav } from '@/components/doxium/docs-nav';
+import { SecondarySidebar } from '@/components/doxium/docs-secondary-sidebar';
+import { Sidebar } from '@/components/doxium/docs-sidebar';
 
 interface DocsLayoutProps {
     children: React.ReactNode;

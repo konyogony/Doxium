@@ -54,7 +54,7 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
         }
 
         body {
-            @apply font-sans bg-${response['base-color']}-950 text-zinc-200;
+            @apply bg-${response['base-color']}-950 text-zinc-200;
         }
 
         @layer utilities {
@@ -153,9 +153,7 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
             [pmx[1], 'shadcn@latest', 'add', 'breadcrumb', 'button'].filter((str) => str !== '' && str !== undefined),
             { stdio: 'ignore' },
         );
-        console.log(successText('Components added successfully:'));
-        console.log(`- ${blueText('Breadcrumb')}`);
-        console.log(`- ${blueText('Button')}`);
+        console.log(successText('Shadcn components installed successfully!'));
 
         await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 

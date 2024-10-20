@@ -36,6 +36,14 @@ export const getResponse = async () => {
                 initial: true,
             },
             {
+                type: 'toggle',
+                name: 'home-page',
+                message: `Would you like to have a ${blueText('Home Page')}?`,
+                active: 'yes',
+                inactive: 'no',
+                initial: true,
+            },
+            {
                 type: 'select',
                 name: 'shadcn-style',
                 message: `Choose your shadcn ${blueText('style')}:`,
@@ -58,6 +66,7 @@ export const getResponse = async () => {
                 ],
                 initial: 0,
             },
+
             {
                 type: 'confirm',
                 name: 'proceed',

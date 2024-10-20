@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { DocsFolder } from '@/components/ui/docs-folder';
-import { DocsLink } from '@/components/ui/docs-link';
+import { DocsFolder } from '@/components/doxium/docs-folder';
+import { DocsLink } from '@/components/doxium/docs-link';
 import { structure } from '@/config';
 
 export const Sidebar = () => {

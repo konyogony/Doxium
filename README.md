@@ -13,15 +13,20 @@ Currently only supports typescript, tailwindcss and black theme
 -   [ ] Link github (edit in gh)
 -   [ ] Colors
 -   [ ] Codeblock customisation
--   [ ] Fonts
+-   [x] Fonts
 -   [ ] Main page
 -   [ ] Docs
 -   [ ] Clean up cli
--   [ ] Bug-fixing
+-   [x] Bug-fixing
 -   [ ] Setup npm & gh page
 -   [ ] Use vertisan icons
 -   [ ] Make pages for folders (toggleable)
 -   [ ] Make config file
+-   [ ] Automate structure
+-   [ ] Style
+-   [ ] Theme
+-   [ ] Mobile support
+-   [x] Home page toggleable
 -   [ ] Upload
 
 ## Techstack

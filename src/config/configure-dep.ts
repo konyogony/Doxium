@@ -10,22 +10,22 @@ export const configureDep = async (response: responseT, pmi: string[]) => {
             pmi[0],
             [
                 pmi[1],
-                '--save-dev',
+                '-d',
                 'prettier',
                 '@ianvs/prettier-plugin-sort-imports',
                 'prettier-plugin-css-order',
                 'prettier-plugin-organize-attributes',
                 'prettier-plugin-tailwindcss',
                 '@types/mdx',
+                '@next/mdx',
+                '@mdx-js/loader',
             ].filter((str) => str !== ''),
             { stdio: 'ignore' },
         );
-
         await execa(
             pmi[0],
             [
                 pmi[1],
-                response['shadcn-style'] === 'new-york' ? '@radix-ui/react-icons' : '',
                 'class-variance-authority',
                 'clsx',
                 'lucide-react',
@@ -36,13 +36,12 @@ export const configureDep = async (response: responseT, pmi: string[]) => {
                 '@radix-ui/react-slot',
                 '@radix-ui/react-dialog',
                 '@radix-ui/react-toast',
+                '@radix-ui/react-icons',
                 'cmdk',
                 'sonner',
                 'copy-to-clipboard',
                 'shiki',
                 'remark-gfm',
-                '@next/mdx',
-                '@mdx-js/loader',
             ].filter((str) => str !== '' && str !== undefined),
             { stdio: 'ignore' },
         );
@@ -72,7 +71,8 @@ export const finalPrettier = async (response: responseT, pm: string) => {
             );
             await fs.remove('./.prettierrc.json');
         } else {
-            console.log('\n' + successText('Prettier installed successfully!'));
+            console.log('\n' + infoText('Installing Prettier...'));
+            console.log(successText('Prettier installed successfully!'));
         }
     } catch (error) {
         console.error(errorText(`Error removing Prettier:`), error);

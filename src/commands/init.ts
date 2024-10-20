@@ -1,6 +1,6 @@
 import process from 'process';
+import { configureComp } from '../config/configure-comp.js';
 import { configureDep, finalPrettier } from '../config/configure-dep.js';
-import { configureMdx } from '../config/configure-mdx.js';
 import { configureNextjs } from '../config/configure-nextjs.js';
 import { configurePrettier } from '../config/configure-prettier.js';
 import { configureShadcn } from '../config/configure-shadcn.js';
@@ -33,8 +33,8 @@ export const init = async () => {
     // Configure shadcn
     await configureShadcn(response, pmx, pm);
 
-    // Configure MDX
-    await configureMdx();
+    // Configure Components
+    await configureComp(response);
 
     // Remove Prettier (if disabled)
     await finalPrettier(response, pm);
