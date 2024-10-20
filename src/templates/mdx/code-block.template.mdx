@@ -9,3 +9,25 @@ const Home = () => {
 
 export default Home;
 ```
+
+You can edit the theme of this code block by changing the `shiki-theme` in `doxium.json` file, located at the root of your project.
+
+```json
+{
+    "github-repo": "",
+    "theme": {
+        "shiki": "one-dark-pro"
+    }
+}
+```
+
+The list of all available themes is (for now) available on this [website](https://textmate-grammars-themes.netlify.app/?theme=github-dark-dimmed&grammar=typescript)
+
+I was able to implement support for all themes, aswell as automatic text colour change when using a light theme.
+In the future I am looking forward to being able to customise:
+
+-   Top bar
+-   Copy button
+-   Icons
+-   Languages
+-   Highlighting specific code

@@ -1,8 +1,8 @@
 # Doxium
 
 An easy solution to modern staticly generated documentation for Next.js
-
 Currently only supports typescript, tailwindcss and black theme
+Estimate early release - 2 weeks
 
 ## Roadmap
 
@@ -22,7 +22,10 @@ Currently only supports typescript, tailwindcss and black theme
 -   [ ] Themes?
 -   [ ] Mobile support
 -   [x] Home page toggleable
+-   [ ] Make it accept arguments fr
+-   [ ] Accent color, background color, shadcn color - differ them
 -   [ ] API
+-   [ ] Fix '(node:208623) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead. (Use `node --trace-deprecation ...` to show where the warning was created)'
 
 ## Deployment
 

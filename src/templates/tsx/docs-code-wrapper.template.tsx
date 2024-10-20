@@ -2,7 +2,9 @@
 
 import { CopyButton } from '@/components/doxium/copy-button';
 import { wikiCodeWrapperIcon } from '@/components/doxium/docs-code-wrapper-icon';
-import { CodeWrapperSingleton } from '@/lib/code-wrapper-singleton';
+import { getHighlighterInstance } from '@/lib/highlighter';
+import { isLightColor } from '@/lib/is-light-color';
+import { ShikiThemeBackgroundHexDimmed } from '@/types';
 
 interface WikiCodeWrapperProps {
     language?: string;
@@ -10,24 +12,30 @@ interface WikiCodeWrapperProps {
 }
 
 export const WikiCodeWrapper = async ({ language = '', children }: WikiCodeWrapperProps) => {
-    const instance = await CodeWrapperSingleton.getInstance();
-    if (!instance) throw new Error('CodeWrapperSingleton instance is null');
-    const highlightedCode = instance.codeToHtml(children, {
+    const { highlighter, theme } = await getHighlighterInstance();
+    const highlightedCode = highlighter.codeToHtml(children, {
         lang: language,
-        theme: 'github-dark-dimmed',
+        theme: theme,
     });
 
     const { icon: IconComponent, lang } = wikiCodeWrapperIcon({ language });
+    const backgroundColor = ShikiThemeBackgroundHexDimmed[theme];
+    const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
 
     return (
         <div className='group relative w-full overflow-clip rounded-lg border border-white/15'>
-            <div className='text-$COLOR-200 flex min-h-10 w-full flex-row items-center gap-2 border-b border-white/15 bg-[#1a1e24] px-4 py-2.5 text-sm font-normal'>
+            <div
+                className={
+                    'flex min-h-10 w-full flex-row items-center gap-2 border-b border-white/15 px-4 py-2.5 text-sm font-normal'
+                }
+                style={{ backgroundColor, color: textColor }}
+            >
                 {IconComponent}
                 {lang} <CopyButton text={children} />
             </div>
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
-                className='codeBlock customScrollbar bg-$COLOR-950 text-sm lg:text-base'
+                className='codeBlock customScrollbar bg-stone-950 text-sm lg:text-base'
             />
         </div>
     );

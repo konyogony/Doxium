@@ -24,14 +24,16 @@ const filesAll = [
     { content: 'docs-breadcrumbs', type: 'tsx', path: './components/doxium/docs-breadcrumbs.tsx' },
 
     // Lib components
-    { content: 'code-wrapper-singleton', type: 'ts', path: './lib/code-wrapper-singleton.ts' },
+    { content: 'highlighter', type: 'ts', path: './lib/highlighter.ts' },
     { content: 'flatten-structure', type: 'ts', path: './lib/flatten-structure.ts' },
     { content: 'prettify-text', type: 'ts', path: './lib/prettify-text.ts' },
+    { content: 'is-light-color', type: 'ts', path: './lib/is-light-color.ts' },
 
     // Config
     { content: 'types', type: 'ts', path: './types.ts' },
     { content: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
     { content: 'next-config', type: 'mjs', path: './next.config.mjs' },
+    { content: 'doxium', type: 'json', path: './doxium.json' },
 ];
 
 const filesNoHome = [
@@ -83,7 +85,9 @@ export const configureComp = async (response: responseT, pm: string) => {
                     );
                     const content = (await fs.readFile(templatePath, 'utf8'))
                         .replaceAll(/\/\/ @ts-nocheck\n/g, '')
-                        .replaceAll(/\$COLOR/g, response['base-color']);
+                        .replaceAll(/\$COLOR/g, response['base-color'])
+                        .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
+                        .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme']);
 
                     await fs.writeFile(file.path, content);
                 } catch (error) {
@@ -120,7 +124,6 @@ export const configureComp = async (response: responseT, pm: string) => {
                     }
                 }),
             );
-            await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         } else {
             await fs.rm('./app/page.tsx');
             await fs.mkdir('app/about');
@@ -146,10 +149,10 @@ export const configureComp = async (response: responseT, pm: string) => {
                     }
                 }),
             );
-            await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         }
+        await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
     } catch (error) {
-        console.error('Error renaming and creating folders:', error);
+        console.error('Error creating custom components:', error);
         process.exit(1);
     }
 

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import createMDXPlugin from '@next/mdx';
 import remarkGfm from 'remark-gfm';
 
