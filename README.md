@@ -10,6 +10,10 @@ An easy solution to generate modern documentation in Next.js
 -   [ ] Link github (edit in gh)
 -   [x] Colors
 -   [ ] Codeblock customisation
+    -   [x] Theme
+    -   [ ] Icon
+    -   [ ] Visibility
+    -   [ ] Highlighting  
 -   [x] Fonts
 -   [ ] Clean up cli
 -   [x] Bug-fixing
