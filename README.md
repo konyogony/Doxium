@@ -1,7 +1,6 @@
 # Doxium
 
-An easy solution to modern staticly generated documentation for Next.js
-
+An easy solution to generate modern documentation in Next.js
 Currently only supports typescript, tailwindcss and black theme
 
 ## Roadmap
