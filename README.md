@@ -4,6 +4,9 @@ An easy solution to generate modern documentation in Next.js
 
 ## Roadmap
 
+**Bold -> Important**
+_Italics -> Not sure_
+
 -   [x] Configure Next.js
 -   [x] Configure Shadcn
 -   [x] Write files
@@ -11,6 +14,7 @@ An easy solution to generate modern documentation in Next.js
     -   [ ] Convert to SSG somehow
 -   [x] Colors
 -   [ ] Codeblock customisation
+    -   [x] Shiki themes
     -   [ ] Visibility
     -   [ ] Icons
     -   [ ] highlighting
@@ -18,20 +22,21 @@ An easy solution to generate modern documentation in Next.js
 -   [x] Fonts
 -   [ ] Clean up code
 -   [ ] Clean up console
--   [ ] _dark/light theme_ seems hard and cringe
+-   [ ] _dark/light theme seems hard and cringe_
 -   [x] Bug-fixing
 -   [ ] Use vertisan icons
 -   [ ] Make pages for folders (toggleable)??
 -   [ ] Make config file?
 -   [ ] Make TOC SSG
+-   [ ] Better errors in CLI
 -   [ ] Automate structure!
--   [ ] Themes?
+-   [ ] User-made themes -> marketplace?
 -   [ ] Custom Readme
 -   [ ] Add spinner (https://www.npmjs.com/package/cli-spinners)
 -   [ ] Mobile support
 -   [x] Home page toggleable
     -   [ ] Being able to toggle later on
--   [ ] Accent color, background color, shadcn color - differ them
+-   [ ] **Accent color, background color, shadcn color - differ them**
 -   [ ] Make an API so owner can get data from docs
 -   [x] https://www.npmjs.com/package/commander
     -   [ ] Add better args and `-y`, etc..
