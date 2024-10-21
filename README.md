@@ -30,6 +30,7 @@ _Italics -> Not sure_
 -   [ ] **Make TOC SSG**
 -   [ ] **Better errors in CLI**
 -   [ ] Automate structure!
+-   [ ] Languages
 -   [ ] User-made themes -> marketplace?
 -   [ ] Custom Readme
 -   [ ] Add comments through cli & doxium code
