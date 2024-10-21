@@ -55,7 +55,7 @@ program
         console.log(infoText('Run the following commands to start the project:'));
         console.log(pc.bold(`- cd ${pc.blue(response['app-name'])}`));
         console.log(pc.bold(`- ${pm} install`));
-        console.log(pc.bold(`- ${pm} run dev`));
+        console.log(pc.bold(`- ${pm} run dev / build`));
 
         console.log('\n' + infoText(`Recommend reading the ${pc.blue('README.md')} file for more information.`));
     })

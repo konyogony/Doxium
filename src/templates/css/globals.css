@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 html {
-    @apply scroll-smooth
+    @apply scroll-smooth;
 }
 
 body {
-    @apply bg-${response['base-color']}-950 text-${response['base-color']}-200;
+    @apply bg-$COLOR-950 text-$COLOR-200 font-["Inter"];
 }
 
 @layer utilities {

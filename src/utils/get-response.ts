@@ -70,7 +70,7 @@ export const getResponse = async () => {
                     { title: 'Stone', value: 'stone' },
                     { title: 'Slate', value: 'slate' },
                 ],
-                initial: 0,
+                initial: 2,
             },
             {
                 type: 'autocomplete',

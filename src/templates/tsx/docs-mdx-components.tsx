@@ -50,9 +50,9 @@ export const mdxComponents = {
         return (
             <span
                 {...props}
-                className='bg-$COLOR-800 text-$COLOR-50 mx-0.5 my-2 rounded-[3.5px] px-1.5 py-1 font-[Consolas] text-sm font-semibold'
+                className='mx-0.5 my-2 rounded-[3.5px] bg-neutral-800 px-1.5 py-1 text-sm font-semibold text-neutral-50'
             >
-                <span className='not-prose'>{children}</span>
+                <span className='not-prose font-["Roboto_Mono"]'>{children}</span>
             </span>
         );
     },
@@ -69,7 +69,7 @@ export const mdxComponents = {
         return (
             <span
                 className={
-                    'border-$COLOR-600 text-$COLOR-100 my-2 flex border-l-2 py-2.5 pl-4 text-base font-semibold italic'
+                    'my-2 flex border-l-2 border-neutral-600 py-2.5 pl-4 text-base font-semibold italic text-neutral-100'
                 }
                 {...props}
             >

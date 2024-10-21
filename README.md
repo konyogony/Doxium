@@ -15,39 +15,44 @@ _Italics -> Not sure_
 -   [x] Colors
 -   [ ] Codeblock customisation
     -   [x] Shiki themes
-    -   [ ] Visibility
+    -   [ ] **Visibility**
     -   [ ] Icons
-    -   [ ] highlighting
+    -   [ ] **highlighting**
     -   [ ] Add auto coloring??
 -   [x] Fonts
 -   [ ] Clean up code
 -   [ ] Clean up console
 -   [ ] _dark/light theme seems hard and cringe_
 -   [x] Bug-fixing
--   [ ] Use vertisan icons
--   [ ] Make pages for folders (toggleable)??
--   [ ] Make config file?
--   [ ] Make TOC SSG
--   [ ] Better errors in CLI
+-   [ ] _Use vertisan icons_
+-   [ ] _Make pages for folders (toggleable)??_
+-   [x] Make config file?
+-   [ ] **Make TOC SSG**
+-   [ ] **Better errors in CLI**
 -   [ ] Automate structure!
 -   [ ] User-made themes -> marketplace?
 -   [ ] Custom Readme
+-   [ ] Add comments through cli & doxium code
 -   [ ] Add spinner (https://www.npmjs.com/package/cli-spinners)
 -   [ ] Mobile support
 -   [x] Home page toggleable
     -   [ ] Being able to toggle later on
 -   [ ] **Accent color, background color, shadcn color - differ them**
--   [ ] Make an API so owner can get data from docs
+-   [ ] _Make an API so owner can get data from docs_
 -   [x] https://www.npmjs.com/package/commander
     -   [ ] Add better args and `-y`, etc..
 -   [x] (half working) add decor dotted to everything
 -   [ ] Disable breadcrumb if page doesnt exist
+-   [ ] Add $Schema to config
+-   [ ] Make highlighter SSG
+-   [ ] **Fix fonts**!!!!!!!!!!!!!!!!!!!!!!!!!
 -   [ ] footer
+-   [ ] Windows support
 -   [ ] dont forget to remove console.logs
 -   [ ] toggleable folder/list. if folder -> have pages
 -   [ ] ~~Learn how to actually make a CLI~~ impossible
 -   [x] https://www.npmjs.com/package/picocolors?activeTab=readme
--   [x] **https://www.npmjs.com/package/@vercel/ncc _VERY GOOD_** -> use `ncc build src/index.ts -0 dist` to build, dk how to link yet
+-   [x] **https://www.npmjs.com/package/@vercel/ncc _VERY GOOD_** -> use `ncc build src/index.ts -o dist` to build, dk how to link yet
 -   [x] https://www.npmjs.com/package/fast-glob
 -   [x] execa -> https://www.npmjs.com/package/cross-spawn
 -   [x] Fix '(node:208623) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead. (Use `node --trace-deprecation ...` to show where the warning was created)' --> Issue with my node version, fixed by `nvm install 20.5.1`, `nvm use 20.5.1`
