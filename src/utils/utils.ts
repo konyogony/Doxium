@@ -1,13 +1,12 @@
-import fs from 'fs';
-import path from 'path';
+import fg from 'fast-glob';
+import pc from 'picocolors';
 
-export const blueText = (text: string) => `\x1b[34m${text}\x1b[0m`;
-export const boldText = (text: string) => `\x1b[1m${text}\x1b[0m`;
+export const errorText = (text: string) => pc.red('✖ ') + pc.bold(text);
+export const successText = (text: string) => pc.green('✔ ') + pc.bold(text);
+export const infoText = (text: string) => pc.blue('ℹ ') + pc.bold(text);
 
-export const errorText = (text: string) => `\x1b[31m✖\x1b[0m ${boldText(text)}`;
-export const successText = (text: string) => `\x1b[32m✔\x1b[0m ${boldText(text)}`;
-export const infoText = (text: string) => `\x1b[34mℹ\x1b[0m ${boldText(text)}`;
-
-export const isNextJsProject = (directory: string): boolean => {
-    return ['app', 'package.json', 'node_modules'].every((item) => fs.existsSync(path.join(directory, item)));
+export const isNextJsProject = async (folderPath: string) => {
+    const patterns = [`${folderPath}/{app,package.json,node_modules}`];
+    const matches = await fg(patterns);
+    return matches.length > 0;
 };

@@ -1,5 +1,6 @@
+import pc from 'picocolors';
 import prompts from 'prompts';
-import { blueText, errorText } from './utils.js';
+import { errorText } from './utils.js';
 
 export const getResponse = async () => {
     const response = await prompts(
@@ -7,19 +8,19 @@ export const getResponse = async () => {
             {
                 type: 'text',
                 name: 'app-name',
-                message: `Name of your ${blueText('app')}:`,
+                message: `Name of your ${pc.blue('app')}:`,
                 initial: 'my-app',
                 // validate: (value) => (value.match(/^[$A-Z_][0-9A-Z_$]*$/i) ? true : errorText('Invalid app name.')),
             },
             {
                 type: 'text',
                 name: 'github-repo',
-                message: `GitHub ${blueText('repository')} URL:`,
+                message: `GitHub ${pc.blue('repository')} URL:`,
             },
             {
                 type: 'toggle',
                 name: 'eslint',
-                message: `Would you like to use ${blueText('ESLint')}?`,
+                message: `Would you like to use ${pc.blue('ESLint')}?`,
                 active: 'yes',
                 inactive: 'no',
                 initial: true,
@@ -27,7 +28,7 @@ export const getResponse = async () => {
             {
                 type: 'toggle',
                 name: 'prettier',
-                message: `Would you like to use ${blueText('Prettier')}?`,
+                message: `Would you like to use ${pc.blue('Prettier')}?`,
                 active: 'yes',
                 inactive: 'no',
                 initial: true,
@@ -35,7 +36,7 @@ export const getResponse = async () => {
             {
                 type: 'toggle',
                 name: 'turbopack',
-                message: `Would you like to use ${blueText('Turbopack')} for next dev?`,
+                message: `Would you like to use ${pc.blue('Turbopack')} for next dev?`,
                 active: 'yes',
                 inactive: 'no',
                 initial: false,
@@ -43,7 +44,7 @@ export const getResponse = async () => {
             {
                 type: 'toggle',
                 name: 'home-page',
-                message: `Would you like to have a ${blueText('Home Page')}?`,
+                message: `Would you like to have a ${pc.blue('Home Page')}?`,
                 active: 'yes',
                 inactive: 'no',
                 initial: true,
@@ -51,7 +52,7 @@ export const getResponse = async () => {
             {
                 type: 'select',
                 name: 'shadcn-style',
-                message: `Choose your shadcn ${blueText('style')}:`,
+                message: `Choose your shadcn ${pc.blue('style')}:`,
                 choices: [
                     { title: 'New York', value: 'new-york' },
                     { title: 'Default', value: 'default' },
@@ -61,7 +62,7 @@ export const getResponse = async () => {
             {
                 type: 'select',
                 name: 'base-color',
-                message: `Choose your ${blueText('base color')}:`,
+                message: `Choose your ${pc.blue('base color')}:`,
                 choices: [
                     { title: 'Neutral', value: 'neutral' },
                     { title: 'Gray', value: 'gray' },
@@ -74,7 +75,7 @@ export const getResponse = async () => {
             {
                 type: 'autocomplete',
                 name: 'shiki-theme',
-                message: `Choose your code-block (shiki) ${blueText('theme')}:`,
+                message: `Choose your code-block (shiki) ${pc.blue('theme')}:`,
                 choices: [
                     { title: 'Andromeeda', value: 'andromeeda' },
                     { title: 'Aurora X', value: 'aurora-x' },
@@ -134,7 +135,7 @@ export const getResponse = async () => {
             {
                 type: 'confirm',
                 name: 'proceed',
-                message: `Do you wish to ${blueText('proceed?')}`,
+                message: `Do you wish to ${pc.blue('proceed?')}`,
                 initial: true,
             },
         ],

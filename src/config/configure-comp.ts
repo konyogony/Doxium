@@ -1,94 +1,105 @@
 import path from 'path';
-import { execa } from 'execa';
+import spawn from 'cross-spawn';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { infoText, successText } from '../utils/utils.js';
 
-const filesAll = [
+// List of components that should always be installed
+const alwaysInstall = [
     // UI components
-    { content: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
-    { content: 'command', type: 'tsx', path: './components/ui/command.tsx' },
+    { name: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
+    { name: 'command', type: 'tsx', path: './components/ui/command.tsx' },
 
     // Doxium components
-    { content: 'copy-button', type: 'tsx', path: './components/doxium/copy-button.tsx' },
-    { content: 'cmdk', type: 'tsx', path: './components/doxium/cmdk.tsx' },
-    { content: 'docs-code-wrapper-icon', type: 'tsx', path: './components/doxium/docs-code-wrapper-icon.tsx' },
-    { content: 'docs-folder', type: 'tsx', path: './components/doxium/docs-folder.tsx' },
-    { content: 'docs-link', type: 'tsx', path: './components/doxium/docs-link.tsx' },
-    { content: 'docs-mdx-components', type: 'tsx', path: './components/doxium/docs-mdx-components.tsx' },
-    { content: 'docs-sidebar', type: 'tsx', path: './components/doxium/docs-sidebar.tsx' },
-    { content: 'docs-nav', type: 'tsx', path: './components/doxium/docs-nav.tsx' },
-    { content: 'docs-secondary-sidebar', type: 'tsx', path: './components/doxium/docs-secondary-sidebar.tsx' },
-    { content: 'docs-hashtag', type: 'tsx', path: './components/doxium/docs-hashtag.tsx' },
-    { content: 'docs-code-wrapper', type: 'tsx', path: './components/doxium/docs-code-wrapper.tsx' },
-    { content: 'docs-breadcrumbs', type: 'tsx', path: './components/doxium/docs-breadcrumbs.tsx' },
+    { name: 'copy-button', type: 'tsx', path: './components/doxium/copy-button.tsx' },
+    { name: 'cmdk', type: 'tsx', path: './components/doxium/cmdk.tsx' },
+    { name: 'docs-code-wrapper-icon', type: 'tsx', path: './components/doxium/docs-code-wrapper-icon.tsx' },
+    { name: 'docs-folder', type: 'tsx', path: './components/doxium/docs-folder.tsx' },
+    { name: 'docs-link', type: 'tsx', path: './components/doxium/docs-link.tsx' },
+    { name: 'docs-mdx-components', type: 'tsx', path: './components/doxium/docs-mdx-components.tsx' },
+    { name: 'docs-sidebar', type: 'tsx', path: './components/doxium/docs-sidebar.tsx' },
+    { name: 'docs-nav', type: 'tsx', path: './components/doxium/docs-nav.tsx' },
+    { name: 'docs-secondary-sidebar', type: 'tsx', path: './components/doxium/docs-secondary-sidebar.tsx' },
+    { name: 'docs-hashtag', type: 'tsx', path: './components/doxium/docs-hashtag.tsx' },
+    { name: 'docs-code-wrapper', type: 'tsx', path: './components/doxium/docs-code-wrapper.tsx' },
+    { name: 'docs-breadcrumbs', type: 'tsx', path: './components/doxium/docs-breadcrumbs.tsx' },
+    { name: 'docs-edit', type: 'tsx', path: './components/doxium/docs-edit.tsx' },
+    { name: 'docs-scroll', type: 'tsx', path: './components/doxium/docs-scroll.tsx' },
+    { name: 'docs-headings', type: 'tsx', path: './components/doxium/docs-headings.tsx' },
 
     // Lib components
-    { content: 'highlighter', type: 'ts', path: './lib/highlighter.ts' },
-    { content: 'flatten-structure', type: 'ts', path: './lib/flatten-structure.ts' },
-    { content: 'prettify-text', type: 'ts', path: './lib/prettify-text.ts' },
-    { content: 'is-light-color', type: 'ts', path: './lib/is-light-color.ts' },
+    { name: 'highlighter', type: 'ts', path: './lib/highlighter.ts' },
+    { name: 'flatten-structure', type: 'ts', path: './lib/flatten-structure.ts' },
+    { name: 'prettify-text', type: 'ts', path: './lib/prettify-text.ts' },
+    { name: 'is-light-color', type: 'ts', path: './lib/is-light-color.ts' },
+    { name: 'get-repo-link', type: 'ts', path: './lib/get-repo-link.ts' },
 
     // Config
-    { content: 'types', type: 'ts', path: './types.ts' },
-    { content: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
-    { content: 'next-config', type: 'mjs', path: './next.config.mjs' },
-    { content: 'doxium', type: 'json', path: './doxium.json' },
+    { name: 'types', type: 'ts', path: './types.ts' },
+    { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
+    { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
+    { name: 'doxium', type: 'json', path: './doxium.json' },
 ];
 
+// List of files to install if home page is not selected
 const filesNoHome = [
     // UI components
-    { content: 'main-layout', type: 'tsx', path: './app/layout.tsx' },
+    { name: 'main-layout', type: 'tsx', path: './app/layout.tsx' },
 
     // Config
-    { content: 'config', type: 'ts', path: './config.ts' },
+    { name: 'config', type: 'ts', path: './config.ts' },
 
     // Mdx
-    { content: 'about', type: 'mdx', path: './app/about/page.mdx' },
-    { content: 'main', type: 'mdx', path: './app/page.mdx' },
-    { content: 'code-block', type: 'mdx', path: './app/features/code-block/page.mdx' },
-    { content: 'test', type: 'mdx', path: './app/features/test/page.mdx' },
+    { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
+    { name: 'main', type: 'mdx', path: './app/page.mdx' },
+    { name: 'code-block', type: 'mdx', path: './app/features/code-block/page.mdx' },
+    { name: 'test', type: 'mdx', path: './app/features/test/page.mdx' },
 ];
 
+// List of files to install if home page is selected
 const filesHome = [
     // UI components
-    { content: 'home-main-layout', type: 'tsx', path: './app/layout.tsx' },
-    { content: 'home-docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
-    { content: 'home-page', type: 'tsx', path: './app/page.tsx' },
+    { name: 'home-main-layout', type: 'tsx', path: './app/layout.tsx' },
+    { name: 'home-docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
+    { name: 'home-page', type: 'tsx', path: './app/page.tsx' },
 
     // Config
-    { content: 'home-config', type: 'ts', path: './config.ts' },
+    { name: 'home-config', type: 'ts', path: './config.ts' },
 
     // Mdx
-    { content: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
-    { content: 'main', type: 'mdx', path: './app/docs/page.mdx' },
-    { content: 'code-block', type: 'mdx', path: './app/docs/features/code-block/page.mdx' },
-    { content: 'test', type: 'mdx', path: './app/docs/features/test/page.mdx' },
+    { name: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
+    { name: 'main', type: 'mdx', path: './app/docs/page.mdx' },
+    { name: 'code-block', type: 'mdx', path: './app/docs/features/code-block/page.mdx' },
+    { name: 'test', type: 'mdx', path: './app/docs/features/test/page.mdx' },
 ];
 
+// Path to the templates directory
 const templatesDir = path.resolve(__dirname, '../templates');
 
+// Function to configure components based on the response and package manager
 export const configureComp = async (response: responseT, pm: string) => {
     console.log('\n' + infoText('Configuring Components...'));
     try {
+        // Rename next.config.ts to next.config.mjs, needed for proper MDX configuration
         await fs.rename('./next.config.ts', './next.config.mjs');
+
+        // Create components/doxium directory
         await fs.mkdir('components/doxium');
+
+        // Remove app/fonts directory
         await fs.rm('./app/fonts', { recursive: true });
 
+        // Process alwaysInstall files
         await Promise.all(
-            filesAll.map(async (file) => {
+            alwaysInstall.map(async (file) => {
                 try {
-                    const templatePath = path.join(
-                        templatesDir,
-                        `${file.type}`,
-                        `${file.content}.template.${file.type}`,
-                    );
+                    const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
                     const content = (await fs.readFile(templatePath, 'utf8'))
                         .replaceAll(/\/\/ @ts-nocheck\n/g, '')
                         .replaceAll(/\$COLOR/g, response['base-color'])
                         .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
-                        .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme']);
-
+                        .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
+                        .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style']);
                     await fs.writeFile(file.path, content);
                 } catch (error) {
                     console.error('Error configuring Components:', error);
@@ -97,9 +108,12 @@ export const configureComp = async (response: responseT, pm: string) => {
             }),
         );
 
-        await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+        // Run prettier to format the code
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
+        // Process files based on whether home page is selected or not
         if (response['home-page']) {
+            // Create necessary directories for home page users
             await fs.mkdir('app/docs');
             await fs.mkdir('app/docs/about');
             await fs.mkdir('app/docs/features');
@@ -108,14 +122,13 @@ export const configureComp = async (response: responseT, pm: string) => {
             await Promise.all(
                 filesHome.map(async (file) => {
                     try {
-                        const templatePath = path.join(
-                            templatesDir,
-                            `${file.type}`,
-                            `${file.content}.template.${file.type}`,
-                        );
+                        const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
                         const content = (await fs.readFile(templatePath, 'utf8'))
                             .replaceAll(/\/\/ @ts-nocheck\n/g, '')
-                            .replaceAll(/\$COLOR/g, response['base-color']);
+                            .replaceAll(/\$COLOR/g, response['base-color'])
+                            .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
+                            .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
+                            .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style']);
 
                         await fs.writeFile(file.path, content);
                     } catch (error) {
@@ -125,6 +138,7 @@ export const configureComp = async (response: responseT, pm: string) => {
                 }),
             );
         } else {
+            // Remove app/page.tsx and create necessary directories for non-home page users
             await fs.rm('./app/page.tsx');
             await fs.mkdir('app/about');
             await fs.mkdir('app/features');
@@ -133,14 +147,13 @@ export const configureComp = async (response: responseT, pm: string) => {
             await Promise.all(
                 filesNoHome.map(async (file) => {
                     try {
-                        const templatePath = path.join(
-                            templatesDir,
-                            `${file.type}`,
-                            `${file.content}.template.${file.type}`,
-                        );
+                        const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
                         const content = (await fs.readFile(templatePath, 'utf8'))
                             .replaceAll(/\/\/ @ts-nocheck\n/g, '')
-                            .replaceAll(/\$COLOR/g, response['base-color']);
+                            .replaceAll(/\$COLOR/g, response['base-color'])
+                            .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
+                            .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
+                            .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style']);
 
                         await fs.writeFile(file.path, content);
                     } catch (error) {
@@ -150,7 +163,9 @@ export const configureComp = async (response: responseT, pm: string) => {
                 }),
             );
         }
-        await execa(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+
+        // Run prettier again to format the code
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
     } catch (error) {
         console.error('Error creating custom components:', error);
         process.exit(1);

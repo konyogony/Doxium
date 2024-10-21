@@ -1,8 +1,7 @@
 import fs from 'fs-extra';
-import { responseT } from '../utils/types.js';
-import { errorText, successText } from '../utils/utils.js';
+import { errorText } from '../utils/utils.js';
 
-export const configurePrettier = async (response: responseT, pmi: string[], pm: string) => {
+export const installPrettier = async () => {
     try {
         const prettierConfigContent = `{
         "printWidth": 120,

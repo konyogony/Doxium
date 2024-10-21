@@ -1,5 +1,6 @@
 import { detect } from 'detect-package-manager';
-import { blueText, errorText, successText } from './utils.js';
+import pc from 'picocolors';
+import { errorText, successText } from './utils.js';
 
 export const getPmInfo = async () => {
     const pm = await detect().catch((err) => {
@@ -11,7 +12,7 @@ export const getPmInfo = async () => {
         console.error(errorText('Package manager detection failed.'));
         process.exit(1);
     } else {
-        console.log('\n' + successText(`Detected package manager: ${blueText(pm)}.`));
+        console.log('\n' + successText(`Detected package manager: ${pc.blue(pm)}.`));
     }
 
     let pmx: string[];
@@ -37,3 +38,5 @@ export const getPmInfo = async () => {
 
     return { pm, pmx, pmi };
 };
+
+// Very wonky

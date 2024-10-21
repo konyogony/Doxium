@@ -1,12 +1,13 @@
-import { execa } from 'execa';
+import spawn from 'cross-spawn';
 import { responseT } from '../utils/types.js';
-import { blueText, infoText, successText } from '../utils/utils.js';
+import { infoText, successText } from '../utils/utils.js';
 
-export const configureNextjs = async (response: responseT, pmx: string[]) => {
+export const createNewNext = async (response: responseT, pmx: string[]) => {
+    if (!pmx[0]) return;
     try {
         console.log('\n' + infoText('Installing Next.js...'));
 
-        await execa(
+        spawn.sync(
             pmx[0],
             [
                 pmx[1],
@@ -19,7 +20,7 @@ export const configureNextjs = async (response: responseT, pmx: string[]) => {
                 response['eslint'] ? '--eslint' : '--no-eslint',
                 response['turbopack'] ? '--turbo' : '--no-turbo',
                 '--no-import-alias',
-            ].filter((str) => str !== '' && str !== undefined),
+            ].filter((str) => str !== '' && str !== undefined) as string[],
             { stdio: 'ignore' },
         );
         console.log(successText(`Created a new next.js app`));
