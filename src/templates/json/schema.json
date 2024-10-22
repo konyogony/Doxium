@@ -2,12 +2,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {
-        "app-name": {
-            "type": "string",
-            "description": "The name of the Doxium application.",
-            "pattern": "^[a-zA-Z0-9_-]+$",
-            "examples": ["my-doxium-app"]
-        },
         "github-repo": {
             "type": "string",
             "description": "The GitHub repository to use for the Doxium application. (optional)",
@@ -104,5 +98,5 @@
             "examples": ["@/components", "@/path/to/doxium/components"]
         }
     },
-    "required": ["app-name", "base-color", "accent-color", "shiki-theme", "home-page", "components-alias"]
+    "required": ["base-color", "accent-color", "shiki-theme", "home-page", "components-alias"]
 }

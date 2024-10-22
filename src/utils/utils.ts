@@ -5,6 +5,7 @@ import { responseT } from './types.js';
 export const errorText = (text: string) => pc.red('✖ ') + pc.bold(text);
 export const successText = (text: string) => pc.green('✔ ') + pc.bold(text);
 export const infoText = (text: string) => pc.blue('ℹ ') + pc.bold(text);
+export const warningText = (text: string) => pc.yellow('⚠ ') + pc.bold(pc.yellow(text));
 
 export const isNextJsProject = async (folderPath: string) => {
     const patterns = [`${folderPath}/{app,package.json,node_modules}`];
@@ -27,5 +28,5 @@ export const replacePlaceholders = (content: string, response: responseT) => {
         .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style'])
         .replaceAll(/\$COLOR/g, response['base-color'])
         .replaceAll(/\$ACCENT-COLOR/g, response['accent-color'])
-        .replaceAll(/\"$HOME-PAGE"/g, response['home-page']);
+        .replaceAll(/\$HOME-PAGE/g, response['home-page']);
 };

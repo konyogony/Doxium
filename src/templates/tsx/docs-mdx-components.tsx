@@ -52,7 +52,7 @@ export const mdxComponents = {
                 {...props}
                 className='mx-0.5 my-2 rounded-[3.5px] bg-neutral-800 px-1.5 py-1 text-sm font-semibold text-neutral-50'
             >
-                <span className='not-prose font-["Roboto_Mono"]'>{children}</span>
+                <span className='not-prose font-mono'>{children}</span>
             </span>
         );
     },

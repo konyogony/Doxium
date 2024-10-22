@@ -7,11 +7,30 @@ export const createNewNext = async (response: responseT, pmx: string[]) => {
     try {
         console.log('\n' + infoText('Installing Next.js...'));
 
+        console.log(
+            'Debug' +
+                [
+                    pmx[0],
+                    [
+                        pmx[1],
+                        'create-next-app@latest',
+                        response['app-name'],
+                        '--ts',
+                        '--tailwind',
+                        '--app',
+                        '--no-src-dir',
+                        response['eslint'] ? '--eslint' : '--no-eslint',
+                        response['turbopack'] ? '--turbo' : '--no-turbo',
+                        '--no-import-alias',
+                    ].filter((str) => str !== '' && str !== undefined) as string[],
+                ].join(' '),
+        );
+
         spawn.sync(
             pmx[0],
             [
                 pmx[1],
-                'create-next-app@canary',
+                'create-next-app@latest',
                 response['app-name'],
                 '--ts',
                 '--tailwind',

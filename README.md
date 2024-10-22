@@ -53,7 +53,7 @@ _Italics -> Not sure_
 -   [ ] Check if emoji's parse
 -   [ ] _Make Doxium Integrate (only docs folder)_
 -   [ ] Add alias to the config for doxium components
--   [ ] **Fix fonts**!!!!!!!!!!!!!!!!!!!!!!!!!
+-   [x] Fix fonts
 -   [ ] footer
 -   [ ] Windows support
 -   [ ] Bunx doxium update

@@ -14,7 +14,6 @@ import { Toaster } from 'sonner';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
-const roboto_mono = Roboto_Mono({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'Doxium app',
@@ -27,7 +26,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en' className={cn('dark antialiased', inter.className, roboto_mono.className)}>
+        <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative '>
                 <nav className='bg-$COLOR-950/90 text-$COLOR-300 fixed inset-0 z-50 flex h-fit w-full flex-row items-center gap-8 border-b border-white/5 px-[20vw] py-4 text-sm font-normal decoration-dotted backdrop-blur-lg'>
                     <Link href='/' className='text-$COLOR-100 hover:text-$COLOR-50 text-xl font-bold'>

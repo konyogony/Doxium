@@ -5,6 +5,6 @@
     "base-color": "$COLOR",
     "accent-color": "$ACCENT-COLOR",
     "shiki-theme": "$SHIKI-THEME",
-    "home-page": "$HOME-PAGE",
+    "home-page": $HOME-PAGE,
     "components-alias": "@/components/doxium"
 }

@@ -1,4 +1,5 @@
 import pc from 'picocolors';
+import prompts from 'prompts';
 import { configureComp } from '../config/configure-comp.js';
 import { configureShadcn } from '../config/configure-shadcn.js';
 import { createNewNext } from '../config/create-new-next.js';
@@ -6,18 +7,46 @@ import { installDependencies } from '../config/install-dependencies.js';
 import { installPrettier } from '../config/install-prettier.js';
 import { removePrettier } from '../config/remove-prettier.js';
 import { getPmInfo } from '../utils/get-pm-info.js';
-import { getResponse } from '../utils/get-response.js';
-import { errorText, infoText, isNextJsProject, successText } from '../utils/utils.js';
+import { getFullResponse } from '../utils/get-response.js';
+import { infoText, isDoxiumProject, isNextJsProject, successText, warningText } from '../utils/utils.js';
+import { link } from './link.js';
+import { update } from './update.js';
 
 export const init = async () => {
-    // Get user response
-    const response = await getResponse();
+    // Get name of the app to immediately check if it is a Next.js project
+    const response_name = await prompts([
+        {
+            type: 'text',
+            name: 'app-name',
+            message: `Name of your ${pc.blue('app')}:`,
+            initial: 'my-app',
+            validate: (value) => (value.length < 3 ? 'Name must be at least 3 characters long' : true),
+        },
+    ]);
 
-    // Check if the directory is already a Next.js project
-    if (await isNextJsProject(`./${response['app-name']}`)) {
-        console.error(errorText('This directory is already a Next.js project.'));
-        process.exit(1);
+    if (await isNextJsProject(`./${response_name['app-name']}`)) {
+        if (await isDoxiumProject(`./${response_name['app-name']}`)) {
+            console.log(
+                '\n' +
+                    warningText(
+                        'Directory already contains a full Doxium project. Running `doxium update` to update components...',
+                    ),
+            );
+            return update();
+        } else {
+            console.log(
+                '\n' +
+                    warningText(
+                        'Directory already contains a Next.js project. Running `doxium link` to integrate Doxium...',
+                    ),
+            );
+            return link();
+        }
     }
+
+    const response_full = await getFullResponse();
+
+    const response = { ...response_name, ...response_full };
 
     // Get package manager info
     const { pm, pmx, pmi } = await getPmInfo();
