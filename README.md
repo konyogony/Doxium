@@ -17,11 +17,14 @@ _Italics -> Not sure_
     -   [x] Shiki themes
     -   [ ] **Visibility**
     -   [ ] Icons
+    -   [ ] Languages
     -   [ ] **highlighting**
     -   [ ] Add auto coloring??
 -   [x] Fonts
 -   [ ] Clean up code
+-   [ ] Host schema not on github.
 -   [ ] Clean up console
+-   [ ] Stripping Github repo from config.
 -   [ ] _dark/light theme seems hard and cringe_
 -   [x] Bug-fixing
 -   [ ] _Use vertisan icons_
@@ -43,11 +46,15 @@ _Italics -> Not sure_
     -   [ ] Add better args and `-y`, etc..
 -   [x] (half working) add decor dotted to everything
 -   [ ] Disable breadcrumb if page doesnt exist
--   [ ] Add $Schema to config
+-   [x] Add $Schema to config
 -   [ ] Make highlighter SSG
+-   [ ] Add author to the end of page + last updated
+-   [ ] Check if emoji's parse
+-   [ ] Add alias to the config for doxium components
 -   [ ] **Fix fonts**!!!!!!!!!!!!!!!!!!!!!!!!!
 -   [ ] footer
 -   [ ] Windows support
+-   [ ] Bunx doxium update
 -   [ ] dont forget to remove console.logs
 -   [ ] toggleable folder/list. if folder -> have pages
 -   [ ] ~~Learn how to actually make a CLI~~ impossible
@@ -62,6 +69,7 @@ _Italics -> Not sure_
 -   [ ] Website
 -   [ ] Setup npm & gh page
 -   [ ] Docs
+-   [ ] Logo
 
 ## Techstack (Doxium)
 

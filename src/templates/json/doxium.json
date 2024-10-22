@@ -1,4 +1,8 @@
 {
+    "$schema": "https://raw.githubusercontent.com/konyogony/doxium/main/src/templates/json/schema.json",
     "github-repo": "$GITHUB-REPO",
-    "shiki-theme": "$SHIKI-THEME"
+    "base-colour": "$BASE-COLOUR",
+    "accent-colour": "$ACCENT-COLOUR",
+    "shiki-theme": "$SHIKI-THEME",
+    "components-alias": "@/components/doxium"
 }
