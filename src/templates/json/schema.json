@@ -4,9 +4,9 @@
     "properties": {
         "github-repo": {
             "type": "string",
-            "description": "The GitHub repository to use for the Doxium application.",
-            "pattern": "^https://github\\.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/?$",
-            "examples": ["https://github.com/username/repo"]
+            "description": "The GitHub repository to use for the Doxium application. (optional)",
+            "pattern": "^$|^https://github\\.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/?$",
+            "examples": ["https://github.com/username/repo", ""]
         },
         "base-colour": {
             "type": "string",
