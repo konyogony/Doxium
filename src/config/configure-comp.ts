@@ -2,7 +2,7 @@ import path from 'path';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
-import { infoText, successText } from '../utils/utils.js';
+import { infoText, replacePlaceholders, successText } from '../utils/utils.js';
 
 // List of components that should always be installed
 const alwaysInstall = [
@@ -94,12 +94,8 @@ export const configureComp = async (response: responseT, pm: string) => {
             alwaysInstall.map(async (file) => {
                 try {
                     const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
-                    const content = (await fs.readFile(templatePath, 'utf8'))
-                        .replaceAll(/\/\/ @ts-nocheck\n/g, '')
-                        .replaceAll(/\$COLOR/g, response['base-color'])
-                        .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
-                        .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
-                        .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style']);
+                    const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
+
                     await fs.writeFile(file.path, content);
                 } catch (error) {
                     console.error('Error configuring Components:', error);
@@ -123,12 +119,7 @@ export const configureComp = async (response: responseT, pm: string) => {
                 filesHome.map(async (file) => {
                     try {
                         const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
-                        const content = (await fs.readFile(templatePath, 'utf8'))
-                            .replaceAll(/\/\/ @ts-nocheck\n/g, '')
-                            .replaceAll(/\$COLOR/g, response['base-color'])
-                            .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
-                            .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
-                            .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style']);
+                        const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
 
                         await fs.writeFile(file.path, content);
                     } catch (error) {
@@ -148,13 +139,7 @@ export const configureComp = async (response: responseT, pm: string) => {
                 filesNoHome.map(async (file) => {
                     try {
                         const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
-                        const content = (await fs.readFile(templatePath, 'utf8'))
-                            .replaceAll(/\/\/ @ts-nocheck\n/g, '')
-                            .replaceAll(/\$COLOR/g, response['base-color'])
-                            .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
-                            .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
-                            .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style']);
-
+                        const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
                         await fs.writeFile(file.path, content);
                     } catch (error) {
                         console.error('Error configuring Components:', error);

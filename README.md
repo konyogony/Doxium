@@ -17,12 +17,12 @@ _Italics -> Not sure_
     -   [x] Shiki themes
     -   [ ] **Visibility**
     -   [ ] Icons
-    -   [ ] Languages
+    -   [ ] Languages (tsx, rs)
     -   [ ] **highlighting**
     -   [ ] Add auto coloring??
 -   [x] Fonts
 -   [ ] Clean up code
--   [ ] Host schema not on github.
+-   [x] Host schema not on github.
 -   [ ] Clean up console
 -   [ ] Stripping Github repo from config.
 -   [ ] _dark/light theme seems hard and cringe_
@@ -33,11 +33,11 @@ _Italics -> Not sure_
 -   [ ] **Make TOC SSG**
 -   [ ] **Better errors in CLI**
 -   [ ] Automate structure!
--   [ ] Languages
+-   [ ] Languages (en, ru)
 -   [ ] User-made themes -> marketplace?
 -   [ ] Custom Readme
 -   [ ] Add comments through cli & doxium code
--   [ ] Add spinner (https://www.npmjs.com/package/cli-spinners)
+-   [ ] Add spinner (https://www.npmjs.com/package/cli-spinners) -> For different PM, diffferent spinner?
 -   [ ] Mobile support
 -   [x] Home page toggleable
     -   [ ] Being able to toggle later on
@@ -51,6 +51,7 @@ _Italics -> Not sure_
 -   [ ] Make highlighter SSG
 -   [ ] Add author to the end of page + last updated
 -   [ ] Check if emoji's parse
+-   [ ] _Make Doxium Integrate (only docs folder)_
 -   [ ] Add alias to the config for doxium components
 -   [ ] **Fix fonts**!!!!!!!!!!!!!!!!!!!!!!!!!
 -   [ ] footer

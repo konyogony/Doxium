@@ -1,33 +1,23 @@
+import path from 'path';
 import fs from 'fs-extra';
 import { errorText } from '../utils/utils.js';
 
-export const installPrettier = async () => {
-    try {
-        const prettierConfigContent = `{
-        "printWidth": 120,
-        "tabWidth": 4,
-        "useTabs": false,
-        "semi": true,
-        "singleQuote": true,
-        "jsxSingleQuote": true,
-        "endOfLine": "lf",
-        "plugins": [
-            "@ianvs/prettier-plugin-sort-imports",
-            "prettier-plugin-css-order",
-            "prettier-plugin-organize-attributes",
-            "prettier-plugin-tailwindcss"
-        ]
-        }
-        `;
+const files = [{ name: '.prettierrc', type: 'json', path: './.prettierrc.json' }];
 
-        try {
-            await fs.writeFile('./.prettierrc.json', prettierConfigContent);
-        } catch (error) {
-            console.error(errorText(`Error creating ${'.prettierrc.json'} file:`), error);
-            process.exit(1);
-        }
-    } catch (error) {
-        console.error(error);
-        process.exit(1);
-    }
+const templatesDir = path.resolve(__dirname, '../templates');
+
+export const installPrettier = async () => {
+    await Promise.all(
+        files.map(async (file) => {
+            try {
+                const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
+                const content = await fs.readFile(templatePath, 'utf8');
+
+                await fs.writeFile(file.path, content);
+            } catch (error) {
+                console.error(errorText(`Error configuring prettier: ${file.name}, error: ${error}`));
+                process.exit(1);
+            }
+        }),
+    );
 };

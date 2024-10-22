@@ -2,7 +2,7 @@ import path from 'path';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
-import { errorText, infoText, successText } from '../utils/utils.js';
+import { errorText, infoText, replacePlaceholders, successText } from '../utils/utils.js';
 
 const templatesDir = path.resolve(__dirname, '../templates');
 
@@ -27,12 +27,7 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
             files.map(async (file) => {
                 try {
                     const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
-                    const content = (await fs.readFile(templatePath, 'utf8'))
-                        .replaceAll(/\/\/ @ts-nocheck\n/g, '')
-                        .replaceAll(/\$COLOR/g, response['base-color'])
-                        .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
-                        .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
-                        .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style']);
+                    const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
 
                     await fs.writeFile(file.path, content);
                 } catch (error) {

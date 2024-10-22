@@ -10,5 +10,6 @@ export type responseT = Answers<
     | 'base-color'
     | 'proceed'
     | 'github-repo'
+    | 'accent-color'
     | 'shiki-theme'
 >;
