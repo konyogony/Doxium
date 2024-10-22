@@ -21,6 +21,7 @@ _Italics -> Not sure_
     -   [ ] **highlighting**
     -   [ ] Add auto coloring??
 -   [x] Fonts
+-   [ ] Rename "Home Page" to use 'docs' folder.
 -   [ ] Clean up code
 -   [x] Host schema not on github.
 -   [ ] Clean up console
