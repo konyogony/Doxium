@@ -24,7 +24,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
     return (
         <button
             onClick={clickCopy}
-            className='text-$COLOR-400 hover:!text-$COLOR-200 transition-all duration-150 lg:opacity-0 lg:group-hover:opacity-100'
+            className='text-$COLOR-400 hover:!text-$ACCENT-COLOR-200 transition-all duration-150 lg:opacity-0 lg:group-hover:opacity-100'
         >
             <FiCheck
                 size={18}

@@ -18,7 +18,7 @@ export const DocsEdit = ({ repoLink }: DocsEditProps) => {
                     href={`${repoLink}/edit/main/src/app${pathname}/page.mdx`}
                     rel='noopener noreferrer'
                     target='_blank'
-                    className='flex flex-row items-center gap-1 text-sm text-neutral-400 hover:text-neutral-200'
+                    className='flex flex-row items-center gap-1 text-sm text-$COLOR-400 hover:text-$ACCENT-COLOR-200'
                 >
                     Edit this page on GitHub <FiArrowUpRight />
                 </a>

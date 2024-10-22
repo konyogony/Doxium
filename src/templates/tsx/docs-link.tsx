@@ -28,8 +28,8 @@ export const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
                 <Link
                     href={path || ''}
                     className={cn(
-                        'text-$COLOR-400 flex w-full py-1.5 text-sm decoration-dotted font-normal transition-all duration-300 hover:underline',
-                        pathname === path && 'text-$COLOR-300 font-medium',
+                        'text-$COLOR-400 hover:text-$ACCENT-COLOR-200 flex w-full py-1.5 text-sm decoration-dotted font-normal transition-all duration-300 hover:underline',
+                        pathname === path && 'text-$ACCENT-COLOR-300 font-medium',
                     )}
                 >
                     {prettifyText(name)}

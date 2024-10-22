@@ -35,7 +35,7 @@ export const WikiCodeWrapper = async ({ language = '', children }: WikiCodeWrapp
             </div>
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
-                className='codeBlock customScrollbar bg-stone-950 text-sm lg:text-base'
+                className='codeBlock customScrollbar text-sm lg:text-base'
             />
         </div>
     );

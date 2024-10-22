@@ -50,8 +50,8 @@ export const DocsHeadings = () => {
                 <a
                     href={`#${heading.id}`}
                     className={cn(
-                        'py-1 text-sm font-normal transition-all duration-300 hover:text-neutral-200',
-                        activeHeading === heading.id ? 'text-neutral-50' : 'text-neutral-400',
+                        'py-1 text-sm font-normal transition-all duration-300 hover:text-$ACCENT-COLOR-200',
+                        activeHeading === heading.id ? 'text-$COLOR-50' : 'text-$ACCENT-COLOR-400',
                     )}
                     key={i}
                 >

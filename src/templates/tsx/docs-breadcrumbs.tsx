@@ -27,13 +27,18 @@ export const DocsBreadcrumbs = () => {
                 </BreadcrumbItem>
                 {path.map((v, i) => {
                     const href = `/${path.slice(0, i + 1).join('/')}`;
+                    const isLast = i === path.length - 1;
                     return (
                         <Fragment key={i}>
                             <BreadcrumbSeparator />
-                            <BreadcrumbItem className={i === path.length - 1 ? 'text-$COLOR-50' : ''}>
-                                <BreadcrumbLink asChild>
-                                    <Link href={href}>{prettifyText(v)}</Link>
-                                </BreadcrumbLink>
+                            <BreadcrumbItem className={isLast ? 'text-$COLOR-50 hover:text-$ACCENT-COLOR-600' : ''}>
+                                {isLast ? (
+                                    <BreadcrumbLink asChild>
+                                        <Link href={href}>{prettifyText(v)}</Link>
+                                    </BreadcrumbLink>
+                                ) : (
+                                    prettifyText(v)
+                                )}
                             </BreadcrumbItem>
                         </Fragment>
                     );

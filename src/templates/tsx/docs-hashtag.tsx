@@ -32,7 +32,7 @@ export const WikiHashTag = ({ id, variant = 'h1' }: WikiHashTagProps) => {
         <button onClick={() => clickCopy()} id={'hashtag'} className='hidden cursor-copy lg:inline'>
             <HiOutlineHashtag
                 size={variant === 'h1' ? 26 : variant === 'h2' ? 20 : 18}
-                className='hover:!text-$COLOR-200 group-hover:text-$COLOR-200/60 text-transparent transition-all duration-300 focus:outline-none focus:ring-0'
+                className='hover:!text-$ACCENT-COLOR-200 group-hover:text-$COLOR-200/60 text-transparent transition-all duration-300 focus:outline-none focus:ring-0'
             />
         </button>
     );
