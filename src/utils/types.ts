@@ -5,7 +5,7 @@ export type responseT = Answers<
     | 'eslint'
     | 'turbopack'
     | 'prettier'
-    | 'home-page'
+    | 'use-docs'
     | 'shadcn-style'
     | 'base-color'
     | 'proceed'

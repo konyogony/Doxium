@@ -1,13 +1,13 @@
 // @ts-nocheck
 
-import { Cmdk } from '@/components/doxium/cmdk';
-import { DocsBreadcrumbs } from '@/components/doxium/docs-breadcrumbs';
-import { DocsNav } from '@/components/doxium/docs-nav';
-import { SecondarySidebar } from '@/components/doxium/docs-secondary-sidebar';
-import { Sidebar } from '@/components/doxium/docs-sidebar';
 import { cn } from '@/lib/utils';
+import { Cmdk } from '$COMPONENTS-ALIAS/cmdk';
+import { DocsBreadcrumbs } from '$COMPONENTS-ALIAS/docs-breadcrumbs';
+import { DocsNav } from '$COMPONENTS-ALIAS/docs-nav';
+import { SecondarySidebar } from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
+import { Sidebar } from '$COMPONENTS-ALIAS/docs-sidebar';
 import { Metadata } from 'next';
-import { Inter, Roboto_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { BsDiscord, BsGithub } from 'react-icons/bs';
 import { Toaster } from 'sonner';

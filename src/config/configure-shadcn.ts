@@ -2,9 +2,7 @@ import path from 'path';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
-import { errorText, infoText, replacePlaceholders, successText } from '../utils/utils.js';
-
-const templatesDir = path.resolve(__dirname, '../templates');
+import { errorText, infoText, replacePlaceholders, successText, templatesDir } from '../utils/utils.js';
 
 const files = [
     { name: 'tailwind', type: 'ts', path: './tailwind.config.ts' },

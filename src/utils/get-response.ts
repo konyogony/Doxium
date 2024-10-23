@@ -36,8 +36,8 @@ export const getFullResponse = async () => {
             },
             {
                 type: 'toggle',
-                name: 'home-page',
-                message: `Would you like to have a ${pc.blue('Home Page')}?`,
+                name: 'use-docs',
+                message: `Would you like to use ${pc.blue('docs folder')}?`,
                 active: 'yes',
                 inactive: 'no',
                 initial: true,
@@ -166,8 +166,6 @@ export const getFullResponse = async () => {
         console.log(errorText('Setup cancelled by user.'));
         process.exit(1);
     }
-
-    console.log(response);
 
     return response;
 };

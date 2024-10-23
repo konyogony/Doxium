@@ -1,10 +1,10 @@
 // @ts-nocheck
 
-import { CopyButton } from '@/components/doxium/copy-button';
-import { wikiCodeWrapperIcon } from '@/components/doxium/docs-code-wrapper-icon';
 import { getHighlighterInstance } from '@/lib/highlighter';
 import { isLightColor } from '@/lib/is-light-color';
 import { ShikiThemeBackgroundHexDimmed } from '@/types';
+import { CopyButton } from '$COMPONENTS-ALIAS/copy-button';
+import { wikiCodeWrapperIcon } from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
 
 interface WikiCodeWrapperProps {
     language?: string;

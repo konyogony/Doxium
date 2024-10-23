@@ -21,7 +21,8 @@ _Italics -> Not sure_
     -   [ ] **highlighting**
     -   [ ] Add auto coloring??
 -   [x] Fonts
--   [ ] Rename "Home Page" to use 'docs' folder.
+-   [x] Rename "Home Page" to use 'docs' folder.
+-   [ ] Fix turbo enabled by default (idk whyyyyyyyyyyyy)
 -   [ ] Clean up code
 -   [x] Host schema not on github.
 -   [ ] Clean up console
@@ -33,7 +34,8 @@ _Italics -> Not sure_
 -   [x] Make config file?
 -   [ ] **Make TOC SSG**
 -   [ ] **Better errors in CLI**
--   [ ] Automate structure!
+-   [ ] Make code use alias
+-   [ ] **Automate structure!**
 -   [ ] Languages (en, ru)
 -   [ ] User-made themes -> marketplace?
 -   [ ] Custom Readme

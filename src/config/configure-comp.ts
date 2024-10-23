@@ -2,44 +2,7 @@ import path from 'path';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
-import { infoText, replacePlaceholders, successText } from '../utils/utils.js';
-
-// List of components that should always be installed
-const alwaysInstall = [
-    // UI components
-    { name: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
-    { name: 'command', type: 'tsx', path: './components/ui/command.tsx' },
-
-    // Doxium components
-    { name: 'copy-button', type: 'tsx', path: './components/doxium/copy-button.tsx' },
-    { name: 'cmdk', type: 'tsx', path: './components/doxium/cmdk.tsx' },
-    { name: 'docs-code-wrapper-icon', type: 'tsx', path: './components/doxium/docs-code-wrapper-icon.tsx' },
-    { name: 'docs-folder', type: 'tsx', path: './components/doxium/docs-folder.tsx' },
-    { name: 'docs-link', type: 'tsx', path: './components/doxium/docs-link.tsx' },
-    { name: 'docs-mdx-components', type: 'tsx', path: './components/doxium/docs-mdx-components.tsx' },
-    { name: 'docs-sidebar', type: 'tsx', path: './components/doxium/docs-sidebar.tsx' },
-    { name: 'docs-nav', type: 'tsx', path: './components/doxium/docs-nav.tsx' },
-    { name: 'docs-secondary-sidebar', type: 'tsx', path: './components/doxium/docs-secondary-sidebar.tsx' },
-    { name: 'docs-hashtag', type: 'tsx', path: './components/doxium/docs-hashtag.tsx' },
-    { name: 'docs-code-wrapper', type: 'tsx', path: './components/doxium/docs-code-wrapper.tsx' },
-    { name: 'docs-breadcrumbs', type: 'tsx', path: './components/doxium/docs-breadcrumbs.tsx' },
-    { name: 'docs-edit', type: 'tsx', path: './components/doxium/docs-edit.tsx' },
-    { name: 'docs-scroll', type: 'tsx', path: './components/doxium/docs-scroll.tsx' },
-    { name: 'docs-headings', type: 'tsx', path: './components/doxium/docs-headings.tsx' },
-
-    // Lib components
-    { name: 'highlighter', type: 'ts', path: './lib/highlighter.ts' },
-    { name: 'flatten-structure', type: 'ts', path: './lib/flatten-structure.ts' },
-    { name: 'prettify-text', type: 'ts', path: './lib/prettify-text.ts' },
-    { name: 'is-light-color', type: 'ts', path: './lib/is-light-color.ts' },
-    { name: 'get-repo-link', type: 'ts', path: './lib/get-repo-link.ts' },
-
-    // Config
-    { name: 'types', type: 'ts', path: './types.ts' },
-    { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
-    { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
-    { name: 'doxium', type: 'json', path: './doxium.json' },
-];
+import { infoText, replacePlaceholders, successText, templatesDir } from '../utils/utils.js';
 
 // List of files to install if home page is not selected
 const filesNoHome = [
@@ -73,15 +36,53 @@ const filesHome = [
     { name: 'test', type: 'mdx', path: './app/docs/features/test/page.mdx' },
 ];
 
-// Path to the templates directory
-const templatesDir = path.resolve(__dirname, '../templates');
-
 // Function to configure components based on the response and package manager
 export const configureComp = async (response: responseT, pm: string) => {
+    // List of dyanmic components that should always be installed
+    const alwaysInstall = [
+        // UI components
+        { name: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
+        { name: 'command', type: 'tsx', path: './components/ui/command.tsx' },
+
+        // Doxium components
+        { name: 'copy-button', type: 'tsx', path: '$COMPONENTS-ALIAS/copy-button.tsx' },
+        { name: 'cmdk', type: 'tsx', path: '$COMPONENTS-ALIAS/cmdk.tsx' },
+        { name: 'docs-code-wrapper-icon', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-code-wrapper-icon.tsx' },
+        { name: 'docs-folder', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-folder.tsx' },
+        { name: 'docs-link', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-link.tsx' },
+        { name: 'docs-mdx-components', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-mdx-components.tsx' },
+        { name: 'docs-sidebar', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-sidebar.tsx' },
+        { name: 'docs-nav', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-nav.tsx' },
+        { name: 'docs-secondary-sidebar', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-secondary-sidebar.tsx' },
+        { name: 'docs-hashtag', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-hashtag.tsx' },
+        { name: 'docs-code-wrapper', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-code-wrapper.tsx' },
+        { name: 'docs-breadcrumbs', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-breadcrumbs.tsx' },
+        { name: 'docs-edit', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-edit.tsx' },
+        { name: 'docs-scroll', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-scroll.tsx' },
+        { name: 'docs-headings', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-headings.tsx' },
+
+        // Lib components
+        { name: 'highlighter', type: 'ts', path: './lib/highlighter.ts' },
+        { name: 'flatten-structure', type: 'ts', path: './lib/flatten-structure.ts' },
+        { name: 'prettify-text', type: 'ts', path: './lib/prettify-text.ts' },
+        { name: 'is-light-color', type: 'ts', path: './lib/is-light-color.ts' },
+        { name: 'get-repo-link', type: 'ts', path: './lib/get-repo-link.ts' },
+
+        // Config
+        { name: 'types', type: 'ts', path: './types.ts' },
+        { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
+        { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
+        { name: 'doxium', type: 'json', path: './doxium.json' },
+    ].map((file) => {
+        return { ...file, path: replacePlaceholders(file.path, response, './components/doxium') };
+    });
+
     console.log('\n' + infoText('Configuring Components...'));
     try {
         // Rename next.config.ts to next.config.mjs, needed for proper MDX configuration
-        await fs.rename('./next.config.ts', './next.config.mjs');
+        if (await fs.pathExists('./next.config.ts')) {
+            await fs.rename('./next.config.ts', './next.config.mjs');
+        }
 
         // Create components/doxium directory
         await fs.mkdir('components/doxium');
@@ -108,7 +109,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
         // Process files based on whether home page is selected or not
-        if (response['home-page']) {
+        if (response['use-docs']) {
             // Create necessary directories for home page users
             await fs.mkdir('app/docs');
             await fs.mkdir('app/docs/about');

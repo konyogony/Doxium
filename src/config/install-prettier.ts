@@ -1,10 +1,8 @@
 import path from 'path';
 import fs from 'fs-extra';
-import { errorText } from '../utils/utils.js';
+import { errorText, templatesDir } from '../utils/utils.js';
 
 const files = [{ name: '.prettierrc', type: 'json', path: './.prettierrc.json' }];
-
-const templatesDir = path.resolve(__dirname, '../templates');
 
 export const installPrettier = async () => {
     await Promise.all(

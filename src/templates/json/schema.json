@@ -87,9 +87,9 @@
                 "vitesse-light"
             ]
         },
-        "home-page": {
+        "use-docs": {
             "type": "boolean",
-            "description": "Whether to include a home page for the Doxium application."
+            "description": "Whether to use `docs` folder instead of running on home page."
         },
         "components-alias": {
             "type": "string",
@@ -98,5 +98,5 @@
             "examples": ["@/components", "@/path/to/doxium/components"]
         }
     },
-    "required": ["base-color", "accent-color", "shiki-theme", "home-page", "components-alias"]
+    "required": ["base-color", "accent-color", "shiki-theme", "use-docs", "components-alias"]
 }
