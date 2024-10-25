@@ -49,8 +49,11 @@ _Italics -> Not sure_
 -   [x] https://www.npmjs.com/package/commander
     -   [ ] Add better args and `-y`, etc..
 -   [x] (half working) add decor dotted to everything
+-   [ ] https://shiki.matsu.io/packages/transformers
 -   [ ] Disable breadcrumb if page doesnt exist
+-   [ ] Fix spacing between lines in codeblock
 -   [x] Add $Schema to config
+-   [ ] target: esnext
 -   [ ] Make highlighter SSG
 -   [ ] Add author to the end of page + last updated
 -   [ ] Check if emoji's parse

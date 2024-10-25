@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+html {
+    @apply scroll-smooth;
+}
+
+body {
+    @apply bg-zinc-950 text-zinc-200;
+}
+
+code {
+    counter-increment: step 0;
+    counter-reset: step;
+}
+
+/* Custom utilities */
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+/* Custom base styles */
+@layer base {
+    :root {
+        --radius: 0.5rem;
+    }
+}
+
+/* Code block styles */
+.codeBlock > pre {
+    @apply my-0 rounded-t-none;
+}
+
+/* Keyframes */
+@keyframes spin-slow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Line numbers styles */
+.lineNumbers code > .line:not(:last-child)::before {
+    @apply mr-6 inline-block w-6 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
+    counter-increment: step;
+}
+
+.lineNumbers pre.has-diff .diff.add::before {
+    content: counter(step) ' +';
+    @apply mr-6 inline-block w-10 text-right text-emerald-500;
+    counter-increment: step;
+}
+
+.lineNumbers pre.has-diff .diff.remove::before {
+    content: counter(step) ' -';
+    @apply mr-6 inline-block w-10 text-right text-red-700;
+    counter-increment: step;
+}
+
+:not(.lineNumbers) pre.has-diff .diff.add::before {
+    content: '+';
+    @apply mr-6 inline-block w-10 text-right text-emerald-500;
+    counter-increment: step;
+}
+
+:not(.lineNumbers) pre.has-diff .diff.remove::before {
+    content: '-';
+    @apply mr-6 inline-block w-10 text-right text-red-700;
+    counter-increment: step;
+}
+
+/* Diff styles */
+pre.has-diff .diff.add {
+    @apply bg-emerald-700 bg-opacity-35;
+}
+
+pre.has-diff .diff.remove {
+    @apply bg-red-800 bg-opacity-35;
+}
+
+/* Highlighted code styles */
+pre.has-highlighted .highlighted {
+    @apply bg-zinc-400 bg-opacity-15;
+}

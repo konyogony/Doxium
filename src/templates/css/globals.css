@@ -7,8 +7,10 @@ html {
 }
 
 body {
-    @apply bg-$COLOR-950 text-$COLOR-200; // If you add font-["Inter"] everything breaks
+    @apply bg-$COLOR-950 text-$COLOR-200;
 }
+
+/* If you add font-["Inter"] everything breaks */
 
 @layer utilities {
     .text-balance {
