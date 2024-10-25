@@ -35,6 +35,10 @@ code {
     @apply my-0 rounded-t-none;
 }
 
+.codeBlock code > span:not(:last-child) {
+    @apply w-full inline-table;
+}
+
 /* Keyframes */
 @keyframes spin-slow {
     0% {
