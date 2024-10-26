@@ -40,6 +40,9 @@ export interface HighlighterResult {
 //     'github-light-default': '#FFFFFF',
 //     'github-light-high-contrast': '#FFFFFF',
 //     houston: '#17191E',
+//     'kanagawa-dragon': '#181616',
+//     'kanagawa-lotus': '#F2ECBC',
+//     'kanagawa-wave': '#1F1F28',
 //     laserwave: '#27212E',
 //     'light-plus': '#FFFFFF',
 //     'material-theme': '#263238',
@@ -73,6 +76,7 @@ export interface HighlighterResult {
 //     'vitesse-light': '#FFFFFF',
 // };
 
+// Darker by 20%
 export const ShikiThemeBackgroundHexDimmed: Record<BundledTheme, string> = {
     andromeeda: '#1F2226',
     'aurora-x': '#06080D',
@@ -94,6 +98,9 @@ export const ShikiThemeBackgroundHexDimmed: Record<BundledTheme, string> = {
     'github-light-default': '#E6E6E6',
     'github-light-high-contrast': '#E6E6E6',
     houston: '#15171A',
+    'kanagawa-dragon': '#131111',
+    'kanagawa-lotus': '#C1BC96',
+    'kanagawa-wave': '#181820',
     laserwave: '#231D26',
     'light-plus': '#E6E6E6',
     'material-theme': '#232A2E',
@@ -125,4 +132,8 @@ export const ShikiThemeBackgroundHexDimmed: Record<BundledTheme, string> = {
     'vitesse-black': '#000000',
     'vitesse-dark': '#0F0F0F',
     'vitesse-light': '#E6E6E6',
+};
+
+export type preProps = React.HTMLAttributes<HTMLPreElement> & {
+    lineNumbers?: boolean;
 };

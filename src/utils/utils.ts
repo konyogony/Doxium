@@ -22,7 +22,12 @@ export const isDoxiumProject = async (folderPath: string) => {
     return matches.length > 0;
 };
 
-export const replacePlaceholders = (content: string, response: responseT, alias?: string) => {
+export const replacePlaceholders = (
+    content: string,
+    response: responseT,
+    componentAlias?: string,
+    libAlias?: string,
+) => {
     return content
         .replaceAll(/\/\/ @ts-nocheck\n/g, '')
         .replaceAll(/\$APP-NAME/g, response['app-name'])
@@ -32,5 +37,6 @@ export const replacePlaceholders = (content: string, response: responseT, alias?
         .replaceAll(/\$COLOR/g, response['base-color'])
         .replaceAll(/\$ACCENT-COLOR/g, response['accent-color'])
         .replaceAll(/\$USE-DOCS/g, response['use-docs'])
-        .replaceAll(/\$COMPONENTS-ALIAS/g, alias || '@/components/doxium');
+        .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias || '@/components/doxium')
+        .replaceAll(/\$LIB-ALIAS/g, libAlias || '@/lib');
 };

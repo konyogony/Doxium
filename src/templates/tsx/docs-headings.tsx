@@ -2,7 +2,7 @@
 
 'use client';
 
-import { cn } from '@/lib/utils';
+import { cn } from '$LIB-ALIAS/utils';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -50,8 +50,8 @@ export const DocsHeadings = () => {
                 <a
                     href={`#${heading.id}`}
                     className={cn(
-                        'py-1 text-sm font-normal transition-all duration-300 hover:text-$ACCENT-COLOR-200',
-                        activeHeading === heading.id ? 'text-$COLOR-50' : 'text-$ACCENT-COLOR-400',
+                        'py-1 text-sm font-normal hover:saturate-150 transition-all duration-300 hover:text-$ACCENT-COLOR-400',
+                        activeHeading === heading.id ? 'text-$ACCENT-COLOR-500' : 'text-$COLOR-400',
                     )}
                     key={i}
                 >

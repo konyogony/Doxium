@@ -2,7 +2,7 @@
 
 'use client';
 
-import { cn } from '@/lib/utils';
+import { cn } from '$LIB-ALIAS/utils';
 import copy from 'copy-to-clipboard';
 import { useState } from 'react';
 import { FiCheck, FiClipboard } from 'react-icons/fi';

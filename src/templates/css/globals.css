@@ -8,7 +8,7 @@ html {
 }
 
 body {
-    @apply bg-$COLOR-950 text-$COLOR-200;
+    @apply bg-zinc-950 text-zinc-200;
 }
 
 code {
@@ -30,15 +30,6 @@ code {
     }
 }
 
-/* Code block styles */
-.codeBlock > pre {
-    @apply my-0 rounded-t-none;
-}
-
-.codeBlock code > span:not(:last-child) {
-    @apply w-full inline-table;
-}
-
 /* Keyframes */
 @keyframes spin-slow {
     0% {
@@ -49,34 +40,67 @@ code {
     }
 }
 
+/* Code block styles */
+.codeBlock > pre {
+    @apply my-0 rounded-t-none;
+}
+
+.codeBlock code > .line:not(:last-child) {
+    @apply inline-block w-full;
+}
+
+/* Better padding */
+
+.codeBlock > pre {
+    @apply p-0;
+}
+
+.codeBlock code > .line:not(:last-child) {
+    @apply px-[1.1428571em];
+}
+
+.codeBlock span:first-child {
+    @apply mt-[0.8571429em];
+}
+
+.codeBlock span:nth-last-child(2) {
+    @apply mb-[0.8571429em];
+}
+
 /* Line numbers styles */
 .lineNumbers code > .line:not(:last-child)::before {
-    @apply mr-6 inline-block w-6 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
+    @apply mr-10 inline-block w-6 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
     counter-increment: step;
 }
 
-.lineNumbers pre.has-diff .diff.add::before {
+.lineNumbers > pre.has-diff .diff.add::before {
     content: counter(step) ' +';
     @apply mr-6 inline-block w-10 text-right text-emerald-500;
     counter-increment: step;
 }
 
-.lineNumbers pre.has-diff .diff.remove::before {
+.lineNumbers > pre.has-diff .diff.remove::before {
     content: counter(step) ' -';
     @apply mr-6 inline-block w-10 text-right text-red-700;
     counter-increment: step;
 }
 
-:not(.lineNumbers) pre.has-diff .diff.add::before {
+/* No line numbers */
+
+:not(.lineNumbers) > pre.has-diff .diff.add::before {
     content: '+';
-    @apply mr-6 inline-block w-10 text-right text-emerald-500;
+    @apply mr-4 inline-block text-right text-emerald-500;
     counter-increment: step;
 }
 
-:not(.lineNumbers) pre.has-diff .diff.remove::before {
+:not(.lineNumbers) > pre.has-diff .diff.remove::before {
     content: '-';
-    @apply mr-6 inline-block w-10 text-right text-red-700;
+    @apply mr-4 inline-block text-right text-red-700;
     counter-increment: step;
+}
+
+:not(.lineNumbers) > pre.has-diff .line:not(:last-child):not(.diff) {
+    @apply pl-10;
 }
 
 /* Diff styles */
@@ -90,5 +114,12 @@ pre.has-diff .diff.remove {
 
 /* Highlighted code styles */
 pre.has-highlighted .highlighted {
-    @apply bg-$COLOR-400 bg-opacity-15;
+    @apply bg-zinc-400 bg-opacity-15;
+}
+
+/* Checkbox trickery */
+
+input:disabled,
+input[type='checkbox'] {
+    @apply mr-2;
 }

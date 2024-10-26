@@ -18,8 +18,7 @@ _Italics -> Not sure_
     -   [ ] **Visibility**
     -   [ ] Icons
     -   [ ] Languages (tsx, rs)
-    -   [ ] **highlighting**
-    -   [ ] Add auto coloring??
+    -   [x] **highlighting**
 -   [x] Fonts
 -   [x] Rename "Home Page" to use 'docs' folder.
 -   [ ] Fix turbo enabled by default (idk whyyyyyyyyyyyy)
@@ -32,9 +31,10 @@ _Italics -> Not sure_
 -   [ ] _Use vertisan icons_
 -   [ ] _Make pages for folders (toggleable)??_
 -   [x] Make config file?
+-   [ ] Lib & Other aliases
 -   [ ] **Make TOC SSG**
 -   [ ] **Better errors in CLI**
--   [ ] Make code use alias
+-   [x] Make code use alias
 -   [ ] **Automate structure!**
 -   [ ] Languages (en, ru)
 -   [ ] User-made themes -> marketplace?
@@ -53,8 +53,10 @@ _Italics -> Not sure_
 -   [ ] Disable breadcrumb if page doesnt exist
 -   [ ] Fix spacing between lines in codeblock
 -   [x] Add $Schema to config
+-   [ ] Custom checkboxes
 -   [ ] target: esnext
 -   [ ] Make highlighter SSG
+-   [ ] Hover color `accent` -> `base`
 -   [ ] Add author to the end of page + last updated
 -   [ ] Check if emoji's parse
 -   [ ] _Make Doxium Integrate (only docs folder)_

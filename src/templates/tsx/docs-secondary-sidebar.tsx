@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import { getRepoLink } from '@/lib/get-repo-link';
 import { DocsEdit } from '$COMPONENTS-ALIAS/docs-edit';
 import { DocsHeadings } from '$COMPONENTS-ALIAS/docs-headings';
 import { DocsScroll } from '$COMPONENTS-ALIAS/docs-scroll';
+import { getRepoLink } from '$LIB-ALIAS/get-repo-link';
 
 export const SecondarySidebar = async () => {
     const repoLink = await getRepoLink();

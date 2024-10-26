@@ -1,11 +1,11 @@
 // @ts-nocheck
 
-import { cn } from '@/lib/utils';
 import { Cmdk } from '$COMPONENTS-ALIAS/cmdk';
 import { DocsBreadcrumbs } from '$COMPONENTS-ALIAS/docs-breadcrumbs';
 import { DocsNav } from '$COMPONENTS-ALIAS/docs-nav';
 import { SecondarySidebar } from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
 import { Sidebar } from '$COMPONENTS-ALIAS/docs-sidebar';
+import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';

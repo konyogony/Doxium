@@ -3,8 +3,8 @@
 'use client';
 
 import { structure } from '@/config';
-import { flattenStructure } from '@/lib/flatten-structure';
-import { prettifyText } from '@/lib/prettify-text';
+import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
+import { prettifyText } from '$LIB-ALIAS/prettify-text';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';

@@ -12,10 +12,10 @@ import {
     CommandList,
 } from '@/components/ui/command';
 import { structure } from '@/config';
-import { flattenStructure } from '@/lib/flatten-structure';
-import { prettifyText } from '@/lib/prettify-text';
 import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/react-dialog';
 import { FileIcon } from '@radix-ui/react-icons';
+import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
+import { prettifyText } from '$LIB-ALIAS/prettify-text';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 

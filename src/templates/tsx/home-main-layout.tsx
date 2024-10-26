@@ -1,8 +1,8 @@
 // @ts-nocheck
 
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import { Cmdk } from '$COMPONENTS-ALIAS/cmdk';
+import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';

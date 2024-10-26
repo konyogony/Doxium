@@ -9,7 +9,7 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { prettifyText } from '@/lib/prettify-text';
+import { prettifyText } from '$LIB-ALIAS/prettify-text';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment } from 'react';

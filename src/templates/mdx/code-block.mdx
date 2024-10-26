@@ -2,21 +2,21 @@
 
 Code blocks are used to represent code in your documentation with highlighting and formatting.
 
-```tsx
-const Home = () => {
-    return <h2>Home page</h2>;
-};
+```tsx lineNumbers
+const Home = () => { // [!code ++]
+    return <h2>Home page</h2>; // [!code ++]
+}; // [!code --]
 
-export default Home;
+export default Home; // [!code --]
 ```
 
 You can edit the theme of this code block by changing the `shiki-theme` in `doxium.json` file, located at the root of your project.
 
 ```json
 {
-    "github-repo": "",
+    "github-repo": "", // [!code highlight]
     "theme": {
-        "shiki": "$SHIKI-THEME"
+        "shiki": "github-dark-dimmed"
     }
 }
 ```
@@ -26,8 +26,45 @@ The list of all available themes is (for now) available on this [website](https:
 I was able to implement support for all themes, aswell as automatic text colour change when using a light theme.
 In the future I am looking forward to being able to customise:
 
--   Top bar
--   Copy button
--   Icons
--   Languages
--   Highlighting specific code
+- [ ]  Top bar
+- [ ]  Copy button
+- [ ]  Icons
+- [ ]  Languages
+- [x] Highlighting specific code
+- [x] Code diff
+
+```tsx lineNumbers
+export const DocsBreadcrumbs = () => {
+    const pathname = usePathname();
+    const path = pathname.split('/').filter((p) => p !== '');
+    return (
+        <Breadcrumb className='not-prose text mt-8 flex w-full'>
+            <BreadcrumbList>
+                <BreadcrumbItem>
+                    <BreadcrumbLink asChild> // [!code highlight]
+                        <Link href={'/'}>Home</Link> // [!code highlight]
+                    </BreadcrumbLink> // [!code highlight]
+                </BreadcrumbItem> // [!code ++]
+                {path.map((v, i) => { // [!code ++]
+                    const href = `/${path.slice(0, i + 1).join('/')}`; // [!code ++] 
+                    const isLast = i === path.length - 1; // [!code --]
+                    return ( // [!code --]
+                        <Fragment key={i}> // [!code --]
+                            <BreadcrumbSeparator />
+                            <BreadcrumbItem className={isLast ? 'text-zinc-50 hover:text-blue-600' : ''}>
+                                {isLast ? (
+                                    <BreadcrumbLink asChild>
+                                        <Link href={href}>{prettifyText(v)}</Link>
+                                    </BreadcrumbLink>
+                                ) : (
+                                    prettifyText(v)
+                                )}
+                            </BreadcrumbItem>
+                        </Fragment>
+                    );
+                })}
+            </BreadcrumbList>
+        </Breadcrumb>
+    );
+};
+```
