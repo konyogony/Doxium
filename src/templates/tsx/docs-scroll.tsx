@@ -21,7 +21,7 @@ export const DocsScroll = () => {
             {scrollHeight > 300 && (
                 <button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className='my-1 flex items-center gap-1 text-sm text-$COLOR-400 hover:text-$ACCENT-COLOR-200'
+                    className='my-1 flex items-center gap-1 text-sm text-zinc-400 hover:saturate-150 hover:text-$ACCENT-COLOR-400'
                 >
                     Back to top <FiArrowUp />
                 </button>

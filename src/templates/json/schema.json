@@ -96,7 +96,13 @@
             "description": "The alias to use for the Doxium components.",
             "pattern": "^@/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+$",
             "examples": ["@/components", "@/path/to/doxium/components"]
+        },
+        "lib-alias": {
+            "type": "string",
+            "description": "The alias to use for the Doxium library utils.",
+            "pattern": "^@/(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+$",
+            "examples": ["@/lib", "@/path/to/doxium/lib"]
         }
     },
-    "required": ["base-color", "accent-color", "shiki-theme", "use-docs", "components-alias"]
+    "required": ["base-color", "accent-color", "shiki-theme", "use-docs", "components-alias", "lib-alias"],
 }

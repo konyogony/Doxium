@@ -2,24 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base styles */
 html {
     @apply scroll-smooth;
 }
 
 body {
-    @apply bg-$COLOR-950 text-$COLOR-200; // If you add font-["Inter"] everything breaks
-}
-
-@layer utilities {
-    .text-balance {
-        text-wrap: balance;
-    }
-}
-
-@layer base {
-    :root {
-        --radius: 0.5rem;
-    }
+    @apply bg-zinc-950 text-zinc-200;
 }
 
 code {
@@ -27,15 +16,21 @@ code {
     counter-reset: step;
 }
 
-code > .line:not(:last-child)::before {
-    @apply mr-6 inline-block w-4 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
-    counter-increment: step;
+/* Custom utilities */
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
 }
 
-.codeBlock > pre {
-    @apply my-0 rounded-t-none;
+/* Custom base styles */
+@layer base {
+    :root {
+        --radius: 0.5rem;
+    }
 }
 
+/* Keyframes */
 @keyframes spin-slow {
     0% {
         transform: rotate(0deg);
@@ -43,4 +38,88 @@ code > .line:not(:last-child)::before {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* Code block styles */
+.codeBlock > pre {
+    @apply my-0 rounded-t-none;
+}
+
+.codeBlock code > .line:not(:last-child) {
+    @apply inline-block w-full;
+}
+
+/* Better padding */
+
+.codeBlock > pre {
+    @apply p-0;
+}
+
+.codeBlock code > .line:not(:last-child) {
+    @apply px-[1.1428571em];
+}
+
+.codeBlock span:first-child {
+    @apply mt-[0.8571429em];
+}
+
+.codeBlock span:nth-last-child(2) {
+    @apply mb-[0.8571429em];
+}
+
+/* Line numbers styles */
+.lineNumbers code > .line:not(:last-child)::before {
+    @apply mr-10 inline-block w-6 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-diff .diff.add::before {
+    content: counter(step) ' +';
+    @apply mr-6 inline-block w-10 text-right text-emerald-500;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-diff .diff.remove::before {
+    content: counter(step) ' -';
+    @apply mr-6 inline-block w-10 text-right text-red-700;
+    counter-increment: step;
+}
+
+/* No line numbers */
+
+:not(.lineNumbers) > pre.has-diff .diff.add::before {
+    content: '+';
+    @apply mr-4 inline-block text-right text-emerald-500;
+    counter-increment: step;
+}
+
+:not(.lineNumbers) > pre.has-diff .diff.remove::before {
+    content: '-';
+    @apply mr-4 inline-block text-right text-red-700;
+    counter-increment: step;
+}
+
+:not(.lineNumbers) > pre.has-diff .line:not(:last-child):not(.diff) {
+    @apply pl-10;
+}
+
+/* Diff styles */
+pre.has-diff .diff.add {
+    @apply bg-emerald-700 bg-opacity-35;
+}
+
+pre.has-diff .diff.remove {
+    @apply bg-red-800 bg-opacity-35;
+}
+
+/* Highlighted code styles */
+pre.has-highlighted .highlighted {
+    @apply bg-zinc-400 bg-opacity-15;
+}
+
+/* Checkbox trickery */
+
+input:disabled,
+input[type='checkbox'] {
+    @apply mr-2;
 }

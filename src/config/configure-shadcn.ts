@@ -4,17 +4,19 @@ import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { errorText, infoText, replacePlaceholders, successText, templatesDir } from '../utils/utils.js';
 
-const files = [
-    { name: 'tailwind', type: 'ts', path: './tailwind.config.ts' },
-    { name: 'globals', type: 'css', path: './app/globals.css' },
-    { name: 'components', type: 'json', path: './components.json' },
-    { name: 'utils', type: 'ts', path: './lib/utils.ts' },
-];
-
 // Function to configure Shadcn
 export const configureShadcn = async (response: responseT, pmx: string[], pm: string) => {
     // Check if the first element of pmx is not present to avoid errors
     if (!pmx[0]) return;
+
+    const files = [
+        { name: 'tailwind', type: 'ts', path: './tailwind.config.ts' },
+        { name: 'globals', type: 'css', path: './app/globals.css' },
+        { name: 'components', type: 'json', path: './components.json' },
+        { name: 'utils', type: 'ts', path: '$LIB-ALIAS/utils.ts' },
+    ].map((file) => {
+        return { ...file, path: replacePlaceholders(file.path, response, './components/doxium', './lib') };
+    });
 
     try {
         // Run Prettier to format the code

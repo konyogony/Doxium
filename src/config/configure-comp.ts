@@ -62,11 +62,11 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'docs-headings', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-headings.tsx' },
 
         // Lib components
-        { name: 'highlighter', type: 'ts', path: './lib/highlighter.ts' },
-        { name: 'flatten-structure', type: 'ts', path: './lib/flatten-structure.ts' },
-        { name: 'prettify-text', type: 'ts', path: './lib/prettify-text.ts' },
-        { name: 'is-light-color', type: 'ts', path: './lib/is-light-color.ts' },
-        { name: 'get-repo-link', type: 'ts', path: './lib/get-repo-link.ts' },
+        { name: 'highlighter', type: 'ts', path: '$LIB-ALIAS/highlighter.ts' },
+        { name: 'flatten-structure', type: 'ts', path: '$LIB-ALIAS/flatten-structure.ts' },
+        { name: 'prettify-text', type: 'ts', path: '$LIB-ALIAS/prettify-text.ts' },
+        { name: 'is-light-color', type: 'ts', path: '$LIB-ALIAS/is-light-color.ts' },
+        { name: 'get-repo-link', type: 'ts', path: '$LIB-ALIAS/get-repo-link.ts' },
 
         // Config
         { name: 'types', type: 'ts', path: './types.ts' },
@@ -74,7 +74,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
         { name: 'doxium', type: 'json', path: './doxium.json' },
     ].map((file) => {
-        return { ...file, path: replacePlaceholders(file.path, response, './components/doxium') };
+        return { ...file, path: replacePlaceholders(file.path, response, './components/doxium', './lib') };
     });
 
     console.log('\n' + infoText('Configuring Components...'));

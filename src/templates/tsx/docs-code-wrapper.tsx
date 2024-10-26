@@ -1,21 +1,25 @@
 // @ts-nocheck
 
-import { getHighlighterInstance } from '@/lib/highlighter';
-import { isLightColor } from '@/lib/is-light-color';
 import { ShikiThemeBackgroundHexDimmed } from '@/types';
+import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers';
 import { CopyButton } from '$COMPONENTS-ALIAS/copy-button';
 import { wikiCodeWrapperIcon } from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
+import { getHighlighterInstance } from '$LIB-ALIAS/highlighter';
+import { isLightColor } from '$LIB-ALIAS/is-light-color';
+import { cn } from '$LIB-ALIAS/utils';
 
 interface WikiCodeWrapperProps {
     language?: string;
     children: string;
+    lineNumbers?: boolean;
 }
 
-export const WikiCodeWrapper = async ({ language = '', children }: WikiCodeWrapperProps) => {
+export const WikiCodeWrapper = async ({ language = '', children, lineNumbers = false }: WikiCodeWrapperProps) => {
     const { highlighter, theme } = await getHighlighterInstance();
     const highlightedCode = highlighter.codeToHtml(children, {
         lang: language,
         theme: theme,
+        transformers: [transformerNotationDiff(), transformerNotationHighlight()],
     });
 
     const { icon: IconComponent, lang } = wikiCodeWrapperIcon({ language });
@@ -35,7 +39,7 @@ export const WikiCodeWrapper = async ({ language = '', children }: WikiCodeWrapp
             </div>
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
-                className='codeBlock customScrollbar text-sm lg:text-base'
+                className={cn('codeBlock customScrollbar text-sm lg:text-base', lineNumbers && 'lineNumbers')}
             />
         </div>
     );

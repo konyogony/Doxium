@@ -2,8 +2,8 @@
 
 'use client';
 
-import { prettifyText } from '@/lib/prettify-text';
-import { cn } from '@/lib/utils';
+import { prettifyText } from '$LIB-ALIAS/prettify-text';
+import { cn } from '$LIB-ALIAS/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -20,7 +20,7 @@ export const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
         <>
             {title ? (
                 <span
-                    className={'text-$COLOR-50 flex w-full py-1.5 pt-3 text-sm font-bold transition-all duration-300'}
+                    className={'flex w-full py-1.5 pt-3 text-sm font-bold text-$COLOR-50 transition-all duration-300'}
                 >
                     {prettifyText(name)}
                 </span>
@@ -28,8 +28,8 @@ export const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
                 <Link
                     href={path || ''}
                     className={cn(
-                        'text-$COLOR-400 hover:text-$ACCENT-COLOR-200 flex w-full py-1.5 text-sm decoration-dotted font-normal transition-all duration-300 hover:underline',
-                        pathname === path && 'text-$ACCENT-COLOR-300 font-medium',
+                        'flex w-full py-1.5 text-sm font-normal text-zinc-400 decoration-dotted hover:saturate-150 transition-all duration-300 hover:text-$ACCENT-COLOR-400 hover:underline',
+                        pathname === path && 'font-medium text-$ACCENT-COLOR-500',
                     )}
                 >
                     {prettifyText(name)}
