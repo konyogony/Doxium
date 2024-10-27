@@ -1,11 +1,5 @@
 // @ts-nocheck
 
-import { CopyButton } from '@/components/doxium/copy-button';
-import { wikiCodeWrapperIcon } from '@/components/doxium/docs-code-wrapper-icon';
-import { getHighlighterInstance } from '@/lib/highlighter';
-import { isLightColor } from '@/lib/is-light-color';
-import { cn } from '@/lib/utils';
-import { ShikiThemeBackgroundHexDimmed } from '@/types';
 import {
     transformerNotationDiff,
     transformerNotationErrorLevel,
@@ -14,6 +8,12 @@ import {
     transformerNotationWordHighlight,
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
+import { CopyButton } from '$COMPONENTS-ALIAS/copy-button';
+import { wikiCodeWrapperIcon } from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
+import { getHighlighterInstance } from '$LIB-ALIAS/highlighter';
+import { isLightColor } from '$LIB-ALIAS/is-light-color';
+import { cn } from '$LIB-ALIAS/utils';
+import { ShikiThemeBackgroundHexDimmed } from '$TYPES-ALIAS';
 
 interface WikiCodeWrapperProps {
     language?: string;

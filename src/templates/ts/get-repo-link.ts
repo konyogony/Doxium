@@ -11,5 +11,10 @@ export const getRepoLink = async (): Promise<string> => {
 
     console.log('called getRepoLink');
 
-    return doxiumConfig['github-repo'];
+    const githubRepoRegex = /^https:\/\/github\.com\/[\w-]+\/[\w-]+$/;
+
+    const rawRepo = doxiumConfig['github-repo'];
+    const cleanRepo = rawRepo.replace(/\s+/g, '');
+
+    return githubRepoRegex.test(cleanRepo) ? cleanRepo : '';
 };

@@ -2,8 +2,8 @@
 
 'use client';
 
-import { Cmdk } from '@/components/doxium/cmdk';
-import { cn } from '@/lib/utils';
+import { Cmdk } from '$COMPONENTS-ALIAS/cmdk';
+import { cn } from '$LIB-ALIAS/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';

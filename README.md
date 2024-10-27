@@ -15,8 +15,8 @@ _Italics -> Not sure_
 -   [x] Colors
 -   [ ] Codeblock customisation
     -   [x] Shiki themes
-    -   [ ] **Visibility**
-    -   [ ] Icons
+    -   [x] **Visibility**
+    -   [x] CopyButton
     -   [ ] Languages (tsx, rs)
     -   [x] **highlighting**
 -   [x] Fonts
@@ -37,10 +37,10 @@ _Italics -> Not sure_
 -   [x] Make code use alias
 -   [ ] **Automate structure!**
 -   [ ] Languages (en, ru)
--   [ ] User-made themes -> marketplace?
+-   [ ] _User-made themes -> marketplace?_ dk why tbh
 -   [ ] Custom Readme
--   [ ] Add spinner (https://www.npmjs.com/package/cli-spinners) -> For different PM, diffferent spinner?
--   [ ] Mobile support
+-   [ ] Add spinner (https://www.npmjs.com/package/cli-spinners) -> For different PM, diffferent spinner, dont want bun to use npm spinner?
+-   [ ] **Mobile support**
 -   [x] Home page toggleable
     -   [ ] Being able to toggle later on
 -   [x] **Accent color, shadcn color - differ them**
@@ -48,12 +48,12 @@ _Italics -> Not sure_
 -   [x] https://www.npmjs.com/package/commander
     -   [ ] Add better args and `-y`, etc..
 -   [x] (half working) add decor dotted to everything
--   [ ] https://shiki.matsu.io/packages/transformers
+-   [x] https://shiki.matsu.io/packages/transformers
 -   [x] Disable breadcrumb if page doesnt exist (just disabled everything)
 -   [x] Fix spacing between lines in codeblock
 -   [x] Add $Schema to config
 -   [ ] Custom checkboxes
--   [ ] Make highlighter SSG
+-   [x] ~~Make highlighter SSG~~ idk
 -   [x] Hover color `accent` -> `base`
 -   [ ] _Add author to the end of page + last updated_ -> Actually really hard
 -   [ ] Check if emoji's parse
@@ -64,7 +64,7 @@ _Italics -> Not sure_
 -   [ ] Windows support
 -   [ ] Bunx doxium update
 -   [ ] dont forget to remove console.logs
--   [ ] toggleable folder/list. if folder -> have pages
+-   [ ] toggleable folder/list in sidebar. if folder -> have pages (nice idea but hard)
 -   [x] https://www.npmjs.com/package/picocolors?activeTab=readme
 -   [x] **https://www.npmjs.com/package/@vercel/ncc _VERY GOOD_** -> use `ncc build src/index.ts -o dist` to build, dk how to link yet
 -   [x] https://www.npmjs.com/package/fast-glob

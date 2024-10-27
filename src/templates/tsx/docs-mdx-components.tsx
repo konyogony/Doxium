@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import { getHightlighterTheme } from '@/lib/get-highlighter-theme';
-import { preProps, ShikiThemeBackgroundHexDefault } from '@/types';
 import { WikiCodeWrapper } from '$COMPONENTS-ALIAS/docs-code-wrapper';
 import { WikiHashTag } from '$COMPONENTS-ALIAS/docs-hashtag';
+import { getHightlighterTheme } from '$LIB-ALIAS/get-highlighter-theme';
+import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
 import { BundledTheme } from 'shiki';
 
 export const mdxComponents = {
