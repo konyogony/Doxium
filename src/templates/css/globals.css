@@ -4,11 +4,11 @@
 
 /* Base styles */
 html {
-    @apply scroll-smooth;
+    @apply scroll-pt-28 scroll-smooth;
 }
 
 body {
-    @apply bg-zinc-950 text-zinc-200;
+    @apply bg-$COLOR-950 text-$COLOR-200;
 }
 
 code {
@@ -103,6 +103,15 @@ code {
     @apply pl-10;
 }
 
+/* Focused line styles */
+pre.has-focused .line:not(.focused) {
+    @apply blur-[2px] transition-all duration-700;
+}
+
+pre.has-focused:hover .line:not(.focused) {
+    @apply blur-none transition-all duration-300;
+}
+
 /* Diff styles */
 pre.has-diff .diff.add {
     @apply bg-emerald-700 bg-opacity-35;
@@ -114,7 +123,19 @@ pre.has-diff .diff.remove {
 
 /* Highlighted code styles */
 pre.has-highlighted .highlighted {
-    @apply bg-zinc-400 bg-opacity-15;
+    @apply bg-$COLOR-400 bg-opacity-15;
+}
+
+pre.has-highlighted .error {
+    @apply bg-red-800 bg-opacity-35;
+}
+
+pre.has-highlighted .warning {
+    @apply bg-amber-800 bg-opacity-35;
+}
+
+.highlighted-word {
+    @apply rounded-sm border border-white/5 bg-$COLOR-500/20;
 }
 
 /* Checkbox trickery */

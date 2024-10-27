@@ -1,12 +1,9 @@
 // @ts-nocheck
 
-import { Button } from '@/components/ui/button';
-import { Cmdk } from '$COMPONENTS-ALIAS/cmdk';
+import { Navbar } from '$COMPONENTS-ALIAS/navbar';
 import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
-import { BsDiscord, BsGithub } from 'react-icons/bs';
 import { Toaster } from 'sonner';
 import './globals.css';
 
@@ -25,36 +22,7 @@ export default function RootLayout({
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative'>
-                <nav className='bg-$COLOR-950/90 text-$COLOR-300 fixed inset-0 z-50 flex h-fit w-full flex-row items-center gap-8 border-b border-white/5 px-[20vw] py-4 text-sm font-normal decoration-dotted backdrop-blur-lg'>
-                    <Link href='/' className='text-$COLOR-100 hover:text-$COLOR-50 text-xl font-bold'>
-                        Doxium
-                    </Link>
-                    <Button asChild variant={'link'}>
-                        <Link href='/'>Home</Link>
-                    </Button>
-                    <Button asChild variant={'link'}>
-                        <Link href='/docs'>Docs</Link>
-                    </Button>
-                    <Cmdk />
-                    <div className='hidden flex-row items-center gap-2 lg:flex'>
-                        <a
-                            className='hover:bg-$COLOR-900 flex items-center justify-center rounded-sm p-2'
-                            href='https://github.com/konyogony'
-                            rel='noopener noreferrer'
-                            target='_blank'
-                        >
-                            <BsGithub size={20} />
-                        </a>
-                        <a
-                            className='hover:bg-$COLOR-900 flex items-center justify-center rounded-sm p-2'
-                            href='https://discord.gg/UW4CpNeq'
-                            rel='noopener noreferrer'
-                            target='_blank'
-                        >
-                            <BsDiscord size={20} />
-                        </a>
-                    </div>
-                </nav>
+                <Navbar />
                 <main>
                     {children}
                     <Toaster richColors theme='dark' />

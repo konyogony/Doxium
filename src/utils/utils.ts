@@ -25,8 +25,9 @@ export const isDoxiumProject = async (folderPath: string) => {
 export const replacePlaceholders = (
     content: string,
     response: responseT,
-    componentAlias?: string,
-    libAlias?: string,
+    componentAlias: string,
+    libAlias: string,
+    typesAlias: string,
 ) => {
     return content
         .replaceAll(/\/\/ @ts-nocheck\n/g, '')
@@ -37,6 +38,19 @@ export const replacePlaceholders = (
         .replaceAll(/\$COLOR/g, response['base-color'])
         .replaceAll(/\$ACCENT-COLOR/g, response['accent-color'])
         .replaceAll(/\$USE-DOCS/g, response['use-docs'])
-        .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias || '@/components/doxium')
-        .replaceAll(/\$LIB-ALIAS/g, libAlias || '@/lib');
+        .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
+        .replaceAll(/\$LIB-ALIAS/g, libAlias)
+        .replaceAll(/\$TYPES-ALIAS/g, typesAlias);
+};
+
+export const replaceFilePlaceholders = (
+    content: string,
+    componentAlias: string,
+    libAlias: string,
+    typesAlias: string,
+) => {
+    return content
+        .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
+        .replaceAll(/\$LIB-ALIAS/g, libAlias)
+        .replaceAll(/\$TYPES-ALIAS/g, typesAlias);
 };

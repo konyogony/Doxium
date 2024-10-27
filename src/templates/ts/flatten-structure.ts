@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { DocsNode } from '@/types';
+import { DocsNode } from '$TYPES-ALIAS';
 
 export const flattenStructure = (
     structure: DocsNode[],

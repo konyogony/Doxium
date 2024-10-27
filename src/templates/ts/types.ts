@@ -10,7 +10,13 @@ export interface DocsNode {
 
 export interface DoxiumConfig {
     'github-repo': string;
+    'base-color': string;
+    'accent-color': string;
     'shiki-theme': string;
+    'use-docs': boolean;
+    'components-alias': string;
+    'lib-alias': string;
+    'types-alias': string;
 }
 
 export interface HighlighterResult {
@@ -18,63 +24,68 @@ export interface HighlighterResult {
     theme: BundledTheme;
 }
 
-// Not in use, but for perspective
-// export const ShikiThemeBackgroundHexDefault: Record<BundledTheme, string> = {
-//     andromeeda: '#23262E',
-//     'aurora-x': '#07090F',
-//     'ayu-dark': '#0B0E14',
-//     'catppuccin-frappe': '#303446',
-//     'catppuccin-latte': '#EFF1F5',
-//     'catppuccin-macchiato': '#24273A',
-//     'catppuccin-mocha': '#1E1E2E',
-//     'dark-plus': '#1E1E1E',
-//     dracula: '#282A36',
-//     'dracula-soft': '#282A36',
-//     'everforest-dark': '#2D353B',
-//     'everforest-light': '#FDF6E3',
-//     'github-dark': '#24292E',
-//     'github-dark-default': '#0D1117',
-//     'github-dark-dimmed': '#22272E',
-//     'github-dark-high-contrast': '#0A0C10',
-//     'github-light': '#FFFFFF',
-//     'github-light-default': '#FFFFFF',
-//     'github-light-high-contrast': '#FFFFFF',
-//     houston: '#17191E',
-//     'kanagawa-dragon': '#181616',
-//     'kanagawa-lotus': '#F2ECBC',
-//     'kanagawa-wave': '#1F1F28',
-//     laserwave: '#27212E',
-//     'light-plus': '#FFFFFF',
-//     'material-theme': '#263238',
-//     'material-theme-darker': '#212121',
-//     'material-theme-lighter': '#FAFAFA',
-//     'material-theme-ocean': '#0F111A',
-//     'material-theme-palenight': '#292D3E',
-//     'min-dark': '#1F1F1F',
-//     'min-light': '#FFFFFF',
-//     monokai: '#272822',
-//     'night-owl': '#011627',
-//     nord: '#2E3440',
-//     'one-dark-pro': '#282C34',
-//     'one-light': '#FAFAFA',
-//     plastic: '#21252B',
-//     poimandres: '#1B1E28',
-//     red: '#390000',
-//     'rose-pine': '#191724',
-//     'rose-pine-dawn': '#FAF4ED',
-//     'rose-pine-moon': '#232136',
-//     'slack-dark': '#222222',
-//     'slack-ochin': '#FFFFFF',
-//     'snazzy-light': '#FAFBFC',
-//     'solarized-dark': '#002B36',
-//     'solarized-light': '#FDF6E3',
-//     'synthwave-84': '#262335',
-//     'tokyo-night': '#1A1B26',
-//     vesper: '#101010',
-//     'vitesse-black': '#000000',
-//     'vitesse-dark': '#121212',
-//     'vitesse-light': '#FFFFFF',
-// };
+export interface Heading {
+    id: string;
+    level: number;
+    text: string;
+}
+
+export const ShikiThemeBackgroundHexDefault: Record<BundledTheme, string> = {
+    andromeeda: '#23262E',
+    'aurora-x': '#07090F',
+    'ayu-dark': '#0B0E14',
+    'catppuccin-frappe': '#303446',
+    'catppuccin-latte': '#EFF1F5',
+    'catppuccin-macchiato': '#24273A',
+    'catppuccin-mocha': '#1E1E2E',
+    'dark-plus': '#1E1E1E',
+    dracula: '#282A36',
+    'dracula-soft': '#282A36',
+    'everforest-dark': '#2D353B',
+    'everforest-light': '#FDF6E3',
+    'github-dark': '#24292E',
+    'github-dark-default': '#0D1117',
+    'github-dark-dimmed': '#22272E',
+    'github-dark-high-contrast': '#0A0C10',
+    'github-light': '#FFFFFF',
+    'github-light-default': '#FFFFFF',
+    'github-light-high-contrast': '#FFFFFF',
+    houston: '#17191E',
+    'kanagawa-dragon': '#181616',
+    'kanagawa-lotus': '#F2ECBC',
+    'kanagawa-wave': '#1F1F28',
+    laserwave: '#27212E',
+    'light-plus': '#FFFFFF',
+    'material-theme': '#263238',
+    'material-theme-darker': '#212121',
+    'material-theme-lighter': '#FAFAFA',
+    'material-theme-ocean': '#0F111A',
+    'material-theme-palenight': '#292D3E',
+    'min-dark': '#1F1F1F',
+    'min-light': '#FFFFFF',
+    monokai: '#272822',
+    'night-owl': '#011627',
+    nord: '#2E3440',
+    'one-dark-pro': '#282C34',
+    'one-light': '#FAFAFA',
+    plastic: '#21252B',
+    poimandres: '#1B1E28',
+    red: '#390000',
+    'rose-pine': '#191724',
+    'rose-pine-dawn': '#FAF4ED',
+    'rose-pine-moon': '#232136',
+    'slack-dark': '#222222',
+    'slack-ochin': '#FFFFFF',
+    'snazzy-light': '#FAFBFC',
+    'solarized-dark': '#002B36',
+    'solarized-light': '#FDF6E3',
+    'synthwave-84': '#262335',
+    'tokyo-night': '#1A1B26',
+    vesper: '#101010',
+    'vitesse-black': '#000000',
+    'vitesse-dark': '#121212',
+    'vitesse-light': '#FFFFFF',
+};
 
 // Darker by 20%
 export const ShikiThemeBackgroundHexDimmed: Record<BundledTheme, string> = {

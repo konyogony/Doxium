@@ -6,5 +6,6 @@
     "shiki-theme": "$SHIKI-THEME",
     "use-docs": $USE-DOCS,
     "components-alias": "$COMPONENTS-ALIAS",
-    "lib-alias": "$LIB-ALIAS"
+    "lib-alias": "$LIB-ALIAS",
+    "types-alias": "$TYPES-ALIAS"
 }

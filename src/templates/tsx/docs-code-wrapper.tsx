@@ -1,12 +1,19 @@
 // @ts-nocheck
 
-import { ShikiThemeBackgroundHexDimmed } from '@/types';
-import { transformerNotationDiff, transformerNotationHighlight } from '@shikijs/transformers';
+import {
+    transformerNotationDiff,
+    transformerNotationErrorLevel,
+    transformerNotationFocus,
+    transformerNotationHighlight,
+    transformerNotationWordHighlight,
+    transformerRemoveNotationEscape,
+} from '@shikijs/transformers';
 import { CopyButton } from '$COMPONENTS-ALIAS/copy-button';
 import { wikiCodeWrapperIcon } from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
 import { getHighlighterInstance } from '$LIB-ALIAS/highlighter';
 import { isLightColor } from '$LIB-ALIAS/is-light-color';
 import { cn } from '$LIB-ALIAS/utils';
+import { ShikiThemeBackgroundHexDimmed } from '$TYPES-ALIAS';
 
 interface WikiCodeWrapperProps {
     language?: string;
@@ -19,7 +26,14 @@ export const WikiCodeWrapper = async ({ language = '', children, lineNumbers = f
     const highlightedCode = highlighter.codeToHtml(children, {
         lang: language,
         theme: theme,
-        transformers: [transformerNotationDiff(), transformerNotationHighlight()],
+        transformers: [
+            transformerNotationDiff(),
+            transformerNotationHighlight(),
+            transformerRemoveNotationEscape(),
+            transformerNotationErrorLevel(),
+            transformerNotationFocus(),
+            transformerNotationWordHighlight(),
+        ],
     });
 
     const { icon: IconComponent, lang } = wikiCodeWrapperIcon({ language });

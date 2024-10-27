@@ -2,26 +2,21 @@
 
 Code blocks are used to represent code in your documentation with highlighting and formatting.
 
-```tsx lineNumbers
-const Home = () => { // [!code ++]
-    return <h2>Home page</h2>; // [!code ++]
-}; // [!code --]
-
-export default Home; // [!code --]
-```
-
 You can edit the theme of this code block by changing the `shiki-theme` in `doxium.json` file, located at the root of your project.
 
 ```json
+// json
 {
-    "github-repo": "", // [!code highlight]
-    "theme": {
+    "github-repo": "", // [!code focus] 
+    "theme": { // [\!code focus]
         "shiki": "github-dark-dimmed"
     }
 }
 ```
 
 The list of all available themes is (for now) available on this [website](https://textmate-grammars-themes.netlify.app/?theme=github-dark-dimmed&grammar=typescript)
+
+## Roadmap
 
 I was able to implement support for all themes, aswell as automatic text colour change when using a light theme.
 In the future I am looking forward to being able to customise:
@@ -34,28 +29,31 @@ In the future I am looking forward to being able to customise:
 - [x] Code diff
 
 ```tsx lineNumbers
+// tsx lineNumbers
+// [!code word:Breadcrumb]
+// [\!code word:Breadcrumb]
 export const DocsBreadcrumbs = () => {
     const pathname = usePathname();
     const path = pathname.split('/').filter((p) => p !== '');
     return (
         <Breadcrumb className='not-prose text mt-8 flex w-full'>
             <BreadcrumbList>
-                <BreadcrumbItem>
-                    <BreadcrumbLink asChild> // [!code highlight]
+                <BreadcrumbItem> // [\!code highlight]
+                    <BreadcrumbLink asChild> // [!code highlight] 
                         <Link href={'/'}>Home</Link> // [!code highlight]
                     </BreadcrumbLink> // [!code highlight]
-                </BreadcrumbItem> // [!code ++]
+                </BreadcrumbItem> // [\!code ++]
                 {path.map((v, i) => { // [!code ++]
                     const href = `/${path.slice(0, i + 1).join('/')}`; // [!code ++] 
-                    const isLast = i === path.length - 1; // [!code --]
-                    return ( // [!code --]
+                    const isLast = i === path.length - 1; // [!code ++]
+                    return ( // [\!code --]
                         <Fragment key={i}> // [!code --]
-                            <BreadcrumbSeparator />
-                            <BreadcrumbItem className={isLast ? 'text-zinc-50 hover:text-blue-600' : ''}>
-                                {isLast ? (
-                                    <BreadcrumbLink asChild>
-                                        <Link href={href}>{prettifyText(v)}</Link>
-                                    </BreadcrumbLink>
+                            <BreadcrumbSeparator /> // [!code --]
+                            <BreadcrumbItem className={isLast ? 'text-zinc-50 hover:text-blue-600' : ''}>  // [!code --]
+                                {isLast ? ( // [\!code warning]
+                                    <BreadcrumbLink asChild> // [!code warning]
+                                        <Link href={href}>{prettifyText(v)}</Link>// [!code warning]
+                                    </BreadcrumbLink> // [!code warning]
                                 ) : (
                                     prettifyText(v)
                                 )}

@@ -31,7 +31,7 @@ _Italics -> Not sure_
 -   [ ] _Use vertisan icons_
 -   [ ] _Make pages for folders (toggleable)??_
 -   [x] Make config file?
--   [ ] Lib & Other aliases
+-   [x] Lib & Other aliases
 -   [ ] **Make TOC SSG**
 -   [ ] **Better errors in CLI**
 -   [x] Make code use alias
@@ -39,35 +39,32 @@ _Italics -> Not sure_
 -   [ ] Languages (en, ru)
 -   [ ] User-made themes -> marketplace?
 -   [ ] Custom Readme
--   [ ] Add comments through cli & doxium code
 -   [ ] Add spinner (https://www.npmjs.com/package/cli-spinners) -> For different PM, diffferent spinner?
 -   [ ] Mobile support
 -   [x] Home page toggleable
     -   [ ] Being able to toggle later on
--   [ ] **Accent color, background color, shadcn color - differ them**
+-   [x] **Accent color, shadcn color - differ them**
 -   [ ] _Make an API so owner can get data from docs_
 -   [x] https://www.npmjs.com/package/commander
     -   [ ] Add better args and `-y`, etc..
 -   [x] (half working) add decor dotted to everything
 -   [ ] https://shiki.matsu.io/packages/transformers
--   [ ] Disable breadcrumb if page doesnt exist
--   [ ] Fix spacing between lines in codeblock
+-   [x] Disable breadcrumb if page doesnt exist (just disabled everything)
+-   [x] Fix spacing between lines in codeblock
 -   [x] Add $Schema to config
 -   [ ] Custom checkboxes
--   [ ] target: esnext
 -   [ ] Make highlighter SSG
--   [ ] Hover color `accent` -> `base`
--   [ ] Add author to the end of page + last updated
+-   [x] Hover color `accent` -> `base`
+-   [ ] _Add author to the end of page + last updated_ -> Actually really hard
 -   [ ] Check if emoji's parse
 -   [ ] _Make Doxium Integrate (only docs folder)_
--   [ ] Add alias to the config for doxium components
+-   [x] Add alias to the config for doxium components
 -   [x] Fix fonts
 -   [ ] footer
 -   [ ] Windows support
 -   [ ] Bunx doxium update
 -   [ ] dont forget to remove console.logs
 -   [ ] toggleable folder/list. if folder -> have pages
--   [ ] ~~Learn how to actually make a CLI~~ impossible
 -   [x] https://www.npmjs.com/package/picocolors?activeTab=readme
 -   [x] **https://www.npmjs.com/package/@vercel/ncc _VERY GOOD_** -> use `ncc build src/index.ts -o dist` to build, dk how to link yet
 -   [x] https://www.npmjs.com/package/fast-glob
@@ -94,4 +91,5 @@ _Italics -> Not sure_
 
 ## Author
 
-Sole developer, [konyogony](https://github.com/konyogony)
+Main developer, [konyogony](https://github.com/konyogony)
+My tester and a friend who helped, [PadowYT2](https://github.com/padowyt2), checkout his work!

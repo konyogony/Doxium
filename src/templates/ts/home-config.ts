@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { DocsNode } from '@/types';
+import { DocsNode } from '$TYPES-ALIAS';
 
 // Each node always has a name. If node doesnt have a path and had nodes, it is a folder.
 export const structure: DocsNode[] = [

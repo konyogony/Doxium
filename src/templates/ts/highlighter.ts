@@ -1,8 +1,7 @@
 // @ts-nocheck
 
-import fs from 'fs';
-import path from 'path';
-import { DoxiumConfig, HighlighterResult } from '@/types';
+import { getHightlighterTheme } from '$LIB-ALIAS/get-highlighter-theme';
+import { HighlighterResult } from '$TYPES-ALIAS';
 import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } from 'shiki';
 
 let highlighterInstance: HighlighterGeneric<BundledLanguage, BundledTheme> | null = null;
@@ -10,11 +9,7 @@ let currentTheme: BundledTheme | null = null;
 
 export const getHighlighterInstance = async (): Promise<HighlighterResult> => {
     if (!highlighterInstance) {
-        const doxiumPath = path.join(process.cwd(), 'doxium.json');
-        const fileContents = fs.readFileSync(doxiumPath, 'utf8');
-        const doxiumConfig: DoxiumConfig = JSON.parse(fileContents);
-
-        currentTheme = doxiumConfig['shiki-theme'] as BundledTheme;
+        currentTheme = (await getHightlighterTheme()) as BundledTheme;
 
         try {
             highlighterInstance = await createHighlighter({

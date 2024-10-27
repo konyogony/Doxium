@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { DocsNode } from '@/types';
 import { DocsLink } from '$COMPONENTS-ALIAS/docs-link';
+import { DocsNode } from '$TYPES-ALIAS';
 
 export const DocsFolder = ({ node }: { node: DocsNode }) => {
     return (

@@ -2,7 +2,7 @@ import path from 'path';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
-import { infoText, replacePlaceholders, successText, templatesDir } from '../utils/utils.js';
+import { infoText, replaceFilePlaceholders, replacePlaceholders, successText, templatesDir } from '../utils/utils.js';
 
 // List of files to install if home page is not selected
 const filesNoHome = [
@@ -46,6 +46,7 @@ export const configureComp = async (response: responseT, pm: string) => {
 
         // Doxium components
         { name: 'copy-button', type: 'tsx', path: '$COMPONENTS-ALIAS/copy-button.tsx' },
+        { name: 'navbar', type: 'tsx', path: '$COMPONENTS-ALIAS/navbar.tsx' },
         { name: 'cmdk', type: 'tsx', path: '$COMPONENTS-ALIAS/cmdk.tsx' },
         { name: 'docs-code-wrapper-icon', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-code-wrapper-icon.tsx' },
         { name: 'docs-folder', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-folder.tsx' },
@@ -67,14 +68,18 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'prettify-text', type: 'ts', path: '$LIB-ALIAS/prettify-text.ts' },
         { name: 'is-light-color', type: 'ts', path: '$LIB-ALIAS/is-light-color.ts' },
         { name: 'get-repo-link', type: 'ts', path: '$LIB-ALIAS/get-repo-link.ts' },
+        { name: 'get-highlighter-theme', type: 'ts', path: '$LIB-ALIAS/get-highlighter-theme.ts' },
 
         // Config
-        { name: 'types', type: 'ts', path: './types.ts' },
+        { name: 'types', type: 'ts', path: '$TYPES-ALIAS.ts' },
         { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
         { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
         { name: 'doxium', type: 'json', path: './doxium.json' },
     ].map((file) => {
-        return { ...file, path: replacePlaceholders(file.path, response, './components/doxium', './lib') };
+        return {
+            ...file,
+            path: replaceFilePlaceholders(file.path, './components/doxium', './lib', './types'),
+        };
     });
 
     console.log('\n' + infoText('Configuring Components...'));
@@ -95,7 +100,13 @@ export const configureComp = async (response: responseT, pm: string) => {
             alwaysInstall.map(async (file) => {
                 try {
                     const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
-                    const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
+                    const content = replacePlaceholders(
+                        await fs.readFile(templatePath, 'utf8'),
+                        response,
+                        '@/components/doxium',
+                        '@/lib',
+                        '@/types',
+                    );
 
                     await fs.writeFile(file.path, content);
                 } catch (error) {
@@ -120,8 +131,13 @@ export const configureComp = async (response: responseT, pm: string) => {
                 filesHome.map(async (file) => {
                     try {
                         const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
-                        const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
-
+                        const content = replacePlaceholders(
+                            await fs.readFile(templatePath, 'utf8'),
+                            response,
+                            '@/components/doxium',
+                            '@/lib',
+                            '@/types',
+                        );
                         await fs.writeFile(file.path, content);
                     } catch (error) {
                         console.error('Error configuring Components:', error);
@@ -140,7 +156,13 @@ export const configureComp = async (response: responseT, pm: string) => {
                 filesNoHome.map(async (file) => {
                     try {
                         const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
-                        const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
+                        const content = replacePlaceholders(
+                            await fs.readFile(templatePath, 'utf8'),
+                            response,
+                            '@/components/doxium',
+                            '@/lib',
+                            '@/types',
+                        );
                         await fs.writeFile(file.path, content);
                     } catch (error) {
                         console.error('Error configuring Components:', error);
