@@ -6,6 +6,7 @@ import {
     transformerNotationFocus,
     transformerNotationHighlight,
     transformerNotationWordHighlight,
+    transformerRemoveLineBreak,
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
 import { CopyButton } from '$COMPONENTS-ALIAS/copy-button';
@@ -41,6 +42,7 @@ export const WikiCodeWrapper = async ({
             transformerNotationErrorLevel(),
             transformerNotationFocus(),
             transformerNotationWordHighlight(),
+            transformerRemoveLineBreak(),
         ],
     });
 
@@ -64,7 +66,7 @@ export const WikiCodeWrapper = async ({
             {noTopBar && !noCopyButton && <CopyButton text={children} floating={true} />}
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
-                className={cn('codeBlock customScrollbar text-sm lg:text-base', lineNumbers && 'lineNumbers')}
+                className={cn('codeBlock text-sm lg:text-base', lineNumbers && 'lineNumbers')}
             />
         </div>
     );

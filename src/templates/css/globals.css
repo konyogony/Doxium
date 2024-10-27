@@ -42,11 +42,11 @@ code {
 
 /* Code block styles */
 .codeBlock > pre {
-    @apply my-0 rounded-t-none;
+    @apply my-0 grid rounded-t-none;
 }
 
-.codeBlock code > .line:not(:last-child) {
-    @apply inline-block w-full;
+.codeBlock .line {
+    @apply block w-full;
 }
 
 /* Better padding */
@@ -55,7 +55,7 @@ code {
     @apply p-0;
 }
 
-.codeBlock code > .line:not(:last-child) {
+.codeBlock code > .line {
     @apply px-[1.1428571em];
 }
 
@@ -143,4 +143,24 @@ pre.has-highlighted .warning {
 input:disabled,
 input[type='checkbox'] {
     @apply mr-2;
+}
+
+.codeBlock > pre,
+.customScrollbar {
+    @apply overflow-auto;
+}
+
+.codeBlock > pre::-webkit-scrollbar,
+.customScrollbar::-webkit-scrollbar {
+    @apply size-2;
+}
+
+.codeBlock > pre::-webkit-scrollbar-thumb,
+.customScrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-zinc-600;
+}
+
+.codeBlock > pre::-webkit-scrollbar-track,
+.customScrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
 }
