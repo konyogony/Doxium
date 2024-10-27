@@ -14,6 +14,43 @@ You can edit the theme of this code block by changing the `shiki-theme` in `doxi
 }
 ```
 
+```ts noTopBar
+import fs from 'fs';
+import path from 'path';
+import { DoxiumConfig } from '@/types';
+
+export const getHightlighterTheme = async (): Promise<string> => {
+    const doxiumPath = path.join(process.cwd(), 'doxium.json');
+    const fileContents = fs.readFileSync(doxiumPath, 'utf8');
+    const doxiumConfig: DoxiumConfig = JSON.parse(fileContents);
+
+    return doxiumConfig['shiki-theme'];
+};
+```
+
+```rs noTopBar noCopyButton lineNumbers
+use surrealdb::engine::local::{Db, RocksDb};
+use surrealdb::Surreal;
+use tokio::sync::OnceCell;
+
+pub static DB: OnceCell<Surreal<Db>> = OnceCell::const_new();
+
+pub async fn init() -> Result<Surreal<Db>, String> {
+    let db = Surreal::new::<RocksDb>("surrealdb.db")
+        .await
+        .map_err(|e| format!("Failed to create database: {}", e))?;
+
+    db.use_ns("dev")
+        .use_db("main")
+        .await
+        .map_err(|e| format!("Failed to switch to namespace: {}", e))?;
+
+    DB.set(db.clone()).unwrap();
+
+    Ok(db)
+}
+```
+
 The list of all available themes is (for now) available on this [website](https://textmate-grammars-themes.netlify.app/?theme=github-dark-dimmed&grammar=typescript)
 
 ## Roadmap

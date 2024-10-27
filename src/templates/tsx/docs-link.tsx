@@ -28,7 +28,7 @@ export const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
                 <Link
                     href={path || ''}
                     className={cn(
-                        'flex w-full py-1.5 text-sm font-normal text-zinc-400 decoration-dotted hover:saturate-150 transition-all duration-300 !hover:text-$COLOR-100 hover:underline',
+                        'flex w-full py-1.5 text-sm font-normal text-$COLOR-400 decoration-dotted hover:saturate-150 transition-all duration-300 hover:!text-$COLOR-100 hover:underline',
                         pathname === path && 'font-medium text-$ACCENT-COLOR-500',
                     )}
                 >

@@ -10,9 +10,10 @@ import { toast } from 'sonner';
 
 interface CopyButtonProps {
     text: string;
+    floating?: boolean;
 }
 
-export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({ text, floating = false }) => {
     const [clicked, setClicked] = useState(false);
     const clickCopy = () => {
         copy(text);
@@ -24,7 +25,10 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
     return (
         <button
             onClick={clickCopy}
-            className='text-$COLOR-400 hover:!text-$ACCENT-COLOR-200 transition-all duration-150 lg:opacity-0 lg:group-hover:opacity-100'
+            className={cn(
+                'text-$COLOR-400 transition-all duration-150 hover:!text-$ACCENT-COLOR-200 lg:opacity-0 lg:group-hover:opacity-100',
+                floating && 'absolute -inset-0.5',
+            )}
         >
             <FiCheck
                 size={18}

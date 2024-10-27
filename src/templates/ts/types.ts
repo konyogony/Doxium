@@ -147,4 +147,6 @@ export const ShikiThemeBackgroundHexDimmed: Record<BundledTheme, string> = {
 
 export type preProps = React.HTMLAttributes<HTMLPreElement> & {
     lineNumbers?: boolean;
+    noTopBar?: boolean;
+    noCopyButton?: boolean;
 };

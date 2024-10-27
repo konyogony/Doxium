@@ -108,7 +108,7 @@ pre.has-focused .line:not(.focused) {
     @apply blur-[2px] transition-all duration-700;
 }
 
-pre.has-focused:hover .line:not(.focused) {
+.codeWrapper:hover pre.has-focused .line:not(.focused) {
     @apply blur-none transition-all duration-300;
 }
 
