@@ -90,7 +90,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         }
 
         // Create components/doxium directory
-        await fs.mkdir('components/doxium');
+        await fs.mkdir('components/doxium', { recursive: true });
 
         // Remove app/fonts directory
         await fs.rm('./app/fonts', { recursive: true });

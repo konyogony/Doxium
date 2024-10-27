@@ -20,6 +20,7 @@ _Italics -> Not sure_
     -   [ ] Languages (tsx, rs)
     -   [x] **highlighting**
 -   [x] Fonts
+-   [x] Fix codeblock bg bug
 -   [x] Rename "Home Page" to use 'docs' folder.
 -   [ ] Fix turbo enabled by default (idk whyyyyyyyyyyyy)
 -   [ ] Clean up code
@@ -62,6 +63,10 @@ _Italics -> Not sure_
 -   [x] Fix fonts
 -   [ ] footer
 -   [ ] Windows support
+-   [ ] Add alerts
+-   [ ] Add link cards
+-   [ ] Implement changing aliases
+-   [ ] Check differences between canary/15
 -   [ ] Bunx doxium update
 -   [ ] dont forget to remove console.logs
 -   [ ] toggleable folder/list in sidebar. if folder -> have pages (nice idea but hard)

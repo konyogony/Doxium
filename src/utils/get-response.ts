@@ -8,7 +8,7 @@ export const getFullResponse = async () => {
             {
                 type: 'text',
                 name: 'github-repo',
-                message: `GitHub ${pc.blue('repository')} URL:`,
+                message: `GitHub ${pc.blue('repository')} URL (optional):`,
             },
             {
                 type: 'toggle',
@@ -179,7 +179,7 @@ export const getHalfResponse = async () => {
             {
                 type: 'text',
                 name: 'github-repo',
-                message: `GitHub ${pc.blue('repository')} URL:`,
+                message: `GitHub ${pc.blue('repository')} URL (optional):`,
             },
             {
                 type: 'toggle',
