@@ -29,7 +29,8 @@
     "description": "CLI tool for creating and managing Doxium applications.",
     "license": "MIT",
     "scripts": {
-        "build": "tsc --build"
+        "dev": "bun run ./src/index.ts init",
+        "build": "ncc build src/index.ts -o dist"
     },
     "keywords": [
         "doxium",

@@ -7,7 +7,7 @@ import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
 import { BundledTheme } from 'shiki';
 
 export const mdxComponents = {
-    h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    h1: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
         const id = children
             ?.toString()
             .trim()
@@ -16,12 +16,12 @@ export const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <h1 className={'group text-4xl'} {...props} id={id}>
+            <h1 className={'group text-4xl'} id={id}>
                 {children} <WikiHashTag id={id ?? ''} />
             </h1>
         );
     },
-    h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    h2: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
         const id = children
             ?.toString()
             .trim()
@@ -30,12 +30,12 @@ export const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <h2 className={'group text-2xl'} {...props} id={id}>
+            <h2 className={'group text-2xl'} id={id}>
                 {children} <WikiHashTag id={id ?? ''} variant='h2' />
             </h2>
         );
     },
-    h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    h3: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
         const id = children
             ?.toString()
             .trim()
@@ -44,18 +44,17 @@ export const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <h3 className={'group text-xl'} {...props} id={id}>
+            <h3 className={'group text-xl'} id={id}>
                 {children} <WikiHashTag id={id ?? ''} variant='h3' />
             </h3>
         );
     },
-    code: async ({ children, ...props }: React.HTMLAttributes<HTMLUnknownElement>) => {
+    code: async ({ children }: React.HTMLAttributes<HTMLUnknownElement>) => {
         const currentTheme = (await getHightlighterTheme()) as BundledTheme;
         const color = ShikiThemeBackgroundHexDefault[currentTheme];
         return (
             <span
-                {...props}
-                className='mx-0.5 my-2 rounded-[3.5px] px-1.5 py-1 text-sm font-semibold text-$COLOR-50'
+                className='mx-0.5 my-2 rounded-[3.5px] border border-white/5 px-1.5 py-0.5 text-sm font-semibold text-$COLOR-50'
                 style={{ background: color }}
             >
                 <span className='not-prose font-mono'>{children}</span>
@@ -74,19 +73,17 @@ export const mdxComponents = {
                 lineNumbers={lineNumbers}
                 noTopBar={noTopBar}
                 noCopyButton={noCopyButton}
-                {...props}
             >
                 {codeElement.props.children as string}
             </WikiCodeWrapper>
         );
     },
-    blockquote: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => {
+    blockquote: ({ children }: React.HTMLAttributes<HTMLElement>) => {
         return (
             <span
                 className={
                     'my-2 flex border-l-2 border-$COLOR-600 py-2.5 pl-4 text-base font-semibold italic text-$COLOR-100'
                 }
-                {...props}
             >
                 <span className='not-prose'>{children}</span>
             </span>

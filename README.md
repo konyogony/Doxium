@@ -29,7 +29,7 @@ _Italics -> Not sure_
 -   [ ] Stripping Github repo from config.
 -   [ ] _dark/light theme seems hard and cringe_
 -   [x] Bug-fixing
--   [ ] _Use vertisan icons_
+-   [x] Use vertisan icons
 -   [ ] Remove bad looking colours (light themes)
 -   [x] Make use of SSG and caching
 -   [ ] _Make pages for folders (toggleable)??_
@@ -66,8 +66,13 @@ _Italics -> Not sure_
 -   [x] Fix fonts
 -   [ ] footer
 -   [ ] Windows support
+-   [x] Table
+-   [ ] Tabs
+-   [ ] Timeline
+-   [ ] Filetree
 -   [ ] Add alerts
 -   [ ] Add link cards
+-   [ ] Fix "edit in github"
 -   [ ] Implement changing aliases
 -   [ ] Check differences between canary/15
 -   [ ] Bunx doxium update

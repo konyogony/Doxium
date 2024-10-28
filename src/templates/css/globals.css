@@ -164,3 +164,19 @@ input[type='checkbox'] {
 .customScrollbar::-webkit-scrollbar-track {
     @apply bg-transparent;
 }
+
+table > tbody > tr:last-child > td {
+    @apply !pb-[10px];
+}
+
+table {
+    @apply my-4 w-full !table-fixed border-collapse overflow-clip rounded-lg !py-20;
+}
+
+th {
+    @apply bg-zinc-700/80 !px-8 !py-2.5 text-sm font-bold text-zinc-100;
+}
+
+td {
+    @apply border-t border-white/10 bg-zinc-800 !px-8 !py-2 text-sm font-normal;
+}

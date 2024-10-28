@@ -2,12 +2,12 @@
 
 'use client';
 
+import { BsDiscord, BsGithub } from '@vertisanpro/react-icons/bs';
 import { Cmdk } from '$COMPONENTS-ALIAS/cmdk';
 import { cn } from '$LIB-ALIAS/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
-import { BsDiscord, BsGithub } from 'react-icons/bs';
 
 export const Navbar = () => {
     const [scrollHeight, setScrollHeight] = useState(0);

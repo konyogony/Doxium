@@ -2,8 +2,8 @@
 
 'use client';
 
+import { FiArrowUpRight } from '@vertisanpro/react-icons/fi';
 import { usePathname } from 'next/navigation';
-import { FiArrowUpRight } from 'react-icons/fi';
 
 interface DocsEditProps {
     repoString: string;

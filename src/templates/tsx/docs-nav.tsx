@@ -3,12 +3,12 @@
 'use client';
 
 import { structure } from '@/config';
+import { FiChevronLeft, FiChevronRight } from '@vertisanpro/react-icons/fi';
 import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
 import { prettifyText } from '$LIB-ALIAS/prettify-text';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 export const DocsNav = () => {
     const pathname = usePathname();

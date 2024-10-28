@@ -2,8 +2,8 @@
 
 'use client';
 
+import { FiArrowUp } from '@vertisanpro/react-icons/fi';
 import { useEffect, useMemo, useState } from 'react';
-import { FiArrowUp } from 'react-icons/fi';
 
 export const DocsScroll = () => {
     const [scrollHeight, setScrollHeight] = useState(0);

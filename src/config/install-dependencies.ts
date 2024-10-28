@@ -31,7 +31,7 @@ export const installDependencies = async (pmi: string[]) => {
                 'tailwind-merge',
                 'tailwindcss-animate',
                 '@tailwindcss/typography',
-                'react-icons',
+                '@vertisanpro/react-icons',
                 '@radix-ui/react-slot',
                 '@radix-ui/react-dialog',
                 '@radix-ui/react-toast',
