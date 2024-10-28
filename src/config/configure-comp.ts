@@ -61,6 +61,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'docs-edit', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-edit.tsx' },
         { name: 'docs-scroll', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-scroll.tsx' },
         { name: 'docs-headings', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-headings.tsx' },
+        { name: 'docs-toaster', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-toaster.tsx' },
 
         // Lib components
         { name: 'highlighter', type: 'ts', path: '$LIB-ALIAS/highlighter.ts' },
@@ -69,6 +70,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'is-light-color', type: 'ts', path: '$LIB-ALIAS/is-light-color.ts' },
         { name: 'get-repo-link', type: 'ts', path: '$LIB-ALIAS/get-repo-link.ts' },
         { name: 'get-highlighter-theme', type: 'ts', path: '$LIB-ALIAS/get-highlighter-theme.ts' },
+        { name: 'use-media-query', type: 'ts', path: '$LIB-ALIAS/use-media-query.ts' },
 
         // Config
         { name: 'types', type: 'ts', path: '$TYPES-ALIAS.ts' },

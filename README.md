@@ -30,9 +30,12 @@ _Italics -> Not sure_
 -   [ ] _dark/light theme seems hard and cringe_
 -   [x] Bug-fixing
 -   [ ] _Use vertisan icons_
+-   [ ] Remove bad looking colours (light themes)
+-   [x] Make use of SSG and caching
 -   [ ] _Make pages for folders (toggleable)??_
 -   [x] Make config file?
 -   [x] Lib & Other aliases
+-   [x] Move toaster to top if mobile
 -   [ ] **Make TOC SSG**
 -   [ ] **Better errors in CLI**
 -   [x] Make code use alias

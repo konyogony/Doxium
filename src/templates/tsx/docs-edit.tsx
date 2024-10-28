@@ -6,16 +6,16 @@ import { usePathname } from 'next/navigation';
 import { FiArrowUpRight } from 'react-icons/fi';
 
 interface DocsEditProps {
-    repoLink: string;
+    repoString: string;
 }
 
-export const DocsEdit = ({ repoLink }: DocsEditProps) => {
+export const DocsEdit = ({ repoString }: DocsEditProps) => {
     const pathname = usePathname();
     return (
         <>
-            {repoLink !== undefined && (
+            {repoString !== undefined && (
                 <a
-                    href={`${repoLink}/edit/main/src/app${pathname}/page.mdx`}
+                    href={`${repoString}/edit/main/src/app${pathname}/page.mdx`}
                     rel='noopener noreferrer'
                     target='_blank'
                     className='hover:underline text-$COLOR-400 flex flex-row items-center gap-1 text-sm transition-all duration-300'

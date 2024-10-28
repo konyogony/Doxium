@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FiArrowUp } from 'react-icons/fi';
 
 export const DocsScroll = () => {
@@ -14,18 +14,18 @@ export const DocsScroll = () => {
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [scrollHeight]);
+    }, []);
 
-    return (
-        <>
-            {scrollHeight > 300 && (
-                <button
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className='my-1 flex items-center gap-1 text-sm text-$COLOR-400 hover:underline'
-                >
-                    Back to top <FiArrowUp />
-                </button>
-            )}
-        </>
-    );
+    const backToTopButton = useMemo(() => {
+        return (
+            <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className='my-1 flex items-center gap-1 text-sm text-$COLOR-400 hover:underline'
+            >
+                Back to top <FiArrowUp />
+            </button>
+        );
+    }, []);
+
+    return <>{scrollHeight > 300 && backToTopButton}</>;
 };

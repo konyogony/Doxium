@@ -28,6 +28,7 @@ export const WikiHashTag = ({ id, variant = 'h1' }: WikiHashTagProps) => {
             toast.success('URL copied to clipboard');
         }
     };
+
     return (
         <button onClick={() => clickCopy()} id={'hashtag'} className='hidden cursor-copy lg:inline'>
             <HiOutlineHashtag

@@ -63,7 +63,7 @@ export const WikiCodeWrapper = async ({
                     {lang} {!noCopyButton && <CopyButton text={children} />}
                 </div>
             )}
-            {noTopBar && !noCopyButton && <CopyButton text={children} floating={true} />}
+            {noTopBar && !noCopyButton && <CopyButton text={children} />}
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
                 className={cn('codeBlock text-sm lg:text-base', lineNumbers && 'lineNumbers')}

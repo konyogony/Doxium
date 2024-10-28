@@ -157,7 +157,7 @@ input[type='checkbox'] {
 
 .codeBlock > pre::-webkit-scrollbar-thumb,
 .customScrollbar::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-zinc-600;
+    @apply rounded-lg bg-$COLOR-600;
 }
 
 .codeBlock > pre::-webkit-scrollbar-track,

@@ -10,10 +10,9 @@ import { toast } from 'sonner';
 
 interface CopyButtonProps {
     text: string;
-    floating?: boolean;
 }
 
-export const CopyButton: React.FC<CopyButtonProps> = ({ text, floating = false }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
     const [clicked, setClicked] = useState(false);
     const clickCopy = () => {
         copy(text);
@@ -23,27 +22,23 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text, floating = false }
     };
 
     return (
-        <button
-            onClick={clickCopy}
+        <div
             className={cn(
-                'text-$COLOR-400 transition-all duration-150 hover:!text-$ACCENT-COLOR-200 lg:opacity-0 lg:group-hover:opacity-100',
-                floating && 'absolute -inset-0.5',
+                'absolute right-[28px] top-2.5 w-fit opacity-0 transition-all duration-300 hover:!text-blue-500 group-hover:text-zinc-400 group-hover:opacity-100',
             )}
+            onClick={clickCopy}
         >
             <FiCheck
                 size={18}
                 className={cn(
-                    'absolute right-2.5 top-2.5 transition-all duration-150',
+                    'absolute inset-0 transition-all duration-150',
                     clicked ? 'text-emerald-500 opacity-100' : 'opacity-0',
                 )}
             />
             <FiClipboard
                 size={18}
-                className={cn(
-                    'absolute right-2.5 top-2.5 transition-all duration-150',
-                    !clicked ? 'opacity-100' : 'opacity-0',
-                )}
+                className={cn('absolute inset-0 transition-all duration-150', !clicked ? 'opacity-100' : 'opacity-0')}
             />
-        </button>
+        </div>
     );
 };

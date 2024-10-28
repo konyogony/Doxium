@@ -4,12 +4,10 @@ import { DocsBreadcrumbs } from '$COMPONENTS-ALIAS/docs-breadcrumbs';
 import { DocsNav } from '$COMPONENTS-ALIAS/docs-nav';
 import { SecondarySidebar } from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
 import { Sidebar } from '$COMPONENTS-ALIAS/docs-sidebar';
+import { getRepoLink } from '$LIB-ALIAS/get-repo-link';
 
-interface DocsLayoutProps {
-    children: React.ReactNode;
-}
-
-const DocsLayout = ({ children }: DocsLayoutProps) => {
+const DocsLayout = async ({ children }: React.PropsWithChildren) => {
+    const repoString = await getRepoLink();
     return (
         <div className='relative flex flex-row justify-center space-x-8 py-24'>
             <Sidebar />
@@ -19,7 +17,7 @@ const DocsLayout = ({ children }: DocsLayoutProps) => {
                 <div className='mb-4 mt-8 h-[1px] w-full bg-white/15' />
                 <DocsNav />
             </div>
-            <SecondarySidebar />
+            <SecondarySidebar repoString={repoString} />
         </div>
     );
 };
