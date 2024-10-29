@@ -16,9 +16,9 @@ export const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <h1 className={'group text-4xl'} id={id}>
-                {children} <WikiHashTag id={id ?? ''} />
-            </h1>
+            <WikiHashTag id={id} variant='h1'>
+                {children}
+            </WikiHashTag>
         );
     },
     h2: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -30,9 +30,9 @@ export const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <h2 className={'group text-2xl'} id={id}>
-                {children} <WikiHashTag id={id ?? ''} variant='h2' />
-            </h2>
+            <WikiHashTag id={id} variant='h2'>
+                {children}
+            </WikiHashTag>
         );
     },
     h3: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -44,9 +44,9 @@ export const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <h3 className={'group text-xl'} id={id}>
-                {children} <WikiHashTag id={id ?? ''} variant='h3' />
-            </h3>
+            <WikiHashTag id={id} variant='h3'>
+                {children}
+            </WikiHashTag>
         );
     },
     code: async ({ children }: React.HTMLAttributes<HTMLUnknownElement>) => {
@@ -67,12 +67,14 @@ export const mdxComponents = {
         const lineNumbers: boolean = (props as preProps).lineNumbers || false;
         const noTopBar: boolean = (props as preProps).noTopBar || false;
         const noCopyButton: boolean = (props as preProps).noCopyButton || false;
+        const twoSlash: boolean = (props as preProps).twoSlash || false;
         return (
             <WikiCodeWrapper
                 language={language}
                 lineNumbers={lineNumbers}
                 noTopBar={noTopBar}
                 noCopyButton={noCopyButton}
+                twoSlash={twoSlash}
             >
                 {codeElement.props.children as string}
             </WikiCodeWrapper>

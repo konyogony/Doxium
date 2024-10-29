@@ -2,27 +2,19 @@
 
 'use client';
 
-import { HiOutlineHashtag } from '@vertisanpro/react-icons/hi';
+import { FiLink } from '@vertisanpro/react-icons/fi';
 import copy from 'copy-to-clipboard';
 import { toast } from 'sonner';
 
 interface WikiHashTagProps {
-    id: string;
+    id: string | undefined;
     variant?: 'h1' | 'h2' | 'h3';
 }
 
-export const WikiHashTag = ({ id, variant = 'h1' }: WikiHashTagProps) => {
-    const strippedId = id
-        .trim()
-        .toLocaleLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^\p{L}\p{N}-]/gu, '')
-        .replace(/\./g, '');
-
-    const path = typeof window !== 'undefined' ? window.location.href.replace(/#.*$/, '') + '#' + strippedId : '';
-
+export const WikiHashTag = ({ id, variant: Var = 'h1', children }: React.PropsWithChildren<WikiHashTagProps>) => {
     const clickCopy = () => {
         if (typeof window !== 'undefined') {
+            const path = window.location.href.replace(/#.*$/, '') + '#' + id;
             copy(path);
             window.location.href = path;
             toast.success('URL copied to clipboard');
@@ -30,11 +22,16 @@ export const WikiHashTag = ({ id, variant = 'h1' }: WikiHashTagProps) => {
     };
 
     return (
-        <button onClick={() => clickCopy()} id={'hashtag'} className='hidden cursor-copy lg:inline'>
-            <HiOutlineHashtag
-                size={variant === 'h1' ? 26 : variant === 'h2' ? 20 : 18}
-                className='hover:!text-$ACCENT-COLOR-500 group-hover:text-$COLOR-200/60 text-transparent transition-all duration-300 focus:outline-none focus:ring-0'
+        <Var
+            onClick={() => clickCopy()}
+            id={id}
+            className='group flex w-full cursor-copy flex-row items-center justify-start gap-2'
+        >
+            {children}
+            <FiLink
+                size={Var === 'h1' ? 24 : Var === 'h2' ? 18 : 16}
+                className='text-transparent transition-all duration-300 hover:!text-$ACCENT-COLOR-500 focus:outline-none focus:ring-0 group-hover:text-$ACCENT-COLOR-400'
             />
-        </button>
+        </Var>
     );
 };

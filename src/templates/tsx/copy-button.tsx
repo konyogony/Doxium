@@ -10,9 +10,10 @@ import { toast } from 'sonner';
 
 interface CopyButtonProps {
     text: string;
+    singleLine?: boolean;
 }
 
-export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({ text, singleLine }) => {
     const [clicked, setClicked] = useState(false);
     const clickCopy = () => {
         copy(text);
@@ -24,7 +25,8 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
     return (
         <div
             className={cn(
-                'absolute right-[28px] top-2.5 w-fit opacity-0 transition-all duration-300 hover:!text-blue-500 group-hover:text-zinc-400 group-hover:opacity-100',
+                'absolute right-[28px] w-fit opacity-0 transition-all cursor-pointer duration-300 hover:!text-blue-500 group-hover:text-zinc-400 group-hover:opacity-100',
+                singleLine ? 'top-3.5' : 'top-2.5',
             )}
             onClick={clickCopy}
         >

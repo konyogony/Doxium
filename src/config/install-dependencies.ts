@@ -43,6 +43,8 @@ export const installDependencies = async (pmi: string[]) => {
                 'remark-gfm',
                 '@shikijs/transformers',
                 'rehype-mdx-code-props',
+                '@theguild/remark-mermaid',
+                '@shikijs/twoslash',
             ].filter((str) => str !== '' && str !== undefined) as string[],
             { stdio: 'ignore' },
         );

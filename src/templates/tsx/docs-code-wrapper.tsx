@@ -9,6 +9,7 @@ import {
     transformerRemoveLineBreak,
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
+import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
 import { CopyButton } from '$COMPONENTS-ALIAS/copy-button';
 import { wikiCodeWrapperIcon } from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
 import { getHighlighterInstance } from '$LIB-ALIAS/highlighter';
@@ -22,6 +23,7 @@ interface WikiCodeWrapperProps {
     lineNumbers: boolean;
     noTopBar: boolean;
     noCopyButton: boolean;
+    twoSlash: boolean;
 }
 
 export const WikiCodeWrapper = async ({
@@ -30,6 +32,7 @@ export const WikiCodeWrapper = async ({
     lineNumbers,
     noTopBar,
     noCopyButton,
+    twoSlash,
 }: WikiCodeWrapperProps) => {
     const { highlighter, theme } = await getHighlighterInstance();
     const highlightedCode = highlighter.codeToHtml(children, {
@@ -43,12 +46,17 @@ export const WikiCodeWrapper = async ({
             transformerNotationFocus(),
             transformerNotationWordHighlight(),
             transformerRemoveLineBreak(),
-        ],
+            twoSlash &&
+                transformerTwoslash({
+                    renderer: rendererRich(),
+                }),
+        ].filter((v) => v !== false),
     });
 
     const { icon: IconComponent, lang } = wikiCodeWrapperIcon({ language });
     const backgroundColor = ShikiThemeBackgroundHexDimmed[theme];
     const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
+    const singleLine = children.split('\n').length === 2;
 
     return (
         <div className='codeWrapper group relative my-4 w-full overflow-clip rounded-lg border border-white/15'>
@@ -63,7 +71,7 @@ export const WikiCodeWrapper = async ({
                     {lang} {!noCopyButton && <CopyButton text={children} />}
                 </div>
             )}
-            {noTopBar && !noCopyButton && <CopyButton text={children} />}
+            {noTopBar && !noCopyButton && <CopyButton singleLine={singleLine} text={children} />}
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
                 className={cn('codeBlock text-sm lg:text-base', lineNumbers && 'lineNumbers')}

@@ -52,7 +52,7 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
         // Install Shadcn components
         spawn.sync(
             pmx[0],
-            [pmx[1], 'shadcn@latest', 'add', 'breadcrumb', 'button'].filter(
+            [pmx[1], 'shadcn@latest', 'add', 'breadcrumb', 'button', 'tabs'].filter(
                 (str) => str !== '' && str !== undefined,
             ) as string[],
             { stdio: 'ignore' },

@@ -30,6 +30,7 @@ _Italics -> Not sure_
 -   [ ] _dark/light theme seems hard and cringe_
 -   [x] Bug-fixing
 -   [x] Use vertisan icons
+-   [ ] Move optional options to the bottom
 -   [ ] Remove bad looking colours (light themes)
 -   [x] Make use of SSG and caching
 -   [ ] _Make pages for folders (toggleable)??_
@@ -67,14 +68,18 @@ _Italics -> Not sure_
 -   [ ] footer
 -   [ ] Windows support
 -   [x] Table
--   [ ] Tabs
+-   [x] Tabs
 -   [ ] Timeline
 -   [ ] Filetree
--   [ ] Add alerts
+-   [ ] Add alerts (bookmark, warning, error, success, tip, accent, base)
+-   [ ] Package managers
 -   [ ] Add link cards
+-   [ ] Add more stuff to sidebar
+-   [ ] Better search
 -   [ ] Fix "edit in github"
 -   [ ] Implement changing aliases
 -   [ ] Check differences between canary/15
+-   [x] More shiki plugins and stuff
 -   [ ] Bunx doxium update
 -   [ ] dont forget to remove console.logs
 -   [ ] toggleable folder/list in sidebar. if folder -> have pages (nice idea but hard)
