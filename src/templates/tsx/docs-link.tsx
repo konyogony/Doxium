@@ -13,7 +13,7 @@ interface WikiLinkProps {
     title?: boolean;
 }
 
-export const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
+const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
     const pathname = usePathname();
 
     return (
@@ -38,3 +38,5 @@ export const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
         </>
     );
 };
+
+export default DocsLink;

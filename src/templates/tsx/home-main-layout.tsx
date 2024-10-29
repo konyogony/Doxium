@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { DocsToaster } from '$COMPONENTS-ALIAS/docs-toaster';
-import { Navbar } from '$COMPONENTS-ALIAS/navbar';
+import DocsToaster from '$COMPONENTS-ALIAS/docs-toaster';
+import Navbar from '$COMPONENTS-ALIAS/navbar';
 import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';

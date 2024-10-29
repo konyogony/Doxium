@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
-export const DocsNav = () => {
+const DocsNav = () => {
     const pathname = usePathname();
 
     const paths = useMemo(() => {
@@ -46,3 +46,5 @@ export const DocsNav = () => {
         </div>
     );
 };
+
+export default DocsNav;

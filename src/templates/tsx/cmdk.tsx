@@ -19,7 +19,7 @@ import { prettifyText } from '$LIB-ALIAS/prettify-text';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-export const Cmdk = ({ ...props }: DialogProps) => {
+const Cmdk = ({ ...props }: DialogProps) => {
     const [open, setOpen] = useState(false);
     const fileStructure = flattenStructure(structure);
     const navigator = useRouter();
@@ -88,3 +88,5 @@ export const Cmdk = ({ ...props }: DialogProps) => {
         </>
     );
 };
+
+export default Cmdk;

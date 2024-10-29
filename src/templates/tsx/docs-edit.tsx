@@ -9,11 +9,11 @@ interface DocsEditProps {
     repoString: string;
 }
 
-export const DocsEdit = ({ repoString }: DocsEditProps) => {
+const DocsEdit = ({ repoString }: DocsEditProps) => {
     const pathname = usePathname();
     return (
         <>
-            {repoString !== undefined && (
+            {repoString && (
                 <a
                     href={`${repoString}/edit/main/src/app${pathname}/page.mdx`}
                     rel='noopener noreferrer'
@@ -26,3 +26,5 @@ export const DocsEdit = ({ repoString }: DocsEditProps) => {
         </>
     );
 };
+
+export default DocsEdit;

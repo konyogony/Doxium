@@ -11,7 +11,7 @@ interface WikiHashTagProps {
     variant?: 'h1' | 'h2' | 'h3';
 }
 
-export const WikiHashTag = ({ id, variant: Var = 'h1', children }: React.PropsWithChildren<WikiHashTagProps>) => {
+const WikiHashTag = ({ id, variant: Var = 'h1', children }: React.PropsWithChildren<WikiHashTagProps>) => {
     const clickCopy = () => {
         if (typeof window !== 'undefined') {
             const path = window.location.href.replace(/#.*$/, '') + '#' + id;
@@ -35,3 +35,5 @@ export const WikiHashTag = ({ id, variant: Var = 'h1', children }: React.PropsWi
         </Var>
     );
 };
+
+export default WikiHashTag;

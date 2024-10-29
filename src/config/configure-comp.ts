@@ -78,10 +78,11 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
         { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
         { name: 'doxium', type: 'json', path: './doxium.json' },
+        { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
     ].map((file) => {
         return {
             ...file,
-            path: replaceFilePlaceholders(file.path, './components/doxium', './lib', './types'),
+            path: replaceFilePlaceholders(file.path, 'components/doxium', 'lib', 'types'),
         };
     });
 

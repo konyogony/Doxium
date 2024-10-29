@@ -1,12 +1,12 @@
 // @ts-nocheck
 
-import { WikiCodeWrapper } from '$COMPONENTS-ALIAS/docs-code-wrapper';
-import { WikiHashTag } from '$COMPONENTS-ALIAS/docs-hashtag';
+import WikiCodeWrapper from '$COMPONENTS-ALIAS/docs-code-wrapper';
+import WikiHashTag from '$COMPONENTS-ALIAS/docs-hashtag';
 import { getHightlighterTheme } from '$LIB-ALIAS/get-highlighter-theme';
 import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
 import { BundledTheme } from 'shiki';
 
-export const mdxComponents = {
+const mdxComponents = {
     h1: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
         const id = children
             ?.toString()
@@ -92,3 +92,5 @@ export const mdxComponents = {
         );
     },
 };
+
+export default mdxComponents;

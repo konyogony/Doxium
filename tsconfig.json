@@ -1,6 +1,4 @@
 {
-    "display": "Node LTS",
-    "_version": "20.1.0",
     "compilerOptions": {
         "outDir": "dist",
         "lib": ["es2023"],

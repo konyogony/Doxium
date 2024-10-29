@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import { DocsLink } from '$COMPONENTS-ALIAS/docs-link';
+import DocsLink from '$COMPONENTS-ALIAS/docs-link';
 import { DocsNode } from '$TYPES-ALIAS';
 
-export const DocsFolder = ({ node }: { node: DocsNode }) => {
+const DocsFolder = ({ node }: { node: DocsNode }) => {
     return (
         <div className='flex flex-col'>
             {node.nodes ? (
@@ -21,3 +21,5 @@ export const DocsFolder = ({ node }: { node: DocsNode }) => {
         </div>
     );
 };
+
+export default DocsFolder;

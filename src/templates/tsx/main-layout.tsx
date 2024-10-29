@@ -1,11 +1,11 @@
 // @ts-nocheck
 
-import { DocsBreadcrumbs } from '$COMPONENTS-ALIAS/docs-breadcrumbs';
-import { DocsNav } from '$COMPONENTS-ALIAS/docs-nav';
-import { SecondarySidebar } from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
-import { Sidebar } from '$COMPONENTS-ALIAS/docs-sidebar';
-import { DocsToaster } from '$COMPONENTS-ALIAS/docs-toaster';
-import { Navbar } from '$COMPONENTS-ALIAS/navbar';
+import DocsBreadcrumbs from '$COMPONENTS-ALIAS/docs-breadcrumbs';
+import DocsNav from '$COMPONENTS-ALIAS/docs-nav';
+import SecondarySidebar from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
+import Sidebar from '$COMPONENTS-ALIAS/docs-sidebar';
+import DocsToaster from '$COMPONENTS-ALIAS/docs-toaster';
+import Navbar from '$COMPONENTS-ALIAS/navbar';
 import { getRepoLink } from '$LIB-ALIAS/get-repo-link';
 import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';

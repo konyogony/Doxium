@@ -5,7 +5,7 @@
 import { useMediaQuery } from '$LIB-ALIAS/use-media-query';
 import { Toaster } from 'sonner';
 
-export const DocsToaster = () => {
+const DocsToaster = () => {
     return (
         <Toaster
             richColors
@@ -14,3 +14,5 @@ export const DocsToaster = () => {
         />
     );
 };
+
+export default DocsToaster;

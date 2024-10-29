@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import { DocsBreadcrumbs } from '$COMPONENTS-ALIAS/docs-breadcrumbs';
-import { DocsNav } from '$COMPONENTS-ALIAS/docs-nav';
-import { SecondarySidebar } from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
-import { Sidebar } from '$COMPONENTS-ALIAS/docs-sidebar';
+import DocsBreadcrumbs from '$COMPONENTS-ALIAS/docs-breadcrumbs';
+import DocsNav from '$COMPONENTS-ALIAS/docs-nav';
+import SecondarySidebar from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
+import Sidebar from '$COMPONENTS-ALIAS/docs-sidebar';
 import { getRepoLink } from '$LIB-ALIAS/get-repo-link';
 
 const DocsLayout = async ({ children }: React.PropsWithChildren) => {

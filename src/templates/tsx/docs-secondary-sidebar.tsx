@@ -1,14 +1,14 @@
 // @ts-nocheck
 
-import { DocsEdit } from '$COMPONENTS-ALIAS/docs-edit';
-import { DocsHeadings } from '$COMPONENTS-ALIAS/docs-headings';
-import { DocsScroll } from '$COMPONENTS-ALIAS/docs-scroll';
+import DocsEdit from '$COMPONENTS-ALIAS/docs-edit';
+import DocsHeadings from '$COMPONENTS-ALIAS/docs-headings';
+import DocsScroll from '$COMPONENTS-ALIAS/docs-scroll';
 
 interface SecondarySidebarProps {
     repoString: string;
 }
 
-export const SecondarySidebar = ({ repoString }: SecondarySidebarProps) => {
+const SecondarySidebar = ({ repoString }: SecondarySidebarProps) => {
     return (
         <div className='sticky top-24 hidden h-fit w-fit min-w-[20vh] flex-shrink-0 flex-col items-start lg:flex'>
             <span className='py-2 text-sm font-bold text-$COLOR-50'>On this page</span>
@@ -19,3 +19,5 @@ export const SecondarySidebar = ({ repoString }: SecondarySidebarProps) => {
         </div>
     );
 };
+
+export default SecondarySidebar;

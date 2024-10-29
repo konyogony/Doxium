@@ -5,7 +5,7 @@
 import { FiArrowUp } from '@vertisanpro/react-icons/fi';
 import { useEffect, useMemo, useState } from 'react';
 
-export const DocsScroll = () => {
+const DocsScroll = () => {
     const [scrollHeight, setScrollHeight] = useState(0);
 
     useEffect(() => {
@@ -29,3 +29,5 @@ export const DocsScroll = () => {
 
     return <>{scrollHeight > 300 && backToTopButton}</>;
 };
+
+export default DocsScroll;

@@ -13,7 +13,7 @@ interface CopyButtonProps {
     singleLine?: boolean;
 }
 
-export const CopyButton: React.FC<CopyButtonProps> = ({ text, singleLine }) => {
+const CopyButton: React.FC<CopyButtonProps> = ({ text, singleLine }) => {
     const [clicked, setClicked] = useState(false);
     const clickCopy = () => {
         copy(text);
@@ -44,3 +44,5 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ text, singleLine }) => {
         </div>
     );
 };
+
+export default CopyButton;

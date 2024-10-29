@@ -40,7 +40,8 @@ export const replacePlaceholders = (
         .replaceAll(/\$USE-DOCS/g, response['use-docs'])
         .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
         .replaceAll(/\$LIB-ALIAS/g, libAlias)
-        .replaceAll(/\$TYPES-ALIAS/g, typesAlias);
+        .replaceAll(/\$TYPES-ALIAS/g, typesAlias)
+        .replaceAll(/\$TSCONFIG/g, 'components/doxium');
 };
 
 export const replaceFilePlaceholders = (
@@ -50,7 +51,7 @@ export const replaceFilePlaceholders = (
     typesAlias: string,
 ) => {
     return content
-        .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
-        .replaceAll(/\$LIB-ALIAS/g, libAlias)
-        .replaceAll(/\$TYPES-ALIAS/g, typesAlias);
+        .replaceAll(/\$COMPONENTS-ALIAS/g, './' + componentAlias)
+        .replaceAll(/\$LIB-ALIAS/g, './' + libAlias)
+        .replaceAll(/\$TYPES-ALIAS/g, './' + typesAlias);
 };

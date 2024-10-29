@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment } from 'react';
 
-export const DocsBreadcrumbs = () => {
+const DocsBreadcrumbs = () => {
     const pathname = usePathname();
     const path = pathname.split('/').filter((p) => p !== '');
     return (
@@ -47,3 +47,5 @@ export const DocsBreadcrumbs = () => {
         </Breadcrumb>
     );
 };
+
+export default DocsBreadcrumbs;

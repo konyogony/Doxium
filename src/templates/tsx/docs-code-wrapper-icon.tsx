@@ -20,7 +20,7 @@ interface WikiCodeWrapperIconReturn {
     lang: string;
 }
 
-export const wikiCodeWrapperIcon = ({ language }: WikiCodeWrapperIconProps): WikiCodeWrapperIconReturn => {
+const wikiCodeWrapperIcon = ({ language }: WikiCodeWrapperIconProps): WikiCodeWrapperIconReturn => {
     switch (language) {
         case 'ts':
             return { icon: <SiTypescript size={16} />, lang: 'Typescript' };
@@ -46,3 +46,5 @@ export const wikiCodeWrapperIcon = ({ language }: WikiCodeWrapperIconProps): Wik
             return { icon: <VscSymbolFile size={16} />, lang: 'File' };
     }
 };
+
+export default wikiCodeWrapperIcon;

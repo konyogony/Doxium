@@ -10,8 +10,8 @@ import {
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
 import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
-import { CopyButton } from '$COMPONENTS-ALIAS/copy-button';
-import { wikiCodeWrapperIcon } from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
+import CopyButton from '$COMPONENTS-ALIAS/copy-button';
+import wikiCodeWrapperIcon from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
 import { getHighlighterInstance } from '$LIB-ALIAS/highlighter';
 import { isLightColor } from '$LIB-ALIAS/is-light-color';
 import { cn } from '$LIB-ALIAS/utils';
@@ -26,7 +26,7 @@ interface WikiCodeWrapperProps {
     twoSlash: boolean;
 }
 
-export const WikiCodeWrapper = async ({
+const WikiCodeWrapper = async ({
     language = '',
     children,
     lineNumbers,
@@ -79,3 +79,5 @@ export const WikiCodeWrapper = async ({
         </div>
     );
 };
+
+export default WikiCodeWrapper;

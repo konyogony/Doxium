@@ -9,7 +9,7 @@ interface DocsTabsProps {
     widthFull?: boolean;
 }
 
-export const DocsTabs = ({
+const DocsTabs = ({
     tabs,
     defaultTab = tabs[0],
     widthFull = true,
@@ -34,3 +34,5 @@ export const DocsTabs = ({
         </Tabs>
     );
 };
+
+export default DocsTabs;
