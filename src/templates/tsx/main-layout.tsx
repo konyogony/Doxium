@@ -6,7 +6,7 @@ import SecondarySidebar from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
 import Sidebar from '$COMPONENTS-ALIAS/docs-sidebar';
 import DocsToaster from '$COMPONENTS-ALIAS/docs-toaster';
 import Navbar from '$COMPONENTS-ALIAS/navbar';
-import { getRepoLink } from '$LIB-ALIAS/get-repo-link';
+import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -24,7 +24,7 @@ const RootLayout = async ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const repoString = await getRepoLink();
+    const { repo } = await getJsonData();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative '>
@@ -38,7 +38,7 @@ const RootLayout = async ({
                             <div className='mb-4 mt-8 h-[1px] w-full bg-white/15' />
                             <DocsNav />
                         </div>
-                        <SecondarySidebar repoString={repoString} />
+                        <SecondarySidebar repoString={repo} />
                     </div>
                     <DocsToaster />
                 </main>

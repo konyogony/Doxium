@@ -69,8 +69,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'flatten-structure', type: 'ts', path: '$LIB-ALIAS/flatten-structure.ts' },
         { name: 'prettify-text', type: 'ts', path: '$LIB-ALIAS/prettify-text.ts' },
         { name: 'is-light-color', type: 'ts', path: '$LIB-ALIAS/is-light-color.ts' },
-        { name: 'get-repo-link', type: 'ts', path: '$LIB-ALIAS/get-repo-link.ts' },
-        { name: 'get-highlighter-theme', type: 'ts', path: '$LIB-ALIAS/get-highlighter-theme.ts' },
+        { name: 'get-json-data', type: 'ts', path: '$LIB-ALIAS/get-json-data.ts' },
         { name: 'use-media-query', type: 'ts', path: '$LIB-ALIAS/use-media-query.ts' },
 
         // Config
@@ -110,6 +109,7 @@ export const configureComp = async (response: responseT, pm: string) => {
                         '@/components/doxium',
                         '@/lib',
                         '@/types',
+                        'components/doxium',
                     );
 
                     await fs.writeFile(file.path, content);
@@ -141,6 +141,7 @@ export const configureComp = async (response: responseT, pm: string) => {
                             '@/components/doxium',
                             '@/lib',
                             '@/types',
+                            'components/doxium',
                         );
                         await fs.writeFile(file.path, content);
                     } catch (error) {
@@ -166,6 +167,7 @@ export const configureComp = async (response: responseT, pm: string) => {
                             '@/components/doxium',
                             '@/lib',
                             '@/types',
+                            'components/doxium',
                         );
                         await fs.writeFile(file.path, content);
                     } catch (error) {

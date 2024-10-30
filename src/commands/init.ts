@@ -8,21 +8,29 @@ import { installPrettier } from '../config/install-prettier.js';
 import { removePrettier } from '../config/remove-prettier.js';
 import { getPmInfo } from '../utils/get-pm-info.js';
 import { getFullResponse } from '../utils/get-response.js';
-import { infoText, isDoxiumProject, isNextJsProject, successText, warningText } from '../utils/utils.js';
+import { errorText, infoText, isDoxiumProject, isNextJsProject, successText, warningText } from '../utils/utils.js';
 import { link } from './link.js';
 import { update } from './update.js';
 
 export const init = async () => {
     // Get name of the app to immediately check if it is a Next.js project
-    const response_name = await prompts([
+    const response_name = await prompts(
+        [
+            {
+                type: 'text',
+                name: 'app-name',
+                message: `Name of your ${pc.blue('app')}:`,
+                initial: 'my-app',
+                validate: (value) => (value.length < 3 ? 'Name must be at least 3 characters long' : true),
+            },
+        ],
         {
-            type: 'text',
-            name: 'app-name',
-            message: `Name of your ${pc.blue('app')}:`,
-            initial: 'my-app',
-            validate: (value) => (value.length < 3 ? 'Name must be at least 3 characters long' : true),
+            onCancel: () => {
+                console.error(errorText('Setup cancelled.'));
+                process.exit(1);
+            },
         },
-    ]);
+    );
 
     if (await isNextJsProject(`./${response_name['app-name']}`)) {
         if (await isDoxiumProject(`./${response_name['app-name']}`)) {

@@ -28,6 +28,7 @@ export const replacePlaceholders = (
     componentAlias: string,
     libAlias: string,
     typesAlias: string,
+    tsconfigAlias: string,
 ) => {
     return content
         .replaceAll(/\/\/ @ts-nocheck\n/g, '')
@@ -41,7 +42,7 @@ export const replacePlaceholders = (
         .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
         .replaceAll(/\$LIB-ALIAS/g, libAlias)
         .replaceAll(/\$TYPES-ALIAS/g, typesAlias)
-        .replaceAll(/\$TSCONFIG/g, 'components/doxium');
+        .replaceAll(/\$TSCONFIG/g, tsconfigAlias);
 };
 
 export const replaceFilePlaceholders = (

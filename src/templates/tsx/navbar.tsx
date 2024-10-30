@@ -28,8 +28,8 @@ const Navbar = () => {
     return (
         <nav
             className={cn(
-                'fixed inset-0 z-50 flex h-fit w-full flex-row items-center gap-8 border-b border-white/0 px-[20vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted transition-all duration-300',
-                scrollHeight > 0 && 'border-white/5 bg-$COLOR-950/90 backdrop-blur-lg',
+                'fixed inset-0 z-50 flex h-fit w-full flex-row items-center gap-8 px-[20vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted transition-all duration-300',
+                scrollHeight > 0 && 'bg-$COLOR-950/90 backdrop-blur-xl',
             )}
         >
             <Link href='/' className='text-xl font-bold text-$COLOR-100 hover:text-$COLOR-50'>

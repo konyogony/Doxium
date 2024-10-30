@@ -38,7 +38,6 @@ export const installDependencies = async (pmi: string[]) => {
                 '@radix-ui/react-icons',
                 'cmdk',
                 'sonner',
-                'copy-to-clipboard',
                 'shiki',
                 'remark-gfm',
                 '@shikijs/transformers',

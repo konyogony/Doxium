@@ -2,7 +2,7 @@
 
 import WikiCodeWrapper from '$COMPONENTS-ALIAS/docs-code-wrapper';
 import WikiHashTag from '$COMPONENTS-ALIAS/docs-hashtag';
-import { getHightlighterTheme } from '$LIB-ALIAS/get-highlighter-theme';
+import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
 import { BundledTheme } from 'shiki';
 
@@ -50,7 +50,8 @@ const mdxComponents = {
         );
     },
     code: async ({ children }: React.HTMLAttributes<HTMLUnknownElement>) => {
-        const currentTheme = (await getHightlighterTheme()) as BundledTheme;
+        const { theme } = await getJsonData();
+        const currentTheme = theme as BundledTheme;
         const color = ShikiThemeBackgroundHexDefault[currentTheme];
         return (
             <span

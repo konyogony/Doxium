@@ -17,6 +17,7 @@ export interface DoxiumConfig {
     'components-alias': string;
     'lib-alias': string;
     'types-alias': string;
+    'base-url': string;
 }
 
 export interface HighlighterResult {

@@ -40,6 +40,7 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
                         '@/components/doxium',
                         '@/lib',
                         '@/types',
+                        'components/doxium',
                     );
                     await fs.writeFile(file.path, content);
                 } catch (error) {

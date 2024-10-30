@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { getHightlighterTheme } from '$LIB-ALIAS/get-highlighter-theme';
+import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { HighlighterResult } from '$TYPES-ALIAS';
 import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } from 'shiki';
 
@@ -9,8 +9,8 @@ let currentTheme: BundledTheme | null = null;
 
 export const getHighlighterInstance = async (): Promise<HighlighterResult> => {
     if (!highlighterInstance) {
-        currentTheme = (await getHightlighterTheme()) as BundledTheme;
-
+        const { theme } = await getJsonData();
+        const currentTheme = theme as BundledTheme;
         try {
             highlighterInstance = await createHighlighter({
                 themes: [currentTheme, 'github-dark-dimmed'],

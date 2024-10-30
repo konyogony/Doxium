@@ -4,10 +4,10 @@ import DocsBreadcrumbs from '$COMPONENTS-ALIAS/docs-breadcrumbs';
 import DocsNav from '$COMPONENTS-ALIAS/docs-nav';
 import SecondarySidebar from '$COMPONENTS-ALIAS/docs-secondary-sidebar';
 import Sidebar from '$COMPONENTS-ALIAS/docs-sidebar';
-import { getRepoLink } from '$LIB-ALIAS/get-repo-link';
+import { getJsonData } from '$LIB-ALIAS/get-json-data';
 
 const DocsLayout = async ({ children }: React.PropsWithChildren) => {
-    const repoString = await getRepoLink();
+    const { repo } = await getJsonData();
     return (
         <div className='relative flex flex-row justify-center space-x-8 py-24'>
             <Sidebar />
@@ -17,7 +17,7 @@ const DocsLayout = async ({ children }: React.PropsWithChildren) => {
                 <div className='mb-4 mt-8 h-[1px] w-full bg-white/15' />
                 <DocsNav />
             </div>
-            <SecondarySidebar repoString={repoString} />
+            <SecondarySidebar repoString={repo} />
         </div>
     );
 };
