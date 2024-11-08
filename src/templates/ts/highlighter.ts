@@ -10,7 +10,7 @@ let currentTheme: BundledTheme | null = null;
 export const getHighlighterInstance = async (): Promise<HighlighterResult> => {
     if (!highlighterInstance) {
         const { theme } = await getJsonData();
-        const currentTheme = theme as BundledTheme;
+        currentTheme = theme as BundledTheme;
         try {
             highlighterInstance = await createHighlighter({
                 themes: [currentTheme, 'github-dark-dimmed'],

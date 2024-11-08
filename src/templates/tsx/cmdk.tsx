@@ -11,15 +11,19 @@ import {
     CommandItem,
     CommandList,
 } from '@/components/ui/command';
-import { structure } from '@/config';
 import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/react-dialog';
 import { FileIcon } from '@radix-ui/react-icons';
 import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
 import { prettifyText } from '$LIB-ALIAS/prettify-text';
+import { getStructureInstance } from '$LIB-ALIAS/structure';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-const Cmdk = ({ ...props }: DialogProps) => {
+interface CmdkProps extends DialogProps {
+    structure: ReturnType<typeof getStructureInstance>;
+}
+
+const Cmdk = ({ structure, ...props }: CmdkProps) => {
     const [open, setOpen] = useState(false);
     const fileStructure = flattenStructure(structure);
     const navigator = useRouter();

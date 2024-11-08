@@ -10,15 +10,14 @@ import { usePathname } from 'next/navigation';
 interface WikiLinkProps {
     name: string;
     path?: string;
-    title?: boolean;
 }
 
-const DocsLink = ({ name, path, title = false }: WikiLinkProps) => {
+const DocsLink = ({ name, path }: WikiLinkProps) => {
     const pathname = usePathname();
 
     return (
         <>
-            {title ? (
+            {!path ? (
                 <span
                     className={'flex w-full py-1.5 pt-3 text-sm font-bold text-$COLOR-50 transition-all duration-300'}
                 >

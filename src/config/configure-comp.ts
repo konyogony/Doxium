@@ -9,9 +9,6 @@ const filesNoHome = [
     // UI components
     { name: 'main-layout', type: 'tsx', path: './app/layout.tsx' },
 
-    // Config
-    { name: 'config', type: 'ts', path: './config.ts' },
-
     // Mdx
     { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
     { name: 'main', type: 'mdx', path: './app/page.mdx' },
@@ -25,9 +22,6 @@ const filesHome = [
     { name: 'home-main-layout', type: 'tsx', path: './app/layout.tsx' },
     { name: 'home-docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
     { name: 'home-page', type: 'tsx', path: './app/page.tsx' },
-
-    // Config
-    { name: 'home-config', type: 'ts', path: './config.ts' },
 
     // Mdx
     { name: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
@@ -71,6 +65,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'is-light-color', type: 'ts', path: '$LIB-ALIAS/is-light-color.ts' },
         { name: 'get-json-data', type: 'ts', path: '$LIB-ALIAS/get-json-data.ts' },
         { name: 'use-media-query', type: 'ts', path: '$LIB-ALIAS/use-media-query.ts' },
+        { name: 'structure', type: 'ts', path: '$LIB-ALIAS/structure.ts' },
 
         // Config
         { name: 'types', type: 'ts', path: '$TYPES-ALIAS.ts' },

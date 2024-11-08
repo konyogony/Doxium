@@ -4,17 +4,22 @@
 
 import { BsDiscord, BsGithub } from '@vertisanpro/react-icons/bs';
 import Cmdk from '$COMPONENTS-ALIAS/cmdk';
+import { getStructureInstance } from '$LIB-ALIAS/structure';
 import { cn } from '$LIB-ALIAS/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
-const Navbar = () => {
+interface NavbarProps {
+    structure: ReturnType<typeof getStructureInstance>;
+}
+
+const Navbar = ({ structure }: NavbarProps) => {
     const [scrollHeight, setScrollHeight] = useState(0);
     const pathname = usePathname();
     const path = pathname.split('/')[1];
 
-    const CMDKElement = useMemo(() => <Cmdk />, []);
+    const CMDKElement = useMemo(() => <Cmdk structure={structure} />, [structure]);
 
     useEffect(() => {
         const handleScroll = () => {

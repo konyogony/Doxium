@@ -4,7 +4,13 @@ import fs from 'fs';
 import path from 'path';
 import { DoxiumConfig } from '$TYPES-ALIAS';
 
-export const getJsonData = async (): Promise<{ repo: string; theme: string; baseUrl: string }> => {
+interface jsonDataReturn {
+    repo: string;
+    theme: string;
+    baseUrl: string;
+}
+
+export const getJsonData = async (): Promise<jsonDataReturn> => {
     const doxiumPath = path.join(process.cwd(), 'doxium.json');
     const fileContents = fs.readFileSync(doxiumPath, 'utf8');
     const doxiumConfig: DoxiumConfig = JSON.parse(fileContents);

@@ -2,6 +2,7 @@
 
 import DocsToaster from '$COMPONENTS-ALIAS/docs-toaster';
 import Navbar from '$COMPONENTS-ALIAS/navbar';
+import { getStructureInstance } from '$LIB-ALIAS/structure';
 import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -19,10 +20,11 @@ const RootLayout = ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
+    const structure = getStructureInstance();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative'>
-                <Navbar />
+                <Navbar structure={structure} />
                 <main>
                     {children}
                     <DocsToaster />

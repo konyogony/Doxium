@@ -2,15 +2,19 @@
 
 'use client';
 
-import { structure } from '@/config';
 import { FiChevronLeft, FiChevronRight } from '@vertisanpro/react-icons/fi';
 import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
 import { prettifyText } from '$LIB-ALIAS/prettify-text';
+import { getStructureInstance } from '$LIB-ALIAS/structure';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
-const DocsNav = () => {
+interface DocsNavProps {
+    structure: ReturnType<typeof getStructureInstance>;
+}
+
+const DocsNav = ({ structure }: DocsNavProps) => {
     const pathname = usePathname();
 
     const paths = useMemo(() => {
@@ -21,7 +25,7 @@ const DocsNav = () => {
             prev: currentIndex > 0 ? flatStructure[currentIndex - 1] : null,
             next: currentIndex < flatStructure.length - 1 ? flatStructure[currentIndex + 1] : null,
         };
-    }, [pathname]);
+    }, [pathname, structure]);
 
     return (
         <div className='not-prose flex w-full flex-row items-center'>

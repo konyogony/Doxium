@@ -26,7 +26,7 @@ _Italics -> Not sure_
 -   [ ] Clean up code
 -   [x] Host schema not on github.
 -   [ ] Clean up console
--   [ ] Stripping Github repo from config.
+-   [x] Stripping Github repo from config.
 -   [ ] _dark/light theme seems hard and cringe_
 -   [x] Bug-fixing
 -   [x] Use vertisan icons
@@ -40,7 +40,7 @@ _Italics -> Not sure_
 -   [ ] **Make TOC SSG**
 -   [ ] **Better errors in CLI**
 -   [x] Make code use alias
--   [ ] **Automate structure!**
+-   [x] **Automate structure!**
 -   [ ] Languages (en, ru)
 -   [ ] _User-made themes -> marketplace?_ dk why tbh
 -   [ ] Custom Readme
@@ -62,7 +62,7 @@ _Italics -> Not sure_
 -   [x] Hover color `accent` -> `base`
 -   [ ] _Add author to the end of page + last updated_ -> Actually really hard
 -   [ ] Check if emoji's parse
--   [ ] _Make Doxium Integrate (only docs folder)_
+-   [ ] _Make Doxium Integratable (baseUrl)_
 -   [x] Add alias to the config for doxium components
 -   [x] Fix fonts
 -   [ ] footer
@@ -72,16 +72,15 @@ _Italics -> Not sure_
 -   [ ] Timeline
 -   [ ] Filetree
 -   [ ] Add alerts (bookmark, warning, error, success, tip, accent, base)
--   [ ] Package managers
+-   [ ] Package managers tabs
 -   [ ] Add link cards
 -   [ ] Add more stuff to sidebar
 -   [ ] Better search
--   [ ] Fix "edit in github"
+-   [x] Fix "edit in github"
 -   [ ] Implement changing aliases
 -   [ ] Check differences between canary/15
 -   [x] More shiki plugins and stuff
 -   [ ] Bunx doxium update
--   [ ] dont forget to remove console.logs
 -   [ ] toggleable folder/list in sidebar. if folder -> have pages (nice idea but hard)
 -   [x] https://www.npmjs.com/package/picocolors?activeTab=readme
 -   [x] **https://www.npmjs.com/package/@vercel/ncc _VERY GOOD_** -> use `ncc build src/index.ts -o dist` to build, dk how to link yet

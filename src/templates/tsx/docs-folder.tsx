@@ -8,7 +8,7 @@ const DocsFolder = ({ node }: { node: DocsNode }) => {
         <div className='flex flex-col'>
             {node.nodes ? (
                 <>
-                    <DocsLink name={node.name} title={true} />
+                    <DocsLink name={node.name} />
                     <div className='flex flex-col'>
                         {node.nodes.map((node) => (
                             <DocsFolder node={node} key={node.name} />
