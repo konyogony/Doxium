@@ -7,9 +7,9 @@ import { DocsNode } from '$TYPES-ALIAS';
 
 let instance: DocsNode[] | null = null;
 
-const createDocsStructure = (rootName: string = 'getting-started'): DocsNode[] => {
-    // const { baseUrl } = await getJsonData();
-    const baseUrl = 'app/docs';
+const createDocsStructure = async (rootName: string = 'getting-started'): Promise<DocsNode[]> => {
+    const { baseUrl } = await getJsonData();
+    // const baseUrl = 'app/docs';
     const baseDir = path.resolve(process.cwd(), baseUrl);
 
     const getDocsTree = (currentDir: string): DocsNode[] => {
@@ -55,9 +55,9 @@ const createDocsStructure = (rootName: string = 'getting-started'): DocsNode[] =
     return getDocsTree(baseDir);
 };
 
-export const getStructureInstance = (): DocsNode[] => {
+export const getStructureInstance = async (): Promise<DocsNode[]> => {
     if (!instance) {
-        instance = createDocsStructure();
+        instance = await createDocsStructure();
     }
     return instance;
 };

@@ -9,7 +9,7 @@ import { getStructureInstance } from '$LIB-ALIAS/structure';
 
 const DocsLayout = async ({ children }: React.PropsWithChildren) => {
     const { repo } = await getJsonData();
-    const structure = getStructureInstance();
+    const structure = await getStructureInstance();
     return (
         <div className='relative flex flex-row justify-center space-x-8 py-24'>
             <Sidebar structure={structure} />

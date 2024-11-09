@@ -2,10 +2,10 @@
 
 import DocsFolder from '$COMPONENTS-ALIAS/docs-folder';
 import DocsLink from '$COMPONENTS-ALIAS/docs-link';
-import { getStructureInstance } from '$LIB-ALIAS/structure';
+import { DocsNode } from '$TYPES-ALIAS';
 
 interface SidebarProps {
-    structure: ReturnType<typeof getStructureInstance>;
+    structure: DocsNode[];
 }
 
 const Sidebar = ({ structure }: SidebarProps) => {

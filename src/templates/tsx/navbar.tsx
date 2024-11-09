@@ -4,14 +4,14 @@
 
 import { BsDiscord, BsGithub } from '@vertisanpro/react-icons/bs';
 import Cmdk from '$COMPONENTS-ALIAS/cmdk';
-import { getStructureInstance } from '$LIB-ALIAS/structure';
 import { cn } from '$LIB-ALIAS/utils';
+import { DocsNode } from '$TYPES-ALIAS';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
 interface NavbarProps {
-    structure: ReturnType<typeof getStructureInstance>;
+    structure: DocsNode[];
 }
 
 const Navbar = ({ structure }: NavbarProps) => {

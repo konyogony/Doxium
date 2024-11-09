@@ -26,7 +26,7 @@ const RootLayout = async ({
     children: React.ReactNode;
 }>) => {
     const { repo } = await getJsonData();
-    const structure = getStructureInstance();
+    const structure = await getStructureInstance();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative '>

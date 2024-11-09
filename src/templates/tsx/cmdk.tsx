@@ -15,12 +15,12 @@ import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/reac
 import { FileIcon } from '@radix-ui/react-icons';
 import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
 import { prettifyText } from '$LIB-ALIAS/prettify-text';
-import { getStructureInstance } from '$LIB-ALIAS/structure';
+import { DocsNode } from '$TYPES-ALIAS';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
 interface CmdkProps extends DialogProps {
-    structure: ReturnType<typeof getStructureInstance>;
+    structure: DocsNode[];
 }
 
 const Cmdk = ({ structure, ...props }: CmdkProps) => {

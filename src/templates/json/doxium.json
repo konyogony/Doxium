@@ -8,5 +8,5 @@
     "components-alias": "$COMPONENTS-ALIAS",
     "lib-alias": "$LIB-ALIAS",
     "types-alias": "$TYPES-ALIAS",
-    "baseUrl": "$BASE-URL"
+    "base-url": "$BASE-URL"
 }

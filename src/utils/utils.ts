@@ -42,7 +42,8 @@ export const replacePlaceholders = (
         .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
         .replaceAll(/\$LIB-ALIAS/g, libAlias)
         .replaceAll(/\$TYPES-ALIAS/g, typesAlias)
-        .replaceAll(/\$TSCONFIG/g, tsconfigAlias);
+        .replaceAll(/\$TSCONFIG/g, tsconfigAlias)
+        .replaceAll(/\$BASE-URL/g, 'app/docs');
 };
 
 export const replaceFilePlaceholders = (

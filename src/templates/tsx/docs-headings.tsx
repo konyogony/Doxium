@@ -55,13 +55,13 @@ const DocsHeadings = () => {
             <a
                 href={`#${heading.id}`}
                 className={cn(
-                    'py-1 text-sm font-normal transition-all duration-300 hover:underline',
+                    'py-1 text-sm font-normal transition-all duration-300 hover:underline max-w-48',
                     activeHeading === heading.id ? 'text-$ACCENT-COLOR-500' : 'text-$COLOR-400',
                     `pl-${heading.level * 2}`,
                 )}
                 key={i}
             >
-                {heading.text.length > 30 ? `${heading.text.slice(0, 30)}...` : heading.text}
+                {heading.text}
             </a>
         ));
     }, [headings, activeHeading]);

@@ -5,13 +5,13 @@
 import { FiChevronLeft, FiChevronRight } from '@vertisanpro/react-icons/fi';
 import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
 import { prettifyText } from '$LIB-ALIAS/prettify-text';
-import { getStructureInstance } from '$LIB-ALIAS/structure';
+import { DocsNode } from '$TYPES-ALIAS';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
 interface DocsNavProps {
-    structure: ReturnType<typeof getStructureInstance>;
+    structure: DocsNode[];
 }
 
 const DocsNav = ({ structure }: DocsNavProps) => {
