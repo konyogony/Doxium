@@ -57,6 +57,7 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'docs-headings', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-headings.tsx' },
         { name: 'docs-toaster', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-toaster.tsx' },
         { name: 'docs-tabs', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-tabs.tsx' },
+        { name: 'docs-alerts', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-alerts.tsx' },
 
         // Lib components
         { name: 'highlighter', type: 'ts', path: '$LIB-ALIAS/highlighter.ts' },

@@ -170,13 +170,13 @@ table > tbody > tr:last-child > td {
 }
 
 table {
-    @apply my-2 w-full !table-fixed border-collapse overflow-clip rounded-lg !py-20;
+    @apply !my-2.5 w-full !table-fixed border-collapse overflow-clip rounded-lg !py-20;
 }
 
 th {
-    @apply bg-zinc-700/80 !px-8 !py-2.5 text-sm font-bold text-zinc-100;
+    @apply border-b border-white !px-8 !py-2.5 text-sm font-bold text-zinc-100;
 }
 
 td {
-    @apply border-t border-white/10 bg-zinc-800 !px-8 !py-2 text-sm font-normal;
+    @apply border-t border-white/10 !px-8 !py-2 text-sm font-normal;
 }

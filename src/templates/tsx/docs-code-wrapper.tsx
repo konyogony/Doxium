@@ -58,6 +58,8 @@ const WikiCodeWrapper = async ({
     const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
     const singleLine = children.split('\n').length === 2;
 
+    const text = children.replace(/\/\/ \[!code [^\]]+\]/g, '');
+
     return (
         <div className='codeWrapper group relative my-4 w-full overflow-clip rounded-lg border border-white/15'>
             {!noTopBar && (
@@ -68,10 +70,10 @@ const WikiCodeWrapper = async ({
                     style={{ backgroundColor, color: textColor }}
                 >
                     {IconComponent}
-                    {lang} {!noCopyButton && <CopyButton text={children} />}
+                    {lang} {!noCopyButton && <CopyButton text={text} />}
                 </div>
             )}
-            {noTopBar && !noCopyButton && <CopyButton singleLine={singleLine} text={children} />}
+            {noTopBar && !noCopyButton && <CopyButton singleLine={singleLine} text={text} />}
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
                 className={cn('codeBlock text-sm lg:text-base', lineNumbers && 'lineNumbers')}

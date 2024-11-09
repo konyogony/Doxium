@@ -2,11 +2,13 @@
 
 import fs from 'fs';
 import path from 'path';
+import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { DocsNode } from '$TYPES-ALIAS';
 
 let instance: DocsNode[] | null = null;
 
 const createDocsStructure = (rootName: string = 'getting-started'): DocsNode[] => {
+    // const { baseUrl } = await getJsonData();
     const baseUrl = 'app/docs';
     const baseDir = path.resolve(process.cwd(), baseUrl);
 
