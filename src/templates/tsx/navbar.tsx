@@ -22,8 +22,15 @@ const Navbar = ({ structure }: NavbarProps) => {
     const CMDKElement = useMemo(() => <Cmdk structure={structure} />, [structure]);
 
     useEffect(() => {
+        const savedScrollHeight = localStorage.getItem('scrollHeight');
+        if (savedScrollHeight) {
+            setScrollHeight(parseInt(savedScrollHeight));
+        }
+
         const handleScroll = () => {
-            setScrollHeight(window.scrollY);
+            const scrollY = window.scrollY;
+            setScrollHeight(scrollY);
+            localStorage.setItem('scrollHeight', scrollY.toString());
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -34,7 +41,7 @@ const Navbar = ({ structure }: NavbarProps) => {
         <nav
             className={cn(
                 'fixed inset-0 z-50 flex h-fit w-full flex-row items-center gap-8 px-[20vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted transition-all duration-300',
-                scrollHeight > 0 && 'bg-$COLOR-950/90 backdrop-blur-xl',
+                scrollHeight > 0 && 'bg-$COLOR-950/40 backdrop-blur-xl',
             )}
         >
             <Link href='/' className='text-xl font-bold text-$COLOR-100 hover:text-$COLOR-50'>
@@ -70,7 +77,7 @@ const Navbar = ({ structure }: NavbarProps) => {
                 </a>
                 <a
                     className='flex items-center justify-center rounded-sm p-2 hover:bg-$COLOR-900'
-                    href='https://discord.gg/UW4CpNeq'
+                    href='https://discord.gg/BrXAHknFE6'
                     rel='noopener noreferrer'
                     target='_blank'
                 >

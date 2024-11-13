@@ -1,0 +1,54 @@
+import DocsCards from 'doxium/docs-cards'
+import DocsCardsGroup from 'doxium/docs-cards-group'
+
+# Cards
+
+You can use cards to give extra information to the reader or navigate him to a different page. You will first import the element from `doxium/docs-cards` and then use it as a React Element.
+First, set the `title` property to your liking and then add content to the inside of the element. 
+
+- You can set the `href` tag to make it clickable. 
+- Additionaly you can set the `full` property to true to the have the card full width of the page.
+- If you want to have the url open in a new tab you will have to set the `newTab` property to true.
+
+## Examples
+
+<DocsCards title={'Alerts'} href='/docs/features/alerts' newTab={true}>Check out alerts! They are used to attract attention and convey important information </DocsCards>
+<DocsCards title={'Did you know?'}>Did you know, 1 developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2) `test`</DocsCards>
+
+```mdx
+import DocsCards from 'doxium/docs-cards'
+
+<DocsCards title={'Alerts'} href='/docs/features/alerts' newTab={true}>
+    Check out alerts! They are used to attract attention and convey important information
+</DocsCards>
+<DocsCards title={'Did you know?'}>
+    Did you know, 1 developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2) `test`
+</DocsCards>
+``` 
+
+> As you can see there is an issue with the hyperlink not getting highlighted, I have purposly decided not to solve it.
+
+## Now with group
+
+You can use DocsCardsGroup component to make a grid of cards, although dont forget to import it first from `doxium/docs-cards-group` <br />
+You will have to set a `cols` propery - how many columns you want to have in the group. Rows are added automatically dependant on the columns.
+
+<DocsCardsGroup cols={2}>
+    <DocsCards title={'Alerts'} href='/docs/features/alerts'>Check out alerts! They are used to attract attention and convey important information</DocsCards>
+    <DocsCards title={'Did you know?'}>Did you know, 1 developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2)</DocsCards>
+</DocsCardsGroup>
+
+```mdx
+import DocsCards from 'doxium/docs-cards'
+import DocsCardsGroup from 'doxium/docs-cards-group'
+<DocsCardsGroup cols={2}>
+    <DocsCards title={'Alerts'} href='/docs/features/alerts'>
+        Check out alerts! They are used to attract attention and convey important information
+    </DocsCards>
+    <DocsCards title={'Did you know?'}>
+        Did you know, 1 developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2)
+    </DocsCards>
+</DocsCardsGroup>
+```
+
+

@@ -85,7 +85,7 @@ const mdxComponents = {
         return (
             <span
                 className={
-                    'my-2 flex border-l-2 border-$COLOR-600 py-2.5 pl-4 text-base font-semibold italic text-$COLOR-100'
+                    'my-2 flex border-l-2 border-$COLOR-600 py-2.5 pl-4 text-base font-light italic text-$COLOR-400'
                 }
             >
                 <span className='not-prose'>{children}</span>

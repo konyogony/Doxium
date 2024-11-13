@@ -1,0 +1,51 @@
+import DocsAlerts from 'doxium/docs-alerts'
+
+
+# Alert component
+
+Doxium provides a built-in alert component, which is commonly used to highlight an important piece of information, 
+> e.g. A new update or some news.
+
+You can invoke them by first importing them in your `page.mdx` file and then using them as a regular component:
+
+```mdx
+import DocsAlerts from 'doxium/docs-alerts'
+
+## Alert list:
+
+<DocsAlerts variant='bookmark'>Bookmark</DocsAlerts>
+<DocsAlerts variant='warning'>Warning</DocsAlerts>
+<DocsAlerts variant='success'>Success</DocsAlerts>
+<DocsAlerts variant='error'>Error</DocsAlerts>
+<DocsAlerts variant='tip'>Tip</DocsAlerts>
+<DocsAlerts variant='accent'>Accent</DocsAlerts>
+<DocsAlerts variant='base'>Base</DocsAlerts>
+
+<DocsAlerts>Defaults to accent</DocsAlerts>
+
+```
+
+## Alert variants
+
+You can specify the `variant` property on the component, it can be one of the following:
+- bookmark
+- warning
+- success
+- error
+- tip
+- star
+- accent
+- base
+
+If none specified, it defaults to `accent`
+
+## Here are some examples to check out
+
+<DocsAlerts variant='bookmark'>Bookmark</DocsAlerts>
+<DocsAlerts variant='warning'>Warning</DocsAlerts>
+<DocsAlerts variant='success'>Success</DocsAlerts>
+<DocsAlerts variant='error'>Error</DocsAlerts>
+<DocsAlerts variant='tip'>Tip</DocsAlerts>
+<DocsAlerts variant='star'>Star</DocsAlerts>
+<DocsAlerts variant='accent'>Accent</DocsAlerts>
+<DocsAlerts variant='base'>Base</DocsAlerts>

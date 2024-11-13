@@ -13,7 +13,9 @@ const filesNoHome = [
     { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
     { name: 'main', type: 'mdx', path: './app/page.mdx' },
     { name: 'code-block', type: 'mdx', path: './app/features/code-block/page.mdx' },
-    { name: 'test', type: 'mdx', path: './app/features/test/page.mdx' },
+    { name: 'routing', type: 'mdx', path: './app/features/routing/page.mdx' },
+    { name: 'alerts', type: 'mdx', path: './app/features/alerts/page.mdx' },
+    { name: 'cards', type: 'mdx', path: './app/features/cards/page.mdx' },
 ];
 
 // List of files to install if home page is selected
@@ -27,7 +29,9 @@ const filesHome = [
     { name: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
     { name: 'main', type: 'mdx', path: './app/docs/page.mdx' },
     { name: 'code-block', type: 'mdx', path: './app/docs/features/code-block/page.mdx' },
-    { name: 'test', type: 'mdx', path: './app/docs/features/test/page.mdx' },
+    { name: 'routing', type: 'mdx', path: './app/docs/features/routing/page.mdx' },
+    { name: 'alerts', type: 'mdx', path: './app/docs/features/alerts/page.mdx' },
+    { name: 'cards', type: 'mdx', path: './app/docs/features/cards/page.mdx' },
 ];
 
 // Function to configure components based on the response and package manager
@@ -58,6 +62,8 @@ export const configureComp = async (response: responseT, pm: string) => {
         { name: 'docs-toaster', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-toaster.tsx' },
         { name: 'docs-tabs', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-tabs.tsx' },
         { name: 'docs-alerts', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-alerts.tsx' },
+        { name: 'docs-cards', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-cards.tsx' },
+        { name: 'docs-cards-group', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-cards-group.tsx' },
 
         // Lib components
         { name: 'highlighter', type: 'ts', path: '$LIB-ALIAS/highlighter.ts' },
@@ -126,7 +132,10 @@ export const configureComp = async (response: responseT, pm: string) => {
             await fs.mkdir('app/docs/about');
             await fs.mkdir('app/docs/features');
             await fs.mkdir('app/docs/features/code-block');
-            await fs.mkdir('app/docs/features/test');
+            await fs.mkdir('app/docs/features/routing');
+            await fs.mkdir('app/docs/features/alerts');
+            await fs.mkdir('app/docs/features/cards');
+
             await Promise.all(
                 filesHome.map(async (file) => {
                     try {
@@ -152,7 +161,10 @@ export const configureComp = async (response: responseT, pm: string) => {
             await fs.mkdir('app/about');
             await fs.mkdir('app/features');
             await fs.mkdir('app/features/code-block');
-            await fs.mkdir('app/features/test');
+            await fs.mkdir('app/features/routing');
+            await fs.mkdir('app/features/alerts');
+            await fs.mkdir('app/features/cards');
+
             await Promise.all(
                 filesNoHome.map(async (file) => {
                     try {

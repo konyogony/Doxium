@@ -1,61 +1,65 @@
 // @ts-nocheck
 
-import { cn } from '@/lib/utils';
 import {
-    FiAlertOctagon,
+    FiAlertCircle,
     FiAlertTriangle,
     FiBookmark,
     FiCheck,
-    FiCircle,
-    FiMessageSquare,
+    FiInfo,
+    FiMessageCircle,
     FiSquare,
+    FiStar,
 } from '@vertisanpro/react-icons/fi';
+import { cn } from '$LIB-ALIAS/utils';
 
 interface DocsAlertsProps {
-    variant?: 'bookmark' | 'warning' | 'error' | 'success' | 'tip' | 'accent' | 'base';
+    variant?: 'bookmark' | 'warning' | 'error' | 'success' | 'tip' | 'star' | 'accent' | 'base';
     link?: string;
 }
 
-// TODO: I kinda dont like these colours, maybe we should change them later
 const getAlertColor = (variant: DocsAlertsProps['variant']) => {
     switch (variant) {
         case 'bookmark':
-            return 'bg-yellow-800/70 text-yellow-400 border-yellow-400/50';
+            return 'bg-yellow-800/70 text-yellow-400 border-yellow-400/40';
         case 'warning':
-            return 'bg-orange-800/70 text-yellow-400 border-orange-400/50';
+            return 'bg-orange-800/70 text-yellow-400 border-orange-400/40';
         case 'error':
-            return 'bg-red-700/50 text-red-300 border-red-400/50';
+            return 'bg-red-700/50 text-red-300 border-red-400/40';
         case 'success':
-            return 'bg-green-700/50 text-green-400 border-green-300/50';
+            return 'bg-green-700/50 text-green-400 border-green-300/40';
         case 'tip':
-            return 'bg-blue-700/50 text-blue-300 border-blue-300/50';
+            return 'bg-blue-700/50 text-blue-300 border-blue-300/40';
         case 'accent':
-            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-300 border-$ACCENT-COLOR-200/50';
+            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-300 border-$ACCENT-COLOR-200/40';
         case 'base':
-            return 'bg-$COLOR-600/25 text-$COLOR-200 border-white/25';
+            return 'bg-$COLOR-600/30 text-$COLOR-200 border-white/20';
+        case 'star':
+            return 'bg-yellow-600/50 text-yellow-300 border-yellow-200/40';
         default:
-            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-300 border-$ACCENT-COLOR-200/50';
+            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-300 border-$ACCENT-COLOR-200/40';
     }
 };
 
 const getAlertIcon = (variant: DocsAlertsProps['variant']) => {
     switch (variant) {
         case 'bookmark':
-            return <FiBookmark size={16} />;
+            return <FiBookmark size={18} />;
         case 'warning':
-            return <FiAlertTriangle size={16} />;
+            return <FiAlertTriangle size={18} />;
         case 'error':
-            return <FiAlertOctagon size={16} />;
+            return <FiAlertCircle size={18} />;
         case 'success':
-            return <FiCheck size={16} />;
+            return <FiCheck size={18} />;
         case 'tip':
-            return <FiMessageSquare size={16} />;
+            return <FiMessageCircle size={18} />;
         case 'accent':
-            return <FiCircle size={16} />;
+            return <FiInfo size={18} />;
         case 'base':
-            return <FiSquare size={16} />;
+            return <FiInfo size={18} />;
+        case 'star':
+            return <FiStar size={18} />;
         default:
-            return <FiSquare size={16} />;
+            return <FiSquare size={18} />;
     }
 };
 
@@ -63,7 +67,7 @@ const DocsAlerts = ({ variant = 'accent', children, link }: React.PropsWithChild
     return (
         <a
             className={cn(
-                'not-prose my-3 flex w-full flex-row items-center rounded-md border-[0.01em] px-3 py-2 text-sm font-normal',
+                'not-prose my-3 flex w-full flex-row items-center rounded-lg border-[0.01em] px-3.5 py-2.5 text-sm font-normal',
                 getAlertColor(variant),
             )}
             href={link}

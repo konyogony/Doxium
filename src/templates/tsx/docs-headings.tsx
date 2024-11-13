@@ -57,8 +57,10 @@ const DocsHeadings = () => {
                 className={cn(
                     'py-1 text-sm font-normal transition-all duration-300 hover:underline max-w-48',
                     activeHeading === heading.id ? 'text-$ACCENT-COLOR-500' : 'text-$COLOR-400',
-                    `pl-${heading.level * 2}`,
                 )}
+                style={{
+                    paddingLeft: `${(heading.level - 1) * 10}px`,
+                }}
                 key={i}
             >
                 {heading.text}
