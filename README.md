@@ -4,8 +4,38 @@ An easy solution to generate modern documentation in Next.js
 
 ## Roadmap
 
-**Bold -> Important**
-_Italics -> Not sure_
+## For alphas release (Release date 22 Dec):
+
+-   [ ] Fix turbopack
+-   [ ] Make a website
+    -   [ ] Logo
+    -   [ ] Document everything
+-   [ ] Option to disable contents
+-   [ ] Mobile support
+-   [ ] Changing aliases
+-   [ ] Ability to add links and text to sidebar?
+-   [ ] Add tabs inside code-blocks (which should sync)
+-   [ ] Timeline
+-   [ ] Filetree
+-   [ ] Make a nice footer
+-   [ ] Review competitors and reflect
+
+## For beta release (Not in mind yet):
+
+-   [ ] Rework CLI
+    -   [ ] `bunx doxium update`, should read new config, then install missing files and generally update everything
+    -   [ ] `bunx doxium link`
+    -   [ ] Make it more readable and add spinners
+-   [ ] Be able to toggle folder/list mode for a group. Maybe implement automatic detection?
+-   [ ] Better search. Instead of searching by the name implement search by contents
+-   [ ] Make versioning of docs (v1, v2, ...)
+-   [ ] Add multiple language support
+-   [ ] Better metadata and SEO optimisations. Show last updated and author name at the end
+-   [ ] Custom checkboxes
+-   [ ] LaTeX support?
+-   [ ] Make a toggleable api by which you can get raw data from the a webpage including metadata and other stuff
+
+### Unsorted and outdated
 
 -   [x] Configure Next.js
 -   [x] Configure Shadcn
@@ -71,7 +101,7 @@ _Italics -> Not sure_
 -   [x] Tabs
 -   [ ] Timeline
 -   [ ] Filetree
--   [ ] Add alerts (bookmark, warning, error, success, tip, accent, base)
+-   [x] Add alerts (bookmark, warning, error, success, tip, accent, base)
 -   [ ] Package managers tabs
 -   [ ] Add link cards
 -   [ ] Add more stuff to sidebar
@@ -88,25 +118,16 @@ _Italics -> Not sure_
 -   [x] execa -> https://www.npmjs.com/package/cross-spawn
 -   [x] Fix '(node:208623) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead. (Use `node --trace-deprecation ...` to show where the warning was created)' --> Issue with my node version, fixed by `nvm install 20.5.1`, `nvm use 20.5.1`
 
-## Deployment
-
--   [ ] Website
--   [ ] Setup npm & gh page
--   [ ] Docs
--   [ ] Logo
-
 ## Techstack (Doxium)
 
 -   [Next.js](https://nextjs.org/)
 -   [shadcn](https://ui.shadcn.com/)
 -   [Tailwindcss](https://tailwindcss.com/)
 -   [MDX](https://mdxjs.com/)
-
-## Techstack (create-doxium-app)
-
 -   [NCC](https://www.npmjs.com/package/@vercel/ncc)
 
-## Author
+## Credit
 
-Main developer, [konyogony](https://github.com/konyogony)
-My tester and a friend who helped, [PadowYT2](https://github.com/padowyt2), checkout his work!
+Lead developer - [konyogony](https://github.com/konyogony)
+Beta Tester and a nice friend who helped - [PadowYT2](https://github.com/padowyt2)
+Credits to [Next.js documentation](https://nextjs.org/docs), since I was influenced by them
