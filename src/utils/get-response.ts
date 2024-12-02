@@ -6,11 +6,6 @@ export const getFullResponse = async () => {
     const response = await prompts(
         [
             {
-                type: 'text',
-                name: 'github-repo',
-                message: `GitHub ${pc.blue('repository')} URL (optional):`,
-            },
-            {
                 type: 'toggle',
                 name: 'eslint',
                 message: `Would you like to use ${pc.blue('ESLint')}?`,
@@ -25,14 +20,6 @@ export const getFullResponse = async () => {
                 active: 'yes',
                 inactive: 'no',
                 initial: true,
-            },
-            {
-                type: 'toggle',
-                name: 'turbopack',
-                message: `Would you like to use ${pc.blue('Turbopack')} for next dev?`,
-                active: 'yes',
-                inactive: 'no',
-                initial: false,
             },
             {
                 type: 'toggle',
@@ -148,6 +135,11 @@ export const getFullResponse = async () => {
                 hint: 'Reffer to https://textmate-grammars-themes.netlify.app, Recommended: GitHub Dark Dimmed',
             },
             {
+                type: 'text',
+                name: 'github-repo',
+                message: `GitHub ${pc.blue('repository')} URL (optional):`,
+            },
+            {
                 type: 'confirm',
                 name: 'proceed',
                 message: `Do you wish to ${pc.blue('proceed?')}`,
@@ -176,11 +168,6 @@ export const getFullResponse = async () => {
 export const getHalfResponse = async () => {
     const response = await prompts(
         [
-            {
-                type: 'text',
-                name: 'github-repo',
-                message: `GitHub ${pc.blue('repository')} URL (optional):`,
-            },
             {
                 type: 'toggle',
                 name: 'prettier',
@@ -293,6 +280,11 @@ export const getHalfResponse = async () => {
                 ],
                 initial: 14,
                 hint: 'Reffer to https://textmate-grammars-themes.netlify.app, Recommended: GitHub Dark Dimmed',
+            },
+            {
+                type: 'text',
+                name: 'github-repo',
+                message: `GitHub ${pc.blue('repository')} URL (optional):`,
             },
             {
                 type: 'confirm',

@@ -4,6 +4,7 @@ import { infoText, successText } from '../utils/utils.js';
 
 export const createNewNext = async (response: responseT, pmx: string[]) => {
     if (!pmx[0]) return;
+
     try {
         console.log('\n' + infoText('Installing Next.js...'));
         spawn.sync(
@@ -16,11 +17,14 @@ export const createNewNext = async (response: responseT, pmx: string[]) => {
                 '--tailwind',
                 '--app',
                 '--no-src-dir',
-                response['eslint'] ? '--eslint' : '--no-eslint',
-                response['turbopack'] ? '--turbopack' : '--no-turbopack',
                 '--no-import-alias',
+                '--skip-install',
+                '--no-turbopack',
+                response['eslint'] ? '--eslint' : '--no-eslint',
             ].filter((str) => str !== '' && str !== undefined) as string[],
-            { stdio: 'ignore' },
+            {
+                stdio: 'ignore',
+            },
         );
         console.log(successText(`Created a new next.js app`));
         process.chdir(response['app-name']);

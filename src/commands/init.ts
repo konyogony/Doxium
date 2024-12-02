@@ -21,7 +21,12 @@ export const init = async () => {
                 name: 'app-name',
                 message: `Name of your ${pc.blue('app')}:`,
                 initial: 'my-app',
-                validate: (value) => (value.length < 3 ? 'Name must be at least 3 characters long' : true),
+                validate: (value) => {
+                    if (/[A-Z]/.test(value)) {
+                        return 'Name must not contain uppercase letters, due to NPM rules';
+                    }
+                    return true;
+                },
             },
         ],
         {

@@ -4,35 +4,45 @@ An easy solution to generate modern documentation in Next.js
 
 ## Roadmap
 
-## For alphas release (Release date 22 Dec):
+### For alpha release (Release date 22 Dec):
 
--   [ ] Fix turbopack
--   [ ] Make a website
+-   [x] Fix turbopack
+-   [ ] Make website to present
     -   [ ] Logo
     -   [ ] Document everything
--   [ ] Option to disable contents
+    -   [ ] Create a monorepo
+-   [ ] Option to disable starter wiki
 -   [ ] Mobile support
--   [ ] Changing aliases
--   [ ] Ability to add links and text to sidebar?
--   [ ] Add tabs inside code-blocks (which should sync)
--   [ ] Timeline
--   [ ] Filetree
--   [ ] Make a nice footer
+-   [ ] Change aliases
+-   [ ] Ability to add links and text to sidebar
+-   [ ] Add tabs inside code-blocks, which should sync.
+-   [ ] Name on code-blocks
+-   [ ] More elements
+    -   [ ] Revisit alerts
+    -   [ ] Make timeline
+    -   [ ] Make file tree
+    -   [ ] Revisit normal tabs
+    -   [ ] Accordion
+    -   [ ] Images
+    -   [ ] Videos
+-   [ ] Make nice footer
 -   [ ] Review competitors and reflect
 
-## For beta release (Not in mind yet):
+### For beta release (Not in mind yet):
 
 -   [ ] Rework CLI
     -   [ ] `bunx doxium update`, should read new config, then install missing files and generally update everything
     -   [ ] `bunx doxium link`
     -   [ ] Make it more readable and add spinners
 -   [ ] Be able to toggle folder/list mode for a group. Maybe implement automatic detection?
+-   [ ] Dark / Light theme support (ask at the start)
+-   [ ] Make sections and components toggleable
 -   [ ] Better search. Instead of searching by the name implement search by contents
 -   [ ] Make versioning of docs (v1, v2, ...)
 -   [ ] Add multiple language support
 -   [ ] Better metadata and SEO optimisations. Show last updated and author name at the end
 -   [ ] Custom checkboxes
--   [ ] LaTeX support?
+-   [ ] LaTeX, Mermaid, playground, twoslash custom support?
 -   [ ] Make a toggleable api by which you can get raw data from the a webpage including metadata and other stuff
 
 ### Unsorted and outdated
