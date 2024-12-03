@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { errorText, infoText, successText } from '../utils/utils.js';
 
-export const removePrettier = async (response: responseT, pm: string) => {
+export const removePrettier = async (response: responseT, pm: string, mute_output: boolean) => {
     try {
         if (!response['prettier']) {
             spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
@@ -21,8 +21,8 @@ export const removePrettier = async (response: responseT, pm: string) => {
             );
             await fs.remove('./.prettierrc.json');
         } else {
-            console.log('\n' + infoText('Installing Prettier...'));
-            console.log(successText('Prettier installed successfully!'));
+            !mute_output && console.log('\n' + infoText('Installing Prettier...'));
+            !mute_output && console.log(successText('Prettier installed successfully!'));
         }
     } catch (error) {
         console.error(errorText(`Error removing Prettier:`), error);

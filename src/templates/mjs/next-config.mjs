@@ -21,9 +21,7 @@ const nextConfig = {
     // Optionally, add any other Next.js config below
     reactStrictMode: true,
     serverExternalPackages: ['@shikijs/twoslash'],
-    experimental: {
-        turbo: false,
-    },
 };
 
 export default withMDX(nextConfig);
+// turbo will be enabled by default, for because of createMDXPlugin. Dont know how to fix :-/

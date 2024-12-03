@@ -11,8 +11,7 @@ import {
     templatesDir,
 } from '../utils/utils.js';
 
-// Function to configure Shadcn
-export const configureShadcn = async (response: responseT, pmx: string[], pm: string) => {
+export const configureShadcn = async (response: responseT, pmx: string[], pm: string, mute_output: boolean) => {
     // Check if the first element of pmx is not present to avoid errors
     if (!pmx[0]) return;
 
@@ -26,9 +25,8 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
     });
 
     try {
-        // Run Prettier to format the code
         spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
-        console.log('\n' + infoText('Installing shadcn...'));
+        !mute_output && console.log('\n' + infoText('Installing shadcn...'));
         fs.mkdir('./lib');
         await Promise.all(
             files.map(async (file) => {
@@ -59,12 +57,11 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
             { stdio: 'ignore' },
         );
 
-        console.log(successText('Shadcn components installed successfully!'));
+        !mute_output && console.log(successText('Shadcn components installed successfully!'));
 
-        // Run Prettier again to format the code
         spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
-        console.log(successText('Shadcn installed successfully!'));
+        !mute_output && console.log(successText('Shadcn installed successfully!'));
     } catch (error) {
         console.error(errorText('Error configuring shadcn and installing components: ' + error));
         process.exit(1);

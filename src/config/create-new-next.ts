@@ -2,12 +2,12 @@ import spawn from 'cross-spawn';
 import { responseT } from '../utils/types.js';
 import { infoText, successText } from '../utils/utils.js';
 
-export const createNewNext = async (response: responseT, pmx: string[]) => {
+export const createNewNext = async (response: responseT, pmx: string[], mute_output: boolean) => {
     if (!pmx[0]) return;
 
     try {
-        console.log('\n' + infoText('Installing Next.js...'));
-        spawn.sync(
+        !mute_output && console.log('\n' + infoText('Installing Next.js...'));
+        const result = spawn.sync(
             pmx[0],
             [
                 pmx[1],
@@ -26,10 +26,15 @@ export const createNewNext = async (response: responseT, pmx: string[]) => {
                 stdio: 'ignore',
             },
         );
-        console.log(successText(`Created a new next.js app`));
+
+        if (result.error) {
+            throw result.error;
+        }
+
+        !mute_output && console.log(successText(`Created a new next.js app`));
         process.chdir(response['app-name']);
 
-        console.log(successText('Next.js installed successfully!'));
+        !mute_output && console.log(successText('Next.js installed successfully!'));
     } catch (error) {
         console.error(error);
         process.exit(1);

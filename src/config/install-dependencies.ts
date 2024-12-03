@@ -1,10 +1,10 @@
 import spawn from 'cross-spawn';
 import { errorText, infoText, successText } from '../utils/utils.js';
 
-export const installDependencies = async (pmi: string[]) => {
+export const installDependencies = async (pmi: string[], mute_output: boolean) => {
     if (!pmi[0]) return;
     try {
-        console.log('\n' + infoText('Installing dependencies...'));
+        !mute_output && console.log('\n' + infoText('Installing dependencies...'));
         spawn.sync(
             pmi[0],
             [
@@ -48,7 +48,7 @@ export const installDependencies = async (pmi: string[]) => {
             { stdio: 'ignore' },
         );
 
-        console.log(successText('Dependencies installed successfully!'));
+        !mute_output && console.log(successText('Dependencies installed successfully!'));
     } catch (error) {
         console.error(errorText(`Error configuring dependencies:`), error);
         process.exit(1);

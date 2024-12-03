@@ -2,7 +2,7 @@ import { detect } from 'detect-package-manager';
 import pc from 'picocolors';
 import { errorText, successText } from './utils.js';
 
-export const getPmInfo = async () => {
+export const getPmInfo = async (mute_output: boolean) => {
     const pm = await detect().catch((err) => {
         console.error(errorText('Error detecting package manager:'), err);
         return null;
@@ -12,7 +12,7 @@ export const getPmInfo = async () => {
         console.error(errorText('Package manager detection failed.'));
         process.exit(1);
     } else {
-        console.log('\n' + successText(`Detected package manager: ${pc.blue(pm)}.`));
+        !mute_output && console.log('\n' + successText(`Detected package manager: ${pc.blue(pm)}.`));
     }
 
     let pmx: string[];

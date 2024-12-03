@@ -43,7 +43,8 @@ export const replacePlaceholders = (
         .replaceAll(/\$LIB-ALIAS/g, libAlias)
         .replaceAll(/\$TYPES-ALIAS/g, typesAlias)
         .replaceAll(/\$TSCONFIG/g, tsconfigAlias)
-        .replaceAll(/\$BASE-URL/g, 'app/docs');
+        .replaceAll(/\$BASE-URL/g, 'app/docs')
+        .replaceAll(/\$CSS-VARIABLES/g, response['css-variables']);
 };
 
 export const replaceFilePlaceholders = (
