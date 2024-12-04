@@ -1,6 +1,6 @@
 import pc from 'picocolors';
 import prompts from 'prompts';
-import { accentColors, baseColors, shikiThemes } from './types.js';
+import { accentColors, baseColors, responseT, shikiThemes } from './types.js';
 import { errorText } from './utils.js';
 
 export const getFullResponse = async (
@@ -14,104 +14,228 @@ export const getFullResponse = async (
     shikiTheme: string,
     githubRepo: string,
 ) => {
-    const response = await prompts(
-        [
-            {
-                type: 'toggle',
-                name: 'eslint',
-                message: `Would you like to use ${pc.blue('ESLint')}?`,
-                active: 'yes',
-                inactive: 'no',
-                initial: true,
-            },
-            {
-                type: 'toggle',
-                name: 'prettier',
-                message: `Would you like to use ${pc.blue('Prettier')}?`,
-                active: 'yes',
-                inactive: 'no',
-                initial: true,
-            },
-            {
-                type: 'toggle',
-                name: 'use-docs',
-                message: `Would you like to use ${pc.blue(`'/docs' folder`)}?`,
-                active: 'yes',
-                inactive: 'no',
-                initial: true,
-            },
-            {
-                type: 'select',
-                name: 'shadcn-style',
-                message: `Choose your shadcn ${pc.blue('style')}:`,
-                choices: [
-                    { title: 'New York', value: 'new-york' },
-                    { title: 'Default', value: 'default' },
-                ],
-                initial: 0,
-            },
-            {
-                type: 'toggle',
-                name: 'css-variables',
-                message: `Would you like to use ${pc.blue('CSS variables')}?`,
-                active: 'yes',
-                inactive: 'no',
-                initial: false,
-            },
-            {
-                type: 'select',
-                name: 'base-color',
-                message: `Choose your ${pc.blue('base color')} (background, etc...):`,
-                choices: baseColors.map((color) => ({ title: color, value: color.toLowerCase() })),
-                initial: 2,
-            },
-            {
-                type: 'select',
-                name: 'accent-color',
-                message: `Choose your ${pc.blue('accent color')} (buttons, hover, etc...):`,
-                choices: accentColors.map((color) => ({ title: color, value: color.toLowerCase() })),
-                initial: 6,
-            },
-            {
-                type: 'autocomplete',
-                name: 'shiki-theme',
-                message: `Choose your code-block (shiki) ${pc.blue('theme')}:`,
-                choices: shikiThemes.map((theme) => ({
-                    title: theme,
-                    value: theme.toLowerCase().replaceAll(' ', '-').replaceAll("'", '').replaceAll('é', 'e'),
-                })),
-                initial: 14,
-                hint: 'Reffer to https://textmate-grammars-themes.netlify.app, Recommended: GitHub Dark Dimmed',
-            },
-            {
-                type: 'text',
-                name: 'github-repo',
-                message: `GitHub ${pc.blue('repository')} URL (optional):`,
-            },
-            {
-                type: 'confirm',
-                name: 'proceed',
-                message: `Do you wish to ${pc.blue('proceed?')}`,
-                initial: true,
-            },
-        ],
+    console.log(eslint, prettier, useDocs, shadcnStyle, cssVariables, baseColor, accentColor, shikiTheme, githubRepo);
+    const responseEslint =
+        eslint ??
+        (
+            await prompts(
+                {
+                    type: 'toggle',
+                    name: 'eslint',
+                    message: `Would you like to use ${pc.blue('ESLint')}?`,
+                    active: 'yes',
+                    inactive: 'no',
+                    initial: true,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        ).eslint;
+
+    const responsePrettier =
+        prettier ??
+        (
+            await prompts(
+                {
+                    type: 'toggle',
+                    name: 'prettier',
+                    message: `Would you like to use ${pc.blue('Prettier')}?`,
+                    active: 'yes',
+                    inactive: 'no',
+                    initial: true,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        ).prettier;
+
+    const responseUseDocs =
+        useDocs ??
+        (
+            await prompts(
+                {
+                    type: 'toggle',
+                    name: 'use-docs',
+                    message: `Would you like to use ${pc.blue(`'/docs' folder`)}?`,
+                    active: 'yes',
+                    inactive: 'no',
+                    initial: true,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['use-docs'];
+
+    const responseShadcnStyle =
+        shadcnStyle ??
+        (
+            await prompts(
+                {
+                    type: 'select',
+                    name: 'shadcn-style',
+                    message: `Choose your shadcn ${pc.blue('style')}:`,
+                    choices: [
+                        { title: 'New York', value: 'new-york' },
+                        { title: 'Default', value: 'default' },
+                    ],
+                    initial: 0,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['shadcn-style'];
+
+    const responseCssVariables =
+        cssVariables ??
+        (
+            await prompts(
+                {
+                    type: 'toggle',
+                    name: 'css-variables',
+                    message: `Would you like to use ${pc.blue('CSS variables')}?`,
+                    active: 'yes',
+                    inactive: 'no',
+                    initial: false,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['css-variables'];
+
+    const responseBaseColor =
+        baseColor ??
+        (
+            await prompts(
+                {
+                    type: 'select',
+                    name: 'base-color',
+                    message: `Choose your ${pc.blue('base color')} (background, etc...):`,
+                    choices: baseColors.map((color) => ({ title: color, value: color.toLowerCase() })),
+                    initial: 2,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['base-color'];
+
+    const responseAccentColor =
+        accentColor ??
+        (
+            await prompts(
+                {
+                    type: 'select',
+                    name: 'accent-color',
+                    message: `Choose your ${pc.blue('accent color')} (buttons, hover, etc...):`,
+                    choices: accentColors.map((color) => ({ title: color, value: color.toLowerCase() })),
+                    initial: 6,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['accent-color'];
+
+    const responseShikiTheme =
+        shikiTheme ??
+        (
+            await prompts(
+                {
+                    type: 'autocomplete',
+                    name: 'shiki-theme',
+                    message: `Choose your code-block (shiki) ${pc.blue('theme')}:`,
+                    choices: shikiThemes.map((theme) => ({
+                        title: theme,
+                        value: theme.toLowerCase().replaceAll(' ', '-').replaceAll("'", '').replaceAll('é', 'e'),
+                    })),
+                    initial: 14,
+                    hint: 'Reffer to https://textmate-grammars-themes.netlify.app, Recommended: GitHub Dark Dimmed',
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['shiki-theme'];
+
+    const responseGithubRepo =
+        githubRepo ??
+        (
+            await prompts(
+                {
+                    type: 'text',
+                    name: 'github-repo',
+                    message: `GitHub ${pc.blue('repository')} URL (optional):`,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['github-repo'];
+
+    const proceed = await prompts(
+        {
+            type: 'confirm',
+            name: 'proceed',
+            message: `Do you wish to ${pc.blue('proceed?')}`,
+            initial: true,
+        },
         {
             onCancel: () => {
                 console.error(errorText('Setup cancelled.'));
                 process.exit(1);
             },
         },
-    ).catch((err) => {
-        console.error(errorText('Error during prompts:'), err);
-        process.exit(1);
-    });
+    );
 
-    if (response.proceed === false) {
+    if (proceed.proceed === false) {
         console.log(errorText('Setup cancelled by user.'));
         process.exit(1);
     }
 
-    return response;
+    return {
+        eslint: responseEslint,
+        prettier: responsePrettier,
+        'use-docs': responseUseDocs,
+        'shadcn-style': responseShadcnStyle,
+        'css-variables': responseCssVariables,
+        'base-color': responseBaseColor,
+        'accent-color': responseAccentColor,
+        'shiki-theme': responseShikiTheme,
+        'github-repo': responseGithubRepo,
+        proceed: proceed.proceed,
+    } as responseT;
 };
 
 // Later
