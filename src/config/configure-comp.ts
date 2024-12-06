@@ -11,7 +11,6 @@ export const configureComp = async (response: responseT, pm: string, empty: bool
         // UI components
         { name: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
         { name: 'command', type: 'tsx', path: './components/ui/command.tsx' },
-
         // Doxium components
         { name: 'copy-button', type: 'tsx', path: '$COMPONENTS-ALIAS/copy-button.tsx' },
         { name: 'navbar', type: 'tsx', path: '$COMPONENTS-ALIAS/navbar.tsx' },
@@ -72,7 +71,7 @@ export const configureComp = async (response: responseT, pm: string, empty: bool
         await Promise.all(
             alwaysInstall.map(async (file) => {
                 try {
-                    const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
+                    const templatePath = path.join(templatesDir, file.type, `${file.name}.${file.type}`);
                     const content = replacePlaceholders(
                         await fs.readFile(templatePath, 'utf8'),
                         response,

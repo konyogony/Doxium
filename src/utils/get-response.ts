@@ -8,13 +8,12 @@ export const getFullResponse = async (
     prettier: boolean,
     useDocs: boolean,
     shadcnStyle: 'default' | 'new-york',
-    cssVariables: boolean,
     baseColor: string,
     accentColor: string,
     shikiTheme: string,
     githubRepo: string,
 ) => {
-    console.log(eslint, prettier, useDocs, shadcnStyle, cssVariables, baseColor, accentColor, shikiTheme, githubRepo);
+    console.log(eslint, prettier, useDocs, shadcnStyle, baseColor, accentColor, shikiTheme, githubRepo);
     const responseEslint =
         eslint ??
         (
@@ -100,27 +99,6 @@ export const getFullResponse = async (
                 },
             )
         )['shadcn-style'];
-
-    const responseCssVariables =
-        cssVariables ??
-        (
-            await prompts(
-                {
-                    type: 'toggle',
-                    name: 'css-variables',
-                    message: `Would you like to use ${pc.blue('CSS variables')}?`,
-                    active: 'yes',
-                    inactive: 'no',
-                    initial: false,
-                },
-                {
-                    onCancel: () => {
-                        console.error(errorText('Setup cancelled.'));
-                        process.exit(1);
-                    },
-                },
-            )
-        )['css-variables'];
 
     const responseBaseColor =
         baseColor ??
@@ -229,7 +207,6 @@ export const getFullResponse = async (
         prettier: responsePrettier,
         'use-docs': responseUseDocs,
         'shadcn-style': responseShadcnStyle,
-        'css-variables': responseCssVariables,
         'base-color': responseBaseColor,
         'accent-color': responseAccentColor,
         'shiki-theme': responseShikiTheme,

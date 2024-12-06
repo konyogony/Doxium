@@ -11,7 +11,6 @@ export type responseT = Answers<
     | 'github-repo'
     | 'accent-color'
     | 'shiki-theme'
-    | 'css-variables'
 >;
 
 export const baseColors = ['Stone', 'Neutral', 'Zinc', 'Gray', 'Slate'];

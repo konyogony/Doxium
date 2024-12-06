@@ -17,11 +17,18 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
 
     const files = [
         { name: 'tailwind', type: 'ts', path: './tailwind.config.ts' },
-        { name: 'globals', type: 'css', path: './app/globals.css' },
+        {
+            name: 'globals',
+            type: 'css',
+            path: './app/globals.css',
+        },
         { name: 'components', type: 'json', path: './components.json' },
         { name: 'utils', type: 'ts', path: '$LIB-ALIAS/utils.ts' },
     ].map((file) => {
-        return { ...file, path: replaceFilePlaceholders(file.path, './components/doxium', './lib', './types') };
+        return {
+            ...file,
+            path: replaceFilePlaceholders(file.path, './components/doxium', './lib', './types'),
+        };
     });
 
     try {

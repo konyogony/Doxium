@@ -9,8 +9,7 @@ import { accentColors, baseColors, shikiThemes } from './utils/types.js';
 program
     .name(packageJson.default.name)
     .description(packageJson.default.description)
-    .version(packageJson.default.version)
-    .alias('v');
+    .version(packageJson.default.version, '-v, --version');
 
 program
     .command('init [name]')
@@ -22,7 +21,6 @@ program
     .option('-p, --prettier <boolean>', 'enable prettier')
     .option('-d, --use-docs <boolean>', 'enable docs')
     .option('-c, --shadcn-style <string>', 'shadcn style')
-    .option('-v, --css-variables <boolean>', 'enable css variables')
     .option('-b, --base-color <string>', 'base color')
     .option('-a, --accent-color <string>', 'accent color')
     .option('-t, --shiki-theme <string>', 'shiki theme')
@@ -70,7 +68,6 @@ program
             options.prettier,
             options.useDocs,
             options.shadcnStyle,
-            options.cssVariables,
             options.baseColor,
             options.accentColor,
             options.shikiTheme,

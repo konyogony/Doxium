@@ -21,7 +21,6 @@ export const init = async (
     prettier: boolean,
     useDocs: boolean,
     shadcnStyle: 'default' | 'new-york',
-    cssVariables: boolean,
     baseColor: string,
     accentColor: string,
     shikiTheme: string,
@@ -33,7 +32,6 @@ export const init = async (
         | 'prettier'
         | 'use-docs'
         | 'shadcn-style'
-        | 'css-variables'
         | 'base-color'
         | 'accent-color'
         | 'shiki-theme'
@@ -94,14 +92,13 @@ export const init = async (
         }
     }
 
-    console.log(eslint, prettier, useDocs, shadcnStyle, cssVariables, baseColor, accentColor, shikiTheme, githubRepo);
+    console.log(eslint, prettier, useDocs, shadcnStyle, baseColor, accentColor, shikiTheme, githubRepo);
     if (skip_prompt || mute_output) {
         response_full = {
             eslint: eslint ?? true,
             prettier: prettier ?? true,
             'use-docs': useDocs ?? true,
             'shadcn-style': shadcnStyle ?? 'new-york',
-            'css-variables': cssVariables ?? true,
             'base-color': baseColor ?? 'zinc',
             'accent-color': accentColor ?? 'blue',
             'shiki-theme': shikiTheme ?? 'github-dark-dimmed',
@@ -114,7 +111,6 @@ export const init = async (
             prettier,
             useDocs,
             shadcnStyle,
-            cssVariables,
             baseColor,
             accentColor,
             shikiTheme,
@@ -126,6 +122,7 @@ export const init = async (
 
     const response = { ...response_name, ...response_full };
 
+    console.log(response);
     // Get package manager info
     const { pm, pmx, pmi } = await getPmInfo(mute_output);
 
