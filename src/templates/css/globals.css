@@ -170,7 +170,7 @@ table > tbody > tr:last-child > td {
 }
 
 table {
-    @apply !my-2.5 w-full !table-fixed border-collapse overflow-clip rounded-lg !py-20;
+    @apply !my-2.5 w-full max-w-full !table-fixed border-collapse overflow-clip rounded-lg !py-20;
 }
 
 th {

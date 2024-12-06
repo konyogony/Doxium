@@ -40,7 +40,7 @@ const Navbar = ({ structure }: NavbarProps) => {
     return (
         <nav
             className={cn(
-                'fixed inset-0 z-50 flex h-fit w-full flex-row items-center gap-8 px-[20vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted transition-all duration-300',
+                'fixed inset-0 z-50 flex h-fit w-full flex-row items-center px-[10vw] gap-8 md:px-[20vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted transition-all duration-300',
                 scrollHeight > 0 && 'bg-$COLOR-950/40 backdrop-blur-xl',
             )}
         >
@@ -66,7 +66,7 @@ const Navbar = ({ structure }: NavbarProps) => {
                 Docs
             </Link>
             {CMDKElement}
-            <div className='hidden flex-row items-center gap-2 lg:flex'>
+            <div className='-ml-4 hidden flex-row items-center gap-2 lg:flex'>
                 <a
                     className='flex items-center justify-center rounded-sm p-2 hover:bg-$COLOR-900'
                     href='https://github.com/konyogony'

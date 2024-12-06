@@ -30,10 +30,6 @@
                 "pink"
             ]
         },
-        "css-variables": {
-            "type": "boolean",
-            "description": "Whether to use CSS variables for the Doxium application."
-        },
         "shiki-theme": {
             "type": "string",
             "description": "The Shiki theme to use for the Doxium application.",
@@ -120,5 +116,5 @@
             "examples": ["app/docs", "app", "app/test/docs"]
         }
     },
-    "required": ["base-color", "accent-color", "css-variables", "shiki-theme", "use-docs", "components-alias", "lib-alias", "types-alias", "base-url"],
+    "required": ["base-color", "accent-color", "shiki-theme", "use-docs", "components-alias", "lib-alias", "types-alias", "base-url"],
 }

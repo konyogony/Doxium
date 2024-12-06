@@ -36,6 +36,7 @@ export const installDependencies = async (pmi: string[], mute_output: boolean) =
                 '@radix-ui/react-dialog',
                 '@radix-ui/react-toast',
                 '@radix-ui/react-icons',
+                'copy-to-clipboard',
                 'cmdk',
                 'sonner',
                 'shiki',

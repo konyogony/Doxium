@@ -9,7 +9,7 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { prettifyText } from '$LIB-ALIAS/prettify-text';
+import { prettifyText } from '@/lib/prettify-text';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment } from 'react';
@@ -31,15 +31,23 @@ const DocsBreadcrumbs = () => {
                     return (
                         <Fragment key={i}>
                             <BreadcrumbSeparator />
-                            <BreadcrumbItem className={isLast ? 'text-$COLOR-50 hover:text-$ACCENT-COLOR-600' : ''}>
-                                {isLast ? (
+                            {v === 'docs' ? (
+                                <BreadcrumbItem className={isLast ? 'text-$COLOR-50' : ''}>
                                     <BreadcrumbLink asChild>
-                                        <Link href={href}>{prettifyText(v)}</Link>
+                                        <Link href={`/${v}`}>{prettifyText(v)}</Link>
                                     </BreadcrumbLink>
-                                ) : (
-                                    prettifyText(v)
-                                )}
-                            </BreadcrumbItem>
+                                </BreadcrumbItem>
+                            ) : (
+                                <BreadcrumbItem className={isLast ? 'text-$COLOR-50' : ''}>
+                                    {isLast ? (
+                                        <BreadcrumbLink asChild>
+                                            <Link href={href}>{prettifyText(v)}</Link>
+                                        </BreadcrumbLink>
+                                    ) : (
+                                        prettifyText(v)
+                                    )}
+                                </BreadcrumbItem>
+                            )}
                         </Fragment>
                     );
                 })}

@@ -68,6 +68,14 @@ const Cmdk = ({ structure, ...props }: CmdkProps) => {
                     ⌘ K
                 </kbd>
             </Button>
+            <Button
+                variant='outline'
+                onClick={() => setOpen(true)}
+                {...props}
+                className='group ml-auto cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 bg-$COLOR-900/50 px-2 py-1 text-sm font-normal text-$COLOR-400 backdrop-blur-md transition-all duration-300 hover:bg-$COLOR-800/60 hover:text-$COLOR-200 lg:hidden xl:w-fit xl:gap-10'
+            >
+                <RxMagnifyingGlass />
+            </Button>
             <CommandDialog open={open} onOpenChange={setOpen}>
                 <DialogTitle className='sr-only' />
                 <DialogDescription className='sr-only' />

@@ -22,7 +22,7 @@ const getAlertColor = (variant: DocsAlertsProps['variant']) => {
         case 'bookmark':
             return 'bg-yellow-800/70 text-yellow-400 border-yellow-400/40';
         case 'warning':
-            return 'bg-orange-800/70 text-yellow-400 border-orange-400/40';
+            return 'bg-orange-700/50 text-yellow-300 border-orange-400/40';
         case 'error':
             return 'bg-red-700/50 text-red-300 border-red-400/40';
         case 'success':

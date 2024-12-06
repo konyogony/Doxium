@@ -4,6 +4,7 @@
 
 import { FiCheck, FiClipboard } from '@vertisanpro/react-icons/fi';
 import { cn } from '$LIB-ALIAS/utils';
+import copy from 'copy-to-clipboard';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -15,7 +16,7 @@ interface CopyButtonProps {
 const CopyButton: React.FC<CopyButtonProps> = ({ text, singleLine }) => {
     const [clicked, setClicked] = useState(false);
     const clickCopy = () => {
-        navigator?.clipboard.writeText(text);
+        copy(text);
         toast.success('Code copied to clipboard');
         setClicked(true);
         setTimeout(() => setClicked(false), 2000);

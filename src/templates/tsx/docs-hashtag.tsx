@@ -3,6 +3,7 @@
 'use client';
 
 import { FiLink } from '@vertisanpro/react-icons/fi';
+import copy from 'copy-to-clipboard';
 import { toast } from 'sonner';
 
 interface WikiHashTagProps {
@@ -14,7 +15,7 @@ const WikiHashTag = ({ id, variant: Var = 'h1', children }: React.PropsWithChild
     const clickCopy = () => {
         if (typeof window !== 'undefined') {
             const path = window.location.href.replace(/#.*$/, '') + '#' + id;
-            navigator?.clipboard.writeText(path);
+            copy(path);
             window.location.href = path;
             toast.success('URL copied to clipboard');
         }
@@ -29,7 +30,7 @@ const WikiHashTag = ({ id, variant: Var = 'h1', children }: React.PropsWithChild
             {children}
             <FiLink
                 size={Var === 'h1' ? 24 : Var === 'h2' ? 18 : 16}
-                className='text-transparent transition-all duration-300 hover:!text-$ACCENT-COLOR-500 focus:outline-none focus:ring-0 group-hover:text-$ACCENT-COLOR-400'
+                className='hidden lg:block text-transparent transition-all duration-300 hover:!text-$ACCENT-COLOR-500 focus:outline-none focus:ring-0 group-hover:text-$ACCENT-COLOR-400'
             />
         </Var>
     );

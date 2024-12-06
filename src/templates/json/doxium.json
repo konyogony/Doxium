@@ -9,5 +9,4 @@
     "lib-alias": "$LIB-ALIAS",
     "types-alias": "$TYPES-ALIAS",
     "base-url": "$BASE-URL",
-    "css-variables": $CSS-VARIABLES
 }

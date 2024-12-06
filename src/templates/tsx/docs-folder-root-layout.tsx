@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import DocsToaster from '$COMPONENTS-ALIAS/docs-toaster';
+import Footer from '$COMPONENTS-ALIAS/footer';
 import Navbar from '$COMPONENTS-ALIAS/navbar';
 import { getStructureInstance } from '$LIB-ALIAS/structure';
 import { cn } from '$LIB-ALIAS/utils';
@@ -24,9 +25,10 @@ const RootLayout = async ({
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative'>
-                <Navbar structure={structure} />
                 <main>
+                    <Navbar structure={structure} />
                     {children}
+                    <Footer />
                     <DocsToaster />
                 </main>
             </body>
