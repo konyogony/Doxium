@@ -9,12 +9,19 @@ let instance: DocsNode[] | null = null;
 
 const createDocsStructure = async (rootName: string = 'getting-started'): Promise<DocsNode[]> => {
     const { baseUrl } = await getJsonData();
-    // const baseUrl = 'app/docs';
     const baseDir = path.resolve(process.cwd(), baseUrl);
 
     const getDocsTree = (currentDir: string): DocsNode[] => {
         const files = fs.readdirSync(currentDir);
         const nodes: DocsNode[] = [];
+
+        let sortOrder: string[] = [];
+        const sortFilePath = path.join(currentDir, '_sort.json');
+        if (fs.existsSync(sortFilePath)) {
+            const sortFileContent = fs.readFileSync(sortFilePath, 'utf-8');
+            const sortData = JSON.parse(sortFileContent);
+            sortOrder = sortData.sort || [];
+        }
 
         files.forEach((file) => {
             const filePath = path.join(currentDir, file);
@@ -45,11 +52,25 @@ const createDocsStructure = async (rootName: string = 'getting-started'): Promis
             }
         });
 
-        return nodes.sort((a, b) => {
-            if (a.nodes && !b.nodes) return 1;
+        const sorted = nodes.sort((a, b) => {
+            const aIndex = sortOrder.indexOf(a.name);
+            const bIndex = sortOrder.indexOf(b.name);
+
+            if (aIndex !== -1 && bIndex !== -1) {
+                return aIndex - bIndex;
+            } else if (aIndex !== -1) {
+                return -1;
+            } else if (bIndex !== -1) {
+                return 1;
+            }
+
             if (!a.nodes && b.nodes) return -1;
+            if (a.nodes && !b.nodes) return 1;
+
             return (a.path || '').localeCompare(b.path || '');
         });
+
+        return sorted;
     };
 
     return getDocsTree(baseDir);
@@ -61,3 +82,6 @@ export const getStructureInstance = async (): Promise<DocsNode[]> => {
     }
     return instance;
 };
+
+// NGL, I dont really like this approach, but I think this is the simplest way out.
+// Im open to suggestions on how to improve this.

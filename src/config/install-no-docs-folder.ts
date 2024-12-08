@@ -8,11 +8,13 @@ export const installNoDocsFolder = async (response: responseT, pm: string, empty
     const filesNoHome = [
         { name: 'no-docs-folder-root-layout', type: 'tsx', path: './app/layout.tsx' },
         !empty && { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
-        !empty && { name: 'main', type: 'mdx', path: './app/page.mdx' },
-        !empty && { name: 'code-block', type: 'mdx', path: './app/features/code-block/page.mdx' },
+        !empty && { name: 'getting-started', type: 'mdx', path: './app/page.mdx' },
+        !empty && { name: 'code-block', type: 'mdx', path: './app/components/code-block/page.mdx' },
+        !empty && { name: 'alerts', type: 'mdx', path: './app/components/alerts/page.mdx' },
+        !empty && { name: 'cards', type: 'mdx', path: './app/components/cards/page.mdx' },
         !empty && { name: 'routing', type: 'mdx', path: './app/features/routing/page.mdx' },
-        !empty && { name: 'alerts', type: 'mdx', path: './app/features/alerts/page.mdx' },
-        !empty && { name: 'cards', type: 'mdx', path: './app/features/cards/page.mdx' },
+        !empty && { name: 'mdx', type: 'mdx', path: './app/features/mdx/page.mdx' },
+        !empty && { name: 'sort-root', type: 'json', path: './app/_sort.json' },
     ].filter((file) => file !== false);
 
     try {
@@ -21,10 +23,12 @@ export const installNoDocsFolder = async (response: responseT, pm: string, empty
         if (!empty) {
             await fs.mkdir('app/about');
             await fs.mkdir('app/features');
-            await fs.mkdir('app/features/code-block');
+            await fs.mkdir('app/components');
+            await fs.mkdir('app/components/code-block');
+            await fs.mkdir('app/components/alerts');
+            await fs.mkdir('app/components/cards');
             await fs.mkdir('app/features/routing');
-            await fs.mkdir('app/features/alerts');
-            await fs.mkdir('app/features/cards');
+            await fs.mkdir('app/features/mdx');
         }
 
         await Promise.all(

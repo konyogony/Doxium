@@ -1,105 +1,208 @@
+export const metadata = {
+    title: 'Hello'
+}
+
 # Code blocks
 
-Code blocks are used to represent code in your documentation with highlighting and formatting.
+Code blocks are used to represent code in your documentation with proper highlighting. These code blocks are made using [Shiki](https://shiki.matsu.io/),
+therefore there are many themes to choose from available by editing `"shiki-theme"` in `doxium.json`
 
-You can edit the theme of this code block by changing the `shiki-theme` in `doxium.json` file, located at the root of your project.
+This is a built-in component, so it doesn't require to be imported from anywhere.
+
+## Simple example:
+
+Writing this:
+
+````mdx
+```tsx
+const HelloWorld = () => console.log('Hello World!')
+```
+````
+
+Will yield with the following result in your page:
+
+```tsx
+const HelloWorld = () => console.log('Hello World!')
+```
+
+Notice that writing `tsx` after the backticks will define the language to be used for syntax highlighting. The list of available languages right now consists of:
+- ts / js
+- tsx / jsx
+- rs
+- html
+- mdx
+- bash
+- sh
+- css
+- json
+
+You can change the list of available languages by editing line <strong>15</strong> in `@/lib/highlighter.ts`, in the future this will be more accessible via the `doxium.json` config
+
+# Advanced usage
+
+Here are more of the advanced features available in Doxium's code blocks. You are able to combine all the topics to be discussed later, unlocking a creative potential.
+
+## Code focus
+
+You can make the reader focus on some part of the code by adding `// [!code focus]` after the line to make it not blurred. On hover, all the text will be revealed. 
+You can also escape this by adding a backslash after the exclamation mark, `// [\!code focus]`
 
 ```json
-// json
 {
-    "github-repo": "", // [!code focus] 
-    "theme": { // [\!code focus]
-        "shiki": "github-dark-dimmed"
+    "theme": { 
+        "shiki": "github-dark-dimmed" // [!code focus] 
     }
 }
 ```
 
-```ts noTopBar
-import fs from 'fs';
-import path from 'path';
-import { DoxiumConfig } from '@/types';
+## Code highlight
 
-export const getHightlighterTheme = async (): Promise<string> => {
-    const doxiumPath = path.join(process.cwd(), 'doxium.json');
-    const fileContents = fs.readFileSync(doxiumPath, 'utf8');
-    const doxiumConfig: DoxiumConfig = JSON.parse(fileContents);
+You can highlight specific lines of code by adding `// [!code highlight]` after the line. This will make the whole line slightly white. This is fully customisable on line <strong>125:127</strong> in `@/app/globals.css`. 
+Additionally, you can escape this by adding a backslash after the exclamation mark, `// [\!code highlight]`
 
-    return doxiumConfig['shiki-theme'];
-};
-```
-
-```rs noTopBar noCopyButton lineNumbers
-use surrealdb::engine::local::{Db, RocksDb};
-use surrealdb::Surreal;
-use tokio::sync::OnceCell;
-
-pub static DB: OnceCell<Surreal<Db>> = OnceCell::const_new();
-
-pub async fn init() -> Result<Surreal<Db>, String> {
-    let db = Surreal::new::<RocksDb>("surrealdb.db")
-        .await
-        .map_err(|e| format!("Failed to create database: {}", e))?;
-
-    db.use_ns("dev")
-        .use_db("main")
-        .await
-        .map_err(|e| format!("Failed to switch to namespace: {}", e))?;
-
-    DB.set(db.clone()).unwrap();
-
-    Ok(db)
+```json
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed" // [!code highlight]  
+    }
 }
 ```
 
-The list of all available themes is (for now) available on this [website](https://textmate-grammars-themes.netlify.app/?theme=github-dark-dimmed&grammar=typescript)
+## Code deleted (--)
 
-## Roadmap
+You can make specific lines of code red, as if deleted in `diff` mode, by adding `// [!code --]` after the line. This is fully customisable on line <strong>120:122</strong> in `@/app/globals.css`. 
+Escapable by adding a backslash after the exclamation mark, `// [\!code --]`
 
-I was able to implement support for all themes, aswell as automatic text colour change when using a light theme.
-In the future I am looking forward to being able to customise:
-
-- [ ]  Top bar
-- [ ]  Copy button
-- [ ]  Icons
-- [ ]  Languages
-- [x] Highlighting specific code
-- [x] Code diff
-
-```tsx lineNumbers
-// tsx lineNumbers
-// [!code word:Breadcrumb]
-// [\!code word:Breadcrumb]
-export const DocsBreadcrumbs = () => {
-    const pathname = usePathname();
-    const path = pathname.split('/').filter((p) => p !== '');
-    return (
-        <Breadcrumb className='not-prose text mt-8 flex w-full'>
-            <BreadcrumbList>
-                <BreadcrumbItem> // [\!code highlight]
-                    <BreadcrumbLink asChild> // [!code highlight] 
-                        <Link href={'/'}>Home</Link> // [!code highlight]
-                    </BreadcrumbLink> // [!code highlight]
-                </BreadcrumbItem> // [\!code ++]
-                {path.map((v, i) => { // [!code ++]
-                    const href = `/${path.slice(0, i + 1).join('/')}`; // [!code ++] 
-                    const isLast = i === path.length - 1; // [!code ++]
-                    return ( // [\!code --]
-                        <Fragment key={i}> // [!code --]
-                            <BreadcrumbSeparator /> // [!code --]
-                            <BreadcrumbItem className={isLast ? 'text-zinc-50 hover:text-blue-600' : ''}>  // [!code --]
-                                {isLast ? ( // [\!code warning]
-                                    <BreadcrumbLink asChild> // [!code warning]
-                                        <Link href={href}>{prettifyText(v)}</Link>// [!code warning]
-                                    </BreadcrumbLink> // [!code warning]
-                                ) : (
-                                    prettifyText(v)
-                                )}
-                            </BreadcrumbItem>
-                        </Fragment>
-                    );
-                })}
-            </BreadcrumbList>
-        </Breadcrumb>
-    );
-};
+```json
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed" // [!code --]  
+    } // [!code --]  
+}
 ```
+
+## Code added (++)
+
+You can make specific lines of code green, as if added in `diff` mode, by adding `// [!code ++]` after the line. This is fully customisable on line <strong>116:118</strong> in `@/app/globals.css`. 
+Escapable by adding a backslash after the exclamation mark, `// [\!code ++]`
+
+```json
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed" // [!code ++]  
+    } // [!code ++]  
+}
+```
+
+## Toggle top bar
+
+You can toggle on/off the top bar in the code block which usually contains the icon, language and copy button. 
+This is done my adding `noTopBar` flag after decalaring your language. For example, inputing this code:
+
+````mdx
+```json noTopBar
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+````
+
+Will result you this:
+
+```json noTopBar
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+
+### IRL example
+
+```bash noTopBar
+bunx doxium@latest init
+```
+
+## Toggle line numbers
+
+You can toggle on/off the line numbers which will be displayed in a darker tone to the left, by adding `lineNumbers` flag after decalaring your language.
+For example, inputing this code:
+
+````mdx
+```json lineNumbers
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+````
+
+Will result you this:
+
+```json lineNumbers
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+
+## Toggle copy button
+
+You can toggle on/off the copy button, although the user is still able to manually copy the text, by adding `noCopyButton` flag after decalaring your language.
+For example, inputing this code:
+
+````mdx
+```json noCopyButton
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+````
+
+Will result you this:
+
+```json noCopyButton
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+
+
+# Limitations and errors
+
+In this section I will discuss some limitations and errors which occur, which either will be fixed, or there are no fixes.
+
+Summary:
+| Issue | Notes |
+| :-----: | :-----: |
+| [[Shiki] 100+ instances have been created](#shiki-400-instances-have-been-created) | Development bug, build your app, `bun run build` |
+| [Prettier moving // [!code highlight] to another line](prettier-moving-object-object-to-another-line) | Fixed by adding `.mdx` to `.prettierignore` |
+
+
+If you are able to somehow fix any of these issues, make a [PR](https://github.com/konyogony/Doxium/pulls). Your contribution will be greatly appreciated :)
+
+
+## [Shiki] 400 instances have been created
+
+You may recieve the following error (or a similar one) in the console when developing your app:
+
+``[Shiki] 400 instances have been created. Shiki is supposed to be used as a singleton, consider refactoring your code to cache your highlighter instance; Or call `highlighter.dispose()` to release unused instances.``
+
+This is a dev bug and is fixed when you properly build your app with `bun run build` and `bun run start`. 
+
+To be honest, I am not sure why this happens in the dev enviroment either since I have made a singleton. Open to suggestions.
+
+
+## Prettier moving `// [!code highlight]` to another line
+
+This is a well known error and issue by the prettier community that it is able to move your comments to another line if it doesnt have space or meets some different paremeters. 
+
+Currently, I dont think there is a propper fix, so my solution is to add `.mdx` to `.prettierignore`, so that it doesnt format the file at all. This obviously comes at the cost that you have to manually format your file.

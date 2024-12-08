@@ -27,13 +27,13 @@ const DocsCards = ({
             target={newTab ? '_blank' : undefined}
             rel={newTab ? 'noreferrer noopener' : undefined}
         >
-            <span className='text-xl font-semibold text-$ACCENT-COLOR-600 decoration-dotted transition-all duration-150 group-hover:text-$COLOR-100 group-hover:underline'>
+            <span className='text-xl font-semibold group-hover:text-$ACCENT-COLOR-600 decoration-dotted transition-all duration-150 text-$COLOR-100 underline'>
                 {title}
             </span>
             <div>{children}</div>
             <FiArrowUpRight
                 size={18}
-                className='absolute right-2 top-2 text-$ACCENT-COLOR-600 transition-all duration-150 group-hover:text-$COLOR-100'
+                className='absolute right-2 top-2 group-hover:text-$ACCENT-COLOR-600 transition-all duration-150 text-$COLOR-100'
             />
         </a>
     ) : (

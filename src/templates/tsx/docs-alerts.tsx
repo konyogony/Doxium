@@ -20,23 +20,23 @@ interface DocsAlertsProps {
 const getAlertColor = (variant: DocsAlertsProps['variant']) => {
     switch (variant) {
         case 'bookmark':
-            return 'bg-yellow-800/70 text-yellow-400 border-yellow-400/40';
+            return 'bg-yellow-800/70 text-yellow-600 border-yellow-400/40';
         case 'warning':
-            return 'bg-orange-700/50 text-yellow-300 border-orange-400/40';
+            return 'bg-orange-700/50 text-yellow-500 border-orange-400/40';
         case 'error':
-            return 'bg-red-700/50 text-red-300 border-red-400/40';
+            return 'bg-red-700/50 text-red-500 border-red-400/40';
         case 'success':
-            return 'bg-green-700/50 text-green-400 border-green-300/40';
+            return 'bg-green-700/50 text-green-600 border-green-300/40';
         case 'tip':
-            return 'bg-blue-700/50 text-blue-300 border-blue-300/40';
+            return 'bg-blue-700/50 text-blue-500 border-blue-300/40';
         case 'accent':
-            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-300 border-$ACCENT-COLOR-200/40';
+            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-500 border-$ACCENT-COLOR-200/40';
         case 'base':
-            return 'bg-$COLOR-600/30 text-$COLOR-200 border-white/20';
+            return 'bg-$COLOR-600/30 text-$COLOR-400 border-white/20';
         case 'star':
-            return 'bg-yellow-600/50 text-yellow-300 border-yellow-200/40';
+            return 'bg-yellow-600/50 text-yellow-500 border-yellow-200/40';
         default:
-            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-300 border-$ACCENT-COLOR-200/40';
+            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-500 border-$ACCENT-COLOR-200/40';
     }
 };
 

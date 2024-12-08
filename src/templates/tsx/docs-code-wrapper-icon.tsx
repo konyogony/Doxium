@@ -10,6 +10,7 @@ import {
     SiTypescript,
 } from '@vertisanpro/react-icons/si';
 import { VscJson, VscSymbolFile, VscTerminal } from '@vertisanpro/react-icons/vsc';
+import { JSX } from 'react';
 
 interface WikiCodeWrapperIconProps {
     language: string;

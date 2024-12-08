@@ -55,8 +55,8 @@ const DocsHeadings = () => {
             <a
                 href={`#${heading.id}`}
                 className={cn(
-                    'py-1 text-sm font-normal transition-all duration-300 hover:underline max-w-48',
-                    activeHeading === heading.id ? 'text-$ACCENT-COLOR-500' : 'text-$COLOR-400',
+                    'py-1 text-sm transition-all duration-300 hover:underline max-w-48 decoration-dotted',
+                    activeHeading === heading.id ? 'text-$ACCENT-COLOR-500 font-medium' : 'text-$COLOR-400 font-normal',
                 )}
                 style={{
                     paddingLeft: `${(heading.level - 1) * 10}px`,

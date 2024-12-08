@@ -1,3 +1,5 @@
+import Alerts from 'doxium/docs-alerts';
+
 # Routing
 
 Routing in Doxium is made entirely file-based, working similarly to Nextjs' one, without the need for specifically typing in the routes and their names.
@@ -12,12 +14,27 @@ To create a folder you can create a directory without a page.mdx file but contri
 
 
 
-## Features current support (as of v0.1)
+## Features current support (as of alpha release)
 
 | Feature | Supported|
 | :--------| :------- |
 | Creating pages | ✅ |
 | Creating folders | ✅|
 | Folders containing their own page | ❌ |
-| Specific order of pages | ❌ | 
-| Fully control the names | ❌ | 
+| Specific order of pages | ✅ | 
+
+
+## Ordering
+
+You can create a `_sort.json` file in the directory you want sorted and create an object called `sort` which will contain an array with the pages you want to have in order.
+This will search for the names specified in the order specified and arrange it accordingly
+
+```json
+{
+    "sort": ["name1", "name2", "name3"]
+}
+```
+
+`TODO: Insert File tree`
+
+<Alerts variant='warning'>Changes may not take place immediatly, try reloading the page or project if doesn't work.</Alerts>

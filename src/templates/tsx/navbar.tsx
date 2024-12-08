@@ -1,48 +1,31 @@
 // @ts-nocheck
 
 'use client';
+'use client';
 
+import Cmdk from '@/components/doxium/cmdk';
+import { cn } from '@/lib/utils';
+import { DocsNode } from '@/types';
 import { BsDiscord, BsGithub } from '@vertisanpro/react-icons/bs';
-import Cmdk from '$COMPONENTS-ALIAS/cmdk';
-import { cn } from '$LIB-ALIAS/utils';
-import { DocsNode } from '$TYPES-ALIAS';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 interface NavbarProps {
     structure: DocsNode[];
 }
 
 const Navbar = ({ structure }: NavbarProps) => {
-    const [scrollHeight, setScrollHeight] = useState(0);
     const pathname = usePathname();
     const path = pathname.split('/')[1];
 
     const CMDKElement = useMemo(() => <Cmdk structure={structure} />, [structure]);
 
-    useEffect(() => {
-        const savedScrollHeight = localStorage.getItem('scrollHeight');
-        if (savedScrollHeight) {
-            setScrollHeight(parseInt(savedScrollHeight));
-        }
-
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            setScrollHeight(scrollY);
-            localStorage.setItem('scrollHeight', scrollY.toString());
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [scrollHeight]);
-
     return (
         <nav
-            className={cn(
-                'fixed inset-0 z-50 flex h-fit w-full flex-row items-center px-[10vw] gap-8 md:px-[20vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted transition-all duration-300',
-                scrollHeight > 0 && 'bg-$COLOR-950/40 backdrop-blur-xl',
-            )}
+            className={
+                'fixed inset-0 z-50 flex h-fit w-full flex-row items-center gap-8 border-b border-white/10 bg-$COLOR-950/40 px-[10vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted backdrop-blur-xl transition-all duration-300 md:px-[20vw]'
+            }
         >
             <Link href='/' className='text-xl font-bold text-$COLOR-100 hover:text-$COLOR-50'>
                 Doxium

@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/command';
 import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/react-dialog';
 import { FileIcon } from '@radix-ui/react-icons';
+import { RxMagnifyingGlass } from '@vertisanpro/react-icons/rx';
 import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
 import { prettifyText } from '$LIB-ALIAS/prettify-text';
 import { DocsNode } from '$TYPES-ALIAS';
