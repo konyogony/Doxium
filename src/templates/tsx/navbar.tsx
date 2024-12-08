@@ -6,16 +6,21 @@
 import Cmdk from '@/components/doxium/cmdk';
 import { cn } from '@/lib/utils';
 import { DocsNode } from '@/types';
-import { BsDiscord, BsGithub } from '@vertisanpro/react-icons/bs';
+import { BsDiscord, BsGithub, BsTwitter } from '@vertisanpro/react-icons/bs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
 interface NavbarProps {
     structure: DocsNode[];
+    socials: {
+        'github-repo': string;
+        discord: string;
+        twitter: string;
+    };
 }
 
-const Navbar = ({ structure }: NavbarProps) => {
+const Navbar = ({ structure, socials }: NavbarProps) => {
     const pathname = usePathname();
     const path = pathname.split('/')[1];
 
@@ -50,22 +55,23 @@ const Navbar = ({ structure }: NavbarProps) => {
             </Link>
             {CMDKElement}
             <div className='-ml-4 hidden flex-row items-center gap-2 lg:flex'>
-                <a
-                    className='flex items-center justify-center rounded-sm p-2 hover:bg-$COLOR-900'
-                    href='https://github.com/konyogony'
-                    rel='noopener noreferrer'
-                    target='_blank'
-                >
-                    <BsGithub size={20} />
-                </a>
-                <a
-                    className='flex items-center justify-center rounded-sm p-2 hover:bg-$COLOR-900'
-                    href='https://discord.gg/BrXAHknFE6'
-                    rel='noopener noreferrer'
-                    target='_blank'
-                >
-                    <BsDiscord size={20} />
-                </a>
+                {socials &&
+                    Object.entries(socials).map(([i, v]) => {
+                        if (!v) return null;
+                        return (
+                            <a
+                                className='flex items-center justify-center rounded-sm p-2 hover:bg-zinc-900'
+                                href={v}
+                                rel='noopener noreferrer'
+                                target='_blank'
+                                key={i}
+                            >
+                                {i === 'github-repo' && <BsGithub size={20} />}
+                                {i === 'discord' && <BsDiscord size={20} />}
+                                {i === 'twitter' && <BsTwitter size={20} />}
+                            </a>
+                        );
+                    })}
             </div>
         </nav>
     );

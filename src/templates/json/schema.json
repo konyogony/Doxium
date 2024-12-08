@@ -2,12 +2,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {
-        "github-repo": {
-            "type": "string",
-            "description": "The GitHub repository to use for the Doxium application. (optional)",
-            "pattern": "^$|^https://github\\.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/?$",
-            "examples": ["https://github.com/username/repo", ""]
-        },
         "base-color": {
             "type": "string",
             "description": "The base color to use for the Doxium application.",
@@ -114,6 +108,30 @@
             "description": "The base URL to use for the Doxium application",
             "pattern": "^(?:[a-zA-Z0-9_-]+/)*[a-zA-Z0-9_-]+$",
             "examples": ["app/docs", "app", "app/test/docs"]
+        },
+        "socials": {
+            "type": "object",
+            "description": "The social media links to use for the Doxium application. It will be displayed in the navbar",
+            "properties": {
+                "github-repo": {
+                    "type": "string",
+                    "description": "The GitHub repository to use for the Doxium application. (optional)",
+                    "pattern": "^$|^https://github\\.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/?$",
+                    "examples": ["https://github.com/username/repo", ""]
+                },
+                "twitter": {
+                    "type": "string",
+                    "description": "The Twitter account to use for the Doxium application. (optional)",
+                    "pattern": "^$|^https://twitter\\.com/[a-zA-Z0-9._-]+/?$",
+                    "examples": ["https://twitter.com/username", ""]
+                },
+                "discord": {
+                    "type": "string",
+                    "description": "The Discord server to use for the Doxium application. (optional)",
+                    "pattern": "^$|^https://discord\\.gg/[a-zA-Z0-9._-]+/?$",
+                    "examples": ["https://discord.gg/invite", ""]
+                }
+            },
         }
     },
     "required": ["base-color", "accent-color", "shiki-theme", "use-docs", "components-alias", "lib-alias", "types-alias", "base-url"],

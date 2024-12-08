@@ -3,6 +3,7 @@
 import DocsToaster from '$COMPONENTS-ALIAS/docs-toaster';
 import Footer from '$COMPONENTS-ALIAS/footer';
 import Navbar from '$COMPONENTS-ALIAS/navbar';
+import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { getStructureInstance } from '$LIB-ALIAS/structure';
 import { cn } from '$LIB-ALIAS/utils';
 import { Metadata } from 'next';
@@ -21,12 +22,13 @@ const RootLayout = async ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
+    const { socials } = await getJsonData();
     const structure = await getStructureInstance();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative'>
                 <main>
-                    <Navbar structure={structure} />
+                    <Navbar structure={structure} socials={socials} />
                     {children}
                     <Footer />
                     <DocsToaster />

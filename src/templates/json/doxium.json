@@ -1,6 +1,5 @@
 {
     "$schema": "https://raw.githubusercontent.com/konyogony/doxium/main/src/templates/json/schema.json",
-    "github-repo": "$GITHUB-REPO",
     "base-color": "$COLOR",
     "accent-color": "$ACCENT-COLOR",
     "shiki-theme": "$SHIKI-THEME",
@@ -9,4 +8,9 @@
     "lib-alias": "$LIB-ALIAS",
     "types-alias": "$TYPES-ALIAS",
     "base-url": "$BASE-URL",
+    "socials": {
+        "github-repo": "$GITHUB-REPO",
+        "twitter": "",
+        "discord": ""
+    }
 }

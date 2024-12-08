@@ -26,7 +26,7 @@ const RootLayout = async ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const { repo } = await getJsonData();
+    const { socials } = await getJsonData();
     const structure = await getStructureInstance();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
@@ -41,7 +41,7 @@ const RootLayout = async ({
                             <div className='mb-4 mt-8 h-[1px] w-full bg-white/15' />
                             <DocsNav structure={structure} />
                         </div>
-                        <SecondarySidebar repoString={repo} />
+                        <SecondarySidebar socials={socials} />
                     </div>
                     <Footer />
                     <DocsToaster />

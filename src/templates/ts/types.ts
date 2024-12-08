@@ -9,7 +9,6 @@ export interface DocsNode {
 }
 
 export interface DoxiumConfig {
-    'github-repo': string;
     'base-color': string;
     'accent-color': string;
     'shiki-theme': string;
@@ -18,6 +17,11 @@ export interface DoxiumConfig {
     'lib-alias': string;
     'types-alias': string;
     'base-url': string;
+    socials: {
+        'github-repo': string;
+        twitter: string;
+        discord: string;
+    };
 }
 
 export interface HighlighterResult {

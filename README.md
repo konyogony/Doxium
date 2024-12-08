@@ -6,27 +6,34 @@ An easy solution to generate modern documentation in Next.js
 
 ### For alpha release (Release date 22 Dec):
 
--   [x] Fix turbopack
+-   [x] ~~Fix turbopack~~
 -   [ ] Make website to present
     -   [ ] Logo
     -   [ ] Document everything
+        -   [x] Code blocks
+        -   [x] Alerts
     -   [ ] Create a monorepo
--   [ ] Option to disable starter wiki
+-   [x] Option to disable starter wiki
+-   [x] CSS variables support CRINGE IDEA
+-   [ ] ‘bunx doxium add’
+-   [x] Proper CLI
 -   [ ] Mobile support
 -   [ ] Change aliases
 -   [ ] Ability to add links and text to sidebar
 -   [ ] Add tabs inside code-blocks, which should sync.
 -   [ ] Name on code-blocks
+-   [x] Social links in navbar defined in config
 -   [ ] More elements
-    -   [ ] Revisit alerts
+    -   [x] Revisit alerts
     -   [ ] Make timeline
     -   [ ] Make file tree
     -   [ ] Revisit normal tabs
     -   [ ] Accordion
     -   [ ] Images
     -   [ ] Videos
--   [ ] Make nice footer
+-   [x] Make nice footer (NOT NICE THO)
 -   [ ] Review competitors and reflect
+-   [ ] Remove `docs-` from everywhere
 
 ### For beta release (Not in mind yet):
 

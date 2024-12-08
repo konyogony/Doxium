@@ -8,7 +8,7 @@ import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { getStructureInstance } from '$LIB-ALIAS/structure';
 
 const DocsLayout = async ({ children }: React.PropsWithChildren) => {
-    const { repo } = await getJsonData();
+    const { socials } = await getJsonData();
     const structure = await getStructureInstance();
     return (
         <div className='relative flex flex-row justify-center gap-8 py-16 md:py-24'>
@@ -19,7 +19,7 @@ const DocsLayout = async ({ children }: React.PropsWithChildren) => {
                 <div className='mb-4 mt-8 h-[1px] w-full bg-white/15' />
                 <DocsNav structure={structure} />
             </div>
-            <SecondarySidebar repoString={repo} />
+            <SecondarySidebar socials={socials} />
         </div>
     );
 };

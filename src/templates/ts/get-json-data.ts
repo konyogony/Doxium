@@ -5,7 +5,11 @@ import path from 'path';
 import { DoxiumConfig } from '$TYPES-ALIAS';
 
 interface jsonDataReturn {
-    repo: string;
+    socials: {
+        github: string;
+        twitter: string;
+        discord: string;
+    };
     theme: string;
     baseUrl: string;
 }
@@ -15,15 +19,11 @@ export const getJsonData = async (): Promise<jsonDataReturn> => {
     const fileContents = fs.readFileSync(doxiumPath, 'utf8');
     const doxiumConfig: DoxiumConfig = JSON.parse(fileContents);
 
-    const githubRepoRegex = /^https:\/\/github\.com\/[\w-]+\/[\w-]+$/;
-
-    const rawRepo = doxiumConfig['github-repo'];
-    const cleanRepo = rawRepo.replace(/\s+/g, '');
-    const repo = githubRepoRegex.test(cleanRepo) ? cleanRepo : '';
+    const socials = doxiumConfig['socials'];
 
     const theme = doxiumConfig['shiki-theme'];
 
     const baseUrl = doxiumConfig['base-url'];
 
-    return { repo, theme, baseUrl };
+    return { socials, theme, baseUrl };
 };
