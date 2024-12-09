@@ -28,22 +28,24 @@ const DocsNav = ({ structure }: DocsNavProps) => {
     }, [pathname, structure]);
 
     return (
-        <div className='not-prose flex w-full flex-row items-center'>
+        <div className='not-prose flex w-full flex-row items-center justify-between space-x-2'>
             {paths.prev && (
-                <Link href={paths.prev.path} className='flex w-fit flex-col items-end'>
+                <Link href={paths.prev.path} className='flex w-fit max-w-[50%] flex-col items-end'>
                     <span className='text-sm text-$COLOR-500'>Previous</span>
-                    <div className='flex flex-row items-center text-$COLOR-300 decoration-dotted transition-all duration-200 hover:text-$ACCENT-COLOR-600 hover:underline'>
-                        <FiChevronLeft size={16} />
-                        {prettifyText(paths.prev.name)}
+                    <div className='flex max-w-full flex-row items-center text-$COLOR-300 decoration-dotted transition-all duration-200 hover:text-$ACCENT-COLOR-600 hover:underline'>
+                        <FiChevronLeft className='shrink-0' size={16} />
+                        <span className='truncate' dir='rtl'>
+                            {prettifyText(paths.prev.name)}
+                        </span>
                     </div>
                 </Link>
             )}
             {paths.next && (
-                <Link href={paths.next.path} className='ml-auto flex w-fit flex-col items-start'>
+                <Link href={paths.next.path} className='ml-auto flex w-fit max-w-[50%] flex-col items-start'>
                     <span className='text-sm text-$COLOR-500'>Next</span>
-                    <div className='flex flex-row items-center text-$COLOR-300 decoration-dotted transition-all duration-200 hover:text-$ACCENT-COLOR-600 hover:underline'>
-                        {prettifyText(paths.next.name)}
-                        <FiChevronRight size={16} />
+                    <div className='flex max-w-full flex-row items-center text-$COLOR-300 decoration-dotted transition-all duration-200 hover:text-$ACCENT-COLOR-600 hover:underline'>
+                        <span className='truncate'>{prettifyText(paths.next.name)}</span>
+                        <FiChevronRight className='shrink-0' size={16} />
                     </div>
                 </Link>
             )}
