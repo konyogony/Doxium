@@ -56,13 +56,34 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
         );
 
         // Install Shadcn components
-        spawn.sync(
-            pmx[0],
-            [pmx[1], 'shadcn@latest', 'add', 'breadcrumb', 'button', 'tabs'].filter(
-                (str) => str !== '' && str !== undefined,
-            ) as string[],
-            { stdio: 'ignore' },
-        );
+        while (true) {
+            const result = spawn.sync(
+                pmx[0],
+                [pmx[1], 'shadcn@latest', 'add', 'breadcrumb'].filter(
+                    (str) => str !== '' && str !== undefined,
+                ) as string[],
+                { stdio: 'ignore' },
+            );
+            if (!result.error) break;
+        }
+
+        while (true) {
+            const result = spawn.sync(
+                pmx[0],
+                [pmx[1], 'shadcn@latest', 'add', 'tabs'].filter((str) => str !== '' && str !== undefined) as string[],
+                { stdio: 'ignore' },
+            );
+            if (!result.error) break;
+        }
+
+        while (true) {
+            const result = spawn.sync(
+                pmx[0],
+                [pmx[1], 'shadcn@latest', 'add', 'button'].filter((str) => str !== '' && str !== undefined) as string[],
+                { stdio: 'ignore' },
+            );
+            if (!result.error) break;
+        }
 
         !mute_output && console.log(successText('Shadcn components installed successfully!'));
 
