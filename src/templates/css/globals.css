@@ -5,6 +5,7 @@
 /* Base styles */
 html {
     @apply scroll-pt-28 scroll-smooth;
+    scrollbar-gutter: stable both-edges;
 }
 
 body {

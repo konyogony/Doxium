@@ -53,9 +53,13 @@ const mdxComponents = {
         const { theme } = await getJsonData();
         const currentTheme = theme as BundledTheme;
         const color = ShikiThemeBackgroundHexDefault[currentTheme];
+        const long = children ? children.toString().split('').length > 75 : false;
         return (
             <span
-                className='mx-0.5 my-2 rounded-[3.5px] border border-white/5 px-1.5 py-0.5 text-sm font-semibold text-$COLOR-50'
+                className={cn(
+                    'mx-0.5 my-2 rounded-[3.5px] border border-white/5 px-1.5 py-0.5 text-sm font-semibold text-$COLOR-50',
+                    long ? 'whitespace-pre-wrap' : 'whitespace-nowrap',
+                )}
                 style={{ background: color }}
             >
                 <span className='not-prose font-mono'>{children}</span>
