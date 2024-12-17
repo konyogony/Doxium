@@ -4,9 +4,9 @@
 
 import { BsDiscord, BsGithub, BsTwitter } from '@vertisanpro/react-icons/bs';
 import { FiChevronRight } from '@vertisanpro/react-icons/fi';
-import Cmdk from '$COMPONENT-ALIAS/cmdk';
-import DocsFolder from '$COMPONENT-ALIAS/docs-folder';
-import DocsLink from '$COMPONENT-ALIAS/docs-link';
+import Cmdk from '$COMPONENTS-ALIAS/cmdk';
+import FolderFiletree from '$COMPONENTS-ALIAS/folder-filetree';
+import LinkFiletree from '$COMPONENTS-ALIAS/link-filetree';
 import { cn } from '$LIB-ALIAS/utils';
 import { DocsNode } from '$TYPES-ALIAS';
 import Link from 'next/link';
@@ -94,9 +94,9 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                         />
                     </button>
                     <div className={cn('w-1/2 flex-col pb-2', opened ? 'flex' : 'hidden')}>
-                        <DocsLink name='Documentation' />
+                        <LinkFiletree name='Documentation' />
                         {structure.map((v, i) => (
-                            <DocsFolder key={i} node={v} />
+                            <FolderFiletree key={i} node={v} />
                         ))}
                     </div>
                 </div>

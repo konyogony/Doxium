@@ -1,16 +1,16 @@
 // @ts-nocheck
 
-import DocsCards, { DocsCardsProps } from '$COMPONENTS-ALIAS/docs-cards';
+import Card, { CardProps } from '$COMPONENTS-ALIAS/card';
 import React, { ReactElement } from 'react';
 
-interface DocsCardsGroupProps {
+interface CardGroupProps {
     cols: number;
-    children: ReactElement<DocsCardsProps> | ReactElement<DocsCardsProps>[];
+    children: ReactElement<CardProps> | ReactElement<CardProps>[];
 }
 
-const DocsCardsGroup = ({ cols, children }: DocsCardsGroupProps) => {
+const CardGroup = ({ cols, children }: CardGroupProps) => {
     const modifiedChildren = React.Children.map(children, (child) => {
-        if (React.isValidElement(child) && child.type === DocsCards) {
+        if (React.isValidElement(child) && child.type === Card) {
             return React.cloneElement(child, { full: true });
         }
         return child;
@@ -27,4 +27,4 @@ const DocsCardsGroup = ({ cols, children }: DocsCardsGroupProps) => {
     );
 };
 
-export default DocsCardsGroup;
+export default CardGroup;

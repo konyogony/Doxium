@@ -6,7 +6,7 @@ import { replacePlaceholders, templatesDir } from '../utils/utils.js';
 
 export const installNoDocsFolder = async (response: responseT, pm: string, empty: boolean) => {
     const filesNoHome = [
-        { name: 'no-docs-folder-root-layout', type: 'tsx', path: './app/layout.tsx' },
+        { name: 'no-folder-filetree-root-layout', type: 'tsx', path: './app/layout.tsx' },
         !empty && { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
         !empty && { name: 'getting-started', type: 'mdx', path: './app/page.mdx' },
         !empty && { name: 'code-block', type: 'mdx', path: './app/components/code-block/page.mdx' },

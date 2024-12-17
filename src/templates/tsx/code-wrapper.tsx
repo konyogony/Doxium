@@ -10,8 +10,8 @@ import {
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
 import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
+import CodeWrapperIcon from '$COMPONENTS-ALIAS/code-wrapper-icon';
 import CopyButton from '$COMPONENTS-ALIAS/copy-button';
-import wikiCodeWrapperIcon from '$COMPONENTS-ALIAS/docs-code-wrapper-icon';
 import { getHighlighterInstance } from '$LIB-ALIAS/highlighter';
 import { isLightColor } from '$LIB-ALIAS/is-light-color';
 import { cn } from '$LIB-ALIAS/utils';
@@ -26,7 +26,7 @@ interface WikiCodeWrapperProps {
     twoSlash: boolean;
 }
 
-const WikiCodeWrapper = async ({
+const CodeWrapper = async ({
     language = '',
     children,
     lineNumbers,
@@ -53,7 +53,7 @@ const WikiCodeWrapper = async ({
         ].filter((v) => v !== false),
     });
 
-    const { icon: IconComponent, lang } = wikiCodeWrapperIcon({ language });
+    const { icon: IconComponent, lang } = CodeWrapperIcon({ language });
     const backgroundColor = ShikiThemeBackgroundHexDimmed[theme];
     const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
     const singleLine = children.split('\n').length === 2;
@@ -82,4 +82,4 @@ const WikiCodeWrapper = async ({
     );
 };
 
-export default WikiCodeWrapper;
+export default CodeWrapper;

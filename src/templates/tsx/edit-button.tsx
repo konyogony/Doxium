@@ -9,7 +9,7 @@ interface DocsEditProps {
     repoString: string;
 }
 
-const DocsEdit = ({ repoString }: DocsEditProps) => {
+const EditButton = ({ repoString }: DocsEditProps) => {
     const pathname = usePathname();
     return (
         <>
@@ -27,4 +27,4 @@ const DocsEdit = ({ repoString }: DocsEditProps) => {
     );
 };
 
-export default DocsEdit;
+export default EditButton;

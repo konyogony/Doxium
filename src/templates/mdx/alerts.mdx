@@ -1,33 +1,33 @@
-import DocsAlerts from 'doxium/docs-alerts'
+import Alerts from 'doxium/alerts'
 
 
-# Alert component
+# Alert Component
 
 Doxium provides a built-in alert component, which is commonly used to highlight an important piece of information, 
-> e.g. A new update or some news.
+> e.g., a new update or some news.
 
-You can invoke them by first importing them in your `page.mdx` file and then using them as a regular component:
+You can invoke them by first importing them into your `page.mdx` file and then using them as a regular component:
 
 ```mdx
-import DocsAlerts from 'doxium/docs-alerts'
+import Alerts from 'doxium/alerts'
 
-## Alert list:
+## Alert List:
 
-<DocsAlerts variant='bookmark'>Bookmark</DocsAlerts>
-<DocsAlerts variant='warning'>Warning</DocsAlerts>
-<DocsAlerts variant='success'>Success</DocsAlerts>
-<DocsAlerts variant='error'>Error</DocsAlerts>
-<DocsAlerts variant='tip'>Tip</DocsAlerts>
-<DocsAlerts variant='accent'>Accent</DocsAlerts>
-<DocsAlerts variant='base'>Base</DocsAlerts>
+<Alerts variant='bookmark'>Bookmark</Alerts>
+<Alerts variant='warning'>Warning</Alerts>
+<Alerts variant='success'>Success</Alerts>
+<Alerts variant='error'>Error</Alerts>
+<Alerts variant='tip'>Tip</Alerts>
+<Alerts variant='accent'>Accent</Alerts>
+<Alerts variant='base'>Base</Alerts>
 
-<DocsAlerts>Defaults to accent</DocsAlerts>
+<Alerts>Defaults to accent</Alerts>
 
 ```
 
-## Alert variants
+## Alert Variants
 
-You can specify the `variant` property on the component, it can be one of the following:
+You can specify the `variant` property on the component. It can be one of the following:
 - bookmark
 - warning
 - success
@@ -37,15 +37,15 @@ You can specify the `variant` property on the component, it can be one of the fo
 - accent
 - base
 
-If none specified, it defaults to `accent`
+If none is specified, it defaults to `accent`.
 
-## Here are some examples to check out
+## Here Are Some Examples to Check Out
 
-<DocsAlerts variant='bookmark'>Bookmark</DocsAlerts>
-<DocsAlerts variant='warning'>Warning</DocsAlerts>
-<DocsAlerts variant='success'>Success</DocsAlerts>
-<DocsAlerts variant='error'>Error</DocsAlerts>
-<DocsAlerts variant='tip'>Tip</DocsAlerts>
-<DocsAlerts variant='star'>Star</DocsAlerts>
-<DocsAlerts variant='accent'>Accent</DocsAlerts>
-<DocsAlerts variant='base'>Base</DocsAlerts>
+<Alerts variant='bookmark'>Bookmark</Alerts>
+<Alerts variant='warning'>Warning</Alerts>
+<Alerts variant='success'>Success</Alerts>
+<Alerts variant='error'>Error</Alerts>
+<Alerts variant='tip'>Tip</Alerts>
+<Alerts variant='star'>Star</Alerts>
+<Alerts variant='accent'>Accent</Alerts>
+<Alerts variant='base'>Base</Alerts>

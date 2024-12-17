@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import DocsFolder from '$COMPONENTS-ALIAS/docs-folder';
-import DocsLink from '$COMPONENTS-ALIAS/docs-link';
+import FolderFiletree from '$COMPONENTS-ALIAS/folder-filetree';
+import LinkFiletree from '$COMPONENTS-ALIAS/link-filetree';
 import { DocsNode } from '$TYPES-ALIAS';
 
 interface SidebarProps {
@@ -11,9 +11,9 @@ interface SidebarProps {
 const Sidebar = ({ structure }: SidebarProps) => {
     return (
         <div className='sticky top-24 hidden h-full w-fit min-w-[15vh] flex-shrink-0 flex-col items-start lg:flex'>
-            <DocsLink name='Documentation' />
+            <LinkFiletree name='Documentation' />
             {structure.map((v, i) => (
-                <DocsFolder key={i} node={v} />
+                <FolderFiletree key={i} node={v} />
             ))}
         </div>
     );

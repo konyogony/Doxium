@@ -12,12 +12,12 @@ import {
 } from '@vertisanpro/react-icons/fi';
 import { cn } from '$LIB-ALIAS/utils';
 
-interface DocsAlertsProps {
+interface AlertsProps {
     variant?: 'bookmark' | 'warning' | 'error' | 'success' | 'tip' | 'star' | 'accent' | 'base';
     link?: string;
 }
 
-const getAlertColor = (variant: DocsAlertsProps['variant']) => {
+const getAlertColor = (variant: AlertsProps['variant']) => {
     switch (variant) {
         case 'bookmark':
             return 'bg-yellow-800/70 text-yellow-600 border-yellow-400/40';
@@ -40,7 +40,7 @@ const getAlertColor = (variant: DocsAlertsProps['variant']) => {
     }
 };
 
-const getAlertIcon = (variant: DocsAlertsProps['variant']) => {
+const getAlertIcon = (variant: AlertsProps['variant']) => {
     switch (variant) {
         case 'bookmark':
             return <FiBookmark size={18} />;
@@ -63,7 +63,7 @@ const getAlertIcon = (variant: DocsAlertsProps['variant']) => {
     }
 };
 
-const DocsAlerts = ({ variant = 'accent', children, link }: React.PropsWithChildren<DocsAlertsProps>) => {
+const Alerts = ({ variant = 'accent', children, link }: React.PropsWithChildren<AlertsProps>) => {
     return (
         <a
             className={cn(
@@ -80,4 +80,4 @@ const DocsAlerts = ({ variant = 'accent', children, link }: React.PropsWithChild
     );
 };
 
-export default DocsAlerts;
+export default Alerts;

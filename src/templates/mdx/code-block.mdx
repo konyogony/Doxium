@@ -5,9 +5,9 @@ export const metadata = {
 # Code blocks
 
 Code blocks are used to represent code in your documentation with proper highlighting. These code blocks are made using [Shiki](https://shiki.matsu.io/),
-therefore there are many themes to choose from available by editing `"shiki-theme"` in `doxium.json`
+therefore there are many themes to choose from, available by editing `"shiki-theme"` in `doxium.json`.
 
-This is a built-in component, so it doesn't require to be imported from anywhere.
+This is a built-in component, so it doesn't need to be imported from anywhere.
 
 ## Simple example:
 
@@ -19,7 +19,7 @@ const HelloWorld = () => console.log('Hello World!')
 ```
 ````
 
-Will yield with the following result in your page:
+Will yield the following result on your page:
 
 ```tsx
 const HelloWorld = () => console.log('Hello World!')
@@ -36,7 +36,7 @@ Notice that writing `tsx` after the backticks will define the language to be use
 - css
 - json
 
-You can change the list of available languages by editing line **15** in `@/lib/highlighter.ts`, in the future this will be more accessible via the `doxium.json` config
+You can change the list of available languages by editing line **15** in `@/lib/highlighter.ts`. In the future, this will be more accessible via the `doxium.json` config.
 
 # Advanced usage
 
@@ -97,7 +97,7 @@ Escapable by adding a backslash after the exclamation mark, `// [\!code ++]`
 ## Toggle top bar
 
 You can toggle on/off the top bar in the code block which usually contains the icon, language and copy button. 
-This is done my adding `noTopBar` flag after decalaring your language. For example, inputing this code:
+This is done by adding the `noTopBar` flag after declaring your language. For example, inputting this code:
 
 ````mdx
 ```json noTopBar
@@ -109,7 +109,7 @@ This is done my adding `noTopBar` flag after decalaring your language. For examp
 ```
 ````
 
-Will result you this:
+Will result in this:
 
 ```json noTopBar
 {
@@ -127,8 +127,8 @@ bunx doxium@latest init
 
 ## Toggle line numbers
 
-You can toggle on/off the line numbers which will be displayed in a darker tone to the left, by adding `lineNumbers` flag after decalaring your language.
-For example, inputing this code:
+You can toggle on/off the line numbers, which will be displayed in a darker tone to the left, by adding the `lineNumbers` flag after declaring your language.
+For example, inputting this code:
 
 ````mdx
 ```json lineNumbers
@@ -152,8 +152,8 @@ Will result you this:
 
 ## Toggle copy button
 
-You can toggle on/off the copy button, although the user is still able to manually copy the text, by adding `noCopyButton` flag after decalaring your language.
-For example, inputing this code:
+You can toggle on/off the copy button, although the user is still able to manually copy the text, by adding the `noCopyButton` flag after declaring your language.
+For example, inputting this code:
 
 ````mdx
 ```json noCopyButton
@@ -178,7 +178,7 @@ Will result you this:
 
 # Limitations and errors
 
-In this section I will discuss some limitations and errors which occur, which either will be fixed, or there are no fixes.
+In this section, I will discuss some limitations and errors that occur, which either will be fixed or have no fixes.
 
 Summary:
 | Issue | Notes |
@@ -192,17 +192,17 @@ If you are able to somehow fix any of these issues, make a [PR](https://github.c
 
 ## [Shiki] 400 instances have been created
 
-You may recieve the following error (or a similar one) in the console when developing your app:
+You may receive the following error (or a similar one) in the console when developing your app:
 
 ``[Shiki] 400 instances have been created. Shiki is supposed to be used as a singleton, consider refactoring your code to cache your highlighter instance; Or call `highlighter.dispose()` to release unused instances.``
 
 This is a dev bug and is fixed when you properly build your app with `bun run build` and `bun run start`. 
 
-To be honest, I am not sure why this happens in the dev enviroment either since I have made a singleton. Open to suggestions.
+To be honest, I am not sure why this happens in the dev environment either since I have made a singleton. Open to suggestions.
 
 
 ## Prettier moving `// [!code highlight]` to another line
 
-This is a well known error and issue by the prettier community that it is able to move your comments to another line if it doesnt have space or meets some different paremeters. 
+This is a well-known error and issue by the Prettier community that it is able to move your comments to another line if it doesn't have space or meets some different parameters. 
 
-Currently, I dont think there is a propper fix, so my solution is to add `.mdx` to `.prettierignore`, so that it doesnt format the file at all. This obviously comes at the cost that you have to manually format your file.
+Currently, I don't think there is a proper fix, so my solution is to add `.mdx` to `.prettierignore`, so that it doesn't format the file at all. This obviously comes at the cost that you have to manually format your file.

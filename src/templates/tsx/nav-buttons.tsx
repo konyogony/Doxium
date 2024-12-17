@@ -14,7 +14,7 @@ interface DocsNavProps {
     structure: DocsNode[];
 }
 
-const DocsNav = ({ structure }: DocsNavProps) => {
+const NavButtons = ({ structure }: DocsNavProps) => {
     const pathname = usePathname();
 
     const paths = useMemo(() => {
@@ -53,4 +53,4 @@ const DocsNav = ({ structure }: DocsNavProps) => {
     );
 };
 
-export default DocsNav;
+export default NavButtons;

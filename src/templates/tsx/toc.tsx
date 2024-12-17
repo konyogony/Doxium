@@ -7,7 +7,7 @@ import { cn } from '$LIB-ALIAS/utils';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-const DocsHeadings = () => {
+const TOC = () => {
     const [headings, setHeadings] = useState<Heading[]>([]);
     const [activeHeading, setActiveHeading] = useState<string>('');
     const pathname = usePathname();
@@ -71,4 +71,4 @@ const DocsHeadings = () => {
     return <>{memoizedHeadings}</>;
 };
 
-export default DocsHeadings;
+export default TOC;

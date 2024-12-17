@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import DocsToaster from '$COMPONENTS-ALIAS/docs-toaster';
 import Footer from '$COMPONENTS-ALIAS/footer';
 import Navbar from '$COMPONENTS-ALIAS/navbar';
+import Toaster from '$COMPONENTS-ALIAS/toaster';
 import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { getStructureInstance } from '$LIB-ALIAS/structure';
 import { cn } from '$LIB-ALIAS/utils';
@@ -31,7 +31,7 @@ const RootLayout = async ({
                     <Navbar structure={structure} socials={socials} />
                     {children}
                     <Footer />
-                    <DocsToaster />
+                    <Toaster />
                 </main>
             </body>
         </html>

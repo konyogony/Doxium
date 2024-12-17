@@ -12,7 +12,7 @@ interface WikiLinkProps {
     path?: string;
 }
 
-const DocsLink = ({ name, path }: WikiLinkProps) => {
+const LinkFiletree = ({ name, path }: WikiLinkProps) => {
     const pathname = usePathname();
 
     return (
@@ -38,4 +38,4 @@ const DocsLink = ({ name, path }: WikiLinkProps) => {
     );
 };
 
-export default DocsLink;
+export default LinkFiletree;

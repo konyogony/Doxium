@@ -51,6 +51,8 @@ An easy solution to generate modern documentation in Next.js
 -   [ ] Custom checkboxes
 -   [ ] LaTeX, Mermaid, playground, twoslash custom support?
 -   [ ] Make a toggleable api by which you can get raw data from the a webpage including metadata and other stuff
+-   [ ] Control casing
+-   [ ] Custom 404 page
 
 ### Unsorted and outdated
 

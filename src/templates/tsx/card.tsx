@@ -3,20 +3,14 @@
 import { FiArrowUpRight } from '@vertisanpro/react-icons/fi';
 import { cn } from '$LIB-ALIAS/utils';
 
-export interface DocsCardsProps {
+export interface CardProps {
     title: string;
     href?: string;
     newTab?: boolean;
     full?: boolean;
 }
 
-const DocsCards = ({
-    title,
-    href,
-    children,
-    full = false,
-    newTab = false,
-}: React.PropsWithChildren<DocsCardsProps>) => {
+const Card = ({ title, href, children, full = false, newTab = false }: React.PropsWithChildren<CardProps>) => {
     return href ? (
         <a
             href={href}
@@ -49,4 +43,4 @@ const DocsCards = ({
     );
 };
 
-export default DocsCards;
+export default Card;

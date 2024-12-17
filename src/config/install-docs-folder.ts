@@ -6,9 +6,9 @@ import { replacePlaceholders, templatesDir } from '../utils/utils.js';
 
 export const installDocsFolder = async (response: responseT, pm: string, empty: boolean) => {
     const filesHome = [
-        { name: 'docs-folder-root-layout', type: 'tsx', path: './app/layout.tsx' },
-        { name: 'docs-folder-docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
-        { name: 'docs-folder-home-page', type: 'tsx', path: './app/page.tsx' },
+        { name: 'folder-filetree-root-layout', type: 'tsx', path: './app/layout.tsx' },
+        { name: 'folder-filetree-docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
+        { name: 'folder-filetree-home-page', type: 'tsx', path: './app/page.tsx' },
         !empty && { name: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
         !empty && { name: 'getting-started', type: 'mdx', path: './app/docs/page.mdx' },
         !empty && { name: 'code-block', type: 'mdx', path: './app/docs/components/code-block/page.mdx' },

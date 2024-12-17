@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import WikiCodeWrapper from '$COMPONENTS-ALIAS/docs-code-wrapper';
-import WikiHashTag from '$COMPONENTS-ALIAS/docs-hashtag';
+import CodeWrapper from '$COMPONENTS-ALIAS/code-wrapper';
+import HashtagButton from '$COMPONENTS-ALIAS/hashtag-button';
 import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { cn } from '$LIB-ALIAS/utils';
 import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
@@ -17,9 +17,9 @@ const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <WikiHashTag id={id} variant='h1'>
+            <HashtagButton id={id} variant='h1'>
                 {children}
-            </WikiHashTag>
+            </HashtagButton>
         );
     },
     h2: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -31,9 +31,9 @@ const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <WikiHashTag id={id} variant='h2'>
+            <HashtagButton id={id} variant='h2'>
                 {children}
-            </WikiHashTag>
+            </HashtagButton>
         );
     },
     h3: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -45,9 +45,9 @@ const mdxComponents = {
             .replace(/[^\p{L}\p{N}-]/gu, '')
             .replace(/\./g, '');
         return (
-            <WikiHashTag id={id} variant='h3'>
+            <HashtagButton id={id} variant='h3'>
                 {children}
-            </WikiHashTag>
+            </HashtagButton>
         );
     },
     code: async ({ children }: React.HTMLAttributes<HTMLUnknownElement>) => {
@@ -75,7 +75,7 @@ const mdxComponents = {
         const noCopyButton: boolean = (props as preProps).noCopyButton || false;
         const twoSlash: boolean = (props as preProps).twoSlash || false;
         return (
-            <WikiCodeWrapper
+            <CodeWrapper
                 language={language}
                 lineNumbers={lineNumbers}
                 noTopBar={noTopBar}
@@ -83,7 +83,7 @@ const mdxComponents = {
                 twoSlash={twoSlash}
             >
                 {codeElement.props.children as string}
-            </WikiCodeWrapper>
+            </CodeWrapper>
         );
     },
     blockquote: ({ children }: React.HTMLAttributes<HTMLElement>) => {

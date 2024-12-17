@@ -1,25 +1,25 @@
 // @ts-nocheck
 
-import DocsLink from '$COMPONENTS-ALIAS/docs-link';
+import LinkFiletree from '$COMPONENTS-ALIAS/link-filetree';
 import { DocsNode } from '$TYPES-ALIAS';
 
-const DocsFolder = ({ node }: { node: DocsNode }) => {
+const FolderFiletree = ({ node }: { node: DocsNode }) => {
     return (
         <div className='flex flex-col'>
             {node.nodes ? (
                 <>
-                    <DocsLink name={node.name} />
+                    <LinkFiletree name={node.name} />
                     <div className='flex flex-col'>
                         {node.nodes.map((node) => (
-                            <DocsFolder node={node} key={node.name} />
+                            <FolderFiletree node={node} key={node.name} />
                         ))}
                     </div>
                 </>
             ) : (
-                <DocsLink name={node.name} path={node.path || ''} />
+                <LinkFiletree name={node.name} path={node.path || ''} />
             )}
         </div>
     );
 };
 
-export default DocsFolder;
+export default FolderFiletree;
