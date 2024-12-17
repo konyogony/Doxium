@@ -11,9 +11,19 @@ import {
     templatesDir,
 } from '../utils/utils.js';
 
-export const configureShadcn = async (response: responseT, pmx: string[], pm: string, mute_output: boolean) => {
+export const configureShadcn = async (
+    response: responseT,
+    pmx: string[],
+    pm: string,
+    mute_output: boolean,
+    typesAlias: string,
+    libAlias: string,
+    componentsAlias: string,
+) => {
     // Check if the first element of pmx is not present to avoid errors
     if (!pmx[0]) return;
+
+    console.log(77, typesAlias, libAlias, componentsAlias);
 
     const files = [
         { name: 'tailwind', type: 'ts', path: './tailwind.config.ts' },
@@ -27,7 +37,12 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
     ].map((file) => {
         return {
             ...file,
-            path: replaceFilePlaceholders(file.path, './components/doxium', './lib', './types'),
+            path: replaceFilePlaceholders(
+                file.path,
+                componentsAlias ?? 'components/doxium',
+                libAlias ?? 'lib',
+                typesAlias ?? 'types',
+            ),
         };
     });
 
@@ -42,10 +57,9 @@ export const configureShadcn = async (response: responseT, pmx: string[], pm: st
                     const content = replacePlaceholders(
                         await fs.readFile(templatePath, 'utf8'),
                         response,
-                        '@/components/doxium',
-                        '@/lib',
-                        '@/types',
-                        'components/doxium',
+                        typesAlias ?? '@/components/doxium',
+                        libAlias ?? '@/lib',
+                        componentsAlias ?? '@/types',
                     );
                     await fs.writeFile(file.path, content);
                 } catch (error) {

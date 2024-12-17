@@ -28,7 +28,6 @@ export const replacePlaceholders = (
     componentAlias: string,
     libAlias: string,
     typesAlias: string,
-    tsconfigAlias: string,
 ) => {
     return content
         .replaceAll(/\/\/ @ts-nocheck\n/g, '')
@@ -42,7 +41,7 @@ export const replacePlaceholders = (
         .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
         .replaceAll(/\$LIB-ALIAS/g, libAlias)
         .replaceAll(/\$TYPES-ALIAS/g, typesAlias)
-        .replaceAll(/\$TSCONFIG/g, tsconfigAlias)
+        .replaceAll(/\$TSCONFIG/g, componentAlias.replaceAll('@/', ''))
         .replaceAll(/\$BASE-URL/g, 'app/docs');
 };
 
@@ -52,8 +51,9 @@ export const replaceFilePlaceholders = (
     libAlias: string,
     typesAlias: string,
 ) => {
+    console.log(77, componentAlias, libAlias, typesAlias);
     return content
-        .replaceAll(/\$COMPONENTS-ALIAS/g, './' + componentAlias)
-        .replaceAll(/\$LIB-ALIAS/g, './' + libAlias)
-        .replaceAll(/\$TYPES-ALIAS/g, './' + typesAlias);
+        .replaceAll(/\$COMPONENTS-ALIAS/g, './' + componentAlias.replaceAll('@/', ''))
+        .replaceAll(/\$LIB-ALIAS/g, './' + libAlias.replaceAll('@/', ''))
+        .replaceAll(/\$TYPES-ALIAS/g, './' + typesAlias.replaceAll('@/', ''));
 };

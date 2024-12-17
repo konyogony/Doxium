@@ -11,6 +11,10 @@ program
     .description(packageJson.default.description)
     .version(packageJson.default.version, '-v, --version');
 
+// TYPES-ALIAS
+// LIB-ALIAS
+// COMPONENTS-ALIAS
+
 program
     .command('init [name]')
     .description('create new Doxium app')
@@ -25,6 +29,9 @@ program
     .option('-a, --accent-color <string>', 'accent color')
     .option('-t, --shiki-theme <string>', 'shiki theme')
     .option('-g, --github-repo <string>', 'github repo')
+    .option('--types-alias <string>', 'types alias')
+    .option('--lib-alias <string>', 'lib alias')
+    .option('--components-alias <string>', 'components alias')
     .action((name, options) => {
         if (options.shadcnStyle && options.shadcnStyle !== 'default' && options.shadcnStyle !== 'new-york') {
             console.error("Invalid value for --shadcn-style. Allowed values are 'default' or 'new-york'.");
@@ -59,6 +66,19 @@ program
             console.error('Invalid value for --github-repo. Please provide a valid GitHub repository.');
             process.exit(1);
         }
+        const aliasPattern = /^@\//;
+        if (options.typesAlias && !aliasPattern.test(options.typesAlias)) {
+            console.error('Invalid value for --types-alias. It should be an absolute path starting with "@/"');
+            process.exit(1);
+        }
+        if (options.libAlias && !aliasPattern.test(options.libAlias)) {
+            console.error('Invalid value for --lib-alias. It should be an absolute path starting with "@/"');
+            process.exit(1);
+        }
+        if (options.componentsAlias && !aliasPattern.test(options.componentsAlias)) {
+            console.error('Invalid value for --components-alias. It should be an absolute path starting with "@/"');
+            process.exit(1);
+        }
         init(
             name,
             options.empty,
@@ -72,6 +92,9 @@ program
             options.accentColor,
             options.shikiTheme,
             options.githubRepo,
+            options.typesAlias,
+            options.libAlias,
+            options.componentsAlias,
         );
     });
 

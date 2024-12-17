@@ -25,6 +25,9 @@ export const init = async (
     accentColor: string,
     shikiTheme: string,
     githubRepo: string,
+    typesAlias: string,
+    libAlias: string,
+    componentsAlias: string,
 ) => {
     let response_name: prompts.Answers<'app-name'>;
     let response_full: prompts.Answers<
@@ -136,10 +139,10 @@ export const init = async (
     await installDependencies(pmi, mute_output);
 
     // Configure shadcn
-    await configureShadcn(response, pmx, pm, mute_output);
+    await configureShadcn(response, pmx, pm, mute_output, typesAlias, libAlias, componentsAlias);
 
     // Configure Components
-    await configureComp(response, pm, empty, mute_output);
+    await configureComp(response, pm, empty, mute_output, typesAlias, libAlias, componentsAlias);
 
     // Remove Prettier (if disabled)
     await removePrettier(response, pm, mute_output);

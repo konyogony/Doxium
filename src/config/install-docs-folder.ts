@@ -4,11 +4,18 @@ import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { replacePlaceholders, templatesDir } from '../utils/utils.js';
 
-export const installDocsFolder = async (response: responseT, pm: string, empty: boolean) => {
+export const installDocsFolder = async (
+    response: responseT,
+    pm: string,
+    empty: boolean,
+    typesAlias: string,
+    libAlias: string,
+    componentsAlias: string,
+) => {
     const filesHome = [
-        { name: 'folder-filetree-root-layout', type: 'tsx', path: './app/layout.tsx' },
-        { name: 'folder-filetree-docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
-        { name: 'folder-filetree-home-page', type: 'tsx', path: './app/page.tsx' },
+        { name: 'docs-folder-root-layout', type: 'tsx', path: './app/layout.tsx' },
+        { name: 'docs-folder-docs-layout', type: 'tsx', path: './app/docs/layout.tsx' },
+        { name: 'docs-folder-home-page', type: 'tsx', path: './app/page.tsx' },
         !empty && { name: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
         !empty && { name: 'getting-started', type: 'mdx', path: './app/docs/page.mdx' },
         !empty && { name: 'code-block', type: 'mdx', path: './app/docs/components/code-block/page.mdx' },
@@ -40,10 +47,9 @@ export const installDocsFolder = async (response: responseT, pm: string, empty: 
                     const content = replacePlaceholders(
                         await fs.readFile(templatePath, 'utf8'),
                         response,
-                        '@/components/doxium',
-                        '@/lib',
-                        '@/types',
-                        'components/doxium',
+                        componentsAlias ?? '@/components/doxium',
+                        libAlias ?? '@/lib',
+                        typesAlias ?? '@/types',
                     );
                     await fs.writeFile(file.path, content);
                 } catch (error) {

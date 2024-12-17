@@ -4,7 +4,14 @@ import fs from 'fs-extra';
 import { responseT } from '../utils/types.js';
 import { replacePlaceholders, templatesDir } from '../utils/utils.js';
 
-export const installNoDocsFolder = async (response: responseT, pm: string, empty: boolean) => {
+export const installNoDocsFolder = async (
+    response: responseT,
+    pm: string,
+    empty: boolean,
+    typesAlias: string,
+    libAlias: string,
+    componentsAlias: string,
+) => {
     const filesNoHome = [
         { name: 'no-folder-filetree-root-layout', type: 'tsx', path: './app/layout.tsx' },
         !empty && { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
@@ -38,10 +45,9 @@ export const installNoDocsFolder = async (response: responseT, pm: string, empty
                     const content = replacePlaceholders(
                         await fs.readFile(templatePath, 'utf8'),
                         response,
-                        '@/components/doxium',
-                        '@/lib',
-                        '@/types',
-                        'components/doxium',
+                        componentsAlias ?? '@/components/doxium',
+                        libAlias ?? '@/lib',
+                        typesAlias ?? '@/types',
                     );
                     await fs.writeFile(file.path, content);
                 } catch (error) {

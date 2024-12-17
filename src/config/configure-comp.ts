@@ -6,7 +6,15 @@ import { infoText, replaceFilePlaceholders, replacePlaceholders, successText, te
 import { installDocsFolder } from './install-docs-folder.js';
 import { installNoDocsFolder } from './install-no-docs-folder.js';
 
-export const configureComp = async (response: responseT, pm: string, empty: boolean, mute_output: boolean) => {
+export const configureComp = async (
+    response: responseT,
+    pm: string,
+    empty: boolean,
+    mute_output: boolean,
+    typesAlias: string,
+    libAlias: string,
+    componentsAlias: string,
+) => {
     const alwaysInstall = [
         // UI components
         { name: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
@@ -53,7 +61,12 @@ export const configureComp = async (response: responseT, pm: string, empty: bool
     ].map((file) => {
         return {
             ...file,
-            path: replaceFilePlaceholders(file.path, 'components/doxium', 'lib', 'types'),
+            path: replaceFilePlaceholders(
+                file.path,
+                componentsAlias ?? 'components/doxium',
+                libAlias ?? 'lib',
+                typesAlias ?? 'types',
+            ),
         };
     });
 
@@ -77,10 +90,9 @@ export const configureComp = async (response: responseT, pm: string, empty: bool
                     const content = replacePlaceholders(
                         await fs.readFile(templatePath, 'utf8'),
                         response,
-                        '@/components/doxium',
-                        '@/lib',
-                        '@/types',
-                        'components/doxium',
+                        componentsAlias ?? '@/components/doxium',
+                        libAlias ?? '@/lib',
+                        typesAlias ?? '@/types',
                     );
 
                     await fs.writeFile(file.path, content);
@@ -94,9 +106,9 @@ export const configureComp = async (response: responseT, pm: string, empty: bool
         spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
         if (response['use-docs']) {
-            installDocsFolder(response, pm, empty);
+            installDocsFolder(response, pm, empty, typesAlias, libAlias, componentsAlias);
         } else {
-            installNoDocsFolder(response, pm, empty);
+            installNoDocsFolder(response, pm, empty, typesAlias, libAlias, componentsAlias);
         }
     } catch (error) {
         console.error('Error creating custom components:', error);
