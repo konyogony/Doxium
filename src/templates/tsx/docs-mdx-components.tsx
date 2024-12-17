@@ -3,6 +3,7 @@
 import WikiCodeWrapper from '$COMPONENTS-ALIAS/docs-code-wrapper';
 import WikiHashTag from '$COMPONENTS-ALIAS/docs-hashtag';
 import { getJsonData } from '$LIB-ALIAS/get-json-data';
+import { cn } from '$LIB-ALIAS/utils';
 import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
 import { BundledTheme } from 'shiki';
 

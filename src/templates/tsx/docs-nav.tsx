@@ -28,7 +28,7 @@ const DocsNav = ({ structure }: DocsNavProps) => {
     }, [pathname, structure]);
 
     return (
-        <div className='not-prose flex w-full flex-row items-center justify-between space-x-2'>
+        <div className='not-prose flex w-full flex-row items-center justify-between space-x-2 py-2'>
             {paths.prev && (
                 <Link href={paths.prev.path} className='flex w-fit max-w-[50%] flex-col items-end'>
                     <span className='text-sm text-$COLOR-500'>Previous</span>

@@ -4,7 +4,7 @@
 
 /* Base styles */
 html {
-    @apply scroll-pt-28 scroll-smooth;
+    @apply scroll-pt-32 md:scroll-pt-28 scroll-smooth;
     scrollbar-gutter: stable both-edges;
 }
 

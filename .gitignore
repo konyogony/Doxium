@@ -4,3 +4,4 @@ bun.lockb
 package-lock.json
 dist
 clown2
+testing

@@ -6,7 +6,7 @@ import { DoxiumConfig } from '$TYPES-ALIAS';
 
 interface jsonDataReturn {
     socials: {
-        github: string;
+        'github-repo': string;
         twitter: string;
         discord: string;
     };
