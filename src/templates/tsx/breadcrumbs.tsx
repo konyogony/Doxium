@@ -18,7 +18,7 @@ const Breadcrumbs = () => {
     const pathname = usePathname();
     const path = pathname.split('/').filter((p) => p !== '');
     return (
-        <Breadcrumb className='not-prose text mt-16 md:mt-4 flex w-full'>
+        <Breadcrumb className='not-prose text mt-16 lg:mt-4 flex w-full'>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>

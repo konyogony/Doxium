@@ -3,18 +3,18 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Children } from 'react';
 
-interface DocsTabsProps {
+interface TabsProps {
     tabs: string[];
     defaultTab?: string;
     widthFull?: boolean;
 }
 
-const DocsTabs = ({
+const Tabs = ({
     tabs,
     defaultTab = tabs[0],
     widthFull = true,
     children,
-}: React.PropsWithChildren<DocsTabsProps>) => {
+}: React.PropsWithChildren<TabsProps>) => {
     return (
         <Tabs defaultValue={defaultTab} className={widthFull ? 'w-full' : ''}>
             <TabsList className={widthFull ? 'w-full' : ''}>
@@ -35,4 +35,4 @@ const DocsTabs = ({
     );
 };
 
-export default DocsTabs;
+export default Tabs;

@@ -37,17 +37,17 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
             <div className='fixed inset-0 z-50 flex h-fit w-full flex-col'>
                 <nav
                     className={
-                        'flex h-fit w-full flex-row items-center gap-8 border-white/10 bg-zinc-950/50 px-[10vw] py-4 text-sm font-normal text-zinc-300 decoration-dotted backdrop-blur-xl transition-all duration-300 md:border-b md:px-[20vw]'
+                        'flex h-fit w-full flex-row items-center gap-8 border-white/10 bg-$COLOR-950/50 px-[10vw] py-4 text-sm font-normal text-$COLOR-300 decoration-dotted backdrop-blur-xl transition-all duration-300 lg:border-b lg:px-[20vw]'
                     }
                 >
-                    <Link href='/' className='text-xl font-bold text-zinc-100 hover:text-zinc-50'>
+                    <Link href='/' className='text-xl font-bold text-$COLOR-100 hover:text-$COLOR-50'>
                         Doxium
                     </Link>
                     <Link
                         href='/'
                         className={cn(
                             'text-sm font-medium hover:underline',
-                            path === '' ? 'text-blue-500' : 'text-zinc-200',
+                            path === '' ? 'text-$ACCENT-COLOR-500' : 'text-$COLOR-200',
                         )}
                     >
                         Home
@@ -56,7 +56,7 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                         href='/docs'
                         className={cn(
                             'text-sm font-medium hover:underline',
-                            path === 'docs' ? 'text-blue-500' : 'text-zinc-200',
+                            path === 'docs' ? 'text-$ACCENT-COLOR-500' : 'text-$COLOR-200',
                         )}
                     >
                         Docs
@@ -68,7 +68,7 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                                 if (!v) return null;
                                 return (
                                     <a
-                                        className='flex items-center justify-center rounded-sm p-2 hover:bg-zinc-900'
+                                        className='flex items-center justify-center rounded-sm p-2 hover:bg-$COLOR-900'
                                         href={v}
                                         rel='noopener noreferrer'
                                         target='_blank'
@@ -82,7 +82,7 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                             })}
                     </div>
                 </nav>
-                <div className='z-50 flex w-full flex-col border-y border-white/10 bg-zinc-950/50 px-[10vw] py-2.5 backdrop-blur-xl md:hidden'>
+                <div className='z-50 flex w-full flex-col border-y border-white/10 bg-$COLOR-950/50 px-[10vw] py-2.5 backdrop-blur-xl lg:hidden'>
                     <button className='flex flex-row items-center gap-1' onClick={() => setOpened((prev) => !prev)}>
                         Menu
                         <FiChevronRight
@@ -103,9 +103,10 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
             </div>
             <button
                 className={cn(
-                    'fixed inset-0 z-40 h-screen w-screen bg-zinc-950/50 transition-all duration-300',
+                    'fixed inset-0 z-40 h-screen w-screen bg-$COLOR-950/50 transition-all duration-300',
                     opened ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
                 )}
+                aria-label='Close menu'
                 onClick={() => setOpened((prev) => !prev)}
             />
         </>

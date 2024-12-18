@@ -47,8 +47,10 @@ export const configureShadcn = async (
     });
 
     try {
-        await fs.mkdir(componentsAlias.replaceAll('@/', '') ?? 'components/doxium', { recursive: true });
-        await fs.mkdir(libAlias.replaceAll('@/', '') ?? 'lib', { recursive: true });
+        await fs.mkdir(componentsAlias ? componentsAlias.replaceAll('@/', '') : 'components/doxium', {
+            recursive: true,
+        });
+        await fs.mkdir(libAlias ? libAlias.replaceAll('@/', '') : 'lib', { recursive: true });
         typesAlias &&
             (await fs.mkdir(typesAlias.split('/').slice(0, -1).join('/').replaceAll('@/', ''), { recursive: true }));
 

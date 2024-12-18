@@ -64,7 +64,7 @@ const getAlertIcon = (variant: AlertsProps['variant']) => {
 };
 
 const Alerts = ({ variant = 'accent', children, link }: React.PropsWithChildren<AlertsProps>) => {
-    return (
+    return link ? (
         <a
             className={cn(
                 'not-prose my-3 flex w-full flex-row items-center rounded-lg border-[0.01em] px-3.5 py-2.5 text-sm font-normal',
@@ -77,6 +77,16 @@ const Alerts = ({ variant = 'accent', children, link }: React.PropsWithChildren<
             {getAlertIcon(variant)}
             <span className='ml-2'>{children}</span>
         </a>
+    ) : (
+        <span
+            className={cn(
+                'not-prose my-3 flex w-full flex-row items-center rounded-lg border-[0.01em] px-3.5 py-2.5 text-sm font-normal',
+                getAlertColor(variant),
+            )}
+        >
+            {getAlertIcon(variant)}
+            <span className='ml-2'>{children}</span>
+        </span>
     );
 };
 

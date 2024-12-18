@@ -28,6 +28,7 @@ export const init = async (
     typesAlias: string,
     libAlias: string,
     componentsAlias: string,
+    directory: string,
 ) => {
     let response_name: prompts.Answers<'app-name'>;
     let response_full: prompts.Answers<
@@ -75,8 +76,10 @@ export const init = async (
         );
     }
 
-    if (await isNextJsProject(`./${response_name['app-name']}`)) {
-        if (await isDoxiumProject(`./${response_name['app-name']}`)) {
+    if (await isNextJsProject(`./${directory && directory.replaceAll('./', '') + '/'}${response_name['app-name']}`)) {
+        if (
+            await isDoxiumProject(`./${directory && directory.replaceAll('./', '') + '/'}${response_name['app-name']}`)
+        ) {
             console.log(
                 '\n' +
                     warningText(
@@ -130,7 +133,7 @@ export const init = async (
     const { pm, pmx, pmi } = await getPmInfo(mute_output);
 
     // Configure Next.js
-    await createNewNext(response, pmx, mute_output);
+    await createNewNext(response, pmx, mute_output, directory);
 
     // Configure Prettier
     await installPrettier();

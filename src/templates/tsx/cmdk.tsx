@@ -61,6 +61,7 @@ const Cmdk = ({ structure, ...props }: CmdkProps) => {
                 variant='outline'
                 onClick={() => setOpen(true)}
                 {...props}
+                aria-label='Search documentation'
                 className='bg-$COLOR-900/50 text-$COLOR-400 hover:bg-$COLOR-800/60 hover:text-$COLOR-200 group ml-auto hidden w-32 cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 px-2 py-1 text-sm font-normal backdrop-blur-md transition-all duration-300 lg:flex xl:w-fit xl:gap-10'
             >
                 <span className='hidden xl:flex'>Search documentation...</span>
@@ -73,6 +74,7 @@ const Cmdk = ({ structure, ...props }: CmdkProps) => {
                 variant='outline'
                 onClick={() => setOpen(true)}
                 {...props}
+                aria-label='Search documentation'
                 className='group ml-auto cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 bg-$COLOR-900/50 px-2 py-1 text-sm font-normal text-$COLOR-400 backdrop-blur-md transition-all duration-300 hover:bg-$COLOR-800/60 hover:text-$COLOR-200 lg:hidden xl:w-fit xl:gap-10'
             >
                 <RxMagnifyingGlass />
@@ -81,7 +83,7 @@ const Cmdk = ({ structure, ...props }: CmdkProps) => {
                 <DialogTitle className='sr-only' />
                 <DialogDescription className='sr-only' />
                 <CommandInput placeholder='Search documentation...' />
-                <CommandList className='border-white/5'>
+                <CommandList className='border-white/5 customScrollbar'>
                     <CommandEmpty>No results found.</CommandEmpty>
                     <CommandGroup heading='Documentation'>
                         {fileStructure.result.map((v, i) => (

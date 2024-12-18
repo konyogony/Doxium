@@ -73,7 +73,7 @@ const CodeWrapper = async ({
                     {lang} {!noCopyButton && <CopyButton text={text} />}
                 </div>
             )}
-            {noTopBar && !noCopyButton && <CopyButton singleLine={singleLine} text={text} />}
+            {noTopBar && !noCopyButton && <CopyButton text={text} />}
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
                 className={cn('codeBlock text-sm lg:text-base', lineNumbers && 'lineNumbers')}
