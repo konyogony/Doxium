@@ -3,6 +3,7 @@ my-app
 bun.lockb
 package-lock.json
 dist
-clown2
-testing
-hello2
+test*
+hello*
+clown*
+testing*

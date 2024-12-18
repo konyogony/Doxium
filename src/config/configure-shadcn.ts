@@ -47,9 +47,15 @@ export const configureShadcn = async (
     });
 
     try {
+        await fs.mkdir(componentsAlias.replaceAll('@/', '') ?? 'components/doxium', { recursive: true });
+        await fs.mkdir(libAlias.replaceAll('@/', '') ?? 'lib', { recursive: true });
+        typesAlias &&
+            (await fs.mkdir(typesAlias.split('/').slice(0, -1).join('/').replaceAll('@/', ''), { recursive: true }));
+
+        await fs.mkdir('components/ui', { recursive: true });
+
         spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         !mute_output && console.log('\n' + infoText('Installing shadcn...'));
-        fs.mkdir('./lib');
         await Promise.all(
             files.map(async (file) => {
                 try {

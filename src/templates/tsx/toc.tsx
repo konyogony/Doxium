@@ -2,8 +2,8 @@
 
 'use client';
 
-import { Heading } from '@/types';
 import { cn } from '$LIB-ALIAS/utils';
+import { Heading } from '$TYPES-ALIAS';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -55,8 +55,10 @@ const TOC = () => {
             <a
                 href={`#${heading.id}`}
                 className={cn(
-                    'py-1 text-sm transition-all duration-300 hover:underline max-w-48 decoration-dotted',
-                    activeHeading === heading.id ? 'text-$ACCENT-COLOR-500 font-medium' : 'text-$COLOR-400 font-normal',
+                    'py-1 text-sm transition-all duration-200 hover:underline max-w-48 decoration-dotted',
+                    activeHeading === heading.id
+                        ? 'text-$ACCENT-COLOR-500 font-semibold'
+                        : 'text-$COLOR-400 font-normal',
                 )}
                 style={{
                     paddingLeft: `${(heading.level - 1) * 10}px`,

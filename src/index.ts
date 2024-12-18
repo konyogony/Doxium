@@ -66,17 +66,23 @@ program
             console.error('Invalid value for --github-repo. Please provide a valid GitHub repository.');
             process.exit(1);
         }
-        const aliasPattern = /^@\//;
+        const aliasPattern = /^@\/.*[^\/]$/;
         if (options.typesAlias && !aliasPattern.test(options.typesAlias)) {
-            console.error('Invalid value for --types-alias. It should be an absolute path starting with "@/"');
+            console.error(
+                'Invalid value for --types-alias. It should be an absolute path starting with "@/" and ending without the "/". **Note: This path is for the .ts file, not the folder which contains it**',
+            );
             process.exit(1);
         }
         if (options.libAlias && !aliasPattern.test(options.libAlias)) {
-            console.error('Invalid value for --lib-alias. It should be an absolute path starting with "@/"');
+            console.error(
+                'Invalid value for --lib-alias. It should be an absolute path starting with "@/" and ending without the "/" for the directory which contains all the lib files',
+            );
             process.exit(1);
         }
         if (options.componentsAlias && !aliasPattern.test(options.componentsAlias)) {
-            console.error('Invalid value for --components-alias. It should be an absolute path starting with "@/"');
+            console.error(
+                'Invalid value for --components-alias. It should be an absolute path starting with "@/" and ending without the "/" for the directory which contains all the doxium components',
+            );
             process.exit(1);
         }
         init(

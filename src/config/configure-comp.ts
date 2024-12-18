@@ -77,9 +77,6 @@ export const configureComp = async (
             await fs.rename('./next.config.ts', './next.config.mjs');
         }
 
-        await fs.mkdir('components/doxium', { recursive: true });
-        await fs.mkdir('components/ui', { recursive: true });
-
         // Remove app/fonts directory
         await fs.rm('./app/fonts', { recursive: true });
 
