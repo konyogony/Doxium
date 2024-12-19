@@ -26,7 +26,7 @@ const RootLayout = async ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const { socials } = await getJsonData();
+    const { socials, separate } = await getJsonData();
     const structure = await getStructureInstance();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
@@ -34,7 +34,7 @@ const RootLayout = async ({
                 <main>
                     <Navbar structure={structure} />
                     <div className='relative flex flex-row min-h-screen justify-center gap-8 pt-16 pb-2 lg:pt-24'>
-                        <Sidebar structure={structure} />
+                        <Sidebar structure={structure} separate={separate} />
                         <div className='prose prose-$COLOR prose-headings:border-white/15 px-6 prose-invert prose-ul:my-0 prose-ol:my-0 prose-p:my-2 prose-li:my-0.5 prose-headings:my-2 prose-headings:mt-8 prose-headings:w-full prose-headings:border-b prose-h1:border-white/20 prose-h2:border-white/10 prose-h3:border-white/5 prose-ul:mb-4 prose-ol:mb-4 prose-headings:pb-1.5 prose-a:decoration-dotted hover:prose-a:text-$ACCENT-COLOR-500 prose-ol:my-0 prose-ul:my-0 prose-hr:border-white/20 flex h-fit w-screen flex-shrink-0 flex-col items-start lg:max-w-[40%] lg:px-0'>
                             <Breadcrumbs />
                             {children}

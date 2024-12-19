@@ -51,7 +51,6 @@ export const replaceFilePlaceholders = (
     libAlias: string,
     typesAlias: string,
 ) => {
-    console.log(77, componentAlias, libAlias, typesAlias);
     return content
         .replaceAll(/\$COMPONENTS-ALIAS/g, './' + componentAlias.replaceAll('@/', ''))
         .replaceAll(/\$LIB-ALIAS/g, './' + libAlias.replaceAll('@/', ''))

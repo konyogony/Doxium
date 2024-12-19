@@ -4,26 +4,46 @@ import { getJsonData } from '$LIB-ALIAS/get-json-data';
 import { HighlighterResult } from '$TYPES-ALIAS';
 import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } from 'shiki';
 
-let highlighterInstance: HighlighterGeneric<BundledLanguage, BundledTheme> | null = null;
-let currentTheme: BundledTheme | null = null;
+const highlighterCache = new Map<string, Promise<HighlighterGeneric<BundledLanguage, BundledTheme>>>();
 
-export const getHighlighterInstance = async (): Promise<HighlighterResult> => {
-    if (!highlighterInstance) {
+export const getHighlighterInstance = async (themeKey: string = 'github-dark-dimmed'): Promise<HighlighterResult> => {
+    const key = themeKey;
+
+    // Check if there's already a cached instance for the given theme
+    if (highlighterCache.has(key)) {
+        const highlighterInstance = await highlighterCache.get(key);
+        return {
+            highlighter: highlighterInstance!,
+            theme: (key as BundledTheme) || ('github-dark-dimmed' as BundledTheme),
+        };
+    }
+
+    // If an instance doesn't exist, create it and store it in the cache
+    const highlighterPromise = (async () => {
         const { theme } = await getJsonData();
-        currentTheme = theme as BundledTheme;
+        const currentTheme = theme as BundledTheme;
+
         try {
-            highlighterInstance = await createHighlighter({
+            const highlighterInstance = await createHighlighter({
                 themes: [currentTheme, 'github-dark-dimmed'],
                 langs: ['ts', 'tsx', 'jsx', 'rs', 'html', 'mdx', 'bash', 'sh', 'js', 'css', 'json'],
             });
+            return highlighterInstance;
         } catch (e) {
             console.error('Error creating highlighter instance:', e);
             throw e;
         }
-    }
+    })();
 
+    // Store the created highlighter promise in the cache
+    highlighterCache.set(key, highlighterPromise);
+
+    // Wait for the highlighter instance and return it
+    const highlighterInstance = await highlighterPromise;
     return {
         highlighter: highlighterInstance,
-        theme: currentTheme || 'github-dark-dimmed',
+        theme: 'github-dark-dimmed', // Default fallback theme if theme isn't found
     };
 };
+
+// https://dev.to/iamhectorsosa/caching-shiki-for-faster-build-times-4llb

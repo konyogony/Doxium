@@ -9,18 +9,25 @@ export interface DocsNode {
 }
 
 export interface DoxiumConfig {
-    'base-color': string;
-    'accent-color': string;
-    'shiki-theme': string;
+    style: {
+        'base-color': string;
+        'accent-color': string;
+        'shiki-theme': string;
+    };
+    alias: {
+        components: string;
+        lib: string;
+        types: string;
+    };
     'use-docs': boolean;
-    'components-alias': string;
-    'lib-alias': string;
-    'types-alias': string;
     'base-url': string;
     socials: {
         'github-repo': string;
         twitter: string;
         discord: string;
+    };
+    misc: {
+        separate: boolean;
     };
 }
 

@@ -1,67 +1,58 @@
+// @ts-nocheck
+
 'use client';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useTabsState } from '@/components/doxium/tabs-provider';
+import { TabsContent, TabsList, TabsTrigger, Tabs as UITabs } from '@/components/ui/tabs';
 import { Children, useEffect, useState } from 'react';
 
-interface DocsTabsProps {
+interface TabsProps {
     tabs: string[];
     defaultTab?: string;
     widthFull?: boolean;
     sync?: boolean;
 }
 
-const DocsTabs = ({
+const Tabs = ({
     tabs,
     defaultTab = tabs[0],
     widthFull = true,
     sync = false,
     children,
-}: React.PropsWithChildren<DocsTabsProps>) => {
-    const [currentValue, setCurrentValue] = useState<string>(defaultTab);
-    const key = JSON.stringify(tabs);
+}: React.PropsWithChildren<TabsProps>) => {
+    const { data, setValue } = useTabsState();
+    const key = tabs.join(',');
 
-    // Initialize the tab value from localStorage or create it if it doesn't exist
+    const [localValue, setLocalValue] = useState<string>(defaultTab); // Start with defaultTab value
+
+    // Find the value for the specific key in the global state (from TabsStateContext)
+    const keyValue = data.find((item) => item.key === key);
+
     useEffect(() => {
         if (sync) {
-            const storedValue = localStorage.getItem(key);
-            if (storedValue) {
-                setCurrentValue(storedValue);
-            } else {
-                localStorage.setItem(key, defaultTab);
+            if (keyValue && keyValue.value) {
+                // If value exists in TabsStateContext (localStorage synced), use it
+                setLocalValue(keyValue.value);
+            } else if (!keyValue) {
+                // If no value exists in TabsStateContext, set defaultTab to global state and localStorage
+                setValue(key, defaultTab);
             }
         }
-    }, [key, defaultTab, sync]);
+    }, [keyValue, setValue, sync, key, defaultTab]);
 
-    // Handle changes to the tab selection and update localStorage
-    const handleTabChange = (value: string) => {
-        if (sync) {
-            setCurrentValue(value);
-            localStorage.setItem(key, value);
+    // Handle tab changes
+    const handleChange = (value: string) => {
+        if (sync && value !== localValue) {
+            setLocalValue(value); // Update local state
+            setValue(key, value); // Sync across tabs and store in localStorage
         }
     };
 
-    // Sync tab across different components or windows using the storage event
-    useEffect(() => {
-        if (sync) {
-            const handleStorageChange = (event: StorageEvent) => {
-                if (event.key === key) {
-                    setCurrentValue(event.newValue || defaultTab);
-                }
-            };
-
-            // Listen for changes in localStorage
-            window.addEventListener('storage', handleStorageChange);
-
-            return () => {
-                window.removeEventListener('storage', handleStorageChange);
-            };
-        }
-    }, [key, sync, defaultTab]);
-
-    return (
-        <Tabs
-            value={sync ? currentValue : defaultTab}
-            onValueChange={handleTabChange}
+    // If sync is enabled, load the correct value and sync with BroadcastChannel
+    return sync ? (
+        <UITabs
+            value={localValue} // Controlled value with local state
+            onValueChange={handleChange}
             className={widthFull ? 'w-full' : ''}
         >
             <TabsList className={widthFull ? 'w-full' : ''}>
@@ -76,8 +67,23 @@ const DocsTabs = ({
                     {v}
                 </TabsContent>
             ))}
-        </Tabs>
+        </UITabs>
+    ) : (
+        <UITabs defaultValue={defaultTab} className={widthFull ? 'w-full' : ''}>
+            <TabsList className={widthFull ? 'w-full' : ''}>
+                {tabs.map((v, i) => (
+                    <TabsTrigger value={v} key={i} className={widthFull ? 'w-full' : ''}>
+                        {v}
+                    </TabsTrigger>
+                ))}
+            </TabsList>
+            {Children.map(children, (v, i) => (
+                <TabsContent value={tabs[i]} key={i}>
+                    {v}
+                </TabsContent>
+            ))}
+        </UITabs>
     );
 };
 
-export default DocsTabs;
+export default Tabs;

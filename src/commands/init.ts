@@ -98,7 +98,6 @@ export const init = async (
         }
     }
 
-    console.log(eslint, prettier, useDocs, shadcnStyle, baseColor, accentColor, shikiTheme, githubRepo);
     if (skip_prompt || mute_output) {
         response_full = {
             eslint: eslint ?? true,
@@ -124,11 +123,8 @@ export const init = async (
         );
     }
 
-    console.log(1, response_full);
-
     const response = { ...response_name, ...response_full };
 
-    console.log(response);
     // Get package manager info
     const { pm, pmx, pmi } = await getPmInfo(mute_output);
 

@@ -23,8 +23,6 @@ export const configureShadcn = async (
     // Check if the first element of pmx is not present to avoid errors
     if (!pmx[0]) return;
 
-    console.log(77, typesAlias, libAlias, componentsAlias);
-
     const files = [
         { name: 'tailwind', type: 'ts', path: './tailwind.config.ts' },
         {

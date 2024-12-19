@@ -1,16 +1,23 @@
 {
     "$schema": "https://raw.githubusercontent.com/konyogony/doxium/main/src/templates/json/schema.json",
-    "base-color": "$COLOR",
-    "accent-color": "$ACCENT-COLOR",
-    "shiki-theme": "$SHIKI-THEME",
+    "style": {
+        "base-color": "$COLOR",
+        "accent-color": "$ACCENT-COLOR",
+        "shiki-theme": "$SHIKI-THEME",
+    },
     "use-docs": $USE-DOCS,
-    "components-alias": "$COMPONENTS-ALIAS",
-    "lib-alias": "$LIB-ALIAS",
-    "types-alias": "$TYPES-ALIAS",
+    "alias": {
+        "components": "$COMPONENTS-ALIAS",
+        "lib": "$LIB-ALIAS",
+        "types": "$TYPES-ALIAS",
+    },
     "base-url": "$BASE-URL",
     "socials": {
         "github-repo": "$GITHUB-REPO",
         "twitter": "",
         "discord": ""
+    },
+    "misc": {
+        "separate": false,
     }
 }

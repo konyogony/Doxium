@@ -181,9 +181,9 @@ Will result you this:
 In this section, I will discuss some limitations and errors that occur, which either will be fixed or have no fixes.
 
 Summary:
-| Issue | Notes |
+| Issue | Notes | 
 | :-----: | :-----: |
-| [[Shiki] 100+ instances have been created](#shiki-400-instances-have-been-created) | Development bug, build your app, `bun run build` |
+| [[Shiki] 100+ instances have been created](#shiki-400-instances-have-been-created) | Partially fixed by caching the highlighter  |
 | [Prettier moving // [!code highlight] to another line](prettier-moving-object-object-to-another-line) | Fixed by adding `.mdx` to `.prettierignore` |
 
 
@@ -194,11 +194,9 @@ If you are able to somehow fix any of these issues, make a [PR](https://github.c
 
 You may receive the following error (or a similar one) in the console when developing your app:
 
-``[Shiki] 400 instances have been created. Shiki is supposed to be used as a singleton, consider refactoring your code to cache your highlighter instance; Or call `highlighter.dispose()` to release unused instances.``
+``[Shiki] 400 instances have been created. Shiki is supposed to be used as a singleton, consider refactoring your ....``
 
-This is a dev bug and is fixed when you properly build your app with `bun run build` and `bun run start`. 
-
-To be honest, I am not sure why this happens in the dev environment either since I have made a singleton. Open to suggestions.
+This has been partially fixed in the latest commit by caching the highlighter in the singleton file. This error might still occur, but is nothing to worry about since this happens only in developement, during hot-reloading.
 
 
 ## Prettier moving `// [!code highlight]` to another line

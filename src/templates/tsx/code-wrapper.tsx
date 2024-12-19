@@ -56,7 +56,6 @@ const CodeWrapper = async ({
     const { icon: IconComponent, lang } = CodeWrapperIcon({ language });
     const backgroundColor = ShikiThemeBackgroundHexDimmed[theme];
     const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
-    const singleLine = children.split('\n').length === 2;
 
     const text = children.replace(/\/\/ \[!code [^\]]+\]/g, '');
 

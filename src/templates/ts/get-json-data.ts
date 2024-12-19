@@ -12,6 +12,7 @@ interface jsonDataReturn {
     };
     theme: string;
     baseUrl: string;
+    separate: boolean;
 }
 
 export const getJsonData = async (): Promise<jsonDataReturn> => {
@@ -21,9 +22,11 @@ export const getJsonData = async (): Promise<jsonDataReturn> => {
 
     const socials = doxiumConfig['socials'];
 
-    const theme = doxiumConfig['shiki-theme'];
+    const separate = doxiumConfig['misc']['separate'];
+
+    const theme = doxiumConfig['style']['shiki-theme'];
 
     const baseUrl = doxiumConfig['base-url'];
 
-    return { socials, theme, baseUrl };
+    return { socials, theme, baseUrl, separate };
 };
