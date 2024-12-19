@@ -162,4 +162,5 @@ export type preProps = React.HTMLAttributes<HTMLPreElement> & {
     noTopBar?: boolean;
     noCopyButton?: boolean;
     twoSlash?: boolean;
+    name?: string;
 };

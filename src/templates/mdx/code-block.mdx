@@ -175,6 +175,33 @@ Will result you this:
 }
 ```
 
+## Name property
+
+You can replace the language text (e.g. React) with a custom file name, by adding the `name=''` property after declaring your language.
+For example, inputting this code:
+
+````mdx
+```json name='doxium.json'
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+````
+
+Will result you this:
+
+```json name={'doxium.json'}
+{
+    "theme": { 
+        "shiki": "github-dark-dimmed"
+    } 
+}
+```
+
+
+
 
 # Limitations and errors
 

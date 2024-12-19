@@ -24,6 +24,7 @@ interface WikiCodeWrapperProps {
     noTopBar: boolean;
     noCopyButton: boolean;
     twoSlash: boolean;
+    name: string | undefined;
 }
 
 const CodeWrapper = async ({
@@ -33,6 +34,7 @@ const CodeWrapper = async ({
     noTopBar,
     noCopyButton,
     twoSlash,
+    name,
 }: WikiCodeWrapperProps) => {
     const { highlighter, theme } = await getHighlighterInstance();
     const highlightedCode = highlighter.codeToHtml(children, {
@@ -69,7 +71,7 @@ const CodeWrapper = async ({
                     style={{ backgroundColor, color: textColor }}
                 >
                     {IconComponent}
-                    {lang} {!noCopyButton && <CopyButton text={text} />}
+                    {name ?? lang} {!noCopyButton && <CopyButton text={text} />}
                 </div>
             )}
             {noTopBar && !noCopyButton && <CopyButton text={text} />}

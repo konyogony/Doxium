@@ -74,6 +74,7 @@ const mdxComponents = {
         const noTopBar: boolean = (props as preProps).noTopBar || false;
         const noCopyButton: boolean = (props as preProps).noCopyButton || false;
         const twoSlash: boolean = (props as preProps).twoSlash || false;
+        const name: string | undefined = (props as preProps).name || undefined;
         return (
             <CodeWrapper
                 language={language}
@@ -81,6 +82,7 @@ const mdxComponents = {
                 noTopBar={noTopBar}
                 noCopyButton={noCopyButton}
                 twoSlash={twoSlash}
+                name={name}
             >
                 {codeElement.props.children as string}
             </CodeWrapper>
