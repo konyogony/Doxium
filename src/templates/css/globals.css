@@ -4,7 +4,7 @@
 
 /* Base styles */
 html {
-    @apply scroll-pt-32 lg:scroll-pt-28 scroll-smooth;
+    @apply scroll-pt-32 scroll-smooth lg:scroll-pt-28;
     scrollbar-gutter: stable both-edges;
 }
 
@@ -63,31 +63,90 @@ code {
     @apply px-[1.1428571em];
 }
 
-/* px / 1.3 */
+/* px / 1.5 */
 .codeBlock span:first-child {
-    @apply mt-[0.8571429em];
+    @apply mt-[0.76190473em];
 }
 
 /* mt / 1.5 */
 .codeBlock span:nth-last-child(2) {
-    @apply mb-[0.5714286em];
+    @apply mb-[0.50793648em];
+}
+
+/* Add border to the left of the diff lines */
+pre.has-diff .diff.add {
+    @apply border-l-2 border-emerald-400;
+}
+
+pre.has-diff .diff.remove {
+    @apply border-l-2 border-red-500;
+}
+
+pre.has-highlighted .highlighted:not(.error):not(.warning) {
+    @apply border-l-2 border-$ACCENT-COLOR-500;
+}
+
+pre.has-highlighted .error {
+    @apply border-l-2 border-red-800;
+}
+
+pre.has-highlighted .warning {
+    @apply border-l-2 border-amber-800;
+}
+
+.line.diff.remove,
+.line.diff.add,
+.line.highlighted,
+.line.error,
+.line.warning {
+    @apply !pl-0;
+}
+
+.codeBlock:not(.lineNumbers) pre.has-highlighted .line:not(.highlighted):not(.error):not(.warning) {
+    @apply pl-[34px];
+}
+
+.lineNumbers .line:not(.diff):not(.highlighted) {
+    @apply pl-0;
 }
 
 /* Line numbers styles */
 .lineNumbers code > .line:not(:last-child)::before {
-    @apply mr-10 inline-block w-6 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
+    @apply ml-4 inline-block w-4 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
     counter-increment: step;
+}
+
+.lineNumbers .line:not(.diff):not(.highlighted)::before {
+    @apply pr-8;
 }
 
 .lineNumbers > pre.has-diff .diff.add::before {
     content: counter(step) ' +';
-    @apply mr-6 inline-block w-10 text-right text-emerald-500;
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-emerald-500;
     counter-increment: step;
 }
 
 .lineNumbers > pre.has-diff .diff.remove::before {
     content: counter(step) ' -';
-    @apply mr-6 inline-block w-10 text-right text-red-700;
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-red-700;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-highlighted .highlighted::before {
+    content: counter(step) ' ';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-$ACCENT-COLOR-600;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-highlighted .error::before {
+    content: counter(step) ' ';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-red-800;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-highlighted .warning::before {
+    content: counter(step) ' ';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-amber-800;
     counter-increment: step;
 }
 
@@ -95,18 +154,31 @@ code {
 
 :not(.lineNumbers) > pre.has-diff .diff.add::before {
     content: '+';
-    @apply mr-4 inline-block text-right text-emerald-500;
-    counter-increment: step;
+    @apply mr-4 inline-block pl-2 text-right text-emerald-500;
 }
 
 :not(.lineNumbers) > pre.has-diff .diff.remove::before {
     content: '-';
-    @apply mr-4 inline-block text-right text-red-700;
-    counter-increment: step;
+    @apply mr-4 inline-block pl-2 text-right text-red-700;
+}
+
+:not(.lineNumbers) > pre.has-highlighted .highlighted::before {
+    content: ' ';
+    @apply mr-4 inline-block pl-2 text-right text-$ACCENT-COLOR-300;
+}
+
+:not(.lineNumbers) > pre.has-highlighted .error::before {
+    content: ' ';
+    @apply mr-4 inline-block pl-2 text-right text-red-800;
+}
+
+:not(.lineNumbers) > pre.has-highlighted .warning::before {
+    content: ' ';
+    @apply mr-4 inline-block pl-2 text-right text-amber-800;
 }
 
 :not(.lineNumbers) > pre.has-diff .line:not(:last-child):not(.diff) {
-    @apply pl-10;
+    @apply pl-[34px];
 }
 
 /* Focused line styles */
@@ -129,7 +201,7 @@ pre.has-diff .diff.remove {
 
 /* Highlighted code styles */
 pre.has-highlighted .highlighted {
-    @apply bg-$COLOR-400 bg-opacity-15;
+    @apply bg-$ACCENT-COLOR-500 bg-opacity-15;
 }
 
 pre.has-highlighted .error {
@@ -141,7 +213,7 @@ pre.has-highlighted .warning {
 }
 
 .highlighted-word {
-    @apply rounded-sm border border-white/5 bg-$COLOR-500/20;
+    @apply rounded-sm border border-white/15 bg-$COLOR-200/20 px-[2px] py-[1px];
 }
 
 /* Checkbox trickery */
@@ -185,4 +257,8 @@ th {
 
 td {
     @apply border-t border-white/10 !px-8 !py-2 text-sm font-normal;
+}
+
+.prose > .headings:not(:first-child) {
+    @apply border-t pt-6;
 }

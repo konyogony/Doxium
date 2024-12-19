@@ -59,7 +59,7 @@ const CodeWrapper = async ({
     const backgroundColor = ShikiThemeBackgroundHexDimmed[theme];
     const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
 
-    const text = children.replace(/\/\/ \[!code [^\]]+\]/g, '');
+    const text = children.replace(/\/\/\s*\[!code.*?\]/g, '').trim();
 
     return (
         <div className='codeWrapper group relative my-4 w-full overflow-clip rounded-lg border border-white/15'>

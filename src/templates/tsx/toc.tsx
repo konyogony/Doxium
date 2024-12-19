@@ -34,7 +34,7 @@ const TOC = () => {
                     }
                 });
             },
-            { rootMargin: '0px 0px -80% 0px', threshold: 0.1 },
+            { rootMargin: '0px 0px -50% 0px', threshold: [0.1, 0.5, 1.0] },
         );
 
         headingElements.forEach((heading) => {
@@ -55,7 +55,7 @@ const TOC = () => {
             <a
                 href={`#${heading.id}`}
                 className={cn(
-                    'py-1 text-sm transition-all duration-200 hover:underline max-w-48 decoration-dotted',
+                    'py-[4.5px] text-sm transition-all duration-200 hover:underline max-w-48 decoration-dotted',
                     activeHeading === heading.id
                         ? 'text-$ACCENT-COLOR-500 font-semibold'
                         : 'text-$COLOR-400 font-normal',

@@ -25,7 +25,7 @@ const HashtagButton = ({ id, variant: Var = 'h1', children }: React.PropsWithChi
         <Var
             onClick={() => clickCopy()}
             id={id}
-            className='group inline-block w-full cursor-copy items-center justify-start gap-2'
+            className='headings group inline-block w-full cursor-copy items-center justify-start gap-2'
         >
             {children}
             <HiOutlineHashtag

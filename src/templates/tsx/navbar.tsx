@@ -96,7 +96,7 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                     <div className={cn('w-1/2 flex-col pb-2', opened ? 'flex' : 'hidden')}>
                         <LinkFiletree name='Documentation' />
                         {structure.map((v, i) => (
-                            <FolderFiletree key={i} node={v} />
+                            <FolderFiletree key={i} node={v} separate={false} />
                         ))}
                     </div>
                 </div>

@@ -26,7 +26,7 @@ if ! command -v jq &> /dev/null; then
 fi
 
 version=$(jq -r '.version' package.json)
-datetime=$(date +"%d-%m-%Y--%H:%M:%S-")
+datetime=$(date +"$name-%d-%m-%H:%M-")
 
 if ! command -v bun &> /dev/null; then
     echo "bun command not found. Please install bun to proceed."

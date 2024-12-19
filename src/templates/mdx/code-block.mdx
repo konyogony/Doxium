@@ -87,7 +87,7 @@ Escapable by adding a backslash after the exclamation mark, `// [\!code --]`
 You can make specific lines of code green, as if added in `diff` mode, by adding `// [!code ++]` after the line. This is fully customisable on line **116:118** in `@/app/globals.css`. 
 Escapable by adding a backslash after the exclamation mark, `// [\!code ++]`
 
-```json
+```json lineNumbers
 {
     "style": { 
         "shiki-theme": "github-dark-dimmed" // [!code ++]  
@@ -202,6 +202,34 @@ Will result you this:
 ```
 
 
+## Highlighting specific word
+
+You can highlight specific key word throughout all of your code, by adding `// [!code word:]` property on the first line.
+For example, inputting this code:
+
+````mdx
+```json 
+// [/!code word:shiki]
+{
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
+    } 
+}
+```
+````
+
+Will result you this:
+
+```json 
+// [!code word:shiki]
+{
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
+    } 
+}
+```
+
+
 
 
 # Limitations and errors
@@ -232,3 +260,33 @@ This has been partially fixed in the latest commit by caching the highlighter in
 This is a well-known error and issue by the Prettier community that it is able to move your comments to another line if it doesn't have space or meets some different parameters. 
 
 Currently, I don't think there is a proper fix, so my solution is to add `.mdx` to `.prettierignore`, so that it doesn't format the file at all. This obviously comes at the cost that you have to manually format your file.
+
+
+
+# Testing purposes
+
+```tsx lineNumbers
+// [!code word:Wrapper]
+const CodeWrapper = async ({ // has: lineNumbers, ++, --, highlight, error, warning, word highlight
+    language = '', //  [!code ++]
+    children, //  [!code ++]
+    lineNumbers, //  [!code --]
+    noTopBar,  //  [!code --]
+    noCopyButton, // [!code highlight]
+    twoSlash, // [!code highlight]
+    name, // [!code error]
+}: WikiCodeWrapperProps) // [!code warning]
+```
+
+```tsx 
+// [!code word:Wrapper]
+const CodeWrapper = async ({ // has: ++, --, highlight, error, warning, word highlight
+    language = '', //  [!code ++]
+    children, //  [!code ++]
+    lineNumbers, //  [!code --]
+    noTopBar,  //  [!code --]
+    noCopyButton, // [!code highlight]
+    twoSlash, // [!code highlight]
+    name, // [!code error]
+}: WikiCodeWrapperProps) // [!code warning]
+```
