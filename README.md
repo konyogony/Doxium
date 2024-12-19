@@ -15,13 +15,12 @@ An easy solution to generate modern documentation in Next.js
     -   [ ] Create a monorepo
 -   [x] Option to disable starter wiki
 -   [x] CSS variables support CRINGE IDEA
--   [ ] ‘bunx doxium add’
+-   [ ] ‘bunx doxium add’, make command which
+-   [ ] zod to store key value pair (forgot why) (remembered: to better manage all the inputs and flags - can store at any time and retrieve whenever. no need to pass from function to function)
 -   [x] Proper CLI
--   [ ] Mobile support
--   [ ] Change aliases
--   [ ] Ability to add links and text to sidebar
--   [ ] Add tabs inside code-blocks, which should sync.
--   [ ] Name on code-blocks
+-   [x] Mobile support
+-   [x] Change aliases
+-   [x] Name on code-blocks
 -   [x] Social links in navbar defined in config
 -   [ ] More elements
     -   [x] Revisit alerts
@@ -33,7 +32,8 @@ An easy solution to generate modern documentation in Next.js
     -   [ ] Videos
 -   [x] Make nice footer (NOT NICE THO)
 -   [ ] Review competitors and reflect
--   [ ] Remove `docs-` from everywhere
+-   [x] Remove `docs-` from everywhere
+-   [x] try lighter bg? Cringe idea
 
 ### For beta release (Not in mind yet):
 

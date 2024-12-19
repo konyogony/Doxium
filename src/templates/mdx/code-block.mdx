@@ -1,5 +1,6 @@
 export const metadata = {
-    title: 'Hello'
+    title: 'Code blocks',
+    description: 'Customising and creating code blocks'
 }
 
 # Code blocks
@@ -49,8 +50,8 @@ You can also escape this by adding a backslash after the exclamation mark, `// [
 
 ```json
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed" // [!code focus] 
+    "style": { 
+        "shiki-theme": "github-dark-dimmed" // [!code focus] 
     }
 }
 ```
@@ -62,8 +63,8 @@ Additionally, you can escape this by adding a backslash after the exclamation ma
 
 ```json
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed" // [!code highlight]  
+    "style": { 
+        "shiki-theme": "github-dark-dimmed" // [!code highlight]  
     }
 }
 ```
@@ -75,8 +76,8 @@ Escapable by adding a backslash after the exclamation mark, `// [\!code --]`
 
 ```json
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed" // [!code --]  
+    "style": { 
+        "shiki-theme": "github-dark-dimmed" // [!code --]  
     } // [!code --]  
 }
 ```
@@ -88,8 +89,8 @@ Escapable by adding a backslash after the exclamation mark, `// [\!code ++]`
 
 ```json
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed" // [!code ++]  
+    "style": { 
+        "shiki-theme": "github-dark-dimmed" // [!code ++]  
     } // [!code ++]  
 }
 ```
@@ -102,8 +103,8 @@ This is done by adding the `noTopBar` flag after declaring your language. For ex
 ````mdx
 ```json noTopBar
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
@@ -113,8 +114,8 @@ Will result in this:
 
 ```json noTopBar
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+   "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
@@ -133,8 +134,8 @@ For example, inputting this code:
 ````mdx
 ```json lineNumbers
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
@@ -144,8 +145,8 @@ Will result you this:
 
 ```json lineNumbers
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
@@ -158,8 +159,8 @@ For example, inputting this code:
 ````mdx
 ```json noCopyButton
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
@@ -169,8 +170,8 @@ Will result you this:
 
 ```json noCopyButton
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
@@ -183,8 +184,8 @@ For example, inputting this code:
 ````mdx
 ```json name='doxium.json'
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
@@ -194,8 +195,8 @@ Will result you this:
 
 ```json name={'doxium.json'}
 {
-    "theme": { 
-        "shiki": "github-dark-dimmed"
+    "style": { 
+        "shiki-theme": "github-dark-dimmed"
     } 
 }
 ```
