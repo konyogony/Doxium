@@ -17,9 +17,9 @@ const Timeline = ({ children }: React.PropsWithChildren) => {
             {groups.map((group, i) => (
                 <div key={i} className='flex flex-col gap-2'>
                     <div className='-my-1 flex flex-row items-center'>
-                        <div className='relative flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-zinc-950'>
-                            <div className='absolute left-1/2 top-1/2 flex size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-zinc-900'>
-                                {i + 1}
+                        <div className='relative flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-$COLOR-950'>
+                            <div className='size-8 flex my-auto rounded-full bg-$COLOR-800 justify-center'>
+                                <span className='flex my-auto'>{i + 1}</span>
                             </div>
                         </div>
                         {group[0]}

@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { FiTerminal } from '@vertisanpro/react-icons/fi';
 import {
     SiHtml5,
     SiJavascript,
@@ -9,7 +10,7 @@ import {
     SiTailwindcss,
     SiTypescript,
 } from '@vertisanpro/react-icons/si';
-import { VscJson, VscSymbolFile, VscTerminal } from '@vertisanpro/react-icons/vsc';
+import { VscJson, VscSymbolFile } from '@vertisanpro/react-icons/vsc';
 import { JSX } from 'react';
 
 interface WikiCodeWrapperIconProps {
@@ -42,7 +43,7 @@ const wikiCodeWrapperIcon = ({ language }: WikiCodeWrapperIconProps): WikiCodeWr
             return { icon: <VscJson size={16} />, lang: 'JSON' };
         case 'bash':
         case 'sh':
-            return { icon: <VscTerminal size={16} />, lang: 'Terminal' };
+            return { icon: <FiTerminal size={16} />, lang: 'Terminal' };
         default:
             return { icon: <VscSymbolFile size={16} />, lang: 'File' };
     }
