@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { TabsContent, TabsList, TabsTrigger, Tabs as UITabs } from '@/components/ui/tabs';
 import { Children } from 'react';
 
 interface TabsProps {
@@ -9,14 +9,9 @@ interface TabsProps {
     widthFull?: boolean;
 }
 
-const Tabs = ({
-    tabs,
-    defaultTab = tabs[0],
-    widthFull = true,
-    children,
-}: React.PropsWithChildren<TabsProps>) => {
+const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, children }: React.PropsWithChildren<TabsProps>) => {
     return (
-        <Tabs defaultValue={defaultTab} className={widthFull ? 'w-full' : ''}>
+        <UITabs defaultValue={defaultTab} className={widthFull ? 'w-full' : ''}>
             <TabsList className={widthFull ? 'w-full' : ''}>
                 {tabs.map((v, i) => (
                     <TabsTrigger value={v} key={i} className={widthFull ? 'w-full' : ''}>
@@ -31,7 +26,7 @@ const Tabs = ({
                     </TabsContent>
                 );
             })}
-        </Tabs>
+        </UITabs>
     );
 };
 

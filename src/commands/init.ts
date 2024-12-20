@@ -76,10 +76,9 @@ export const init = async (
         );
     }
 
-    if (await isNextJsProject(`./${directory && directory.replaceAll('./', '') + '/'}${response_name['app-name']}`)) {
-        if (
-            await isDoxiumProject(`./${directory && directory.replaceAll('./', '') + '/'}${response_name['app-name']}`)
-        ) {
+    const appPath = `./${directory ? directory.replaceAll('./', '') + '/' : ''}${response_name['app-name']}`;
+    if (await isNextJsProject(appPath)) {
+        if (await isDoxiumProject(appPath)) {
             console.log(
                 '\n' +
                     warningText(

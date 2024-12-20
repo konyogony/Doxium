@@ -16,7 +16,6 @@ An easy solution to generate modern documentation in Next.js
 -   [x] Option to disable starter wiki
 -   [x] CSS variables support CRINGE IDEA
 -   [ ] ‘bunx doxium add’, make command which
--   [ ] zod to store key value pair (forgot why) (remembered: to better manage all the inputs and flags - can store at any time and retrieve whenever. no need to pass from function to function)
 -   [x] Proper CLI
 -   [x] Mobile support
 -   [x] Change aliases
@@ -24,7 +23,7 @@ An easy solution to generate modern documentation in Next.js
 -   [x] Social links in navbar defined in config
 -   [ ] More elements
     -   [x] Revisit alerts
-    -   [ ] Make timeline
+    -   [x] Make timeline
     -   [ ] Make file tree
     -   [ ] Revisit normal tabs
     -   [ ] Accordion

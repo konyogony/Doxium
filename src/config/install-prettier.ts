@@ -3,8 +3,8 @@ import fs from 'fs-extra';
 import { errorText, templatesDir } from '../utils/utils.js';
 
 const files = [
-    { name: '.prettierrc', type: 'json', path: './.prettierrc.json' },
-    { name: '.prettierignore', type: 'json', path: './.prettierignore' },
+    { name: 'prettierrc', type: 'json', path: './.prettierrc.json' },
+    { name: 'prettierignore', type: 'json', path: './.prettierignore' },
 ];
 
 export const installPrettier = async () => {
