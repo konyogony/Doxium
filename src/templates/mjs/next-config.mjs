@@ -24,4 +24,3 @@ const nextConfig = {
 };
 
 export default withMDX(nextConfig);
-// turbo will be enabled by default, for because of createMDXPlugin. Dont know how to fix :-/

@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import { cn } from '$LIB-ALIAS/utils';
 import React from 'react';
 
 const Timeline = ({ children }: React.PropsWithChildren) => {
@@ -13,13 +14,13 @@ const Timeline = ({ children }: React.PropsWithChildren) => {
     }, []);
 
     return (
-        <div className='my-2 ml-4 flex h-fit w-full flex-col border-l border-white/15 pr-4'>
+        <div className='my-4 ml-4 flex h-fit w-full flex-col border-l border-white/15 pr-4'>
             {groups.map((group, i) => (
                 <div key={i} className='flex flex-col gap-2'>
-                    <div className='-my-1 flex flex-row items-center'>
+                    <div className={cn('flex flex-row items-center', i === 0 ? '-mt-1' : 'mt-6')}>
                         <div className='relative flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-$COLOR-950'>
-                            <div className='size-8 flex my-auto rounded-full bg-$COLOR-800 justify-center'>
-                                <span className='flex my-auto'>{i + 1}</span>
+                            <div className='my-auto flex size-8 justify-center rounded-full bg-$COLOR-800'>
+                                <span className='my-auto flex'>{i + 1}</span>
                             </div>
                         </div>
                         {group[0]}

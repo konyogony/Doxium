@@ -8,6 +8,13 @@ import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
 import { BundledTheme } from 'shiki';
 
 const mdxComponents = {
+    a: ({ children, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => {
+        return (
+            <a {...props} target='_blank' rel='noopener noreferrer'>
+                {children}
+            </a>
+        );
+    },
     h1: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
         const id = children
             ?.toString()
@@ -58,7 +65,7 @@ const mdxComponents = {
         return (
             <span
                 className={cn(
-                    'mx-0.5 my-2 rounded-[3.5px] border border-white/5 px-1.5 py-0.5 text-sm font-semibold text-$COLOR-50',
+                    'mx-0.5 my-2 rounded-md border border-white/5 px-1.5 py-0.5 text-[0.85em] font-semibold text-$COLOR-50',
                     long ? 'whitespace-pre-wrap' : 'whitespace-nowrap',
                 )}
                 style={{ background: color }}
@@ -92,7 +99,7 @@ const mdxComponents = {
         return (
             <span
                 className={
-                    'my-2 flex border-l-2 border-$COLOR-600 py-2.5 pl-4 text-sm md:text-base font-light italic text-$COLOR-400'
+                    'my-2 flex border-l-2 border-$COLOR-600 py-2.5 pl-4 text-sm font-light italic text-$COLOR-400 md:text-base'
                 }
             >
                 <span className='not-prose'>{children}</span>

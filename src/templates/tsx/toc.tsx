@@ -59,6 +59,7 @@ const TOC = () => {
                     activeHeading === heading.id
                         ? 'text-$ACCENT-COLOR-500 font-semibold'
                         : 'text-$COLOR-400 font-normal',
+                    heading.level === 1 && 'font-semibold',
                 )}
                 style={{
                     paddingLeft: `${(heading.level - 1) * 10}px`,

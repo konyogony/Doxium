@@ -56,7 +56,7 @@ find "$dir1" -type f | grep -Ev "($exclude_dirs)" | while read file; do
     corresponding_file="$dir2/$relative_file"
 
     if [ -f "$corresponding_file" ]; then
-        diff_output=$(diff -u "$file" "$corresponding_file")
+        diff_output=$(diff -u "$corresponding_file" "$file")
         if [ -n "$diff_output" ]; then
             echo -e "\nDifferences found in:\n$file vs $corresponding_file \n\n" >> "$log_file"
             echo "$diff_output" >> "$log_file"

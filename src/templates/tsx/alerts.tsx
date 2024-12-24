@@ -43,23 +43,23 @@ const getAlertColor = (variant: AlertsProps['variant']) => {
 const getAlertIcon = (variant: AlertsProps['variant']) => {
     switch (variant) {
         case 'bookmark':
-            return <FiBookmark size={18} />;
+            return <FiBookmark size={20} />;
         case 'warning':
-            return <FiAlertTriangle size={18} />;
+            return <FiAlertTriangle size={20} />;
         case 'error':
-            return <FiAlertCircle size={18} />;
+            return <FiAlertCircle size={20} />;
         case 'success':
-            return <FiCheck size={18} />;
+            return <FiCheck size={20} />;
         case 'tip':
-            return <FiMessageCircle size={18} />;
+            return <FiMessageCircle size={20} />;
         case 'accent':
-            return <FiInfo size={18} />;
+            return <FiInfo size={20} />;
         case 'base':
-            return <FiInfo size={18} />;
+            return <FiInfo size={20} />;
         case 'star':
-            return <FiStar size={18} />;
+            return <FiStar size={20} />;
         default:
-            return <FiSquare size={18} />;
+            return <FiSquare size={20} />;
     }
 };
 

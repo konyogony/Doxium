@@ -61,8 +61,9 @@ const CodeWrapper = async ({
 
     const text = children.replace(/\/\/\s*\[!code.*?\]/g, '').trim();
 
+    // TODO: Control roundess
     return (
-        <div className='codeWrapper group relative my-4 w-full overflow-clip rounded-lg border border-white/15'>
+        <div className='codeWrapper group relative my-4 w-full overflow-clip rounded-md border border-white/15'>
             {!noTopBar && (
                 <div
                     className={
@@ -71,7 +72,8 @@ const CodeWrapper = async ({
                     style={{ backgroundColor, color: textColor }}
                 >
                     {IconComponent}
-                    {name ?? lang} {!noCopyButton && <CopyButton text={text} />}
+                    {name ? <span className='text-xs text-$COLOR-300/80'>{name}</span> : lang}{' '}
+                    {!noCopyButton && <CopyButton text={text} />}
                 </div>
             )}
             {noTopBar && !noCopyButton && <CopyButton text={text} />}
