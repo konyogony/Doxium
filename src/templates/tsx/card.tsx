@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { FiArrowUpRight } from '@vertisanpro/react-icons/fi';
-import { cn } from '$LIB-ALIAS/utils';
+import { FiArrowUpRight } from 'icons/fi';
+import { cn } from 'lib/utils';
 
 export interface CardProps {
     title: string;

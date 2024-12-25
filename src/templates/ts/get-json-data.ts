@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { DoxiumConfig } from '$TYPES-ALIAS';
+import { DoxiumConfig } from 'types';
 
 interface jsonDataReturn {
     socials: {

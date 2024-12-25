@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import { getJsonData } from '$LIB-ALIAS/get-json-data';
-import { HighlighterResult } from '$TYPES-ALIAS';
+import { getJsonData } from 'lib/get-json-data';
 import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } from 'shiki';
+import { HighlighterResult } from 'types';
 
 const highlighterCache = new Map<string, Promise<HighlighterGeneric<BundledLanguage, BundledTheme>>>();
 

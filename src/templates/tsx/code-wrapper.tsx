@@ -10,12 +10,12 @@ import {
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
 import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
-import CodeWrapperIcon from '$COMPONENTS-ALIAS/code-wrapper-icon';
-import CopyButton from '$COMPONENTS-ALIAS/copy-button';
-import { getHighlighterInstance } from '$LIB-ALIAS/highlighter';
-import { isLightColor } from '$LIB-ALIAS/is-light-color';
-import { cn } from '$LIB-ALIAS/utils';
-import { ShikiThemeBackgroundHexDimmed } from '$TYPES-ALIAS';
+import CodeWrapperIcon from 'doxium/code-wrapper-icon';
+import CopyButton from 'doxium/copy-button';
+import { getHighlighterInstance } from 'lib/highlighter';
+import { isLightColor } from 'lib/is-light-color';
+import { cn } from 'lib/utils';
+import { ShikiThemeBackgroundHexDimmed } from 'types';
 
 interface WikiCodeWrapperProps {
     language?: string;

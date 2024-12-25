@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import FolderFiletree from '$COMPONENTS-ALIAS/folder-filetree';
-import LinkFiletree from '$COMPONENTS-ALIAS/link-filetree';
-import { DocsNode } from '$TYPES-ALIAS';
+import FolderFiletree from 'doxium/folder-filetree';
+import LinkFiletree from 'doxium/link-filetree';
+import { DocsNode } from 'types';
 
 interface SidebarProps {
     structure: DocsNode[];

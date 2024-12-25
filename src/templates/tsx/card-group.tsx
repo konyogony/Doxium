@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import Card, { CardProps } from '$COMPONENTS-ALIAS/card';
+import Card, { CardProps } from 'doxium/card';
 import React, { ReactElement } from 'react';
 
 interface CardGroupProps {

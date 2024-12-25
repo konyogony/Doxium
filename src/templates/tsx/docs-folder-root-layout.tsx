@@ -1,11 +1,11 @@
 // @ts-nocheck
 
-import Footer from '$COMPONENTS-ALIAS/footer';
-import Navbar from '$COMPONENTS-ALIAS/navbar';
-import Toaster from '$COMPONENTS-ALIAS/toaster';
-import { getJsonData } from '$LIB-ALIAS/get-json-data';
-import { getStructureInstance } from '$LIB-ALIAS/structure';
-import { cn } from '$LIB-ALIAS/utils';
+import Footer from 'doxium/footer';
+import Navbar from 'doxium/navbar';
+import Toaster from 'doxium/toaster';
+import { getJsonData } from 'lib/get-json-data';
+import { getStructureInstance } from 'lib/structure';
+import { cn } from 'lib/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';

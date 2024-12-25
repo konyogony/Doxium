@@ -1,11 +1,11 @@
 // @ts-nocheck
 
-import Breadcrumbs from '$COMPONENTS-ALIAS/breadcrumbs';
-import NavButtons from '$COMPONENTS-ALIAS/nav-buttons';
-import SecondarySidebar from '$COMPONENTS-ALIAS/secondary-sidebar';
-import Sidebar from '$COMPONENTS-ALIAS/sidebar-filetree';
-import { getJsonData } from '$LIB-ALIAS/get-json-data';
-import { getStructureInstance } from '$LIB-ALIAS/structure';
+import Breadcrumbs from 'doxium/breadcrumbs';
+import NavButtons from 'doxium/nav-buttons';
+import SecondarySidebar from 'doxium/secondary-sidebar';
+import Sidebar from 'doxium/sidebar-filetree';
+import { getJsonData } from 'lib/get-json-data';
+import { getStructureInstance } from 'lib/structure';
 
 const DocsLayout = async ({ children }: React.PropsWithChildren) => {
     const { socials, separate } = await getJsonData();

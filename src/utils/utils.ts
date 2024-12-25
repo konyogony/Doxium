@@ -37,11 +37,13 @@ export const replacePlaceholders = (
         .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style'])
         .replaceAll(/\$COLOR/g, response['base-color'])
         .replaceAll(/\$ACCENT-COLOR/g, response['accent-color'])
-        .replaceAll(/\$USE-DOCS/g, response['use-docs'])
+        .replaceAll(/\$USEDOCS/g, response['use-docs'])
         .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
         .replaceAll(/\$LIB-ALIAS/g, libAlias)
         .replaceAll(/\$TYPES-ALIAS/g, typesAlias)
-        .replaceAll(/\$TSCONFIG/g, componentAlias.replaceAll('@/', ''))
+        .replaceAll(/\$TSCONFIG-COMPONENTS-ALIAS/g, componentAlias.replaceAll('@/', ''))
+        .replaceAll(/\$TSCONFIG-TYPES-ALIAS/g, typesAlias.replaceAll('@/', ''))
+        .replaceAll(/\$TSCONFIG-LIB-ALIAS/g, libAlias.replaceAll('@/', ''))
         .replaceAll(/\$BASE-URL/g, 'app/docs');
 };
 

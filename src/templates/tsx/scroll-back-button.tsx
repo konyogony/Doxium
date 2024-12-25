@@ -2,7 +2,7 @@
 
 'use client';
 
-import { FiArrowUp } from '@vertisanpro/react-icons/fi';
+import { FiArrowUp } from 'icons/fi';
 import { useEffect, useMemo, useState } from 'react';
 
 const ScrollBackButton = () => {

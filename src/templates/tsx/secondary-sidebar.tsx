@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import EditButton from '$COMPONENTS-ALIAS/edit-button';
-import ScrollBackButton from '$COMPONENTS-ALIAS/scroll-back-button';
-import TOC from '$COMPONENTS-ALIAS/toc';
+import EditButton from 'doxium/edit-button';
+import ScrollBackButton from 'doxium/scroll-back-button';
+import TOC from 'doxium/toc';
 
 interface SecondarySidebarProps {
     socials: {

@@ -1,7 +1,7 @@
 // @ts-nocheck
 'use client';
 
-import { cn } from '$LIB-ALIAS/utils';
+import { cn } from 'lib/utils';
 import { useState } from 'react';
 
 interface TabsProps {

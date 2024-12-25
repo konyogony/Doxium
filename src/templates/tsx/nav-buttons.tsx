@@ -2,13 +2,13 @@
 
 'use client';
 
-import { FiChevronLeft, FiChevronRight } from '@vertisanpro/react-icons/fi';
-import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
-import { prettifyText } from '$LIB-ALIAS/prettify-text';
-import { DocsNode } from '$TYPES-ALIAS';
+import { FiChevronLeft, FiChevronRight } from 'icons/fi';
+import { flattenStructure } from 'lib/flatten-structure';
+import { prettifyText } from 'lib/prettify-text';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
+import { DocsNode } from 'types';
 
 interface DocsNavProps {
     structure: DocsNode[];

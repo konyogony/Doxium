@@ -2,9 +2,9 @@
 
 'use client';
 
-import { FiCheck, FiClipboard } from '@vertisanpro/react-icons/fi';
-import { cn } from '$LIB-ALIAS/utils';
 import copy from 'copy-to-clipboard';
+import { FiCheck, FiClipboard } from 'icons/fi';
+import { cn } from 'lib/utils';
 import { useState } from 'react';
 import { toast } from 'sonner';
 

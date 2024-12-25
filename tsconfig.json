@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "lib": ["es2023"],
-        "module": "node16",
-        "target": "es2022",
+        "lib": ["esnext"],
+        "module": "NodeNext",
+        "target": "esnext",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,

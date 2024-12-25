@@ -2,23 +2,16 @@
 
 'use client';
 
-import { Button } from '@/components/ui/button';
-import {
-    CommandDialog,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-} from '@/components/ui/command';
 import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/react-dialog';
 import { FileIcon } from '@radix-ui/react-icons';
-import { RxMagnifyingGlass } from '@vertisanpro/react-icons/rx';
-import { flattenStructure } from '$LIB-ALIAS/flatten-structure';
-import { prettifyText } from '$LIB-ALIAS/prettify-text';
-import { DocsNode } from '$TYPES-ALIAS';
+import { RxMagnifyingGlass } from 'icons/rx';
+import { flattenStructure } from 'lib/flatten-structure';
+import { prettifyText } from 'lib/prettify-text';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import { DocsNode } from 'types';
+import { Button } from 'ui/button';
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from 'ui/command';
 
 interface CmdkProps extends DialogProps {
     structure: DocsNode[];

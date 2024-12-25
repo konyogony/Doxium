@@ -2,16 +2,16 @@
 
 'use client';
 
-import { BsDiscord, BsGithub, BsTwitter } from '@vertisanpro/react-icons/bs';
-import { FiChevronRight } from '@vertisanpro/react-icons/fi';
-import Cmdk from '$COMPONENTS-ALIAS/cmdk';
-import FolderFiletree from '$COMPONENTS-ALIAS/folder-filetree';
-import LinkFiletree from '$COMPONENTS-ALIAS/link-filetree';
-import { cn } from '$LIB-ALIAS/utils';
-import { DocsNode } from '$TYPES-ALIAS';
+import Cmdk from 'doxium/cmdk';
+import FolderFiletree from 'doxium/folder-filetree';
+import LinkFiletree from 'doxium/link-filetree';
+import { BsDiscord, BsGithub, BsTwitter } from 'icons/bs';
+import { FiChevronRight } from 'icons/fi';
+import { cn } from 'lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
+import { DocsNode } from 'types';
 
 interface NavbarProps {
     structure: DocsNode[];

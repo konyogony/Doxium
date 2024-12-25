@@ -58,6 +58,7 @@ export const configureComp = async (
         { name: 'types', type: 'ts', path: '$TYPES-ALIAS.ts' },
         { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
         { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
+        { name: 'doxium-config', type: 'ts', path: './doxium.config.ts' },
         { name: 'doxium', type: 'json', path: './doxium.json' },
         { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
     ].map((file) => {

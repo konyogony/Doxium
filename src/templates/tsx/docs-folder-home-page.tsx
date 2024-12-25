@@ -1,8 +1,8 @@
 // @ts-nocheck
 
-import { Button } from '@/components/ui/button';
-import { FiChevronRight } from '@vertisanpro/react-icons/fi';
+import { FiChevronRight } from 'icons/fi';
 import Link from 'next/link';
+import { Button } from 'ui/button';
 
 const Home = () => {
     return (

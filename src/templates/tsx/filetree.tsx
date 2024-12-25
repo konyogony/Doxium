@@ -2,8 +2,8 @@
 
 'use client';
 
-import { cn } from '@/lib/utils';
-import { FiFile, FiFolder } from '@vertisanpro/react-icons/fi';
+import { FiFile, FiFolder } from 'icons/fi';
+import { cn } from 'lib/utils';
 import { ReactElement, useCallback, useState } from 'react';
 
 interface FolderProps {

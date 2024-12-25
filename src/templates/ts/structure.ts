@@ -2,8 +2,8 @@
 
 import fs from 'fs';
 import path from 'path';
-import { getJsonData } from '$LIB-ALIAS/get-json-data';
-import { DocsNode } from '$TYPES-ALIAS';
+import { getJsonData } from 'lib/get-json-data';
+import { DocsNode } from 'types';
 
 let instance: DocsNode[] | null = null;
 
@@ -56,6 +56,9 @@ const createDocsStructure = async (rootName: string = 'getting-started'): Promis
             const aIndex = sortOrder.indexOf(a.name);
             const bIndex = sortOrder.indexOf(b.name);
 
+            if (a.path && !b.path) return -1;
+            if (!a.path && b.path) return 1;
+
             if (aIndex !== -1 && bIndex !== -1) {
                 return aIndex - bIndex;
             } else if (aIndex !== -1) {
@@ -63,9 +66,6 @@ const createDocsStructure = async (rootName: string = 'getting-started'): Promis
             } else if (bIndex !== -1) {
                 return 1;
             }
-
-            if (!a.nodes && b.nodes) return -1;
-            if (a.nodes && !b.nodes) return 1;
 
             return (a.path || '').localeCompare(b.path || '');
         });

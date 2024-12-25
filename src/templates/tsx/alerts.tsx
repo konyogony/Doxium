@@ -9,8 +9,8 @@ import {
     FiMessageCircle,
     FiSquare,
     FiStar,
-} from '@vertisanpro/react-icons/fi';
-import { cn } from '$LIB-ALIAS/utils';
+} from 'icons/fi';
+import { cn } from 'lib/utils';
 
 interface AlertsProps {
     variant?: 'bookmark' | 'warning' | 'error' | 'success' | 'tip' | 'star' | 'accent' | 'base';

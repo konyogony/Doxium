@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { cn } from '$LIB-ALIAS/utils';
+import { cn } from 'lib/utils';
 import React from 'react';
 
 const Timeline = ({ children }: React.PropsWithChildren) => {

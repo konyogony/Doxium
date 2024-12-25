@@ -2,8 +2,8 @@
 
 'use client';
 
-import { HiOutlineHashtag } from '@vertisanpro/react-icons/hi';
 import copy from 'copy-to-clipboard';
+import { HiOutlineHashtag } from 'icons/hi';
 import { toast } from 'sonner';
 
 interface HashtagButtonProps {

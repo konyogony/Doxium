@@ -1,11 +1,11 @@
 // @ts-nocheck
 
-import CodeWrapper from '$COMPONENTS-ALIAS/code-wrapper';
-import HashtagButton from '$COMPONENTS-ALIAS/hashtag-button';
-import { getJsonData } from '$LIB-ALIAS/get-json-data';
-import { cn } from '$LIB-ALIAS/utils';
-import { preProps, ShikiThemeBackgroundHexDefault } from '$TYPES-ALIAS';
+import CodeWrapper from 'doxium/code-wrapper';
+import HashtagButton from 'doxium/hashtag-button';
+import { getJsonData } from 'lib/get-json-data';
+import { cn } from 'lib/utils';
 import { BundledTheme } from 'shiki';
+import { preProps, ShikiThemeBackgroundHexDefault } from 'types';
 
 const mdxComponents = {
     a: ({ children, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => {

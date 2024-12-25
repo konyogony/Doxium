@@ -1,15 +1,15 @@
 // @ts-nocheck
 
-import Breadcrumbs from '$COMPONENTS-ALIAS/breadcrumbs';
-import Footer from '$COMPONENTS-ALIAS/footer';
-import NavButtons from '$COMPONENTS-ALIAS/nav-buttons';
-import Navbar from '$COMPONENTS-ALIAS/navbar';
-import SecondarySidebar from '$COMPONENTS-ALIAS/secondary-sidebar';
-import Sidebar from '$COMPONENTS-ALIAS/sidebar-filetree';
-import Toaster from '$COMPONENTS-ALIAS/toaster';
-import { getJsonData } from '$LIB-ALIAS/get-json-data';
-import { getStructureInstance } from '$LIB-ALIAS/structure';
-import { cn } from '$LIB-ALIAS/utils';
+import Breadcrumbs from 'doxium/breadcrumbs';
+import Footer from 'doxium/footer';
+import NavButtons from 'doxium/nav-buttons';
+import Navbar from 'doxium/navbar';
+import SecondarySidebar from 'doxium/secondary-sidebar';
+import Sidebar from 'doxium/sidebar-filetree';
+import Toaster from 'doxium/toaster';
+import { getJsonData } from 'lib/get-json-data';
+import { getStructureInstance } from 'lib/structure';
+import { cn } from 'lib/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';

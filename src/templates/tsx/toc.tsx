@@ -2,10 +2,10 @@
 
 'use client';
 
-import { cn } from '$LIB-ALIAS/utils';
-import { Heading } from '$TYPES-ALIAS';
+import { cn } from 'lib/utils';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Heading } from 'types';
 
 const TOC = () => {
     const [headings, setHeadings] = useState<Heading[]>([]);

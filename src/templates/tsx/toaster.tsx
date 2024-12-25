@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useMediaQuery } from '$LIB-ALIAS/use-media-query';
+import { useMediaQuery } from 'lib/use-media-query';
 import { Toaster } from 'sonner';
 
 const DocsToaster = () => {

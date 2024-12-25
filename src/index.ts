@@ -1,22 +1,15 @@
 #!/usr/bin/env node
-import { createRequire } from 'module';
 import { program } from 'commander';
+import * as packageJson from '../package.json' assert { type: 'json' };
 import { init } from './commands/init.js';
 import { link } from './commands/link.js';
 import { update } from './commands/update.js';
 import { accentColors, baseColors, shikiThemes } from './utils/types.js';
 
-const require = createRequire(import.meta.url);
-const packageJson = require('../package.json');
-
 program
     .name(packageJson.default.name)
     .description(packageJson.default.description)
     .version(packageJson.default.version, '-v, --version');
-
-// TYPES-ALIAS
-// LIB-ALIAS
-// COMPONENTS-ALIAS
 
 program
     .command('init [name]')

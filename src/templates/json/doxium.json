@@ -5,7 +5,7 @@
         "accent-color": "$ACCENT-COLOR",
         "shiki-theme": "$SHIKI-THEME",
     },
-    "use-docs": $USE-DOCS,
+    "use-docs": $USEDOCS,
     "alias": {
         "components": "$COMPONENTS-ALIAS",
         "lib": "$LIB-ALIAS",

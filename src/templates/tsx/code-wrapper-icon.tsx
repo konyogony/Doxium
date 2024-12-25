@@ -1,16 +1,8 @@
 // @ts-nocheck
 
-import { FiTerminal } from '@vertisanpro/react-icons/fi';
-import {
-    SiHtml5,
-    SiJavascript,
-    SiMdx,
-    SiReact,
-    SiRust,
-    SiTailwindcss,
-    SiTypescript,
-} from '@vertisanpro/react-icons/si';
-import { VscJson, VscSymbolFile } from '@vertisanpro/react-icons/vsc';
+import { FiTerminal } from 'icons/fi';
+import { SiHtml5, SiJavascript, SiMdx, SiReact, SiRust, SiTailwindcss, SiTypescript } from 'icons/si';
+import { VscJson, VscSymbolFile } from 'icons/vsc';
 import { JSX } from 'react';
 
 interface WikiCodeWrapperIconProps {

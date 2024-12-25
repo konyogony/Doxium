@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import LinkFiletree from '$COMPONENTS-ALIAS/link-filetree';
-import { DocsNode } from '$TYPES-ALIAS';
+import LinkFiletree from 'doxium/link-filetree';
+import { DocsNode } from 'types';
 
 interface FolderFiletreeProps {
     node: DocsNode;
