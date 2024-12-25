@@ -90,15 +90,6 @@ export const configureShadcn = async (
         while (true) {
             const result = spawn.sync(
                 pmx[0],
-                [pmx[1], 'shadcn@latest', 'add', 'tabs'].filter((str) => str !== '' && str !== undefined) as string[],
-                { stdio: 'ignore' },
-            );
-            if (!result.error) break;
-        }
-
-        while (true) {
-            const result = spawn.sync(
-                pmx[0],
                 [pmx[1], 'shadcn@latest', 'add', 'button'].filter((str) => str !== '' && str !== undefined) as string[],
                 { stdio: 'ignore' },
             );

@@ -25,6 +25,7 @@
             "ui/*": ["components/ui/*"],
             "types/*": ["$TSCONFIG-TYPES-ALIAS/*"],
             "lib/*": ["$TSCONFIG-LIB-ALIAS/*"],
+            "config": ["doxium.config.ts"],
             "@/*": ["./*"]
         }
     },
