@@ -15,7 +15,7 @@ interface FileProps {
 }
 
 const Filetree = ({ children }: React.PropsWithChildren): ReactElement => {
-    return <div className='flex h-fit w-full flex-col rounded-lg bg-zinc-900 p-4'>{children}</div>;
+    return <div className='flex h-fit w-full flex-col rounded-lg bg-base-900 p-4'>{children}</div>;
 };
 
 const Folder = ({ name, children }: React.PropsWithChildren<FolderProps>) => {

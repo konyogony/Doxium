@@ -18,17 +18,15 @@ const LinkFiletree = ({ name, path }: WikiLinkProps) => {
     return (
         <>
             {!path ? (
-                <span
-                    className={'flex w-full py-1.5 pt-3 text-sm font-bold text-$COLOR-50 transition-all duration-300'}
-                >
+                <span className={'flex w-full py-1.5 pt-3 text-sm font-bold text-base-50 transition-all duration-300'}>
                     {prettifyText(name)}
                 </span>
             ) : (
                 <Link
                     href={path || ''}
                     className={cn(
-                        'flex w-full py-1.5 text-sm font-normal text-$COLOR-400 decoration-dotted hover:saturate-150 transition-all duration-300 hover:!text-$COLOR-100 hover:underline',
-                        pathname === path && 'font-medium text-$ACCENT-COLOR-500',
+                        'flex w-full py-1.5 text-sm font-normal text-base-400 decoration-dotted hover:saturate-150 transition-all duration-300 hover:!text-base-100 hover:underline',
+                        pathname === path && 'font-medium text-accent-500',
                     )}
                 >
                     {prettifyText(name)}

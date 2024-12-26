@@ -20,7 +20,7 @@ const ScrollBackButton = () => {
         return (
             <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className='my-1 flex items-center gap-1 text-sm text-$COLOR-400 hover:underline'
+                className='my-1 flex items-center gap-1 text-sm text-base-400 hover:underline'
             >
                 Back to top <FiArrowUp />
             </button>

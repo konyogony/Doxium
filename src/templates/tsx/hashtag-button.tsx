@@ -30,7 +30,7 @@ const HashtagButton = ({ id, variant: Var = 'h1', children }: React.PropsWithChi
             {children}
             <HiOutlineHashtag
                 size={Var === 'h1' ? 24 : Var === 'h2' ? 18 : 16}
-                className='ml-2 hidden text-transparent transition-all duration-300 hover:!text-$ACCENT-COLOR-600 focus:outline-none focus:ring-0 group-hover:text-$ACCENT-COLOR-500 lg:inline-block'
+                className='ml-2 hidden text-transparent transition-all duration-300 hover:!text-accent-600 focus:outline-none focus:ring-0 group-hover:text-accent-500 lg:inline-block'
             />
         </Var>
     );

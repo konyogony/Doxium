@@ -56,9 +56,7 @@ const TOC = () => {
                 href={`#${heading.id}`}
                 className={cn(
                     'py-[4.5px] text-sm transition-all duration-200 hover:underline max-w-48 decoration-dotted',
-                    activeHeading === heading.id
-                        ? 'text-$ACCENT-COLOR-500 font-semibold'
-                        : 'text-$COLOR-400 font-normal',
+                    activeHeading === heading.id ? 'text-accent-500 font-semibold' : 'text-base-400 font-normal',
                     heading.level === 1 && 'font-semibold',
                 )}
                 style={{

@@ -10,7 +10,6 @@ import {
     FiSquare,
     FiStar,
 } from 'icons/fi';
-import { cn } from 'lib/utils';
 
 interface AlertsProps {
     variant?: 'bookmark' | 'warning' | 'error' | 'success' | 'tip' | 'star' | 'accent' | 'base';
@@ -28,15 +27,15 @@ const getAlertColor = (variant: AlertsProps['variant']) => {
         case 'success':
             return 'bg-green-700/50 text-green-600 border-green-300/40';
         case 'tip':
-            return 'bg-blue-700/50 text-blue-500 border-blue-300/40';
+            return 'bg-accent-700/50 text-accent-500 border-accent-300/40';
         case 'accent':
-            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-500 border-$ACCENT-COLOR-200/40';
+            return 'bg-accent-600/50 text-accent-500 border-accent-200/40';
         case 'base':
-            return 'bg-$COLOR-600/30 text-$COLOR-400 border-white/20';
+            return 'bg-base-600/30 text-base-400 border-white/20';
         case 'star':
             return 'bg-yellow-600/50 text-yellow-500 border-yellow-200/40';
         default:
-            return 'bg-$ACCENT-COLOR-600/50 text-$ACCENT-COLOR-500 border-$ACCENT-COLOR-200/40';
+            return 'bg-accent-600/50 text-accent-500 border-accent-200/40';
     }
 };
 

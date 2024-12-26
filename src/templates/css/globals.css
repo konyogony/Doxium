@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    @apply bg-$COLOR-950 text-$COLOR-200;
+    @apply bg-base-950 text-base-200;
 }
 
 code {
@@ -83,7 +83,7 @@ pre.has-diff .diff.remove {
 }
 
 pre.has-highlighted .highlighted:not(.error):not(.warning) {
-    @apply border-l-2 border-$ACCENT-COLOR-500;
+    @apply border-l-2 border-accent-500;
 }
 
 pre.has-highlighted .error {
@@ -134,7 +134,7 @@ pre.has-highlighted .warning {
 
 .lineNumbers > pre.has-highlighted .highlighted::before {
     content: counter(step) ' ';
-    @apply ml-[14px] mr-4 inline-block w-4 text-right text-$ACCENT-COLOR-600;
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-accent-600;
     counter-increment: step;
 }
 
@@ -164,7 +164,7 @@ pre.has-highlighted .warning {
 
 :not(.lineNumbers) > pre.has-highlighted .highlighted::before {
     content: ' ';
-    @apply mr-4 inline-block pl-2 text-right text-$ACCENT-COLOR-300;
+    @apply mr-4 inline-block pl-2 text-right text-accent-300;
 }
 
 :not(.lineNumbers) > pre.has-highlighted .error::before {
@@ -201,7 +201,7 @@ pre.has-diff .diff.remove {
 
 /* Highlighted code styles */
 pre.has-highlighted .highlighted {
-    @apply bg-$ACCENT-COLOR-500 bg-opacity-15;
+    @apply bg-accent-500 bg-opacity-15;
 }
 
 pre.has-highlighted .error {
@@ -213,7 +213,7 @@ pre.has-highlighted .warning {
 }
 
 .highlighted-word {
-    @apply rounded-sm border border-white/15 bg-$COLOR-200/20 px-[2px] py-[1px];
+    @apply rounded-sm border border-white/15 bg-base-200/20 px-[2px] py-[1px];
 }
 
 /* Checkbox trickery */
@@ -235,7 +235,7 @@ input[type='checkbox'] {
 
 .codeBlock > pre::-webkit-scrollbar-thumb,
 .customScrollbar::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-$COLOR-600;
+    @apply rounded-lg bg-base-600;
 }
 
 .codeBlock > pre::-webkit-scrollbar-track,
@@ -252,7 +252,7 @@ table {
 }
 
 th {
-    @apply border-b border-white !px-8 !py-2.5 text-sm font-bold text-$COLOR-100;
+    @apply border-b border-white !px-8 !py-2.5 text-sm font-bold text-base-100;
 }
 
 td {

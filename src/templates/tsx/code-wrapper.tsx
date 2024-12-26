@@ -61,7 +61,7 @@ const CodeWrapper = async ({
 
     const text = children.replace(/\/\/\s*\[!code.*?\]/g, '').trim();
 
-    // TODO: Control roundess
+    // TODO: Control roundes
     return (
         <div className='codeWrapper group relative my-4 w-full overflow-clip rounded-md border border-white/15'>
             {!noTopBar && (

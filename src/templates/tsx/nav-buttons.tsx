@@ -31,8 +31,8 @@ const NavButtons = ({ structure }: DocsNavProps) => {
         <div className='not-prose flex w-full flex-row items-center justify-between space-x-2 py-2'>
             {paths.prev && (
                 <Link href={paths.prev.path} className='flex w-fit max-w-[50%] flex-col items-end'>
-                    <span className='text-sm text-$COLOR-500'>Previous</span>
-                    <div className='flex max-w-full flex-row items-center text-$COLOR-300 decoration-dotted transition-all duration-200 hover:text-$ACCENT-COLOR-600 hover:underline'>
+                    <span className='text-sm text-base-500'>Previous</span>
+                    <div className='flex max-w-full flex-row items-center text-base-300 decoration-dotted transition-all duration-200 hover:text-accent-600 hover:underline'>
                         <FiChevronLeft className='shrink-0' size={16} />
                         <span className='truncate' dir='rtl'>
                             {prettifyText(paths.prev.name)}
@@ -42,8 +42,8 @@ const NavButtons = ({ structure }: DocsNavProps) => {
             )}
             {paths.next && (
                 <Link href={paths.next.path} className='ml-auto flex w-fit max-w-[50%] flex-col items-start'>
-                    <span className='text-sm text-$COLOR-500'>Next</span>
-                    <div className='flex max-w-full flex-row items-center text-$COLOR-300 decoration-dotted transition-all duration-200 hover:text-$ACCENT-COLOR-600 hover:underline'>
+                    <span className='text-sm text-base-500'>Next</span>
+                    <div className='flex max-w-full flex-row items-center text-base-300 decoration-dotted transition-all duration-200 hover:text-accent-600 hover:underline'>
                         <span className='truncate'>{prettifyText(paths.next.name)}</span>
                         <FiChevronRight className='shrink-0' size={16} />
                     </div>

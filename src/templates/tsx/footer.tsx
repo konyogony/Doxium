@@ -3,7 +3,7 @@
 const Footer = () => {
     return (
         <div className='flex w-full flex-col border-t border-white/15 px-[10vw] py-6 lg:px-[20vw]'>
-            <div className='flex flex-row justify-between text-xs text-$COLOR-400'>
+            <div className='flex flex-row justify-between text-xs text-base-400'>
                 <span>© 2024 Doxium</span>
                 <span>
                     Made with &hearts; by&nbsp;

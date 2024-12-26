@@ -63,7 +63,7 @@ const Tabs = ({
                         onClick={() => handleTabClick(i)}
                         className={cn(
                             'border-b pb-2 text-base font-medium transition-all duration-300',
-                            activeIndex === i ? 'border-$ACCENT-COLOR-600' : 'border-transparent',
+                            activeIndex === i ? 'border-accent-600' : 'border-transparent',
                         )}
                     >
                         {v}

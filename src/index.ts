@@ -14,13 +14,13 @@ program
 program
     .command('init [name]')
     .description('create new Doxium app')
-    .option('-e, --empty', 'include no wiki pages')
+    .option('-e, --empty', 'include no pre-built wiki pages')
     .option('-s, --silent', 'mute output / silent output (uses defaults, unless specified)')
-    .option('-y, --yes', 'skip all prompts and use defaults')
+    .option('-y, --yes', 'skip all prompts and use default values')
     .option('-l, --eslint <boolean>', 'enable eslint')
     .option('-p, --prettier <boolean>', 'enable prettier')
-    .option('-u, --use-docs <boolean>', 'enable docs')
-    .option('-c, --shadcn-style <string>', 'shadcn style')
+    .option('-u, --use-docs <boolean>', 'use the /docs folder')
+    .option('-c, --shadcn-style <string>', 'shadcn style (poor support)')
     .option('-b, --base-color <string>', 'base color')
     .option('-a, --accent-color <string>', 'accent color')
     .option('-t, --shiki-theme <string>', 'shiki theme')
@@ -28,7 +28,7 @@ program
     .option('-d, --directory <string>', 'change the working directory')
     .option('--types-alias <string>', 'types alias')
     .option('--lib-alias <string>', 'lib alias')
-    .option('--components-alias <string>', 'components alias')
+    .option('--components-alias <string>', 'doxium components alias')
     .action((name, options) => {
         if (options.shadcnStyle && options.shadcnStyle !== 'default' && options.shadcnStyle !== 'new-york') {
             console.error("Invalid value for --shadcn-style. Allowed values are 'default' or 'new-york'.");

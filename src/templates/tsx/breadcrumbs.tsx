@@ -26,13 +26,13 @@ const Breadcrumbs = () => {
                         <Fragment key={i}>
                             <BreadcrumbSeparator />
                             {v === 'docs' ? (
-                                <BreadcrumbItem className={isLast ? 'text-$COLOR-50' : ''}>
+                                <BreadcrumbItem className={isLast ? 'text-base-50' : ''}>
                                     <BreadcrumbLink asChild>
                                         <Link href={`/${v}`}>{prettifyText(v)}</Link>
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                             ) : (
-                                <BreadcrumbItem className={isLast ? 'text-$COLOR-50' : ''}>
+                                <BreadcrumbItem className={isLast ? 'text-base-50' : ''}>
                                     {isLast ? (
                                         <BreadcrumbLink asChild>
                                             <Link href={href}>{prettifyText(v)}</Link>

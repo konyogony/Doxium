@@ -1,8 +1,10 @@
 // @ts-nocheck
 
-import typogrophy from '@tailwindcss/typography';
+import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import tailwindcssAnimate from 'tailwindcss-animate';
+import tailwindcssColors from 'tailwindcss/colors';
+import config from './doxium.config'; // Cant make this an alias, due to https://github.com/tailwindlabs/tailwindcss/issues/11097
 
 export default {
     darkMode: ['class'],
@@ -16,6 +18,8 @@ export default {
             colors: {
                 background: 'var(--background)',
                 foreground: 'var(--foreground)',
+                base: tailwindcssColors[config.style['base-color']],
+                accent: tailwindcssColors[config.style['accent-color']],
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -24,5 +28,5 @@ export default {
             },
         },
     },
-    plugins: [tailwindcssAnimate, typogrophy],
+    plugins: [tailwindcssAnimate, typography],
 } satisfies Config;

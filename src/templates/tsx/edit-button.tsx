@@ -18,7 +18,7 @@ const EditButton = ({ repoString }: DocsEditProps) => {
                     href={`${repoString}/edit/main/src/app${pathname}/page.mdx`}
                     rel='noopener noreferrer'
                     target='_blank'
-                    className='hover:underline text-$COLOR-400 flex flex-row items-center gap-1 text-sm transition-all duration-300'
+                    className='hover:underline text-base-400 flex flex-row items-center gap-1 text-sm transition-all duration-300'
                 >
                     Edit this page on GitHub <FiArrowUpRight />
                 </a>

@@ -18,8 +18,8 @@ const Timeline = ({ children }: React.PropsWithChildren) => {
             {groups.map((group, i) => (
                 <div key={i} className='flex flex-col gap-2'>
                     <div className={cn('flex flex-row items-center', i === 0 ? '-mt-1' : 'mt-6')}>
-                        <div className='relative flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-$COLOR-950'>
-                            <div className='my-auto flex size-8 justify-center rounded-full bg-$COLOR-800'>
+                        <div className='relative flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-base-950'>
+                            <div className='my-auto flex size-8 justify-center rounded-full bg-base-800'>
                                 <span className='my-auto flex'>{i + 1}</span>
                             </div>
                         </div>
