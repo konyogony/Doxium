@@ -1,14 +1,16 @@
 // @ts-nocheck
 
+import config from 'config';
 import Breadcrumbs from 'doxium/breadcrumbs';
 import NavButtons from 'doxium/nav-buttons';
 import SecondarySidebar from 'doxium/secondary-sidebar';
 import Sidebar from 'doxium/sidebar-filetree';
-import { getJsonData } from 'lib/get-json-data';
 import { getStructureInstance } from 'lib/structure';
 
+const socials = config.socials;
+const separate = config.misc.separate;
+
 const DocsLayout = async ({ children }: React.PropsWithChildren) => {
-    const { socials, separate } = await getJsonData();
     const structure = await getStructureInstance();
     return (
         <div className='min-h-screen relative flex flex-row justify-center gap-8 pt-16 pb-2 lg:pt-24'>

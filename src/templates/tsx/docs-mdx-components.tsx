@@ -1,11 +1,13 @@
 // @ts-nocheck
 
+import config from 'config';
 import CodeWrapper from 'doxium/code-wrapper';
 import HashtagButton from 'doxium/hashtag-button';
-import { getJsonData } from 'lib/get-json-data';
 import { cn } from 'lib/utils';
 import { BundledTheme } from 'shiki';
 import { preProps, ShikiThemeBackgroundHexDefault } from 'types';
+
+const theme = config.style['shiki-theme'];
 
 const mdxComponents = {
     a: ({ children, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => {
@@ -58,7 +60,6 @@ const mdxComponents = {
         );
     },
     code: async ({ children }: React.HTMLAttributes<HTMLUnknownElement>) => {
-        const { theme } = await getJsonData();
         const currentTheme = theme as BundledTheme;
         const color = ShikiThemeBackgroundHexDefault[currentTheme];
         const long = children ? children.toString().split('').length > 75 : false;

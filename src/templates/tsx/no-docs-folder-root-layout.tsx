@@ -7,14 +7,17 @@ import Navbar from 'doxium/navbar';
 import SecondarySidebar from 'doxium/secondary-sidebar';
 import Sidebar from 'doxium/sidebar-filetree';
 import Toaster from 'doxium/toaster';
-import { getJsonData } from 'lib/get-json-data';
 import { getStructureInstance } from 'lib/structure';
 import { cn } from 'lib/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import config from 'config';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const socials = config.socials;
+const separate = config.misc.separate;
 
 export const metadata: Metadata = {
     title: 'Doxium app',
@@ -26,7 +29,6 @@ const RootLayout = async ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const { socials, separate } = await getJsonData();
     const structure = await getStructureInstance();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>

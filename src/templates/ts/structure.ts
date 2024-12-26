@@ -2,13 +2,13 @@
 
 import fs from 'fs';
 import path from 'path';
-import { getJsonData } from 'lib/get-json-data';
 import { DocsNode } from 'types';
 
 let instance: DocsNode[] | null = null;
 
+const baseUrl = config['base-url'];
+
 const createDocsStructure = async (rootName: string = 'getting-started'): Promise<DocsNode[]> => {
-    const { baseUrl } = await getJsonData();
     const baseDir = path.resolve(process.cwd(), baseUrl);
 
     const getDocsTree = (currentDir: string): DocsNode[] => {

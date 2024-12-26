@@ -13,7 +13,6 @@ import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
 import config from 'config';
 import CodeWrapperIcon from 'doxium/code-wrapper-icon';
 import CopyButton from 'doxium/copy-button';
-import { getJsonData } from 'lib/get-json-data';
 import { getHighlighterInstance } from 'lib/highlighter';
 import { isLightColor } from 'lib/is-light-color';
 import { cn } from 'lib/utils';

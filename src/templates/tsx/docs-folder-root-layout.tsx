@@ -1,9 +1,9 @@
 // @ts-nocheck
 
+import config from 'config';
 import Footer from 'doxium/footer';
 import Navbar from 'doxium/navbar';
 import Toaster from 'doxium/toaster';
-import { getJsonData } from 'lib/get-json-data';
 import { getStructureInstance } from 'lib/structure';
 import { cn } from 'lib/utils';
 import { Metadata } from 'next';
@@ -11,6 +11,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const socials = config.socials;
 
 export const metadata: Metadata = {
     title: 'Doxium app',
@@ -22,7 +24,6 @@ const RootLayout = async ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const { socials } = await getJsonData();
     const structure = await getStructureInstance();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
