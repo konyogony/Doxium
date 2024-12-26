@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import {
     FiAlertCircle,
     FiAlertTriangle,
@@ -10,6 +9,7 @@ import {
     FiSquare,
     FiStar,
 } from 'icons/fi';
+import { cn } from 'lib/utils';
 
 interface AlertsProps {
     variant?: 'bookmark' | 'warning' | 'error' | 'success' | 'tip' | 'star' | 'accent' | 'base';

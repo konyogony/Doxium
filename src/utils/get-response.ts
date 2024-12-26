@@ -13,7 +13,6 @@ export const getFullResponse = async (
     shikiTheme: string,
     githubRepo: string,
 ) => {
-    console.log(eslint, prettier, useDocs, shadcnStyle, baseColor, accentColor, shikiTheme, githubRepo);
     const responseEslint =
         eslint ??
         (

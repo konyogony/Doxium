@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { FiArrowUpRight } from 'icons/fi';
+import { cn } from 'lib/utils';
 
 export interface CardProps {
     title: string;

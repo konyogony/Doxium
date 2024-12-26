@@ -27,7 +27,7 @@ const Tabs = ({
         const savedIndex = localStorage.getItem(JSON.stringify(tabs));
         setActiveIndex(savedIndex !== null ? parseInt(savedIndex, 10) : defaultIndex);
         if (savedIndex === null) localStorage.setItem(JSON.stringify(tabs), defaultIndex.toString());
-    }, [tabs, defaultIndex]);
+    }, [tabs, defaultIndex, sync]);
 
     useEffect(() => {
         if (typeof window === 'undefined' && !sync) return;

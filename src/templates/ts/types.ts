@@ -93,11 +93,6 @@ export interface DoxiumConfig {
     };
 }
 
-export interface HighlighterResult {
-    highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
-    theme: BundledTheme;
-}
-
 export interface Heading {
     id: string;
     level: number;

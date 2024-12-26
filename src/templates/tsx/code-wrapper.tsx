@@ -10,11 +10,14 @@ import {
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
 import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
+import config from 'config';
 import CodeWrapperIcon from 'doxium/code-wrapper-icon';
 import CopyButton from 'doxium/copy-button';
+import { getJsonData } from 'lib/get-json-data';
 import { getHighlighterInstance } from 'lib/highlighter';
 import { isLightColor } from 'lib/is-light-color';
 import { cn } from 'lib/utils';
+import { BundledTheme } from 'shiki';
 import { ShikiThemeBackgroundHexDimmed } from 'types';
 
 interface WikiCodeWrapperProps {
@@ -27,6 +30,8 @@ interface WikiCodeWrapperProps {
     name: string | undefined;
 }
 
+const theme = config.style['shiki-theme'];
+
 const CodeWrapper = async ({
     language = '',
     children,
@@ -36,10 +41,10 @@ const CodeWrapper = async ({
     twoSlash,
     name,
 }: WikiCodeWrapperProps) => {
-    const { highlighter, theme } = await getHighlighterInstance();
+    const highlighter = await getHighlighterInstance(theme as BundledTheme);
     const highlightedCode = highlighter.codeToHtml(children, {
         lang: language,
-        theme: theme,
+        theme: 'github-dark-dimmed',
         transformers: [
             transformerNotationDiff(),
             transformerNotationHighlight(),
@@ -56,7 +61,7 @@ const CodeWrapper = async ({
     });
 
     const { icon: IconComponent, lang } = CodeWrapperIcon({ language });
-    const backgroundColor = ShikiThemeBackgroundHexDimmed[theme];
+    const backgroundColor = ShikiThemeBackgroundHexDimmed[theme as keyof typeof ShikiThemeBackgroundHexDimmed];
     const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
 
     const text = children.replace(/\/\/\s*\[!code.*?\]/g, '').trim();
@@ -72,14 +77,14 @@ const CodeWrapper = async ({
                     style={{ backgroundColor, color: textColor }}
                 >
                     {IconComponent}
-                    {name ? <span className='text-xs text-$COLOR-300/80'>{name}</span> : lang}{' '}
+                    {name ? <span className='text-xs text-gray-300/80'>{name}</span> : lang}{' '}
                     {!noCopyButton && <CopyButton text={text} />}
                 </div>
             )}
             {noTopBar && !noCopyButton && <CopyButton text={text} />}
             <article
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
-                className={cn('codeBlock text-sm lg:text-base', lineNumbers && 'lineNumbers')}
+                className={cn('codeBlock text-base lg:text-lg', lineNumbers && 'lineNumbers')}
             />
         </div>
     );
