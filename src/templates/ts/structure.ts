@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import config from 'config';
 import { DocsNode } from 'types';
 
 let instance: DocsNode[] | null = null;

@@ -4,17 +4,21 @@ import config from 'config';
 import CodeWrapper from 'doxium/code-wrapper';
 import HashtagButton from 'doxium/hashtag-button';
 import { cn } from 'lib/utils';
+import Link from 'next/link';
 import { BundledTheme } from 'shiki';
 import { preProps, ShikiThemeBackgroundHexDefault } from 'types';
 
 const theme = config.style['shiki-theme'];
 
 const mdxComponents = {
-    a: ({ children, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => {
-        return (
-            <a {...props} target='_blank' rel='noopener noreferrer'>
+    a: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+        const external = props.href?.toString().startsWith('http');
+        return external ? (
+            <a {...props} rel='noopener norefferer' target='_blank'>
                 {children}
             </a>
+        ) : (
+            <Link href={props.href ?? ''}>{children}</Link>
         );
     },
     h1: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {

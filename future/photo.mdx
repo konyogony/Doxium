@@ -1,0 +1,20 @@
+import Video from 'doxium/video';
+import Image from 'doxium/image';
+import img from '@/public/Untitled.jpg';
+
+[Click](/docs/)
+
+^ A link to another page, uses Nextjs Link
+
+[Click](https://google.com)
+
+^ A link to an external page, uses a tag
+
+![Image](/Untitled.jpg)
+^ Bad solution, gets from public folder
+
+<Image src={img} width='500' height='400' alt='Image' />
+^ Better solution. import the image and pass it as a prop to not specify the height and width. Otherwise, specify the height and width in px
+
+<Video src="/2024-12-23-14-27-00.mp4"  width="100%" height="400px" title="Doxium" controls={true}/>
+^ A video component, uses video tag if src is a local file, otherwise uses iframe tag. gets the video from public folder
