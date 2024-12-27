@@ -25,12 +25,12 @@ const HashtagButton = ({ id, variant: Var = 'h1', children }: React.PropsWithChi
         <Var
             onClick={() => clickCopy()}
             id={id}
-            className='headings group inline-block w-full cursor-copy items-center justify-start gap-2'
+            className='headings group flex w-full cursor-copy flex-wrap items-center justify-start gap-2'
         >
             {children}
             <HiOutlineHashtag
-                size={Var === 'h1' ? 24 : Var === 'h2' ? 18 : 16}
-                className='ml-2 hidden text-transparent transition-all duration-300 hover:!text-accent-600 focus:outline-none focus:ring-0 group-hover:text-accent-500 lg:inline-block'
+                size={Var === 'h1' ? 24 : Var === 'h2' ? 20 : 16}
+                className='hidden text-transparent transition-all duration-300 hover:!text-accent-600 focus:outline-none focus:ring-0 group-hover:text-accent-500 lg:inline-block'
             />
         </Var>
     );

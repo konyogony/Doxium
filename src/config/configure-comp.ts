@@ -45,6 +45,8 @@ export const configureComp = async (
         { name: 'timeline', type: 'tsx', path: '$COMPONENTS-ALIAS/timeline.tsx' },
         { name: 'filetree', type: 'tsx', path: '$COMPONENTS-ALIAS/filetree.tsx' },
         { name: 'image', type: 'tsx', path: '$COMPONENTS-ALIAS/image.tsx' },
+        { name: 'video', type: 'tsx', path: '$COMPONENTS-ALIAS/video.tsx' },
+        { name: 'accordion', type: 'tsx', path: '$COMPONENTS-ALIAS/accordion.tsx' },
 
         // Lib components
         { name: 'highlighter', type: 'ts', path: '$LIB-ALIAS/highlighter.ts' },
