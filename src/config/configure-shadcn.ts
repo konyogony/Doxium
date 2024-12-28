@@ -53,7 +53,7 @@ export const configureShadcn = async (
 
         await fs.mkdir('components/ui', { recursive: true });
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
         !mute_output && console.log('\n' + infoText('Installing shadcn...'));
         await Promise.all(
             files.map(async (file) => {
@@ -81,7 +81,7 @@ export const configureShadcn = async (
                 [pmx[1], 'shadcn@latest', 'add', 'breadcrumb'].filter(
                     (str) => str !== '' && str !== undefined,
                 ) as string[],
-                { stdio: 'inherit' },
+                { stdio: 'ignore' },
             );
             if (!result.error) break;
         }
@@ -90,7 +90,7 @@ export const configureShadcn = async (
             const result = spawn.sync(
                 pmx[0],
                 [pmx[1], 'shadcn@latest', 'add', 'button'].filter((str) => str !== '' && str !== undefined) as string[],
-                { stdio: 'inherit' },
+                { stdio: 'ignore' },
             );
             if (!result.error) break;
         }
@@ -116,7 +116,7 @@ export const configureShadcn = async (
 
         !mute_output && console.log(successText('Shadcn components installed successfully!'));
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
         !mute_output && console.log(successText('Shadcn installed successfully!'));
     } catch (error) {

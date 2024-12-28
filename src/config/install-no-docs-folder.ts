@@ -57,7 +57,7 @@ export const installNoDocsFolder = async (
             }),
         );
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
     } catch (error) {
         console.error('Error creating custom components:', error);
         process.exit(1);

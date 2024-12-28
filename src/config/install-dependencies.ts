@@ -22,7 +22,7 @@ export const installDependencies = async (pmi: string[], mute_output: boolean) =
                 '@mdx-js/loader',
                 'autoprefixer',
             ].filter((str) => str !== '' && str !== undefined) as string[],
-            { stdio: 'inherit' },
+            { stdio: 'ignore' },
         );
         spawn.sync(
             pmi[0],
@@ -46,7 +46,7 @@ export const installDependencies = async (pmi: string[], mute_output: boolean) =
                 'remark-math',
                 'rehype-mathjax',
             ].filter((str) => str !== '' && str !== undefined) as string[],
-            { stdio: 'inherit' },
+            { stdio: 'ignore' },
         );
 
         !mute_output && console.log(successText('Dependencies installed successfully!'));

@@ -26,7 +26,7 @@ export const createNewNext = async (response: responseT, pmx: string[], mute_out
                 response['eslint'] ? '--eslint' : '--no-eslint',
             ].filter((str) => str !== '' && str !== undefined) as string[],
             {
-                stdio: 'inherit',
+                stdio: 'ignore',
             },
         );
 

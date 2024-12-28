@@ -1,6 +1,6 @@
 {
     "name": "doxium",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "author": "konyogony",
     "main": "index.js",
     "type": "module",
@@ -31,6 +31,7 @@
     "description": "CLI tool for creating and managing Doxium applications.",
     "license": "MIT",
     "scripts": {
+        "pub": "bun publish --access public",
         "dev": "bun run ./src/index.ts init",
         "build": "ncc build src/index.ts -o dist"
     },

@@ -120,7 +120,7 @@ export const configureComp = async (
             }),
         );
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
         if (response['use-docs']) {
             installDocsFolder(response, pm, empty, typesAlias, libAlias, componentsAlias);

@@ -6,7 +6,7 @@ import { errorText, infoText, successText } from '../utils/utils.js';
 export const removePrettier = async (response: responseT, pm: string, mute_output: boolean) => {
     try {
         if (!response['prettier']) {
-            spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
+            spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
             spawn.sync(
                 pm,
                 [
@@ -17,7 +17,7 @@ export const removePrettier = async (response: responseT, pm: string, mute_outpu
                     'prettier-plugin-organize-attributes',
                     'prettier-plugin-tailwindcss',
                 ],
-                { stdio: 'inherit' },
+                { stdio: 'ignore' },
             );
             await fs.remove('./.prettierrc.json');
         } else {
