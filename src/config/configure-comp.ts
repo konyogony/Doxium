@@ -63,6 +63,7 @@ export const configureComp = async (
         { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
         { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
         { name: 'postcss-config', type: 'mjs', path: './postcss.config.mjs' },
+        { name: 'tailwind-config', type: 'ts', path: './tailwind.config.ts' },
         { name: 'doxium-config', type: 'ts', path: './doxium.config.ts' },
         { name: 'doxium', type: 'json', path: './doxium.json' },
         { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
@@ -87,10 +88,17 @@ export const configureComp = async (
         if (await fs.pathExists('./next.config.ts')) {
             await fs.rename('./next.config.ts', './next.config.mjs');
         }
+        console.log('working dir right now:', process.cwd());
 
-        // Remove app/fonts directory
-        await fs.rm('./app/fonts', { recursive: true });
-        await fs.rm('./app/public/*', { recursive: true, force: true });
+        // Remove app/fonts directory if it exists
+        if (await fs.pathExists('./app/fonts')) {
+            await fs.rm('./app/fonts', { recursive: true });
+        }
+
+        // Remove all files in app/public directory if it exists
+        if (await fs.pathExists('./app/public')) {
+            await fs.rm('./app/public/*', { recursive: true, force: true });
+        }
 
         await Promise.all(
             alwaysInstall.map(async (file) => {
@@ -112,7 +120,7 @@ export const configureComp = async (
             }),
         );
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
 
         if (response['use-docs']) {
             installDocsFolder(response, pm, empty, typesAlias, libAlias, componentsAlias);

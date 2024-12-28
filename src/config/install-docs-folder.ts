@@ -59,7 +59,7 @@ export const installDocsFolder = async (
             }),
         );
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
     } catch (error) {
         console.error('Error creating custom components:', error);
         process.exit(1);

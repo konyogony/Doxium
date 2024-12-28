@@ -24,7 +24,6 @@ export const configureShadcn = async (
     if (!pmx[0]) return;
 
     const files = [
-        { name: 'tailwind', type: 'ts', path: './tailwind.config.ts' },
         {
             name: 'globals',
             type: 'css',
@@ -54,7 +53,7 @@ export const configureShadcn = async (
 
         await fs.mkdir('components/ui', { recursive: true });
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
         !mute_output && console.log('\n' + infoText('Installing shadcn...'));
         await Promise.all(
             files.map(async (file) => {
@@ -82,7 +81,7 @@ export const configureShadcn = async (
                 [pmx[1], 'shadcn@latest', 'add', 'breadcrumb'].filter(
                     (str) => str !== '' && str !== undefined,
                 ) as string[],
-                { stdio: 'ignore' },
+                { stdio: 'inherit' },
             );
             if (!result.error) break;
         }
@@ -91,14 +90,33 @@ export const configureShadcn = async (
             const result = spawn.sync(
                 pmx[0],
                 [pmx[1], 'shadcn@latest', 'add', 'button'].filter((str) => str !== '' && str !== undefined) as string[],
-                { stdio: 'ignore' },
+                { stdio: 'inherit' },
             );
             if (!result.error) break;
         }
 
+        // await Promise.all(
+        //     filesAfter.map(async (file) => {
+        //         try {
+        //             const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
+        //             const content = replacePlaceholders(
+        //                 await fs.readFile(templatePath, 'utf8'),
+        //                 response,
+        //                 typesAlias ?? '@/components/doxium',
+        //                 libAlias ?? '@/lib',
+        //                 componentsAlias ?? '@/types',
+        //             );
+        //             await fs.writeFile(file.path, content);
+        //         } catch (error) {
+        //             console.error(errorText(`Error configuring components: ${file.name}, error: ${error}`));
+        //             process.exit(1);
+        //         }
+        //     }),
+        // );
+
         !mute_output && console.log(successText('Shadcn components installed successfully!'));
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'inherit' });
 
         !mute_output && console.log(successText('Shadcn installed successfully!'));
     } catch (error) {

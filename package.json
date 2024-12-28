@@ -1,30 +1,32 @@
 {
     "name": "doxium",
-    "version": "0.0.1",
+    "version": "0.0.13",
     "author": "konyogony",
     "main": "index.js",
     "type": "module",
     "bin": {
-        "create-doxium-app": "./dist/index.js"
+        "doxium": "./dist/index.js"
     },
+    "files": [
+        "dist"
+    ],
     "dependencies": {
         "commander": "^12.1.0",
         "cross-spawn": "^7.0.6",
-        "detect-package-manager": "^3.0.2",
         "fast-glob": "^3.3.2",
+        "fs-extra": "^11.2.0",
         "picocolors": "^1.1.1",
-        "prompts": "^2.4.2",
-        "fs-extra": "^11.2.0"
+        "prompts": "^2.4.2"
     },
     "devDependencies": {
-        "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
-        "@types/commander": "^2.12.2",
+        "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+        "@types/commander": "^2.12.5",
         "@types/cross-spawn": "^6.0.6",
         "@types/fs-extra": "^11.0.4",
-        "@types/node": "^22.7.7",
+        "@types/node": "^22.10.2",
         "@types/prompts": "^2.4.9",
-        "prettier": "^3.3.3",
-        "typescript": "^5.6.3"
+        "prettier": "^3.4.2",
+        "typescript": "^5.7.2"
     },
     "description": "CLI tool for creating and managing Doxium applications.",
     "license": "MIT",
@@ -34,7 +36,6 @@
     },
     "keywords": [
         "doxium",
-        "create-doxium-app",
         "docs",
         "documentation",
         "next15",

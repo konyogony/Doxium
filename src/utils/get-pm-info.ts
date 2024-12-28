@@ -1,26 +1,37 @@
-import { detect } from 'detect-package-manager';
 import pc from 'picocolors';
 import { errorText, successText } from './utils.js';
 
 export const getPmInfo = async (mute_output: boolean) => {
-    const pm = await detect().catch((err) => {
-        console.error(errorText('Error detecting package manager:'), err);
-        return null;
-    });
+    const userAgent = process.env.npm_config_user_agent;
 
-    if (!pm) {
-        console.error(errorText('Package manager detection failed.'));
+    if (!userAgent) {
+        console.error(errorText('Error detecting package manager:'));
         process.exit(1);
-    } else {
-        !mute_output && console.log('\n' + successText(`Detected package manager: ${pc.blue(pm)}.`));
     }
+
+    const pm = (() => {
+        if (userAgent.startsWith('npm/')) {
+            return 'npm';
+        } else if (userAgent.startsWith('yarn/')) {
+            return 'yarn';
+        } else if (userAgent.startsWith('pnpm/')) {
+            return 'pnpm';
+        } else if (userAgent.startsWith('bun/')) {
+            return 'bun';
+        }
+        return 'npm';
+    })();
+
+    console.log('userAgent:', userAgent);
+    console.log('pm:', pm);
+    !mute_output && console.log('\n' + successText(`Detected package manager: ${pc.blue(pm)}.`));
 
     let pmx: string[];
     let pmi: string[];
 
     switch (pm) {
         case 'yarn':
-            pmx = ['yarn', 'create'];
+            pmx = ['yarn', 'dlx'];
             pmi = ['yarn', 'add'];
             break;
         case 'bun':
@@ -28,7 +39,7 @@ export const getPmInfo = async (mute_output: boolean) => {
             pmi = ['bun', 'add'];
             break;
         case 'pnpm':
-            pmx = ['pnpx'];
+            pmx = ['pnpm', 'dlx'];
             pmi = ['pnpm', 'add'];
             break;
         default:
@@ -38,5 +49,3 @@ export const getPmInfo = async (mute_output: boolean) => {
 
     return { pm, pmx, pmi };
 };
-
-// Very wonky
