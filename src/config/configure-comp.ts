@@ -47,6 +47,7 @@ export const configureComp = async (
         { name: 'image', type: 'tsx', path: '$COMPONENTS-ALIAS/image.tsx' },
         { name: 'video', type: 'tsx', path: '$COMPONENTS-ALIAS/video.tsx' },
         { name: 'accordion', type: 'tsx', path: '$COMPONENTS-ALIAS/accordion.tsx' },
+        { name: 'outline', type: 'tsx', path: '$COMPONENTS-ALIAS/outline.tsx' },
 
         // Lib components
         { name: 'highlighter', type: 'ts', path: '$LIB-ALIAS/highlighter.ts' },
@@ -65,6 +66,9 @@ export const configureComp = async (
         { name: 'doxium-config', type: 'ts', path: './doxium.config.ts' },
         { name: 'doxium', type: 'json', path: './doxium.json' },
         { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
+        { name: 'favicon', type: 'ico', path: './app/favicon.ico' },
+        { name: 'Doxium-slim', type: 'svg', path: './public/Doxium-slim.svg' },
+        { name: 'DX-slim', type: 'svg', path: './public/DX-slim.svg' },
     ].map((file) => {
         return {
             ...file,
@@ -86,6 +90,7 @@ export const configureComp = async (
 
         // Remove app/fonts directory
         await fs.rm('./app/fonts', { recursive: true });
+        await fs.rm('./app/public/*', { recursive: true, force: true });
 
         await Promise.all(
             alwaysInstall.map(async (file) => {

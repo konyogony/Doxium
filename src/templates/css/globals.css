@@ -258,3 +258,7 @@ th {
 td {
     @apply border-t border-white/10 !px-8 !py-2 text-sm font-normal;
 }
+
+.prose > div[class=''] {
+    @apply w-full;
+}

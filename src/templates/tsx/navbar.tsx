@@ -2,12 +2,15 @@
 
 'use client';
 
+import LogoBig from '@/public/Doxium-slim.svg';
+import LogoSmall from '@/public/DX-slim.svg';
 import Cmdk from 'doxium/cmdk';
 import FolderFiletree from 'doxium/folder-filetree';
 import LinkFiletree from 'doxium/link-filetree';
 import { BsDiscord, BsGithub, BsTwitter } from 'icons/bs';
 import { FiChevronRight } from 'icons/fi';
 import { cn } from 'lib/utils';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
@@ -41,7 +44,8 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                     }
                 >
                     <Link href='/' className='text-xl font-bold text-base-100 hover:text-base-50'>
-                        Doxium
+                        <Image src={LogoBig} alt='Doxium Logo Slim Big' width={100} className='hidden md:flex' />
+                        <Image src={LogoSmall} alt='Doxium Logo Slim Small' width={40} className='flex md:hidden' />
                     </Link>
                     <Link
                         href='/'
