@@ -2,14 +2,16 @@
 
 import createMDXPlugin from '@next/mdx';
 import { remarkMermaid } from '@theguild/remark-mermaid';
+import rehypeMathjax from 'rehype-mathjax';
 import rehypeMdxCodeProps from 'rehype-mdx-code-props';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 
 const mdxConfig = {
     extension: /\.mdx?$/,
     options: {
-        remarkPlugins: [remarkGfm, remarkMermaid],
-        rehypePlugins: [rehypeMdxCodeProps],
+        remarkPlugins: [remarkGfm, remarkMermaid, remarkMath],
+        rehypePlugins: [rehypeMdxCodeProps, rehypeMathjax],
     },
 };
 

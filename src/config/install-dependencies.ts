@@ -43,6 +43,8 @@ export const installDependencies = async (pmi: string[], mute_output: boolean) =
                 'rehype-mdx-code-props',
                 '@theguild/remark-mermaid',
                 '@shikijs/twoslash',
+                'remark-math',
+                'rehype-mathjax',
             ].filter((str) => str !== '' && str !== undefined) as string[],
             { stdio: 'ignore' },
         );
