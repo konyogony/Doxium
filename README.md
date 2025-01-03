@@ -8,31 +8,35 @@ An easy solution to generate modern documentation in Next.js
 
 -   [x] ~~Fix turbopack~~
 -   [ ] Make website to present
-    -   [ ] Logo
+    -   [x] Logo
     -   [ ] Document everything
-        -   [x] Code blocks
-        -   [x] Alerts
-    -   [ ] Create a monorepo
+    -   [x] Create a monorepo
 -   [x] Option to disable starter wiki
 -   [x] CSS variables support CRINGE IDEA
--   [ ] ‘bunx doxium add’, make command which
 -   [x] Proper CLI
 -   [x] Mobile support
 -   [x] Change aliases
 -   [x] Name on code-blocks
 -   [x] Social links in navbar defined in config
--   [ ] More elements
+-   [x] More elements
     -   [x] Revisit alerts
     -   [x] Make timeline
-    -   [ ] Make file tree
-    -   [ ] Revisit normal tabs
-    -   [ ] Accordion
-    -   [ ] Images
-    -   [ ] Videos
+    -   [x] Make file tree
+    -   [x] Revisit normal tabs
+    -   [x] Accordion
+    -   [x] Images
+    -   [x] Videos
 -   [x] Make nice footer (NOT NICE THO)
 -   [ ] Review competitors and reflect
 -   [x] Remove `docs-` from everywhere
 -   [x] try lighter bg? Cringe idea
+-   [ ] TOC SSG
+-   [ ] Use react-scan
+-   [ ] Frontmatter
+    -   [ ] Custom naming
+    -   [ ] Custom sorting
+    -   [ ] Custom properties (author, last edited??)
+-   [x] theme config: color, radius, shiki,
 
 ### For beta release (Not in mind yet):
 
@@ -43,15 +47,25 @@ An easy solution to generate modern documentation in Next.js
 -   [ ] Be able to toggle folder/list mode for a group. Maybe implement automatic detection?
 -   [ ] Dark / Light theme support (ask at the start)
 -   [ ] Make sections and components toggleable
--   [ ] Better search. Instead of searching by the name implement search by contents
 -   [ ] Make versioning of docs (v1, v2, ...)
 -   [ ] Add multiple language support
 -   [ ] Better metadata and SEO optimisations. Show last updated and author name at the end
 -   [ ] Custom checkboxes
--   [ ] LaTeX, Mermaid, playground, twoslash custom support?
 -   [ ] Make a toggleable api by which you can get raw data from the a webpage including metadata and other stuff
 -   [ ] Control casing
 -   [ ] Custom 404 page
+-   [ ] zod to store key value pair (forgot why) (remembered: to better manage all the inputs and flags - can store at any time and retrieve whenever. no need to pass from function to function)
+-   [ ] React-flow
+-   [ ] Custom tags near names
+-   [ ] Cuystomer frontamatter
+-   [ ] vite press plugins
+-   [ ] JSON → next.config
+-   [ ] Resolve the remark/ rehype/ nextjs iswsue
+-   [ ] Analytics
+-   [ ] Tailwind v4
+-   [ ] Small text
+-   [ ] ‘bunx doxium add’, make command which
+-   [ ] https://github.com/nextapps-de/flexsearch
 
 ### Unsorted and outdated
 

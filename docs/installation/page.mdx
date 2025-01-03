@@ -1,0 +1,125 @@
+import Accordion from 'doxium/accordion';
+import Outline from 'doxium/outline';
+import Tabs from 'doxium/tabs';
+
+# Requirements
+
+<Outline>
+
+Requirements:
+
+- [Node.js 18.8](https://nodejs.org/en) or higher
+- Linux is tested and supported. Windows & MacOS should work, but are not tested.
+
+</Outline>
+
+# Automatic Installation
+
+I highly recommend installing with our [CLI](/features/cli), since it is the easiest and fastest way to get started with Doxium. \
+To get started, run the following command in your terminal:
+
+<Tabs tabs={['npm', 'pnpm', 'yarn', 'bun']} sync={true}>
+
+```bash noTopBar
+npx doxium@latest init
+```
+
+```bash noTopBar
+pnpm dlx doxium@latest init
+```
+
+```bash noTopBar
+yarn dlx doxium@latest init
+```
+
+```bash noTopBar
+bunx doxium@latest init
+```
+
+</Tabs>
+
+It will prompt you the following questions:
+
+```sh lineNumbers
+? Name of your app: › my-app
+? Would you like to use ESLint? › no / yes
+? Would you like to use Prettier? › no / yes
+? Would you like to use '/docs' folder? › no / yes
+? Choose your shadcn style: ›
+    New York
+    Default
+? Choose your base color (background, etc...): ›
+    Stone
+    Neutral
+    Zinc
+    Gray
+    Slate
+? Choose your accent color (buttons, hover, etc...): ›
+  ↑ Orange
+    Yellow
+    Cyan
+    Blue
+    Indigo
+  ↓ Pink
+? Choose your code-block (shiki) theme: ›
+  ↑ Dracula Theme Soft
+    Everforest Dark
+    GitHub Dark Default
+    GitHub Dark Dimmed
+    GitHub Dark High Contrast
+  ↓ GitHub Light High Contrast
+? GitHub repository URL (optional): ›
+? Do you wish to proceed? › (Y/n)
+```
+
+After the installation process is complete, the CLI will create a directory with the name you provided and install all the necessary dependencies.
+
+Then, you can navigate to the newly created directory and start the development server:
+
+<Tabs tabs={['npm', 'pnpm', 'yarn', 'bun']} sync={true}>
+
+```bash noTopBar
+cd my-app
+npm run dev
+```
+
+```bash noTopBar
+cd my-app
+pnpm dev
+```
+
+```bash noTopBar
+cd my-app
+yarn dev
+```
+
+```bash noTopBar
+cd my-app
+bun dev
+```
+
+</Tabs>
+
+## FAQ
+
+There are a few common questions about the installation process and the options available. Here are some of the most frequently asked questions:
+
+<Accordion>
+
+### What is ESLint?
+
+ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs.
+
+### What is Prettier?
+
+Prettier is an opinionated code formatter that enforces a consistent code style across your entire codebase.
+
+### What is Shadcn & their styles?
+
+Shadcn is a utility-first CSS framework for rapidly building custom designs. Don't worry about their styles, since I am planning to remove that option in the future
+
+### What is Shiki & where can I find the themes?
+
+Shiki is a beautiful syntax highlighter for code blocks. You can find all the theme previews [here](https://textmate-grammars-themes.netlify.app/)
+
+</Accordion>

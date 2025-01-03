@@ -1,0 +1,54 @@
+import Card from 'doxium/card'
+import CardGroup from 'doxium/card-group'
+
+# Cards
+
+You can use cards to give extra information to the reader or navigate them to a different page. You will first import the element from `doxium/card` and then use it as a React Element.
+First, set the `title` property to your liking and then add content to the inside of the element. 
+
+- You can set the `href` tag to make it clickable. 
+- Additionally, you can set the `full` property to true to have the card take the full width of the page.
+- If you want to have the URL open in a new tab, you will have to set the `newTab` property to true.
+
+## Examples
+
+<Card title={'Alerts'} href='/docs/features/alerts' newTab={true}>Check out alerts! They are used to attract attention and convey important information </Card>
+<Card title={'Did you know?'}>Did you know, one developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2) `test`</Card>
+
+```mdx
+import Card from 'doxium/card'
+
+<Card title={'Alerts'} href='/docs/features/alerts' newTab={true}>
+    Check out alerts! They are used to attract attention and convey important information
+</Card>
+<Card title={'Did you know?'}>
+    Did you know, one developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2) `test`
+</Card>
+``` 
+
+> As you can see, there is an issue with the hyperlink not getting highlighted. I have purposely decided not to solve it.
+
+## Now with group
+
+You can use the CardGroup component to make a grid of cards, although don't forget to import it first from `doxium/card-group` <br />
+You will have to set a `cols` property - how many columns you want to have in the group. Rows are added automatically depending on the columns.
+
+<CardGroup cols={2}>
+    <Card title={'Alerts'} href='/docs/features/alerts'>Check out alerts! They are used to attract attention and convey important information</Card>
+    <Card title={'Did you know?'}>Did you know, one developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2)</Card>
+</CardGroup>
+
+```mdx
+import Card from 'doxium/card'
+import CardGroup from 'doxium/card-group'
+<CardGroup cols={2}>
+    <Card title={'Alerts'} href='/docs/features/alerts'>
+        Check out alerts! They are used to attract attention and convey important information
+    </Card>
+    <Card title={'Did you know?'}>
+        Did you know, one developer has made all of this? But, with help from [PadowYT2](https://github.com/padowyt2)
+    </Card>
+</CardGroup>
+```
+
+

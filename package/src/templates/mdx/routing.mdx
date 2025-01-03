@@ -1,0 +1,40 @@
+import Alerts from 'doxium/alerts';
+
+# Routing
+
+Routing in Doxium is entirely file-based, working similarly to Next.js, without the need to specifically type in the routes and their names.
+
+## How does it work?
+
+First of all, you have to specify your `base-url` parameter in the Doxium config - this will define where in your project structure you have your documentation. 
+This option is usually set to `app/docs` or `app` by default (depending on whether you have chosen to use the /docs folder during setup).
+Then, in the directory you have just specified, you can start by creating `page.mdx` files. The name for them will come from the parent directory.
+To create a folder, you can create a directory without a page.mdx file but containing other pages, then it will properly count as a folder.
+> e.g. `about/page.mdx` yields a page with 'About' as its name. The pages are ordered by their 'path' and folders, so setting a custom order is not possible for now.
+
+
+
+## Features currently supported (as of alpha release)
+
+| Feature | Supported|
+| :--------| :-------: |
+| Creating pages | ✅ |
+| Creating folders | ✅|
+| Folders containing their own page | ❌ |
+| Specific order of pages | ✅ | 
+
+
+## Ordering
+
+You can create a `_sort.json` file in the directory you want sorted and create an object called `sort` which will contain an array with the pages you want to have in order.
+This will search for the names specified in the order specified and arrange them accordingly.
+
+```json
+{
+    "sort": ["name1", "name2", "name3"]
+}
+```
+
+`TODO: Insert File tree`
+
+<Alerts variant='warning'>Changes may not take place immediately, try reloading the page or project if it doesn't work.</Alerts>
