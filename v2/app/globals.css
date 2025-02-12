@@ -1,0 +1,264 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+html {
+    @apply scroll-pt-32 scroll-smooth lg:scroll-pt-28;
+    scrollbar-gutter: stable both-edges;
+}
+
+body {
+    @apply bg-base-950 text-base-200;
+}
+
+code {
+    counter-increment: step 0;
+    counter-reset: step;
+}
+
+/* Custom utilities */
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+/* Custom base styles */
+@layer base {
+    :root {
+        --radius: 0.5rem;
+    }
+}
+
+/* Keyframes */
+@keyframes spin-slow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Code block styles */
+.codeBlock > pre {
+    @apply my-0 grid rounded-t-none;
+}
+
+.codeBlock .line {
+    @apply block w-full;
+}
+
+/* Better padding */
+
+.codeBlock > pre {
+    @apply p-0;
+}
+
+/* Btw I dont like these numbers */
+
+/* Somewhere from tailwind */
+.codeBlock code > .line {
+    @apply px-[1.1428571em];
+}
+
+/* px / 1.5 */
+.codeBlock span:first-child {
+    @apply mt-[0.76190473em];
+}
+
+/* mt / 1.5 */
+.codeBlock span:nth-last-child(2) {
+    @apply mb-[0.50793648em];
+}
+
+/* Add border to the left of the diff lines */
+pre.has-diff .diff.add {
+    @apply border-l-2 border-emerald-400;
+}
+
+pre.has-diff .diff.remove {
+    @apply border-l-2 border-red-500;
+}
+
+pre.has-highlighted .highlighted:not(.error):not(.warning) {
+    @apply border-l-2 border-accent-500;
+}
+
+pre.has-highlighted .error {
+    @apply border-l-2 border-red-800;
+}
+
+pre.has-highlighted .warning {
+    @apply border-l-2 border-amber-800;
+}
+
+.line.diff.remove,
+.line.diff.add,
+.line.highlighted,
+.line.error,
+.line.warning {
+    @apply !pl-0;
+}
+
+.codeBlock:not(.lineNumbers) pre.has-highlighted .line:not(.highlighted):not(.error):not(.warning) {
+    @apply pl-[34px];
+}
+
+.lineNumbers .line:not(.diff):not(.highlighted) {
+    @apply pl-0;
+}
+
+/* Line numbers styles */
+.lineNumbers code > .line:not(:last-child)::before {
+    @apply ml-4 inline-block w-4 text-right text-[rgba(115,138,148,0.4)] content-[counter(step)];
+    counter-increment: step;
+}
+
+.lineNumbers .line:not(.diff):not(.highlighted)::before {
+    @apply pr-8;
+}
+
+.lineNumbers > pre.has-diff .diff.add::before {
+    content: counter(step) ' +';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-emerald-500;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-diff .diff.remove::before {
+    content: counter(step) ' -';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-red-700;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-highlighted .highlighted::before {
+    content: counter(step) ' ';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-accent-600;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-highlighted .error::before {
+    content: counter(step) ' ';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-red-800;
+    counter-increment: step;
+}
+
+.lineNumbers > pre.has-highlighted .warning::before {
+    content: counter(step) ' ';
+    @apply ml-[14px] mr-4 inline-block w-4 text-right text-amber-800;
+    counter-increment: step;
+}
+
+/* No line numbers */
+
+:not(.lineNumbers) > pre.has-diff .diff.add::before {
+    content: '+';
+    @apply mr-4 inline-block pl-2 text-right text-emerald-500;
+}
+
+:not(.lineNumbers) > pre.has-diff .diff.remove::before {
+    content: '-';
+    @apply mr-4 inline-block pl-2 text-right text-red-700;
+}
+
+:not(.lineNumbers) > pre.has-highlighted .highlighted::before {
+    content: ' ';
+    @apply mr-4 inline-block pl-2 text-right text-accent-300;
+}
+
+:not(.lineNumbers) > pre.has-highlighted .error::before {
+    content: ' ';
+    @apply mr-4 inline-block pl-2 text-right text-red-800;
+}
+
+:not(.lineNumbers) > pre.has-highlighted .warning::before {
+    content: ' ';
+    @apply mr-4 inline-block pl-2 text-right text-amber-800;
+}
+
+:not(.lineNumbers) > pre.has-diff .line:not(:last-child):not(.diff) {
+    @apply pl-[34px];
+}
+
+/* Focused line styles */
+pre.has-focused .line:not(.focused) {
+    @apply blur-[2px] transition-all duration-700;
+}
+
+.codeWrapper:hover pre.has-focused .line:not(.focused) {
+    @apply blur-none transition-all duration-300;
+}
+
+/* Diff styles */
+pre.has-diff .diff.add {
+    @apply bg-emerald-700 bg-opacity-35;
+}
+
+pre.has-diff .diff.remove {
+    @apply bg-red-800 bg-opacity-35;
+}
+
+/* Highlighted code styles */
+pre.has-highlighted .highlighted {
+    @apply bg-accent-500 bg-opacity-15;
+}
+
+pre.has-highlighted .error {
+    @apply bg-red-800 bg-opacity-35;
+}
+
+pre.has-highlighted .warning {
+    @apply bg-amber-800 bg-opacity-35;
+}
+
+.highlighted-word {
+    @apply rounded-sm border border-white/15 bg-base-200/20 px-[2px] py-[1px];
+}
+
+/* Checkbox trickery */
+
+input:disabled,
+input[type='checkbox'] {
+    @apply mr-2;
+}
+
+.codeBlock > pre,
+.customScrollbar {
+    @apply overflow-auto;
+}
+
+.codeBlock > pre::-webkit-scrollbar,
+.customScrollbar::-webkit-scrollbar {
+    @apply size-2;
+}
+
+.codeBlock > pre::-webkit-scrollbar-thumb,
+.customScrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-base-600;
+}
+
+.codeBlock > pre::-webkit-scrollbar-track,
+.customScrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+table > tbody > tr:last-child > td {
+    @apply !pb-2.5;
+}
+
+table {
+    @apply !my-2.5 w-full max-w-full !table-fixed border-collapse overflow-clip rounded-lg !py-20;
+}
+
+th {
+    @apply border-b border-white !px-8 !py-2.5 text-sm font-bold text-base-100;
+}
+
+td {
+    @apply border-t border-white/10 !px-8 !py-2 text-sm font-normal;
+}
+
+.prose > div[class=''] {
+    @apply w-full;
+}

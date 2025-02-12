@@ -13,7 +13,7 @@ export const installNoDocsFolder = async (
     componentsAlias: string,
 ) => {
     const filesNoHome = [
-        { name: 'no-folder-filetree-root-layout', type: 'tsx', path: './app/layout.tsx' },
+        { name: 'no-docs-folder-root-layout', type: 'tsx', path: './app/layout.tsx' },
         !empty && { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
         !empty && { name: 'getting-started', type: 'mdx', path: './app/page.mdx' },
         !empty && { name: 'code-block', type: 'mdx', path: './app/components/code-block/page.mdx' },

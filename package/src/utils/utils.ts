@@ -44,7 +44,7 @@ export const replacePlaceholders = (
         .replaceAll(/\$TSCONFIG-COMPONENTS-ALIAS/g, componentAlias.replaceAll('@/', ''))
         .replaceAll(/\$TSCONFIG-TYPES-ALIAS/g, typesAlias.replaceAll('@/', ''))
         .replaceAll(/\$TSCONFIG-LIB-ALIAS/g, libAlias.replaceAll('@/', ''))
-        .replaceAll(/\$BASE-URL/g, 'app/docs');
+        .replaceAll(/\$BASE-URL/g, response['use-docs'] ? 'app/docs' : 'app');
 };
 
 export const replaceFilePlaceholders = (
