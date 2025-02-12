@@ -1,6 +1,16 @@
 # Doxium
+----
+# Abandoned, due to my incompetence and huge competition. Just can't make this work properly.
+----
 
-An easy solution to generate modern documentation in Next.js
+
+
+
+
+
+
+
+
 
 ## Roadmap
 
