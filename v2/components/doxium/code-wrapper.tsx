@@ -11,8 +11,8 @@ import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
 import config from 'config';
 import CodeWrapperIcon from 'doxium/code-wrapper-icon';
 import CopyButton from 'doxium/copy-button';
-import { getHighlighterInstance } from 'lib/highlighter';
 import { isLightColor } from 'lib/is-light-color';
+import { getHighlighterInstance } from 'lib/lib';
 import { cn } from 'lib/utils';
 import { BundledTheme } from 'shiki';
 import { ShikiThemeBackgroundHexDimmed } from 'types';
@@ -27,7 +27,7 @@ interface WikiCodeWrapperProps {
     name: string | undefined;
 }
 
-const theme = config.style['shiki-theme'];
+const theme = config.style.shikiTheme;
 
 const CodeWrapper = async ({
     language = '',

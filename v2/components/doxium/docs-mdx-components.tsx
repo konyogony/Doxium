@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { BundledTheme } from 'shiki';
 import { preProps, ShikiThemeBackgroundHexDefault } from 'types';
 
-const theme = config.style['shiki-theme'];
+const theme = config.style.shikiTheme;
 
 const mdxComponents = {
     a: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {

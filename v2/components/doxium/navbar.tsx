@@ -2,9 +2,10 @@
 
 import LogoBig from '@/public/Doxium-slim.svg';
 import LogoSmall from '@/public/DX-slim.svg';
+import { TreeNode } from '@/types';
+import config from 'config';
 import Cmdk from 'doxium/cmdk';
-import FolderFiletree from 'doxium/folder-filetree';
-import LinkFiletree from 'doxium/link-filetree';
+import { DocLink, Filetree } from 'doxium/filetree';
 import { BsDiscord, BsGithub, BsTwitter } from 'icons/bs';
 import { FiChevronRight } from 'icons/fi';
 import { cn } from 'lib/utils';
@@ -12,22 +13,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
-import { DocsNode } from 'types';
+
+const separate = config.misc.separate;
+const socials = config.socials;
+const rootTitle = config.rootTitle;
 
 interface NavbarProps {
-    structure: DocsNode[];
-    socials: {
-        'github-repo': string;
-        discord: string;
-        twitter: string;
-    };
+    tree: TreeNode[];
 }
 
-const Navbar = ({ structure, socials }: NavbarProps) => {
+const Navbar = ({ tree }: NavbarProps) => {
     const pathname = usePathname();
     const path = useMemo(() => pathname.split('/')[1], [pathname]);
     const [opened, setOpened] = useState(false);
-    const CMDKElement = useMemo(() => <Cmdk structure={structure} />, [structure]);
+    const CMDKElement = useMemo(() => <Cmdk tree={tree} />, [tree]);
     const socialLinks = useMemo(() => {
         return Object.entries(socials).map(([i, v]) => {
             if (!v) return null;
@@ -45,11 +44,7 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                 </a>
             );
         });
-    }, [socials]);
-
-    const Filetree = useMemo(() => {
-        return structure.map((v, i) => <FolderFiletree key={i} node={v} separate={false} />);
-    }, [structure]);
+    }, []);
 
     const navLinks = useMemo(
         () => (
@@ -116,8 +111,8 @@ const Navbar = ({ structure, socials }: NavbarProps) => {
                 <div className='z-50 flex w-full flex-col border-y border-white/10 bg-base-950/50 px-[10vw] py-2.5 backdrop-blur-xl lg:hidden'>
                     {menuButton}
                     <div className={cn('w-1/2 flex-col pb-2', opened ? 'flex' : 'hidden')}>
-                        <LinkFiletree name='Documentation' />
-                        {Filetree}
+                        <DocLink name={rootTitle} />
+                        <Filetree tree={tree} separate={separate} />
                     </div>
                 </div>
             </div>

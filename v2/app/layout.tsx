@@ -1,16 +1,15 @@
-import config from 'config';
-import Footer from 'doxium/footer';
-import Navbar from 'doxium/navbar';
-import Toaster from 'doxium/toaster';
-import { getStructureInstance } from 'lib/structure';
 import { cn } from 'lib/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import Footer from 'doxium/footer';
+import Navbar from 'doxium/navbar';
+// import SecondarySidebar from 'doxium/secondary-sidebar';
+import Sidebar from 'doxium/sidebar-filetree';
+import Toaster from 'doxium/toaster';
+import { getDocsTree } from 'lib/lib';
 
 const inter = Inter({ subsets: ['latin'] });
-
-const socials = config.socials;
 
 export const metadata: Metadata = {
     title: 'Doxium app',
@@ -22,13 +21,16 @@ const RootLayout = async ({
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const structure = await getStructureInstance();
+    const tree = await getDocsTree();
     return (
         <html lang='en' className={cn('dark antialiased', inter.className)}>
             <body className='relative'>
                 <main>
-                    <Navbar structure={structure} socials={socials} />
-                    {children}
+                    <Navbar tree={tree} />
+                    <div className='relative flex min-h-screen flex-row justify-center gap-8 pb-2 pt-16 lg:pt-24'>
+                        <Sidebar tree={tree} />
+                        {children}
+                    </div>
                     <Footer />
                     <Toaster />
                 </main>

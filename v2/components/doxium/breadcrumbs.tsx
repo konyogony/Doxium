@@ -1,6 +1,5 @@
 'use client';
 
-import { prettifyText } from 'lib/prettify-text';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useMemo } from 'react';
@@ -22,17 +21,17 @@ const Breadcrumbs = () => {
                             {v === 'docs' ? (
                                 <BreadcrumbItem className={isLast ? 'text-base-50' : ''}>
                                     <BreadcrumbLink asChild>
-                                        <Link href={`/${v}`}>{prettifyText(v)}</Link>
+                                        <Link href={`/${v}`}>{v}</Link>
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                             ) : (
                                 <BreadcrumbItem className={isLast ? 'text-base-50' : ''}>
                                     {isLast ? (
                                         <BreadcrumbLink asChild>
-                                            <Link href={href}>{prettifyText(v)}</Link>
+                                            <Link href={href}>{v}</Link>
                                         </BreadcrumbLink>
                                     ) : (
-                                        prettifyText(v)
+                                        v
                                     )}
                                 </BreadcrumbItem>
                             )}

@@ -1,16 +1,25 @@
 import { BundledTheme } from 'shiki';
 
-export interface DocsNode {
+export interface TreeNode {
     name: string;
     type: 'file' | 'folder';
-    path?: string;
-    nodes?: DocsNode[];
+    sort: number;
+    slug?: string;
+    nodes?: TreeNode[];
+}
+
+export interface DoxiumFile {
+    title: string;
+    slug: string;
+    sort: number;
+    groupTitle?: string;
+    groupSort?: number;
 }
 
 export interface DoxiumConfig {
     style: {
-        'base-color': 'stone' | 'neutral' | 'zinc' | 'gray' | 'slate';
-        'accent-color':
+        baseColor: 'stone' | 'neutral' | 'zinc' | 'gray' | 'slate';
+        accentColor:
             | 'red'
             | 'orange'
             | 'yellow'
@@ -22,18 +31,18 @@ export interface DoxiumConfig {
             | 'violet'
             | 'purple'
             | 'pink';
-        'shiki-theme': BundledTheme;
+        shikiTheme: BundledTheme;
     };
     alias: {
         components: string;
         lib: string;
         types: string;
     };
-    'use-docs': boolean;
-    'base-url': string;
-    'root-name': string;
+    useDocs: boolean;
+    baseUrl: string;
+    rootTitle: string;
     socials: {
-        'github-repo': string;
+        githubRepo: string;
         twitter: string;
         discord: string;
     };

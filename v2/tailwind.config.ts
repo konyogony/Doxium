@@ -16,8 +16,8 @@ export default {
             colors: {
                 background: 'var(--background)',
                 foreground: 'var(--foreground)',
-                base: tailwindcssColors[config.style['base-color']],
-                accent: tailwindcssColors[config.style['accent-color']],
+                base: tailwindcssColors[config.style.baseColor],
+                accent: tailwindcssColors[config.style.accentColor],
             },
             borderRadius: {
                 lg: 'var(--radius)',

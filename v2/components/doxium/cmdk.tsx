@@ -1,23 +1,20 @@
 'use client';
 
+import { TreeNode } from '@/types';
 import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/react-dialog';
 import { FileIcon } from '@radix-ui/react-icons';
 import { RxMagnifyingGlass } from 'icons/rx';
-import { flattenStructure } from 'lib/flatten-structure';
-import { prettifyText } from 'lib/prettify-text';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import { DocsNode } from 'types';
 import { Button } from 'ui/button';
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from 'ui/command';
 
 interface CmdkProps extends DialogProps {
-    structure: DocsNode[];
+    tree: TreeNode[];
 }
 
-const Cmdk = ({ structure, ...props }: CmdkProps) => {
+const Cmdk = ({ tree, ...props }: CmdkProps) => {
     const [open, setOpen] = useState(false);
-    const fileStructure = flattenStructure(structure);
     const navigator = useRouter();
 
     useEffect(() => {
@@ -45,6 +42,24 @@ const Cmdk = ({ structure, ...props }: CmdkProps) => {
         setOpen(false);
         command();
     }, []);
+
+    console.log(
+        12321,
+        tree.flatMap((v: TreeNode) => {
+            const files: TreeNode[] = [];
+
+            const traverse: (value: TreeNode, index: number, array: TreeNode[]) => void = (node: TreeNode) => {
+                if (node.type === 'file') {
+                    files.push(node);
+                } else if (node.nodes) {
+                    node.nodes.forEach(traverse);
+                }
+            };
+
+            traverse(v, 0, []);
+            return files;
+        }),
+    );
 
     return (
         <>
@@ -77,17 +92,34 @@ const Cmdk = ({ structure, ...props }: CmdkProps) => {
                 <CommandList className='customScrollbar border-white/5'>
                     <CommandEmpty>No results found.</CommandEmpty>
                     <CommandGroup heading='Documentation'>
-                        {fileStructure.result.map((v, i) => (
-                            <CommandItem
-                                key={i}
-                                value={v.name}
-                                onSelect={() => runCommand(() => navigator.push(v.path))}
-                                className='flex flex-row items-center gap-1'
-                            >
-                                <FileIcon className='size-4' />
-                                {prettifyText(v.name)}
-                            </CommandItem>
-                        ))}
+                        {tree
+                            .flatMap((v: TreeNode) => {
+                                const files: TreeNode[] = [];
+
+                                const traverse: (value: TreeNode, index: number, array: TreeNode[]) => void = (
+                                    node: TreeNode,
+                                ) => {
+                                    if (node.type === 'file') {
+                                        files.push(node);
+                                    } else if (node.nodes) {
+                                        node.nodes.forEach(traverse);
+                                    }
+                                };
+
+                                traverse(v, 0, []);
+                                return files;
+                            })
+                            .map((v: TreeNode, i: number) => (
+                                <CommandItem
+                                    key={i}
+                                    value={v.name}
+                                    onSelect={() => runCommand(() => navigator.push(v.slug || ''))}
+                                    className='flex flex-row items-center gap-1'
+                                >
+                                    <FileIcon className='size-4' />
+                                    {v.name}
+                                </CommandItem>
+                            ))}
                     </CommandGroup>
                 </CommandList>
             </CommandDialog>

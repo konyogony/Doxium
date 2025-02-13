@@ -2,20 +2,20 @@ import { DoxiumConfig } from 'types';
 
 export default {
     style: {
-        'base-color': 'zinc',
-        'accent-color': 'orange',
-        'shiki-theme': 'nord',
+        baseColor: 'zinc',
+        accentColor: 'orange',
+        shikiTheme: 'nord',
     },
     alias: {
         components: '@/components/doxium',
         lib: '@/lib',
         types: '@/types',
     },
-    'use-docs': false,
-    'base-url': 'docs',
-    'root-name': 'Getting Started',
+    useDocs: false,
+    baseUrl: 'docs',
+    rootTitle: 'Documentation',
     socials: {
-        'github-repo': '',
+        githubRepo: '',
         twitter: 'a',
         discord: '',
     },
