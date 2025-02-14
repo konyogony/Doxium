@@ -107,54 +107,64 @@ export const getAllMdxFiles = async (dir: string = MDX_DIR): Promise<DoxiumFile[
 
 export const getDocsTree = async (dir: string = MDX_DIR): Promise<TreeNode[]> => {
     const files = await getAllMdxFiles(dir);
-    const rootNodes: TreeNode[] = [];
     const groupedByDir: { [key: string]: DoxiumFile[] } = {};
 
+    // Group files by their directory
     files.forEach((file) => {
         const dir = path.dirname(file.slug);
         if (!groupedByDir[dir]) groupedByDir[dir] = [];
         groupedByDir[dir].push(file);
     });
 
-    Object.entries(groupedByDir).forEach(([dir, groupFiles]) => {
-        if (dir === '.') {
-            groupFiles.forEach((file) => {
-                rootNodes.push({
-                    name: file.title,
-                    type: 'file',
-                    sort: file.sort,
-                    slug: '/' + file.slug,
-                });
+    const buildTree = (currentDir: string): TreeNode[] => {
+        const nodes: TreeNode[] = [];
+
+        // Add files in the current directory
+        const currentDirFiles = groupedByDir[currentDir] || [];
+        currentDirFiles.forEach((file) => {
+            nodes.push({
+                name: file.title,
+                type: 'file',
+                sort: file.sort || 999,
+                slug: '/' + file.slug,
             });
-        } else {
-            const dirFiles = groupFiles.sort((a, b) => a.sort - b.sort);
-            const lowestSortFile = dirFiles[0];
+        });
+
+        // Find all subdirectories at any depth
+        const allPaths = Object.keys(groupedByDir);
+        const directSubDirs = new Set(
+            allPaths
+                .filter((p) => p.startsWith(currentDir === '.' ? '' : currentDir + '/'))
+                .map((p) => {
+                    const relPath = p.slice(currentDir === '.' ? 0 : currentDir.length + 1);
+                    const firstSegment = relPath.split('/')[0];
+                    return firstSegment ? path.join(currentDir === '.' ? '' : currentDir, firstSegment) : null;
+                })
+                .filter(Boolean),
+        );
+
+        // Process subdirectories
+        directSubDirs.forEach((subDir) => {
+            if (subDir === currentDir || !subDir) return;
+
+            // Get all files in this directory and its subdirectories
+            const subDirFiles = groupedByDir[subDir] || [];
+            const folderMetaFile = subDirFiles.find((f: DoxiumFile) => f.groupTitle) || subDirFiles[0];
 
             const folderNode: TreeNode = {
-                name: lowestSortFile.groupTitle || dir,
+                name: folderMetaFile?.groupTitle || path.basename(subDir!),
                 type: 'folder',
-                sort: lowestSortFile.groupSort || lowestSortFile.sort,
-                nodes: dirFiles.map((file) => ({
-                    name: file.title,
-                    type: 'file',
-                    sort: file.sort,
-                    slug: '/' + file.slug,
-                })),
+                sort: folderMetaFile?.groupSort || 999,
+                nodes: buildTree(subDir!),
             };
+            nodes.push(folderNode);
+        });
 
-            rootNodes.push(folderNode);
-        }
-    });
+        // Sort nodes
+        return nodes.sort((a, b) => a.sort - b.sort);
+    };
 
-    rootNodes.sort((a, b) => {
-        if (a.type === b.type) {
-            return a.sort - b.sort;
-        }
-        return a.type === 'file' ? -1 : 1;
-    });
-
-    console.log('rootNodes', JSON.stringify(rootNodes, null, 2));
-    return rootNodes;
+    return buildTree('.');
 };
 
 class HighlighterSingleton {
@@ -169,7 +179,6 @@ class HighlighterSingleton {
         if (!HighlighterSingleton.instance && !HighlighterSingleton.initializing) {
             HighlighterSingleton.initializing = true;
             try {
-                console.log(extensions);
                 HighlighterSingleton.instance = await createHighlighter({
                     themes: [theme, 'github-dark-dimmed'],
                     langs: extensions,

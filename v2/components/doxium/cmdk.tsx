@@ -43,24 +43,6 @@ const Cmdk = ({ tree, ...props }: CmdkProps) => {
         command();
     }, []);
 
-    console.log(
-        12321,
-        tree.flatMap((v: TreeNode) => {
-            const files: TreeNode[] = [];
-
-            const traverse: (value: TreeNode, index: number, array: TreeNode[]) => void = (node: TreeNode) => {
-                if (node.type === 'file') {
-                    files.push(node);
-                } else if (node.nodes) {
-                    node.nodes.forEach(traverse);
-                }
-            };
-
-            traverse(v, 0, []);
-            return files;
-        }),
-    );
-
     return (
         <>
             <Button

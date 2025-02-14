@@ -18,23 +18,23 @@ export interface AlertsProps {
 const getAlertColor = (type: AlertsProps['type']) => {
     switch (type) {
         case 'bookmark':
-            return 'bg-yellow-900 text-yellow-200 border-yellow-600';
+            return 'bg-yellow-800 text-yellow-200 border-yellow-600';
         case 'warning':
-            return 'bg-orange-900/80 text-yellow-300 border-orange-600';
+            return 'bg-orange-800 text-yellow-300 border-orange-700';
         case 'error':
-            return 'bg-red-900 text-red-300 border-red-600';
+            return 'bg-red-800 text-red-300 border-red-600';
         case 'success':
-            return 'bg-green-900 text-green-300 border-green-500';
+            return 'bg-green-800 text-green-300 border-green-500';
         case 'info':
-            return 'bg-blue-900 text-blue-300 border-blue-500';
+            return 'bg-blue-800 text-blue-300 border-blue-500';
         case 'accent':
-            return 'bg-accent-700 text-accent-200 border-accent-500';
+            return 'bg-accent-700/80 text-accent-200 border-accent-600/80';
         case 'base':
-            return 'bg-base-700 text-base-300 border-white/30';
+            return 'bg-base-600 text-base-300 border-white/30';
         case 'star':
-            return 'bg-yellow-800 text-yellow-300 border-yellow-500';
+            return 'bg-yellow-700 text-yellow-300 border-yellow-500';
         default:
-            return 'bg-accent-700 text-accent-200 border-accent-500';
+            return 'bg-accent-600 text-accent-200 border-accent-500';
     }
 };
 

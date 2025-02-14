@@ -6,7 +6,6 @@ import { Heading } from 'types';
 
 const TOC = ({ headings }: { headings: Heading[] }) => {
     const [activeHeading, setActiveHeading] = useState<string>('');
-    console.log('hh', headings);
 
     const updateHeadings = useCallback(() => {
         const observer = new IntersectionObserver(

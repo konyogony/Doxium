@@ -1,5 +1,9 @@
 import { BundledLanguage, BundledTheme, LanguageInput, SpecialLanguage, StringLiteralUnion } from 'shiki';
 
+export type params = Promise<{
+    slug?: string[];
+}>;
+
 export interface TreeNode {
     name: string;
     type: 'file' | 'folder';
@@ -47,6 +51,9 @@ export interface DoxiumConfig {
         discord: string;
     };
     misc: {
+        toggleFolders: boolean;
+        appName: string;
+        showAppNameInTitle: boolean;
         separate: boolean;
         extensions: (LanguageInput | SpecialLanguage | StringLiteralUnion<BundledLanguage, string>)[];
     };

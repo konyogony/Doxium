@@ -58,15 +58,17 @@ const Navbar = ({ tree }: NavbarProps) => {
                 >
                     Home
                 </Link>
-                <Link
-                    href='/docs'
-                    className={cn(
-                        'text-sm font-medium hover:underline',
-                        path === 'docs' ? 'text-accent-500' : 'text-base-200',
-                    )}
-                >
-                    Docs
-                </Link>
+                {config.useDocs && (
+                    <Link
+                        href='/docs'
+                        className={cn(
+                            'text-sm font-medium hover:underline',
+                            path === 'docs' ? 'text-accent-500' : 'text-base-200',
+                        )}
+                    >
+                        Docs
+                    </Link>
+                )}
             </>
         ),
         [path],

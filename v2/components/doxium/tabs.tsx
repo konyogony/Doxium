@@ -22,14 +22,12 @@ const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, chil
     useEffect(() => {
         if (!sync) return;
 
-        // Handle tab sync across all instances with same tabs
         const handleStorageChange = (e: StorageEvent) => {
             if (e.key === tabGroupId && e.newValue !== null) {
                 setActiveIndex(parseInt(e.newValue, 10));
             }
         };
 
-        // Handle direct state changes
         const handleTabSync = (e: Event) => {
             const event = e as CustomEvent;
             if (event.detail.id === tabGroupId) {
@@ -37,7 +35,6 @@ const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, chil
             }
         };
 
-        // Initialize from storage if available
         const savedIndex = localStorage.getItem(tabGroupId);
         if (savedIndex !== null) {
             setActiveIndex(parseInt(savedIndex, 10));
@@ -56,13 +53,11 @@ const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, chil
         setActiveIndex(index);
         if (sync) {
             localStorage.setItem(tabGroupId, index.toString());
-            // Notify other tabs in same window
             window.dispatchEvent(
                 new CustomEvent('tabSync', {
                     detail: { id: tabGroupId, index },
                 }),
             );
-            // Notify tabs in other windows
             window.dispatchEvent(
                 new StorageEvent('storage', {
                     key: tabGroupId,

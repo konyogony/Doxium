@@ -20,7 +20,10 @@ export default {
         discord: '',
     },
     misc: {
+        toggleFolders: true,
         separate: false,
+        appName: 'Doxium',
+        showAppNameInTitle: true,
         extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'mdx', 'bash', 'sh', 'js', 'css', 'json'],
     },
 } satisfies DoxiumConfig;
