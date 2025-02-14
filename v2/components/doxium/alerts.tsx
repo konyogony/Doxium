@@ -10,7 +10,7 @@ import {
 } from 'icons/fi';
 import { cn } from 'lib/utils';
 
-interface AlertsProps {
+export interface AlertsProps {
     type?: 'bookmark' | 'warning' | 'error' | 'success' | 'info' | 'star' | 'accent' | 'base';
     link?: string;
 }
@@ -20,7 +20,7 @@ const getAlertColor = (type: AlertsProps['type']) => {
         case 'bookmark':
             return 'bg-yellow-900 text-yellow-200 border-yellow-600';
         case 'warning':
-            return 'bg-orange-900 text-yellow-300 border-orange-600';
+            return 'bg-orange-900/80 text-yellow-300 border-orange-600';
         case 'error':
             return 'bg-red-900 text-red-300 border-red-600';
         case 'success':

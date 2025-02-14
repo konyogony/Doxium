@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Footer from 'doxium/footer';
 import Navbar from 'doxium/navbar';
-// import SecondarySidebar from 'doxium/secondary-sidebar';
 import Sidebar from 'doxium/sidebar-filetree';
 import Toaster from 'doxium/toaster';
 import { getDocsTree } from 'lib/lib';

@@ -21,5 +21,6 @@ export default {
     },
     misc: {
         separate: false,
+        extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'mdx', 'bash', 'sh', 'js', 'css', 'json'],
     },
 } satisfies DoxiumConfig;

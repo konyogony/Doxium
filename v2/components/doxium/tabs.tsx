@@ -1,75 +1,94 @@
 'use client';
 
 import { cn } from 'lib/utils';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface TabsProps {
+export interface TabsProps {
     tabs: string[];
     defaultTab?: string;
     widthFull?: boolean;
     sync?: boolean;
+    children: React.ReactNode[] | React.ReactNode;
 }
 
-const Tabs = ({
-    tabs,
-    defaultTab = tabs[0],
-    widthFull = true,
-    sync = false,
-    children,
-}: React.PropsWithChildren<TabsProps>) => {
+const getTabGroupId = (tabs: string[]) => `tabs:${tabs.join(',')}`;
+
+const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, children }: TabsProps) => {
     const defaultIndex = tabs.indexOf(defaultTab);
     const [activeIndex, setActiveIndex] = useState(defaultIndex);
-    const userInitiatedRef = useRef(false);
-
-    useEffect(() => {
-        if (typeof window === 'undefined' && !sync) return;
-        const savedIndex = localStorage.getItem(JSON.stringify(tabs));
-        setActiveIndex(savedIndex !== null ? parseInt(savedIndex, 10) : defaultIndex);
-        if (savedIndex === null) localStorage.setItem(JSON.stringify(tabs), defaultIndex.toString());
-    }, [tabs, defaultIndex, sync]);
-
-    useEffect(() => {
-        if (typeof window === 'undefined' && !sync) return;
-        if (userInitiatedRef.current) {
-            localStorage.setItem(JSON.stringify(tabs), activeIndex.toString());
-            window.dispatchEvent(new CustomEvent('tabChange', { detail: { tabs, activeIndex } }));
-            userInitiatedRef.current = false;
-        }
-    }, [activeIndex, tabs, sync]);
+    const tabGroupId = getTabGroupId(tabs);
+    const childrenArray = Array.isArray(children) ? children : [children];
 
     useEffect(() => {
         if (!sync) return;
-        const handleTabChange = (event: CustomEvent) => {
-            if (JSON.stringify(event.detail.tabs) === JSON.stringify(tabs)) {
-                setActiveIndex(event.detail.activeIndex);
+
+        // Handle tab sync across all instances with same tabs
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === tabGroupId && e.newValue !== null) {
+                setActiveIndex(parseInt(e.newValue, 10));
             }
         };
-        window.addEventListener('tabChange', handleTabChange as EventListener);
-        return () => window.removeEventListener('tabChange', handleTabChange as EventListener);
-    }, [tabs, sync]);
+
+        // Handle direct state changes
+        const handleTabSync = (e: Event) => {
+            const event = e as CustomEvent;
+            if (event.detail.id === tabGroupId) {
+                setActiveIndex(event.detail.index);
+            }
+        };
+
+        // Initialize from storage if available
+        const savedIndex = localStorage.getItem(tabGroupId);
+        if (savedIndex !== null) {
+            setActiveIndex(parseInt(savedIndex, 10));
+        }
+
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('tabSync', handleTabSync);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('tabSync', handleTabSync);
+        };
+    }, [sync, tabGroupId]);
 
     const handleTabClick = (index: number) => {
-        userInitiatedRef.current = true;
         setActiveIndex(index);
+        if (sync) {
+            localStorage.setItem(tabGroupId, index.toString());
+            // Notify other tabs in same window
+            window.dispatchEvent(
+                new CustomEvent('tabSync', {
+                    detail: { id: tabGroupId, index },
+                }),
+            );
+            // Notify tabs in other windows
+            window.dispatchEvent(
+                new StorageEvent('storage', {
+                    key: tabGroupId,
+                    newValue: index.toString(),
+                }),
+            );
+        }
     };
 
     return (
         <div className={cn('my-2 flex flex-col', widthFull ? 'w-full' : 'w-fit')}>
             <div className='flex flex-row gap-6 border-b border-white/15'>
-                {tabs.map((v, i) => (
+                {tabs.map((tab, i) => (
                     <button
-                        key={i}
+                        key={tab}
                         onClick={() => handleTabClick(i)}
                         className={cn(
                             'border-b pb-2 text-base font-medium transition-all duration-300',
                             activeIndex === i ? 'border-accent-600' : 'border-transparent',
                         )}
                     >
-                        {v}
+                        {tab}
                     </button>
                 ))}
             </div>
-            <div>{(children as React.ReactNode[])[activeIndex]}</div>
+            <div className='mt-4'>{childrenArray[activeIndex]}</div>
         </div>
     );
 };

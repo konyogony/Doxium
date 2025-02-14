@@ -16,7 +16,7 @@ export const DocLink = ({ name, slug }: { name: string; slug?: string }) => {
         <Link
             href={slug}
             className={cn(
-                'flex w-full py-1.5 text-sm font-normal text-base-400 decoration-dotted transition-all hover:!text-base-100 hover:underline',
+                'flex w-full py-1 text-sm font-normal text-base-400 transition-all hover:!text-base-100 hover:underline',
                 pathname === slug && 'font-medium text-accent-500',
             )}
         >

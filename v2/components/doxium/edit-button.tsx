@@ -1,19 +1,18 @@
 'use client';
 
+import config from 'config';
 import { FiArrowUpRight } from 'icons/fi';
 import { usePathname } from 'next/navigation';
 
-interface DocsEditProps {
-    repoString: string;
-}
+const githubRepo = config.socials.githubRepo;
 
-const EditButton = ({ repoString }: DocsEditProps) => {
+const EditButton = () => {
     const pathname = usePathname();
     return (
         <>
-            {repoString && (
+            {githubRepo && (
                 <a
-                    href={`${repoString}/edit/main/src/app${pathname}/page.mdx`}
+                    href={`${githubRepo}/edit/main/docs/${pathname}/page.mdx`}
                     rel='noopener noreferrer'
                     target='_blank'
                     className='flex flex-row items-center gap-1 text-sm text-base-400 transition-all duration-300 hover:underline'

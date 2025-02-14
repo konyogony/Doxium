@@ -17,7 +17,7 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
                     }
                 });
             },
-            { rootMargin: '0px 0px -50% 0px', threshold: [0.1, 0.5, 1.0] },
+            { rootMargin: '0px 0px -10% 0px', threshold: [0.1, 0.5, 1.0] },
         );
 
         headings.forEach((heading) => {
@@ -33,7 +33,8 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
     }, [headings]);
 
     useEffect(() => {
-        updateHeadings();
+        const cleanup = updateHeadings();
+        return () => cleanup();
     }, [headings, updateHeadings]);
 
     const memoizedHeadings = useMemo(() => {
@@ -41,7 +42,7 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
             <a
                 href={`#${heading.id}`}
                 className={cn(
-                    'max-w-48 py-[4.5px] text-sm decoration-dotted transition-all duration-200 hover:underline',
+                    'max-w-48 py-[4.5px] text-sm transition-all duration-200 hover:underline',
                     activeHeading === heading.id ? 'font-semibold text-accent-500' : 'font-normal text-base-400',
                     heading.level === 1 && 'font-semibold',
                 )}

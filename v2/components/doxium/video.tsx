@@ -19,7 +19,7 @@ interface VideoIframeProps {
     loading?: 'lazy' | 'eager';
 }
 
-type VideoProps = VideoTagProps | VideoIframeProps;
+export type VideoProps = VideoTagProps | VideoIframeProps;
 
 const isExternal = (url: string) => {
     return /^(http|https):\/\//.test(url);

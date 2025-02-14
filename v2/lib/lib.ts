@@ -1,10 +1,33 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { DoxiumFile, Heading, TreeNode } from '@/types';
+import config from 'config';
 import matter from 'gray-matter';
 import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } from 'shiki';
 
 const MDX_DIR = path.join(process.cwd(), 'docs');
+const extensions = config.misc.extensions;
+
+export const cleanHeadingId = (id: string): string => {
+    return id
+        .toLowerCase()
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+        .replace(/[*_~]/g, '')
+        .replace(/<[^>]+>/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+};
+
+export const cleanHeadingText = (text: string): string => {
+    return text
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+        .replace(/[*_~]/g, '')
+        .replace(/<[^>]+>/g, '');
+};
 
 export const getMdxData = async (slug: string) => {
     const filePath = path.join(MDX_DIR, `${slug}/page.mdx`);
@@ -17,8 +40,8 @@ export const getMdxData = async (slug: string) => {
             .filter((line) => /^#{1,3}\s/.test(line))
             .map((line) => {
                 const level = line.match(/^#{1,3}/)![0].length;
-                const text = line.replace(/^#{1,3}\s/, '').trim();
-                const id = text.toLowerCase().replace(/\s+/g, '-');
+                const text = cleanHeadingText(line.replace(/^#{1,3}\s/, '').trim());
+                const id = cleanHeadingId(text);
                 return { id, level, text };
             });
 
@@ -135,21 +158,36 @@ export const getDocsTree = async (dir: string = MDX_DIR): Promise<TreeNode[]> =>
 };
 
 class HighlighterSingleton {
-    private static instance: Promise<HighlighterGeneric<BundledLanguage, BundledTheme>> | null = null;
+    private static instance: HighlighterGeneric<BundledLanguage, BundledTheme> | null = null;
+    private static initializing: boolean = false;
 
-    private constructor() {} // Prevent instantiation
+    private constructor() {}
 
     public static async getHighlighter(
         theme: BundledTheme,
     ): Promise<HighlighterGeneric<BundledLanguage, BundledTheme>> {
-        if (!HighlighterSingleton.instance) {
-            HighlighterSingleton.instance = createHighlighter({
-                themes: [theme, 'github-dark-dimmed'],
-                langs: ['ts', 'tsx', 'jsx', 'rs', 'html', 'mdx', 'bash', 'sh', 'js', 'css', 'json'],
-            });
+        if (!HighlighterSingleton.instance && !HighlighterSingleton.initializing) {
+            HighlighterSingleton.initializing = true;
+            try {
+                console.log(extensions);
+                HighlighterSingleton.instance = await createHighlighter({
+                    themes: [theme, 'github-dark-dimmed'],
+                    langs: extensions,
+                });
+            } catch (error) {
+                console.error('Error creating highlighter:', error);
+                HighlighterSingleton.initializing = false;
+                throw error;
+            } finally {
+                HighlighterSingleton.initializing = false;
+            }
         }
 
-        return HighlighterSingleton.instance;
+        while (HighlighterSingleton.initializing) {
+            await new Promise((resolve) => setTimeout(resolve, 50));
+        }
+
+        return HighlighterSingleton.instance!;
     }
 }
 

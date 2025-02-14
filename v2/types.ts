@@ -1,4 +1,4 @@
-import { BundledTheme } from 'shiki';
+import { BundledLanguage, BundledTheme, LanguageInput, SpecialLanguage, StringLiteralUnion } from 'shiki';
 
 export interface TreeNode {
     name: string;
@@ -48,6 +48,7 @@ export interface DoxiumConfig {
     };
     misc: {
         separate: boolean;
+        extensions: (LanguageInput | SpecialLanguage | StringLiteralUnion<BundledLanguage, string>)[];
     };
 }
 

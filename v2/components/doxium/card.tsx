@@ -19,7 +19,7 @@ const Card = ({ title, href, children, full = false, newTab = false }: React.Pro
             target={newTab ? '_blank' : undefined}
             rel={newTab ? 'noreferrer noopener' : undefined}
         >
-            <span className='text-xl font-semibold text-base-100 underline decoration-dotted transition-all duration-150 group-hover:text-accent-600'>
+            <span className='text-xl font-semibold text-base-100 underline transition-all duration-150 group-hover:text-accent-600'>
                 {title}
             </span>
             <div>{children}</div>

@@ -1,10 +1,7 @@
 import { Heading } from '@/types';
-import config from 'config';
 import EditButton from 'doxium/edit-button';
 import ScrollBackButton from 'doxium/scroll-back-button';
 import TOC from 'doxium/toc';
-
-const socials = config.socials;
 
 interface SecondarySidebarProps {
     headings: Heading[];
@@ -16,7 +13,7 @@ const SecondarySidebar = ({ headings }: SecondarySidebarProps) => {
             <span className='py-2 text-sm font-bold text-base-50'>On this page</span>
             <TOC headings={headings} />
             <div className='my-2 h-[1px] w-3/4 bg-white/10' />
-            <EditButton repoString={socials.githubRepo} />
+            <EditButton />
             <ScrollBackButton />
         </div>
     );

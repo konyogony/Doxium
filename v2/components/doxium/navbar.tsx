@@ -97,7 +97,7 @@ const Navbar = ({ tree }: NavbarProps) => {
             <div className='fixed inset-0 z-50 flex h-fit w-full flex-col'>
                 <nav
                     className={
-                        'flex h-fit w-full flex-row items-center gap-8 border-white/10 bg-base-950/50 px-[10vw] py-4 text-sm font-normal text-base-300 decoration-dotted backdrop-blur-xl transition-all duration-300 lg:border-b lg:px-[20vw]'
+                        'flex h-fit w-full flex-row items-center gap-8 border-white/10 bg-base-950/50 px-[10vw] py-4 text-sm font-normal text-base-300 backdrop-blur-xl transition-all duration-300 lg:border-b lg:px-[20vw]'
                     }
                 >
                     <Link href='/' className='text-xl font-bold text-base-100 hover:text-base-50'>

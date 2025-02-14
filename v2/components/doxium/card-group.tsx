@@ -1,7 +1,7 @@
 import Card, { CardProps } from 'doxium/card';
 import React, { ReactElement } from 'react';
 
-interface CardGroupProps {
+export interface CardGroupProps {
     cols: number;
     children: ReactElement<CardProps> | ReactElement<CardProps>[];
 }
