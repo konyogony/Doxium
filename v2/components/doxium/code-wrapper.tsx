@@ -11,10 +11,9 @@ import { rendererRich, transformerTwoslash } from '@shikijs/twoslash';
 import config from 'config';
 import CodeWrapperIcon from 'doxium/code-wrapper-icon';
 import CopyButton from 'doxium/copy-button';
-import { isLightColor } from 'lib/is-light-color';
-import { getHighlighterInstance } from 'lib/lib';
+import { getHighlighterInstance, isLightColor } from 'lib/lib';
 import { cn } from 'lib/utils';
-import { BundledTheme } from 'shiki';
+import { BundledTheme, ShikiTransformer } from 'shiki';
 import { ShikiThemeBackgroundHexDimmed } from 'types';
 
 interface WikiCodeWrapperProps {
@@ -38,53 +37,45 @@ const CodeWrapper = async ({
     twoSlash,
     name,
 }: WikiCodeWrapperProps) => {
+    if (!children || typeof children !== 'string') {
+        console.error('Invalid code input for syntax highlighting.');
+        return null;
+    }
+
     const highlighter = await getHighlighterInstance(theme as BundledTheme);
     const highlightedCode = highlighter.codeToHtml(children, {
         lang: language,
-        theme: 'github-dark-dimmed',
+        theme: config.style.shikiTheme,
         transformers: [
-            transformerNotationDiff({
-                matchAlgorithm: 'v3',
-            }),
-            transformerNotationHighlight({
-                matchAlgorithm: 'v3',
-            }),
+            transformerNotationDiff({ matchAlgorithm: 'v3' }),
+            transformerNotationHighlight({ matchAlgorithm: 'v3' }),
             transformerRemoveNotationEscape(),
-            transformerNotationErrorLevel({
-                matchAlgorithm: 'v3',
-            }),
-            transformerNotationFocus({
-                matchAlgorithm: 'v3',
-            }),
-            transformerNotationWordHighlight({
-                matchAlgorithm: 'v3',
-            }),
+            transformerNotationErrorLevel({ matchAlgorithm: 'v3' }),
+            transformerNotationFocus({ matchAlgorithm: 'v3' }),
+            transformerNotationWordHighlight({ matchAlgorithm: 'v3' }),
             transformerRemoveLineBreak(),
             twoSlash &&
                 transformerTwoslash({
                     renderer: rendererRich(),
                 }),
-        ].filter((v) => v !== false),
+        ].filter((v) => v !== undefined) as ShikiTransformer[],
     });
 
     const { icon: IconComponent, lang } = CodeWrapperIcon({ language });
     const backgroundColor = ShikiThemeBackgroundHexDimmed[theme as keyof typeof ShikiThemeBackgroundHexDimmed];
-    const textColor = isLightColor(backgroundColor) ? '#393A34' : '';
+    const textColor = isLightColor(backgroundColor) ? '#1e1e1e' : ''; // for icon
 
     const text = children.replace(/\/\/\s*\[!code.*?\]/g, '').trim();
 
-    // TODO: Control roundnes
     return (
-        <div className='codeWrapper group relative my-2 w-full overflow-clip rounded-md border border-white/15'>
+        <div className='codeWrapper group relative my-2 w-full overflow-clip rounded-md border border-black/15 dark:border-white/10 dark:bg-none'>
             {!noTopBar && (
                 <div
-                    className={
-                        'flex min-h-10 w-full flex-row items-center gap-2 border-b border-white/15 px-4 py-2.5 text-sm font-normal'
-                    }
+                    className='flex min-h-10 w-full flex-row items-center gap-2 border-b border-black/15 px-4 py-2.5 text-sm font-normal dark:border-white/15'
                     style={{ backgroundColor, color: textColor }}
                 >
                     {IconComponent}
-                    {name ? <span className='text-xs text-gray-300/80'>{name}</span> : lang}{' '}
+                    {name ? <span className='text-xs text-gray-950 dark:text-gray-300/80'>{name}</span> : lang}
                     {!noCopyButton && <CopyButton text={text} />}
                 </div>
             )}

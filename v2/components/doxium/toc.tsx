@@ -42,7 +42,9 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
                 href={`#${heading.id}`}
                 className={cn(
                     'max-w-48 py-[4.5px] text-sm transition-all duration-200 hover:underline',
-                    activeHeading === heading.id ? 'font-semibold text-accent-500' : 'font-normal text-base-400',
+                    activeHeading === heading.id
+                        ? 'font-semibold text-accent-500'
+                        : 'font-normal text-base-700/80 dark:text-base-400',
                     heading.level === 1 && 'font-semibold',
                 )}
                 style={{

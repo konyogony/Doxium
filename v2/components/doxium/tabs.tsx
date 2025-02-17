@@ -69,7 +69,7 @@ const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, chil
 
     return (
         <div className={cn('my-2 flex flex-col', widthFull ? 'w-full' : 'w-fit')}>
-            <div className='flex flex-row gap-6 border-b border-white/15'>
+            <div className='flex flex-row gap-6 border-b border-black/15 dark:border-white/15'>
                 {tabs.map((tab, i) => (
                     <button
                         key={tab}

@@ -1,20 +1,21 @@
 import config from 'config';
+import Accordion from 'doxium/accordion';
+import Alerts, { AlertsProps } from 'doxium/alerts';
+import Card, { CardProps } from 'doxium/card';
+import CardGroup, { CardGroupProps } from 'doxium/card-group';
 import CodeWrapper from 'doxium/code-wrapper';
+import { File, FileProps, Folder, FolderProps } from 'doxium/filetree';
 import HashtagButton from 'doxium/hashtag-button';
+import Image, { ImageProps } from 'doxium/image';
+import Outline from 'doxium/outline';
+import Tabs, { TabsProps } from 'doxium/tabs';
+import Timeline from 'doxium/timeline';
+import Video, { VideoProps } from 'doxium/video';
 import { cleanHeadingId } from 'lib/lib';
 import { cn } from 'lib/utils';
 import Link from 'next/link';
 import { BundledTheme } from 'shiki';
 import { preProps, ShikiThemeBackgroundHexDefault } from 'types';
-import Accordion from './accordion';
-import Alerts, { AlertsProps } from './alerts';
-import Card, { CardProps } from './card';
-import CardGroup, { CardGroupProps } from './card-group';
-import Image, { ImageProps } from './image';
-import Outline from './outline';
-import Tabs, { TabsProps } from './tabs';
-import Timeline from './timeline';
-import Video, { VideoProps } from './video';
 
 const theme = config.style.shikiTheme;
 
@@ -30,22 +31,40 @@ const mdxComponents = {
         );
     },
     h1: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const cleanedText =
+            typeof children === 'string'
+                ? children
+                : Array.isArray(children)
+                  ? children.filter((child) => typeof child === 'string' || typeof child === 'number').join('')
+                  : children;
         return (
-            <HashtagButton id={cleanHeadingId(children?.toString() || '')} variant='h1'>
+            <HashtagButton id={cleanHeadingId(cleanedText?.toString() || '')} variant='h1'>
                 {children}
             </HashtagButton>
         );
     },
     h2: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const cleanedText =
+            typeof children === 'string'
+                ? children
+                : Array.isArray(children)
+                  ? children.filter((child) => typeof child === 'string' || typeof child === 'number').join('')
+                  : children;
         return (
-            <HashtagButton id={cleanHeadingId(children?.toString() || '')} variant='h2'>
+            <HashtagButton id={cleanHeadingId(cleanedText?.toString() || '')} variant='h2'>
                 {children}
             </HashtagButton>
         );
     },
     h3: ({ children }: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const cleanedText =
+            typeof children === 'string'
+                ? children
+                : Array.isArray(children)
+                  ? children.filter((child) => typeof child === 'string' || typeof child === 'number').join('')
+                  : children;
         return (
-            <HashtagButton id={cleanHeadingId(children?.toString() || '')} variant='h3'>
+            <HashtagButton id={cleanHeadingId(cleanedText?.toString() || '')} variant='h3'>
                 {children}
             </HashtagButton>
         );
@@ -57,7 +76,7 @@ const mdxComponents = {
         return (
             <span
                 className={cn(
-                    'mx-0.5 my-2 rounded-md border border-white/5 px-1.5 py-0.5 text-[0.85em] font-semibold text-base-50',
+                    'mx-0.5 my-2 rounded-md border border-black/5 px-1.5 py-0.5 text-[0.85em] font-semibold text-base-900 dark:border-white/5 dark:text-base-50',
                     long ? 'whitespace-pre-wrap' : 'whitespace-nowrap',
                 )}
                 style={{ background: color }}
@@ -91,7 +110,7 @@ const mdxComponents = {
         return (
             <span
                 className={
-                    'my-2 flex border-l-2 border-base-600 py-2.5 pl-4 text-sm font-light italic text-base-400 !no-underline md:text-base'
+                    'my-2 flex border-l-2 border-base-950 py-2.5 pl-4 text-sm font-light italic text-base-950 !no-underline dark:border-base-600 dark:text-base-400 md:text-base'
                 }
             >
                 <span className='not-prose'>{children}</span>
@@ -142,6 +161,16 @@ const mdxComponents = {
     },
     Video: (props: VideoProps) => {
         return <Video {...props} />;
+    },
+    Folder: ({ name, children, defaultOpen = false, toggleable = true }: FolderProps) => {
+        return (
+            <Folder name={name} toggleable={toggleable} defaultOpen={defaultOpen}>
+                {children}
+            </Folder>
+        );
+    },
+    File: ({ name }: FileProps) => {
+        return <File name={name} />;
     },
 };
 

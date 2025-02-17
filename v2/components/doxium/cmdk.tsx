@@ -50,11 +50,11 @@ const Cmdk = ({ tree, ...props }: CmdkProps) => {
                 onClick={() => setOpen(true)}
                 {...props}
                 aria-label='Search documentation'
-                className='group ml-auto hidden w-32 cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 bg-base-900/50 px-2 py-1 text-sm font-normal text-base-400 backdrop-blur-md transition-all duration-300 hover:bg-base-800/60 hover:text-base-200 lg:flex xl:w-fit xl:gap-10'
+                className='group ml-auto hidden w-32 cursor-pointer flex-row items-center overflow-clip rounded-md border border-black/5 bg-base-200/50 px-2 py-1 text-sm font-normal text-base-800 backdrop-blur-md transition-all duration-300 hover:bg-base-300/60 hover:text-base-900 dark:border-white/5 dark:bg-base-900/50 dark:text-base-400 dark:hover:bg-base-800/60 dark:hover:text-base-200 lg:flex xl:w-fit xl:gap-10'
             >
                 <span className='hidden xl:flex'>Search documentation...</span>
                 <span className='flex text-xs xl:hidden'>Search</span>
-                <kbd className='ml-auto flex flex-row items-center -space-x-0.5 rounded-sm bg-base-700/50 px-2 py-0.5 text-[10px] backdrop-blur-sm'>
+                <kbd className='ml-auto flex flex-row items-center -space-x-0.5 rounded-sm bg-base-200/50 px-2 py-0.5 text-[10px] backdrop-blur-sm dark:bg-base-700/50'>
                     ⌘ K
                 </kbd>
             </Button>
@@ -63,7 +63,7 @@ const Cmdk = ({ tree, ...props }: CmdkProps) => {
                 onClick={() => setOpen(true)}
                 {...props}
                 aria-label='Search documentation'
-                className='group ml-auto cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 bg-base-900/50 px-2 py-1 text-sm font-normal text-base-400 backdrop-blur-md transition-all duration-300 hover:bg-base-800/60 hover:text-base-200 lg:hidden xl:w-fit xl:gap-10'
+                className='group ml-auto cursor-pointer flex-row items-center overflow-clip rounded-md border border-white/5 bg-base-900/50 px-2 py-1 text-sm font-normal text-base-800 backdrop-blur-md transition-all duration-300 hover:bg-base-700/60 hover:text-base-900 dark:text-base-400 dark:hover:bg-base-800/60 dark:hover:text-base-200 lg:hidden xl:w-fit xl:gap-10'
             >
                 <RxMagnifyingGlass />
             </Button>

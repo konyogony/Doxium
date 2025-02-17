@@ -1,13 +1,14 @@
 'use client';
 
-import { useMediaQuery } from 'lib/use-media-query';
+import config from 'config';
+import { useMediaQuery } from 'lib/useMediaQuery';
 import { Toaster } from 'sonner';
 
 const DocsToaster = () => {
     return (
         <Toaster
             richColors
-            theme='dark'
+            theme={config.style.colorScheme}
             position={useMediaQuery('(min-width: 1024px)') ? 'bottom-right' : 'top-center'}
         />
     );

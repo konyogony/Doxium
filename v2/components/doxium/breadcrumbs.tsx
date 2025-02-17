@@ -1,56 +1,60 @@
 'use client';
 
+import { TreeNode } from '@/types';
+import config from 'config';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Fragment, useMemo } from 'react';
+import { Fragment, useCallback, useMemo } from 'react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from 'ui/breadcrumb';
 
-const Breadcrumbs = () => {
-    const pathname = usePathname();
-    const path = pathname.split('/').filter((p) => p !== '');
+interface BreadcrumbPath {
+    name: string;
+    path: string;
+}
 
-    const Path = useMemo(() => {
-        return (
-            <>
-                {path.map((v, i) => {
-                    const href = `/${path.slice(0, i + 1).join('/')}`;
-                    const isLast = i === path.length - 1;
-                    return (
-                        <Fragment key={i}>
-                            <BreadcrumbSeparator />
-                            {v === 'docs' ? (
-                                <BreadcrumbItem className={isLast ? 'text-base-50' : ''}>
-                                    <BreadcrumbLink asChild>
-                                        <Link href={`/${v}`}>{v}</Link>
-                                    </BreadcrumbLink>
-                                </BreadcrumbItem>
-                            ) : (
-                                <BreadcrumbItem className={isLast ? 'text-base-50' : ''}>
-                                    {isLast ? (
-                                        <BreadcrumbLink asChild>
-                                            <Link href={href}>{v}</Link>
-                                        </BreadcrumbLink>
-                                    ) : (
-                                        v
-                                    )}
-                                </BreadcrumbItem>
-                            )}
-                        </Fragment>
-                    );
-                })}
-            </>
-        );
-    }, [path]);
+const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
+    const pathname = usePathname();
+
+    const findPathInTree = useCallback(
+        (nodes: TreeNode[], targetPath: string, currentPath: BreadcrumbPath[] = []): BreadcrumbPath[] => {
+            for (const node of nodes) {
+                if (node.type === 'file' && node.slug === targetPath) {
+                    return [...currentPath, { name: node.name, path: node.slug }];
+                } else if (node.type === 'folder' && node.nodes) {
+                    const newPath = [...currentPath, { name: node.name, path: node.nodes[0]?.slug || '' }];
+                    const result = findPathInTree(node.nodes, targetPath, newPath);
+                    if (result.length) return result;
+                }
+            }
+            return [];
+        },
+        [],
+    );
+
+    const breadcrumbPath = useMemo(() => {
+        return findPathInTree(tree, pathname);
+    }, [pathname, tree, findPathInTree]);
 
     return (
         <Breadcrumb className='not-prose text mb-8 mt-16 flex w-full lg:mb-2 lg:mt-4'>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>
-                        <Link href={'/'}>Home</Link>
+                        <Link href={'/'}>{config.rootBreadcrumb}</Link>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
-                {Path}
+                {breadcrumbPath.map((item, index) => (
+                    <Fragment key={index}>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem
+                            className={index === breadcrumbPath.length - 1 ? 'text-base-950 dark:text-base-50' : ''}
+                        >
+                            <BreadcrumbLink asChild>
+                                <Link href={item.path}>{item.name}</Link>
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                    </Fragment>
+                ))}
             </BreadcrumbList>
         </Breadcrumb>
     );

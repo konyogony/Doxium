@@ -29,23 +29,37 @@ export const cleanHeadingText = (text: string): string => {
         .replace(/<[^>]+>/g, '');
 };
 
+export const isLightColor = (color: string) => {
+    const hex = color.slice(1);
+    const [r, g, b] = [0, 2, 4].map((offset) => parseInt(hex.slice(offset, offset + 2), 16));
+    return (r * 299 + g * 587 + b * 114) / 1000 > 155;
+};
+
 export const getMdxData = async (slug: string) => {
     const filePath = path.join(MDX_DIR, `${slug}/page.mdx`);
     try {
         const fileContent = await fs.readFile(filePath, 'utf-8');
-        const { content: source, data: frontmatter } = matter(fileContent);
+        const { data: frontmatter, content } = matter(fileContent);
 
-        const headings: Heading[] = source
-            .split('\n')
-            .filter((line) => /^#{1,3}\s/.test(line))
-            .map((line) => {
-                const level = line.match(/^#{1,3}/)![0].length;
-                const text = cleanHeadingText(line.replace(/^#{1,3}\s/, '').trim());
+        // First remove code blocks to avoid false positives
+        const contentWithoutCodeBlocks = content.replace(/```[\s\S]*?```/g, '');
+
+        // Find headings but preserve their inline code until we confirm it's a heading
+        const headings: Heading[] = [];
+        const lines = contentWithoutCodeBlocks.split('\n');
+
+        for (const line of lines) {
+            const headingMatch = line.match(/^(#{1,3})\s+(.+)$/);
+            if (headingMatch) {
+                const level = headingMatch[1].length;
+                // Only clean inline code for confirmed heading lines
+                const text = cleanHeadingText(headingMatch[2]);
                 const id = cleanHeadingId(text);
-                return { id, level, text };
-            });
+                headings.push({ id, level, text });
+            }
+        }
 
-        return { frontmatter, source, headings };
+        return { frontmatter, source: content, headings };
     } catch (error) {
         console.error(`Error reading file: ${error}`);
         return null;
@@ -109,7 +123,6 @@ export const getDocsTree = async (dir: string = MDX_DIR): Promise<TreeNode[]> =>
     const files = await getAllMdxFiles(dir);
     const groupedByDir: { [key: string]: DoxiumFile[] } = {};
 
-    // Group files by their directory
     files.forEach((file) => {
         const dir = path.dirname(file.slug);
         if (!groupedByDir[dir]) groupedByDir[dir] = [];
@@ -119,7 +132,6 @@ export const getDocsTree = async (dir: string = MDX_DIR): Promise<TreeNode[]> =>
     const buildTree = (currentDir: string): TreeNode[] => {
         const nodes: TreeNode[] = [];
 
-        // Add files in the current directory
         const currentDirFiles = groupedByDir[currentDir] || [];
         currentDirFiles.forEach((file) => {
             nodes.push({
@@ -130,7 +142,6 @@ export const getDocsTree = async (dir: string = MDX_DIR): Promise<TreeNode[]> =>
             });
         });
 
-        // Find all subdirectories at any depth
         const allPaths = Object.keys(groupedByDir);
         const directSubDirs = new Set(
             allPaths
@@ -143,11 +154,9 @@ export const getDocsTree = async (dir: string = MDX_DIR): Promise<TreeNode[]> =>
                 .filter(Boolean),
         );
 
-        // Process subdirectories
         directSubDirs.forEach((subDir) => {
             if (subDir === currentDir || !subDir) return;
 
-            // Get all files in this directory and its subdirectories
             const subDirFiles = groupedByDir[subDir] || [];
             const folderMetaFile = subDirFiles.find((f: DoxiumFile) => f.groupTitle) || subDirFiles[0];
 
@@ -160,7 +169,6 @@ export const getDocsTree = async (dir: string = MDX_DIR): Promise<TreeNode[]> =>
             nodes.push(folderNode);
         });
 
-        // Sort nodes
         return nodes.sort((a, b) => a.sort - b.sort);
     };
 

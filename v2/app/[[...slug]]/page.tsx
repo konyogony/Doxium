@@ -1,4 +1,3 @@
-import { getAllMdxSlugs, getDocsTree, getMdxData } from '@/lib/lib';
 import { params } from '@/types';
 import { remarkMermaid } from '@theguild/remark-mermaid';
 import config from 'config';
@@ -6,6 +5,8 @@ import Breadcrumbs from 'doxium/breadcrumbs';
 import mdxComponents from 'doxium/docs-mdx-components';
 import NavButtons from 'doxium/nav-buttons';
 import SecondarySidebar from 'doxium/secondary-sidebar';
+import { getAllMdxSlugs, getDocsTree, getMdxData } from 'lib/lib';
+import { cn } from 'lib/utils';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import rehypeMathjax from 'rehype-mathjax';
@@ -67,10 +68,15 @@ const Page = async ({ params }: { params: params }) => {
             });
             return (
                 <>
-                    <div className='prose prose-base prose-invert flex h-fit w-screen flex-shrink-0 flex-col items-start px-6 marker:text-base-200 prose-headings:my-2 prose-headings:w-full prose-headings:border-white/15 prose-h1:my-4 prose-h1:mt-4 prose-h1:border-b prose-h1:pb-2 prose-p:my-2 hover:prose-a:text-accent-600 prose-ol:my-0 prose-ol:mb-4 prose-ul:my-0 prose-ul:mb-4 prose-ul:list-inside prose-ul:pl-0 prose-li:my-0.5 prose-hr:border-white/20 lg:px-0 xl:max-w-[40%]'>
-                        <Breadcrumbs />
+                    <div
+                        className={cn(
+                            'prose prose-base flex h-fit w-screen flex-shrink-0 flex-col items-start px-6 marker:text-base-800 prose-headings:my-2 prose-headings:w-full prose-headings:border-black/15 prose-h1:my-4 prose-h1:mt-4 prose-h1:border-b prose-h1:pb-2 prose-p:my-2 hover:prose-a:text-accent-600 prose-ol:my-0 prose-ol:mb-4 prose-ul:my-0 prose-ul:mb-4 prose-ul:list-inside prose-ul:pl-0 prose-li:my-0.5 prose-hr:border-black/20 dark:marker:text-base-200 dark:prose-headings:border-white/15 dark:prose-hr:border-white/20 lg:px-0 xl:max-w-[40%]',
+                            config.style.colorScheme === 'dark' && 'prose-invert',
+                        )}
+                    >
+                        <Breadcrumbs tree={tree} />
                         {result}
-                        <div className='mb-4 mt-8 h-[1px] w-full bg-white/15' />
+                        <div className='mb-4 mt-8 h-[1px] w-full bg-black/15 dark:bg-white/15' />
                         <NavButtons tree={tree} />
                     </div>
                     <SecondarySidebar headings={headings} />

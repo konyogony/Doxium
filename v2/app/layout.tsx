@@ -2,6 +2,7 @@ import { cn } from 'lib/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import config from 'config';
 import Footer from 'doxium/footer';
 import Navbar from 'doxium/navbar';
 import Sidebar from 'doxium/sidebar-filetree';
@@ -22,7 +23,7 @@ const RootLayout = async ({
 }>) => {
     const tree = await getDocsTree();
     return (
-        <html lang='en' className={cn('dark antialiased', inter.className)}>
+        <html lang='en' className={cn('antialiased', inter.className, config.style.colorScheme)}>
             <body className='relative'>
                 <main>
                     <Navbar tree={tree} />

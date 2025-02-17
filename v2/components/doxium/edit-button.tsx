@@ -15,7 +15,7 @@ const EditButton = () => {
                     href={`${githubRepo}/edit/main/docs/${pathname}/page.mdx`}
                     rel='noopener noreferrer'
                     target='_blank'
-                    className='flex flex-row items-center gap-1 text-sm text-base-400 transition-all duration-300 hover:underline'
+                    className='mb-1 flex flex-row items-center gap-1 text-sm text-base-400 transition-all duration-300 hover:underline'
                 >
                     Edit this page on GitHub <FiArrowUpRight />
                 </a>

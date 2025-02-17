@@ -1,18 +1,25 @@
+import config from 'config';
+
 const Footer = () => {
     return (
-        <div className='mt-auto flex w-full flex-col border-t border-white/15 px-[10vw] py-6 lg:px-[20vw]'>
-            <div className='flex flex-row justify-between text-xs text-base-400'>
-                <span>© 2024 Doxium</span>
+        <div className='mt-auto flex w-full flex-col border-t border-black/15 px-[10vw] py-6 dark:border-white/15 lg:px-[20vw]'>
+            <div className='flex flex-row justify-between text-xs text-base-800 dark:text-base-400'>
+                <span>
+                    © {new Date().getFullYear()} {config.misc.appName || 'Doxium'}
+                </span>
                 <span>
                     Made with &hearts; by&nbsp;
-                    <a
-                        href='https://github.com/konyogony'
-                        className='text-primary'
-                        rel='noopener noreferrer'
-                        target='_blank'
-                    >
-                        konyogony
-                    </a>
+                    {Object.keys(config.authors).map((v, i) => (
+                        <a
+                            href={Object.values(config.authors)[i]}
+                            className='text-primary mr-1'
+                            rel='noopener noreferrer'
+                            target='_blank'
+                            key={i}
+                        >
+                            {v} {i === Object.keys(config.authors).length - 1 ? '' : '•'}
+                        </a>
+                    ))}
                 </span>
             </div>
         </div>

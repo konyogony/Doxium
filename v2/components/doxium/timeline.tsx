@@ -12,12 +12,12 @@ const Timeline = ({ children }: React.PropsWithChildren) => {
     }, []);
 
     return (
-        <div className='my-4 ml-4 flex h-fit w-full flex-col border-l border-white/15 pr-4'>
+        <div className='my-4 ml-4 flex h-fit w-full flex-col border-l border-black/15 pr-4 dark:border-white/15'>
             {groups.map((group, i) => (
                 <div key={i} className='flex flex-col gap-2'>
                     <div className={cn('flex flex-row items-center', i === 0 ? '-mt-1' : 'mt-6')}>
-                        <div className='relative flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-base-950'>
-                            <div className='my-auto flex size-8 justify-center rounded-full bg-base-800'>
+                        <div className='relative flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-base-100 dark:bg-base-950'>
+                            <div className='my-auto flex size-8 justify-center rounded-full bg-base-200/50 dark:bg-base-800'>
                                 <span className='my-auto flex'>{i + 1}</span>
                             </div>
                         </div>

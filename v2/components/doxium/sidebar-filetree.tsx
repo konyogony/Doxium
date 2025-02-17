@@ -1,6 +1,6 @@
 import { TreeNode } from '@/types';
 import config from 'config';
-import { DocLink, Filetree } from 'doxium/filetree';
+import { DocLink, Filetree } from 'doxium/filetree-navigation';
 
 const separate = config.misc.separate;
 const rootTitle = config.rootTitle;

@@ -2,8 +2,9 @@ import { DoxiumConfig } from 'types';
 
 export default {
     style: {
+        colorScheme: 'dark',
         baseColor: 'zinc',
-        accentColor: 'orange',
+        accentColor: 'blue',
         shikiTheme: 'nord',
     },
     alias: {
@@ -14,16 +15,27 @@ export default {
     useDocs: false,
     baseUrl: 'docs',
     rootTitle: 'Documentation',
+    rootBreadcrumb: 'Docs',
+    navLinks: {
+        Home: '/',
+    },
     socials: {
-        githubRepo: '',
+        githubRepo: 'a',
         twitter: 'a',
         discord: '',
     },
+    sidebarLinks: {
+        'Open our website': 'https://google.com',
+    },
     misc: {
-        toggleFolders: true,
+        toggleFolders: false,
         separate: false,
         appName: 'Doxium',
         showAppNameInTitle: true,
         extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'mdx', 'bash', 'sh', 'js', 'css', 'json'],
     },
-} satisfies DoxiumConfig;
+    authors: {
+        konyogony: 'https://github.com/konyogony',
+        PadowYT2: '',
+    },
+} as DoxiumConfig;

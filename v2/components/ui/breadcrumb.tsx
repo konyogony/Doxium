@@ -1,6 +1,6 @@
-import { cn } from '@/lib/utils';
 import { ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Slot } from '@radix-ui/react-slot';
+import { cn } from 'lib/utils';
 import * as React from 'react';
 
 const Breadcrumb = React.forwardRef<
@@ -16,7 +16,7 @@ const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWi
         <ol
             ref={ref}
             className={cn(
-                'flex flex-wrap items-center gap-1.5 break-words text-sm text-zinc-500 dark:text-zinc-400 sm:gap-2.5',
+                'flex flex-wrap items-center gap-1.5 break-words text-sm text-base-500 dark:text-base-400 sm:gap-2.5',
                 className,
             )}
             {...props}
@@ -43,7 +43,7 @@ const BreadcrumbLink = React.forwardRef<
     return (
         <Comp
             ref={ref}
-            className={cn('transition-colors hover:text-zinc-950 dark:hover:text-zinc-50', className)}
+            className={cn('transition-colors hover:text-base-950 dark:hover:text-base-50', className)}
             {...props}
         />
     );
@@ -57,7 +57,7 @@ const BreadcrumbPage = React.forwardRef<HTMLSpanElement, React.ComponentPropsWit
             role='link'
             aria-disabled='true'
             aria-current='page'
-            className={cn('font-normal text-zinc-950 dark:text-zinc-50', className)}
+            className={cn('font-normal text-base-950 dark:text-base-50', className)}
             {...props}
         />
     ),

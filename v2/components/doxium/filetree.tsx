@@ -1,134 +1,215 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import { TreeNode } from '@/types';
-import config from 'config';
-import { FiChevronRight } from 'icons/fi';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import {
+    BsFiletypeCs,
+    BsFiletypeGif,
+    BsFiletypeJava,
+    BsFiletypeJpg,
+    BsFiletypeMp4,
+    BsFiletypePng,
+    BsFiletypeSql,
+    BsTerminal,
+} from 'icons/bs';
+import { FiChevronDown, FiFile, FiFolder } from 'icons/fi';
+import {
+    SiC,
+    SiCplusplus,
+    SiCss3,
+    SiDart,
+    SiGo,
+    SiGradle,
+    SiHtml5,
+    SiJavascript,
+    SiJson,
+    SiKotlin,
+    SiLua,
+    SiMarkdown,
+    SiMdx,
+    SiPerl,
+    SiPhp,
+    SiPython,
+    SiReact,
+    SiRuby,
+    SiRust,
+    SiScala,
+    SiSvg,
+    SiSwift,
+    SiToml,
+    SiTypescript,
+    SiYaml,
+} from 'icons/si';
+import { cn } from 'lib/utils';
+import React, { ReactElement, useCallback, useState } from 'react';
 
-export const DocLink = ({
-    name,
-    slug,
-    isFirstNode = false,
-}: {
-    name: string;
-    slug?: string;
-    isFirstNode?: boolean;
-}) => {
-    const pathname = usePathname();
+interface SelectIconProps {
+    type: 'folder' | 'file';
+    extension?: string;
+    size?: number;
+}
 
-    if (!slug) {
-        if (config.misc.toggleFolders) {
-            return (
-                <span className={cn('flex w-full py-1.5 pt-3 text-sm font-bold text-base-50', !isFirstNode && 'pl-6')}>
-                    {name}
-                </span>
-            );
-        } else {
-            return <span className='flex w-full py-1.5 pt-3 text-sm font-bold text-base-50'>{name}</span>;
-        }
+const SelectIcon = ({ type, extension, size }: SelectIconProps) => {
+    if (type === 'folder') {
+        return <FiFolder size={size} />;
     }
-    if (config.misc.toggleFolders) {
-        console.log(pathname, slug);
-        return (
-            <Link
-                href={slug}
-                className={cn(
-                    'flex w-full py-1.5 text-sm font-normal text-base-400 transition-all hover:!border-base-100/80 hover:!text-base-100 hover:underline',
-                    pathname === slug && '!border-accent-500/80 font-medium text-accent-500',
-                    !isFirstNode && 'border-l border-base-700/80 pl-6',
-                )}
-            >
-                {name}
-            </Link>
-        );
-    } else {
-        return (
-            <Link
-                href={slug}
-                className={cn(
-                    'flex w-full py-1.5 text-sm font-normal text-base-400 transition-all hover:!text-base-100 hover:underline',
-                    pathname === slug && 'font-medium text-accent-500',
-                )}
-            >
-                {name}
-            </Link>
-        );
+
+    switch (extension) {
+        case 'mdx':
+            return <SiMdx size={size} />;
+        case 'md':
+            return <SiMarkdown size={size} />;
+        case 'tsx':
+            return <SiReact size={size} />;
+        case 'ts':
+            return <SiTypescript size={size} />;
+        case 'js':
+            return <SiJavascript size={size} />;
+        case 'jsx':
+            return <SiReact size={size} />;
+        case 'mjs':
+            return <SiJavascript size={size} />;
+        case 'json':
+            return <SiJson size={size} />;
+        case 'yaml':
+            return <SiYaml size={size} />;
+        case 'yml':
+            return <SiYaml size={size} />;
+        case 'toml':
+            return <SiToml size={size} />;
+        case 'html':
+            return <SiHtml5 size={size} />;
+        case 'css':
+            return <SiCss3 size={size} />;
+        case 'svg':
+            return <SiSvg size={size} />;
+        case 'png':
+            return <BsFiletypePng size={size} />;
+        case 'jpg':
+            return <BsFiletypeJpg size={size} />;
+        case 'jpeg':
+            return <BsFiletypeJpg size={size} />;
+        case 'gif':
+            return <BsFiletypeGif size={size} />;
+        case 'mp4':
+            return <BsFiletypeMp4 size={size} />;
+        case 'sh':
+            return <BsTerminal size={size} />;
+        case 'py':
+            return <SiPython size={size} />;
+        case 'go':
+            return <SiGo size={size} />;
+        case 'java':
+            return <BsFiletypeJava size={size} />;
+        case 'c':
+            return <SiC size={size} />;
+        case 'cpp':
+            return <SiCplusplus size={size} />;
+        case 'cs':
+            return <BsFiletypeCs size={size} />;
+        case 'rs':
+            return <SiRust size={size} />;
+        case 'rb':
+            return <SiRuby size={size} />;
+        case 'php':
+            return <SiPhp size={size} />;
+        case 'sql':
+            return <BsFiletypeSql size={size} />;
+        case 'pl':
+            return <SiPerl size={size} />;
+        case 'swift':
+            return <SiSwift size={size} />;
+        case 'kt':
+            return <SiKotlin size={size} />;
+        case 'gradle':
+            return <SiGradle size={size} />;
+        case 'scala':
+            return <SiScala size={size} />;
+        case 'lua':
+            return <SiLua size={size} />;
+        case 'dart':
+            return <SiDart size={size} />;
+        default:
+            return <FiFile size={size} />;
     }
 };
 
-export const DocFolder = ({
-    node,
-    separate = false,
-    isFirstNode = false,
-}: {
-    node: TreeNode;
-    separate?: boolean;
-    isFirstNode?: boolean;
-}) => {
-    const [opened, setOpened] = useState(false);
+interface FiletreeProps {
+    children:
+        | ReactElement<typeof Folder>
+        | ReactElement<typeof File>
+        | Array<ReactElement<typeof Folder> | ReactElement<typeof File>>;
+}
 
-    if (!node.nodes) {
-        return <DocLink name={node.name} slug={node.slug} isFirstNode={isFirstNode} />;
-    }
-
+export const Filetree = ({ children }: FiletreeProps): ReactElement => {
     return (
-        <div>
-            {config.misc.toggleFolders ? (
-                <div
-                    className={cn(
-                        'grid grid-rows-[min-content_0fr] pb-1.5 transition-[grid-template-rows] duration-100',
-                        opened ? 'grid-rows-[min-content_1fr]' : '',
-                        !isFirstNode && 'border-l border-base-700/80',
-                    )}
-                >
-                    {separate && <div className='my-2 h-[1px] w-[10em] bg-white/15' />}
-                    <div className='flex w-full flex-row items-center justify-center gap-2'>
-                        <DocLink name={node.name} isFirstNode={isFirstNode} />
-                        <button
-                            onClick={() => setOpened((prev) => !prev)}
-                            className='ml-auto flex flex-shrink-0 flex-row items-center py-1.5 pt-3'
-                        >
-                            <FiChevronRight
-                                size={16}
-                                className={cn('text-base-200 transition-all duration-300', opened && 'rotate-90')}
-                            />
-                        </button>
-                    </div>
-                    <div className={cn('flex flex-col overflow-hidden pl-1', !isFirstNode && 'pl-6')}>
-                        {node.nodes.map((childNode) => (
-                            <DocFolder key={childNode.name} node={childNode} separate={separate} />
-                        ))}
-                    </div>
-                </div>
-            ) : (
-                <div className='flex flex-col'>
-                    {separate && <div className='my-2 h-[1px] w-[10em] bg-white/15' />}
-                    <DocLink name={node.name} />
-                    <div className='flex flex-col'>
-                        {node.nodes.map((childNode) => (
-                            <DocFolder key={childNode.name} node={childNode} separate={separate} />
-                        ))}
-                    </div>
-                </div>
-            )}
+        <div className='my-2 flex h-fit w-full flex-col rounded-lg bg-base-300 px-4 py-2 dark:bg-base-900'>
+            {children}
         </div>
     );
 };
 
-interface FiletreeProps {
-    tree: TreeNode[];
-    separate?: boolean;
+interface Props {
+    name: string;
+    defaultOpen?: boolean;
+    toggleable?: boolean;
 }
 
-export const Filetree = ({ tree, separate = false }: FiletreeProps) => {
+type FolderChildren =
+    | ReactElement<typeof Folder>
+    | ReactElement<typeof File>
+    | Array<ReactElement<typeof Folder> | ReactElement<typeof File>>;
+
+export interface FolderProps extends Props {
+    children: FolderChildren;
+}
+
+export const Folder = ({ name, children, defaultOpen = false, toggleable = true }: FolderProps) => {
+    const [open, setOpen] = useState(defaultOpen);
+
+    const toggleOpen = useCallback(() => {
+        if (toggleable) {
+            setOpen((prev) => !prev);
+        }
+    }, [toggleable]);
+
     return (
-        <div className='flex flex-col'>
-            {tree.map((node) => (
-                <DocFolder key={node.name} node={node} separate={separate} isFirstNode={true} />
-            ))}
+        <div
+            className={cn(
+                'grid w-full grid-rows-[min-content_0fr] transition-[grid-template-rows]',
+                open ? 'grid-rows-[min-content_1fr]' : '',
+            )}
+        >
+            <button
+                className='group flex flex-row items-center gap-1 transition-all duration-150 hover:text-accent-600'
+                onClick={toggleOpen}
+            >
+                <SelectIcon type='folder' size={16} />
+                {name}
+                {toggleable && (
+                    <FiChevronDown
+                        size={16}
+                        className={cn(
+                            'text-base-800 transition-all duration-150 group-hover:text-accent-600 dark:text-base-400',
+                            !open && '-rotate-90',
+                        )}
+                    />
+                )}
+            </button>
+            <div className='ml-[7px] flex-col gap-2 overflow-hidden border-l border-black/15 pl-6 dark:border-white/15'>
+                {children}
+            </div>
+        </div>
+    );
+};
+
+export interface FileProps {
+    name: string;
+}
+
+export const File = ({ name }: FileProps) => {
+    return (
+        <div className={cn('flex flex-row items-center gap-2')}>
+            <SelectIcon type='file' extension={name.split('.').pop()} size={16} />
+            {name}
         </div>
     );
 };

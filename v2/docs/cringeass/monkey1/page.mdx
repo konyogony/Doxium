@@ -1,7 +1,7 @@
-export const metadata = {
-    title: 'Code blocks',
-    description: 'Customising and creating code blocks'
-}
+---
+sort: 2
+title: MONEKY1
+---
 
 # Code blocks
 
@@ -16,17 +16,18 @@ Writing this:
 
 ````mdx
 ```tsx
-const HelloWorld = () => console.log('Hello World!')
+const HelloWorld = () => console.log('Hello World!');
 ```
 ````
 
 Will yield the following result on your page:
 
 ```tsx
-const HelloWorld = () => console.log('Hello World!')
+const HelloWorld = () => console.log('Hello World!');
 ```
 
 Notice that writing `tsx` after the backticks will define the language to be used for syntax highlighting. The list of available languages right now consists of:
+
 - ts / js
 - tsx / jsx
 - rs
@@ -45,67 +46,67 @@ Here are more of the advanced features available in Doxium's code blocks. You ar
 
 ## Code focus
 
-You can make the reader focus on some part of the code by adding `// [!code focus]` after the line to make it not blurred. On hover, all the text will be revealed. 
+You can make the reader focus on some part of the code by adding `// [!code focus]` after the line to make it not blurred. On hover, all the text will be revealed.
 You can also escape this by adding a backslash after the exclamation mark, `// [\!code focus]`
 
 ```json
 {
-    "style": { 
-        "shiki-theme": "github-dark-dimmed" // [!code focus] 
+    "style": {
+        "shiki-theme": "github-dark-dimmed" // [!code focus]
     }
 }
 ```
 
 ## Code highlight
 
-You can highlight specific lines of code by adding `// [!code highlight]` after the line. This will make the whole line slightly white. This is fully customisable on line **125:127** in `@/app/globals.css`. 
+You can highlight specific lines of code by adding `// [!code highlight]` after the line. This will make the whole line slightly white. This is fully customisable on line **125:127** in `@/app/globals.css`.
 Additionally, you can escape this by adding a backslash after the exclamation mark, `// [\!code highlight]`
 
 ```json
 {
-    "style": { 
-        "shiki-theme": "github-dark-dimmed" // [!code highlight]  
+    "style": {
+        "shiki-theme": "github-dark-dimmed" // [!code highlight]
     }
 }
 ```
 
 ## Code deleted (--)
 
-You can make specific lines of code red, as if deleted in `diff` mode, by adding `// [!code --]` after the line. This is fully customisable on line **120:122** in `@/app/globals.css`. 
+You can make specific lines of code red, as if deleted in `diff` mode, by adding `// [!code --]` after the line. This is fully customisable on line **120:122** in `@/app/globals.css`.
 Escapable by adding a backslash after the exclamation mark, `// [\!code --]`
 
 ```json
 {
-    "style": { 
-        "shiki-theme": "github-dark-dimmed" // [!code --]  
-    } // [!code --]  
+    "style": {
+        "shiki-theme": "github-dark-dimmed" // [!code --]
+    } // [!code --]
 }
 ```
 
 ## Code added (++)
 
-You can make specific lines of code green, as if added in `diff` mode, by adding `// [!code ++]` after the line. This is fully customisable on line **116:118** in `@/app/globals.css`. 
+You can make specific lines of code green, as if added in `diff` mode, by adding `// [!code ++]` after the line. This is fully customisable on line **116:118** in `@/app/globals.css`.
 Escapable by adding a backslash after the exclamation mark, `// [\!code ++]`
 
 ```json lineNumbers
 {
-    "style": { 
-        "shiki-theme": "github-dark-dimmed" // [!code ++]  
-    } // [!code ++]  
+    "style": {
+        "shiki-theme": "github-dark-dimmed" // [!code ++]
+    } // [!code ++]
 }
 ```
 
 ## Toggle top bar
 
-You can toggle on/off the top bar in the code block which usually contains the icon, language and copy button. 
+You can toggle on/off the top bar in the code block which usually contains the icon, language and copy button.
 This is done by adding the `noTopBar` flag after declaring your language. For example, inputting this code:
 
 ````mdx
 ```json noTopBar
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 ````
@@ -114,9 +115,9 @@ Will result in this:
 
 ```json noTopBar
 {
-   "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 
@@ -134,9 +135,9 @@ For example, inputting this code:
 ````mdx
 ```json lineNumbers
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 ````
@@ -145,9 +146,9 @@ Will result you this:
 
 ```json lineNumbers
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 
@@ -159,9 +160,9 @@ For example, inputting this code:
 ````mdx
 ```json noCopyButton
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 ````
@@ -170,9 +171,9 @@ Will result you this:
 
 ```json noCopyButton
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 
@@ -184,9 +185,9 @@ For example, inputting this code:
 ````mdx
 ```json name='doxium.json'
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 ````
@@ -195,12 +196,11 @@ Will result you this:
 
 ```json name={'doxium.json'}
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
-
 
 ## Highlighting specific word
 
@@ -208,60 +208,52 @@ You can highlight specific key word throughout all of your code, by adding `// [
 For example, inputting this code:
 
 ````mdx
-```json 
+```json
 // [/!code word:shiki]
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
 ````
 
 Will result you this:
 
-```json 
+```json
 // [!code word:shiki]
 {
-    "style": { 
+    "style": {
         "shiki-theme": "github-dark-dimmed"
-    } 
+    }
 }
 ```
-
-
-
 
 # Limitations and errors
 
 In this section, I will discuss some limitations and errors that occur, which either will be fixed or have no fixes.
 
 Summary:
-| Issue | Notes | 
+| Issue | Notes |
 | :-----: | :-----: |
-| [[Shiki] 100+ instances have been created](#shiki-400-instances-have-been-created) | Partially fixed by caching the highlighter  |
+| [[Shiki] 100+ instances have been created](#shiki-400-instances-have-been-created) | Partially fixed by caching the highlighter |
 | [Prettier moving // [!code highlight] to another line](prettier-moving-object-object-to-another-line) | Fixed by adding `.mdx` to `.prettierignore` |
 
-
 If you are able to somehow fix any of these issues, make a [PR](https://github.com/konyogony/Doxium/pulls). Your contribution will be greatly appreciated :)
-
 
 ## [Shiki] 400 instances have been created
 
 You may receive the following error (or a similar one) in the console when developing your app:
 
-``[Shiki] 400 instances have been created. Shiki is supposed to be used as a singleton, consider refactoring your ....``
+`[Shiki] 400 instances have been created. Shiki is supposed to be used as a singleton, consider refactoring your ....`
 
 This has been partially fixed in the latest commit by caching the highlighter in the singleton file. This error might still occur, but is nothing to worry about since this happens only in developement, during hot-reloading.
 
-
 ## Prettier moving `// [!code highlight]` to another line
 
-This is a well-known error and issue by the Prettier community that it is able to move your comments to another line if it doesn't have space or meets some different parameters. 
+This is a well-known error and issue by the Prettier community that it is able to move your comments to another line if it doesn't have space or meets some different parameters.
 
 Currently, I don't think there is a proper fix, so my solution is to add `.mdx` to `.prettierignore`, so that it doesn't format the file at all. This obviously comes at the cost that you have to manually format your file.
-
-
 
 # Testing purposes
 
@@ -278,7 +270,7 @@ const CodeWrapper = async ({ // has: lineNumbers, ++, --, highlight, error, warn
 }: WikiCodeWrapperProps) // [!code warning]
 ```
 
-```tsx 
+```tsx
 // [!code word:Wrapper]
 const CodeWrapper = async ({ // has: ++, --, highlight, error, warning, word highlight
     language = '', //  [!code ++]

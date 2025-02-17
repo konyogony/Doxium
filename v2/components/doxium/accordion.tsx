@@ -39,7 +39,7 @@ const Accordion = ({ children }: React.PropsWithChildren) => {
                     <div
                         key={i}
                         className={cn(
-                            'grid w-full grid-rows-[min-content_0fr] border-b border-white/15 transition-[grid-template-rows] duration-300',
+                            'grid w-full grid-rows-[min-content_0fr] border-b border-black/15 transition-[grid-template-rows] duration-300 dark:border-white/15',
                             openStates[i] ? 'grid-rows-[min-content_1fr]' : '',
                         )}
                     >
@@ -52,7 +52,7 @@ const Accordion = ({ children }: React.PropsWithChildren) => {
                             <FiChevronDown
                                 size={18}
                                 className={cn(
-                                    'ml-auto text-base-400 transition-transform duration-300',
+                                    'ml-auto text-base-800 transition-transform duration-300 dark:text-base-400',
                                     openStates[i] && 'rotate-180',
                                 )}
                             />
