@@ -1,6 +1,17 @@
 # Doxium
 # Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared.
 
+## Usage of `@doxium/cli` v0.0.2 - BEWARE, ALPHA VERSION
+```sh
+bunx @doxium/cli [option] [name] [...args]
+```
+help:
+```sh
+bunx @doxium/cli --help
+```
+
+
+
 ## Updated Roadmap
 - [ ] Fix all the issues reported
 - [ ] Add li8n support, should consider the nextjs way and custom way.
