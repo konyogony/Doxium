@@ -1,7 +1,7 @@
 'use client';
 
-import { TreeNode } from '@/types';
 import config from 'config';
+import { TreeNode } from 'lib/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useCallback, useMemo } from 'react';
@@ -11,6 +11,8 @@ interface BreadcrumbPath {
     name: string;
     path: string;
 }
+
+const rootBreadcrumb = config.rootBreadcrumb;
 
 const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
     const pathname = usePathname();
@@ -40,7 +42,7 @@ const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>
-                        <Link href={'/'}>{config.rootBreadcrumb}</Link>
+                        <Link href={'/'}>{rootBreadcrumb}</Link>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
                 {breadcrumbPath.map((item, index) => (

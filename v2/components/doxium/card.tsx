@@ -8,6 +8,8 @@ export interface CardProps {
     full?: boolean;
 }
 
+// TODO: Please rework EVERYTHING here to actually be useful and look good.
+
 const Card = ({ title, href, children, full = false, newTab = false }: React.PropsWithChildren<CardProps>) => {
     return href ? (
         <a

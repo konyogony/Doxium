@@ -17,18 +17,12 @@ export const isNextJsProject = async (folderPath: string) => {
 };
 
 export const isDoxiumProject = async (folderPath: string) => {
-    const patterns = [`${folderPath}/{components.json,doxium.json,lib}`];
+    const patterns = [`${folderPath}/{doxium.json,lib}`];
     const matches = await fg(patterns);
     return matches.length > 0;
 };
 
-export const replacePlaceholders = (
-    content: string,
-    response: responseT,
-    componentAlias: string,
-    libAlias: string,
-    typesAlias: string,
-) => {
+export const replacePlaceholders = (content: string, response: responseT, componentAlias: string, libAlias: string) => {
     return content
         .replaceAll(/\/\/ @ts-nocheck\n/g, '')
         .replaceAll(/\$APP-NAME/g, response['app-name'])
@@ -40,21 +34,15 @@ export const replacePlaceholders = (
         .replaceAll(/\$USEDOCS/g, response['use-docs'])
         .replaceAll(/\$COMPONENTS-ALIAS/g, componentAlias)
         .replaceAll(/\$LIB-ALIAS/g, libAlias)
-        .replaceAll(/\$TYPES-ALIAS/g, typesAlias)
         .replaceAll(/\$TSCONFIG-COMPONENTS-ALIAS/g, componentAlias.replaceAll('@/', ''))
-        .replaceAll(/\$TSCONFIG-TYPES-ALIAS/g, typesAlias.replaceAll('@/', ''))
+        .replaceAll(/\$TSCONFIG-TYPES-ALIAS/g, libAlias.replaceAll('@/', '') + '/types')
         .replaceAll(/\$TSCONFIG-LIB-ALIAS/g, libAlias.replaceAll('@/', ''))
-        .replaceAll(/\$BASE-URL/g, response['use-docs'] ? 'app/docs' : 'app');
+        .replaceAll(/\$BASE-URL/g, response['use-docs'] ? 'app/docs' : 'app')
+        .replaceAll(/\$SCHEME/g, response['color-scheme']);
 };
 
-export const replaceFilePlaceholders = (
-    content: string,
-    componentAlias: string,
-    libAlias: string,
-    typesAlias: string,
-) => {
+export const replaceFilePlaceholders = (content: string, componentAlias: string, libAlias: string) => {
     return content
         .replaceAll(/\$COMPONENTS-ALIAS/g, './' + componentAlias.replaceAll('@/', ''))
-        .replaceAll(/\$LIB-ALIAS/g, './' + libAlias.replaceAll('@/', ''))
-        .replaceAll(/\$TYPES-ALIAS/g, './' + typesAlias.replaceAll('@/', ''));
+        .replaceAll(/\$LIB-ALIAS/g, './' + libAlias.replaceAll('@/', ''));
 };

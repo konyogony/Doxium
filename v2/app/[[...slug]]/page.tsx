@@ -1,11 +1,11 @@
-import { params } from '@/types';
 import { remarkMermaid } from '@theguild/remark-mermaid';
 import config from 'config';
 import Breadcrumbs from 'doxium/breadcrumbs';
-import mdxComponents from 'doxium/docs-mdx-components';
+import mdxComponents from 'doxium/mdx-components';
 import NavButtons from 'doxium/nav-buttons';
 import SecondarySidebar from 'doxium/secondary-sidebar';
 import { getAllMdxSlugs, getDocsTree, getMdxData } from 'lib/lib';
+import { params } from 'lib/types';
 import { cn } from 'lib/utils';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';

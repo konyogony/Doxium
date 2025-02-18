@@ -23,12 +23,11 @@
             "icons/*": ["node_modules/@vertisanpro/react-icons/*"],
             "doxium/*": ["$TSCONFIG-COMPONENTS-ALIAS/*"],
             "ui/*": ["components/ui/*"],
-            "types/*": ["$TSCONFIG-TYPES-ALIAS/*"],
             "lib/*": ["$TSCONFIG-LIB-ALIAS/*"],
             "config": ["doxium.config.ts"],
             "@/*": ["./*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.mjs"],
     "exclude": ["node_modules"]
 }

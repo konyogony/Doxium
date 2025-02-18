@@ -1,6 +1,6 @@
 import pc from 'picocolors';
 import prompts from 'prompts';
-import { accentColors, baseColors, responseT, shikiThemes } from './types.js';
+import { accentColors, baseColors, colorSchemes, responseT, shikiThemes } from './types.js';
 import { errorText } from './utils.js';
 
 export const getFullResponse = async (
@@ -12,6 +12,7 @@ export const getFullResponse = async (
     accentColor: string,
     shikiTheme: string,
     githubRepo: string,
+    colorScheme: string,
 ) => {
     const responseEslint =
         eslint ??
@@ -139,6 +140,26 @@ export const getFullResponse = async (
             )
         )['accent-color'];
 
+    const responseColorScheme =
+        colorScheme ??
+        (
+            await prompts(
+                {
+                    type: 'select',
+                    name: 'color-scheme',
+                    message: `Choose your ${pc.blue('color scheme')} (light or dark):`,
+                    choices: colorSchemes.map((color) => ({ title: color, value: color.toLowerCase() })),
+                    initial: 1,
+                },
+                {
+                    onCancel: () => {
+                        console.error(errorText('Setup cancelled.'));
+                        process.exit(1);
+                    },
+                },
+            )
+        )['color-scheme'];
+
     const responseShikiTheme =
         shikiTheme ??
         (
@@ -210,6 +231,7 @@ export const getFullResponse = async (
         'accent-color': responseAccentColor,
         'shiki-theme': responseShikiTheme,
         'github-repo': responseGithubRepo,
+        'color-scheme': responseColorScheme,
         proceed: proceed.proceed,
     } as responseT;
 };

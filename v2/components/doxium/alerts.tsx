@@ -15,6 +15,7 @@ export interface AlertsProps {
     link?: string;
 }
 
+// TODO: Adjust contrast between some of the colors
 const getAlertColor = (type: AlertsProps['type']) => {
     switch (type) {
         case 'bookmark':
@@ -38,6 +39,7 @@ const getAlertColor = (type: AlertsProps['type']) => {
     }
 };
 
+// TODO: Icons size change depending on screen size
 const getAlertIcon = (type: AlertsProps['type']) => {
     switch (type) {
         case 'bookmark':

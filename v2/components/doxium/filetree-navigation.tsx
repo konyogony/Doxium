@@ -1,8 +1,8 @@
 'use client';
 
-import { TreeNode } from '@/types';
 import config from 'config';
 import { FiChevronRight } from 'icons/fi';
+import { TreeNode } from 'lib/types';
 import { cn } from 'lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

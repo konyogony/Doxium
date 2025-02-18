@@ -12,9 +12,9 @@ import config from 'config';
 import CodeWrapperIcon from 'doxium/code-wrapper-icon';
 import CopyButton from 'doxium/copy-button';
 import { getHighlighterInstance, isLightColor } from 'lib/lib';
+import { ShikiThemeBackgroundHexDimmed } from 'lib/types';
 import { cn } from 'lib/utils';
 import { BundledTheme, ShikiTransformer } from 'shiki';
-import { ShikiThemeBackgroundHexDimmed } from 'types';
 
 interface WikiCodeWrapperProps {
     language?: string;

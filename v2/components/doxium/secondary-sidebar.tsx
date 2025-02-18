@@ -1,9 +1,9 @@
-import { Heading } from '@/types';
 import config from 'config';
 import EditButton from 'doxium/edit-button';
 import ScrollBackButton from 'doxium/scroll-back-button';
 import TOC from 'doxium/toc';
 import { FiArrowUpRight } from 'icons/fi';
+import { Heading } from 'lib/types';
 
 interface SecondarySidebarProps {
     headings: Heading[] | null;
@@ -16,7 +16,7 @@ const SecondarySidebar = ({ headings }: SecondarySidebarProps) => {
             {headings && (
                 <>
                     <TOC headings={headings} />
-                    <div className='dakr:bg-white/10 my-2 h-[1px] w-3/4 bg-black/10 dark:bg-white/15' />
+                    <div className='my-2 h-[1px] w-3/4 bg-black/10 dark:bg-white/15' />
                     <EditButton />
                     {Object.keys(config.sidebarLinks).map((v, i) => (
                         <a

@@ -1,11 +1,11 @@
 'use client';
 
+import { Heading } from 'lib/types';
 import { cn } from 'lib/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Heading } from 'types';
 
 const TOC = ({ headings }: { headings: Heading[] }) => {
-    const [activeHeading, setActiveHeading] = useState<string>('');
+    const [activeHeading, setActiveHeading] = useState('');
 
     const updateHeadings = useCallback(() => {
         const observer = new IntersectionObserver(
@@ -57,7 +57,7 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
         ));
     }, [headings, activeHeading]);
 
-    return <>{memoizedHeadings}</>;
+    return memoizedHeadings;
 };
 
 export default TOC;

@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from 'lib/utils';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export interface TabsProps {
     tabs: string[];
@@ -49,23 +49,20 @@ const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, chil
         };
     }, [sync, tabGroupId]);
 
-    const handleTabClick = (index: number) => {
-        setActiveIndex(index);
-        if (sync) {
-            localStorage.setItem(tabGroupId, index.toString());
-            window.dispatchEvent(
-                new CustomEvent('tabSync', {
-                    detail: { id: tabGroupId, index },
-                }),
-            );
-            window.dispatchEvent(
-                new StorageEvent('storage', {
-                    key: tabGroupId,
-                    newValue: index.toString(),
-                }),
-            );
-        }
-    };
+    const handleTabClick = useCallback(
+        (index: number) => {
+            setActiveIndex(index);
+            if (sync) {
+                localStorage.setItem(tabGroupId, index.toString());
+                window.dispatchEvent(
+                    new CustomEvent('tabSync', {
+                        detail: { id: tabGroupId, index },
+                    }),
+                );
+            }
+        },
+        [sync, tabGroupId],
+    );
 
     return (
         <div className={cn('my-2 flex flex-col', widthFull ? 'w-full' : 'w-fit')}>

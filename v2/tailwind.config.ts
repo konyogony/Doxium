@@ -27,4 +27,4 @@ export default {
         },
     },
     plugins: [tailwindcssAnimate, typography],
-} satisfies Config;
+} as Config;

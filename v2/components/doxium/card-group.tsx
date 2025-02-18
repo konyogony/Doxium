@@ -6,6 +6,8 @@ export interface CardGroupProps {
     children: ReactElement<CardProps> | ReactElement<CardProps>[];
 }
 
+// TODO: Make it actually set width to full.
+
 const CardGroup = ({ cols, children }: CardGroupProps) => {
     const modifiedChildren = React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === Card) {
@@ -18,7 +20,7 @@ const CardGroup = ({ cols, children }: CardGroupProps) => {
             style={{
                 gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
             }}
-            className={'grid w-full gap-2'}
+            className='grid w-full gap-2'
         >
             {modifiedChildren}
         </div>

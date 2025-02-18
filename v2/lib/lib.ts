@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { DoxiumFile, Heading, TreeNode } from '@/types';
 import config from 'config';
 import matter from 'gray-matter';
+import { DoxiumFile, Heading, TreeNode } from 'lib/types';
 import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } from 'shiki';
 
 const MDX_DIR = path.join(process.cwd(), 'docs');
@@ -189,7 +189,7 @@ class HighlighterSingleton {
             try {
                 HighlighterSingleton.instance = await createHighlighter({
                     themes: [theme, 'github-dark-dimmed'],
-                    langs: extensions,
+                    langs: extensions, // TODO: Add 'txt' as default language aswell
                 });
             } catch (error) {
                 console.error('Error creating highlighter:', error);

@@ -1,6 +1,6 @@
 {
-    "name": "doxium",
-    "version": "0.0.15",
+    "name": "@doxium/cli",
+    "version": "0.0.2",
     "author": "konyogony",
     "main": "index.js",
     "type": "module",

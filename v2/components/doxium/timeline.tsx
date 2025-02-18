@@ -1,6 +1,7 @@
 import { cn } from 'lib/utils';
 import React from 'react';
 
+// Might be better to use css and pseduoelements to add numbers and stuff, but its to complicated for me
 const Timeline = ({ children }: React.PropsWithChildren) => {
     const groups = React.Children.toArray(children).reduce<React.ReactElement[][]>((acc, child) => {
         if (React.isValidElement(child) && typeof child.type === 'function' && child.type.name === 'h2') {
@@ -10,7 +11,6 @@ const Timeline = ({ children }: React.PropsWithChildren) => {
         }
         return acc;
     }, []);
-
     return (
         <div className='my-4 ml-4 flex h-fit w-full flex-col border-l border-black/15 pr-4 dark:border-white/15'>
             {groups.map((group, i) => (

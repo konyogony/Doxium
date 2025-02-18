@@ -11,8 +11,10 @@ export type responseT = Answers<
     | 'github-repo'
     | 'accent-color'
     | 'shiki-theme'
+    | 'color-scheme'
 >;
 
+export const colorSchemes = ['light', 'dark'];
 export const baseColors = ['Stone', 'Neutral', 'Zinc', 'Gray', 'Slate'];
 export const accentColors = [
     'Red',

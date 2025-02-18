@@ -1,7 +1,10 @@
 'use client';
 
+import config from 'config';
 import { FiArrowUp } from 'icons/fi';
 import { useEffect, useMemo, useState } from 'react';
+
+const scrollHeightBreakpoint = config.misc.scollHeightBreakpoint;
 
 const ScrollBackButton = () => {
     const [scrollHeight, setScrollHeight] = useState(0);
@@ -25,7 +28,7 @@ const ScrollBackButton = () => {
         );
     }, []);
 
-    return <>{scrollHeight > 300 && backToTopButton}</>;
+    return scrollHeight > scrollHeightBreakpoint && backToTopButton;
 };
 
 export default ScrollBackButton;

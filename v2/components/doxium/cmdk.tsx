@@ -1,9 +1,9 @@
 'use client';
 
-import { TreeNode } from '@/types';
 import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/react-dialog';
 import { FileIcon } from '@radix-ui/react-icons';
 import { RxMagnifyingGlass } from 'icons/rx';
+import { TreeNode } from 'lib/types';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { Button } from 'ui/button';

@@ -4,7 +4,7 @@ import * as packageJson from '../package.json' assert { type: 'json' };
 import { init } from './commands/init.js';
 import { link } from './commands/link.js';
 import { update } from './commands/update.js';
-import { accentColors, baseColors, shikiThemes } from './utils/types.js';
+import { accentColors, baseColors, colorSchemes, shikiThemes } from './utils/types.js';
 
 program
     .name(packageJson.default.name)
@@ -26,7 +26,7 @@ program
     .option('-t, --shiki-theme <string>', 'shiki theme')
     .option('-g, --github-repo <string>', 'github repo')
     .option('-d, --directory <string>', 'change the working directory')
-    .option('--types-alias <string>', 'types alias')
+    .option('-h, --color-scheme <string>', 'color scheme')
     .option('--lib-alias <string>', 'lib alias')
     .option('--components-alias <string>', 'doxium components alias')
     .action((name, options) => {
@@ -49,6 +49,13 @@ program
             process.exit(1);
         }
         if (
+            options.colorScheme &&
+            !colorSchemes.map((color) => color.toLowerCase()).includes(options.colorScheme.toLowerCase())
+        ) {
+            console.error(`Invalid value for --color-scheme. Allowed values are ${accentColors.join(', ')}.`);
+            process.exit(1);
+        }
+        if (
             options.shikiTheme &&
             !shikiThemes
                 .map((color) => color.toLowerCase().replaceAll(' ', '-').replaceAll("'", '').replaceAll('é', 'e'))
@@ -65,13 +72,6 @@ program
         }
         const aliasPattern = /^@\/.*[^\/]$/;
         const directoryPattern = /^\.\.?(\/[^\/]+)*\/?$/;
-
-        if (options.typesAlias && !aliasPattern.test(options.typesAlias)) {
-            console.error(
-                'Invalid value for --types-alias. It should be an absolute path starting with "@/" and ending without the "/". **Note: This path is for the .ts file, not the folder which contains it**',
-            );
-            process.exit(1);
-        }
         if (options.libAlias && !aliasPattern.test(options.libAlias)) {
             console.error(
                 'Invalid value for --lib-alias. It should be an absolute path starting with "@/" and ending without the "/" for the directory which contains all the lib files',
@@ -100,16 +100,16 @@ program
             options.yes,
             options.eslint,
             options.prettier,
-            options.useDocs,
+            !options.useDocs,
             options.shadcnStyle,
             options.baseColor,
             options.accentColor,
             options.shikiTheme,
             options.githubRepo,
-            options.typesAlias,
             options.libAlias,
             options.componentsAlias,
             options.directory,
+            options.colorScheme
         );
     });
 

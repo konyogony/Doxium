@@ -38,6 +38,7 @@ import {
     SiTypescript,
     SiYaml,
 } from 'icons/si';
+import { FolderChildren } from 'lib/types';
 import { cn } from 'lib/utils';
 import React, { ReactElement, useCallback, useState } from 'react';
 
@@ -51,7 +52,7 @@ const SelectIcon = ({ type, extension, size }: SelectIconProps) => {
     if (type === 'folder') {
         return <FiFolder size={size} />;
     }
-
+    // This IS bad, but I'm not sure how to fix it
     switch (extension) {
         case 'mdx':
             return <SiMdx size={size} />;
@@ -152,11 +153,6 @@ interface Props {
     defaultOpen?: boolean;
     toggleable?: boolean;
 }
-
-type FolderChildren =
-    | ReactElement<typeof Folder>
-    | ReactElement<typeof File>
-    | Array<ReactElement<typeof Folder> | ReactElement<typeof File>>;
 
 export interface FolderProps extends Props {
     children: FolderChildren;

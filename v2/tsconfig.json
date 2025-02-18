@@ -23,7 +23,6 @@
             "icons/*": ["node_modules/@vertisanpro/react-icons/*"],
             "doxium/*": ["components/doxium/*"],
             "ui/*": ["components/ui/*"],
-            "types/*": ["types/*"],
             "lib/*": ["lib/*"],
             "config": ["doxium.config.ts"],
             "@/*": ["./*"]

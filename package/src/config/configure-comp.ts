@@ -11,22 +11,20 @@ export const configureComp = async (
     pm: string,
     empty: boolean,
     mute_output: boolean,
-    typesAlias: string,
     libAlias: string,
     componentsAlias: string,
 ) => {
     const alwaysInstall = [
-        // UI components
         { name: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
         { name: 'command', type: 'tsx', path: './components/ui/command.tsx' },
-        // Doxium components
+        { name: 'button', type: 'tsx', path: './components/ui/button.tsx' },
+        { name: 'breadcrumb', type: 'tsx', path: './components/ui/breadcrumb.tsx' },
         { name: 'copy-button', type: 'tsx', path: '$COMPONENTS-ALIAS/copy-button.tsx' },
         { name: 'navbar', type: 'tsx', path: '$COMPONENTS-ALIAS/navbar.tsx' },
         { name: 'cmdk', type: 'tsx', path: '$COMPONENTS-ALIAS/cmdk.tsx' },
         { name: 'code-wrapper-icon', type: 'tsx', path: '$COMPONENTS-ALIAS/code-wrapper-icon.tsx' },
-        { name: 'folder-filetree', type: 'tsx', path: '$COMPONENTS-ALIAS/folder-filetree.tsx' },
-        { name: 'link-filetree', type: 'tsx', path: '$COMPONENTS-ALIAS/link-filetree.tsx' },
-        { name: 'docs-mdx-components', type: 'tsx', path: '$COMPONENTS-ALIAS/docs-mdx-components.tsx' },
+        { name: 'filetree-navigation', type: 'tsx', path: '$COMPONENTS-ALIAS/filetree-navigation.tsx' },
+        { name: 'mdx-components', type: 'tsx', path: '$COMPONENTS-ALIAS/mdx-components.tsx' },
         { name: 'sidebar-filetree', type: 'tsx', path: '$COMPONENTS-ALIAS/sidebar-filetree.tsx' },
         { name: 'nav-buttons', type: 'tsx', path: '$COMPONENTS-ALIAS/nav-buttons.tsx' },
         { name: 'secondary-sidebar', type: 'tsx', path: '$COMPONENTS-ALIAS/secondary-sidebar.tsx' },
@@ -48,40 +46,41 @@ export const configureComp = async (
         { name: 'video', type: 'tsx', path: '$COMPONENTS-ALIAS/video.tsx' },
         { name: 'accordion', type: 'tsx', path: '$COMPONENTS-ALIAS/accordion.tsx' },
         { name: 'outline', type: 'tsx', path: '$COMPONENTS-ALIAS/outline.tsx' },
-
-        // Lib components
-        { name: 'highlighter', type: 'ts', path: '$LIB-ALIAS/highlighter.ts' },
-        { name: 'flatten-structure', type: 'ts', path: '$LIB-ALIAS/flatten-structure.ts' },
-        { name: 'prettify-text', type: 'ts', path: '$LIB-ALIAS/prettify-text.ts' },
-        { name: 'is-light-color', type: 'ts', path: '$LIB-ALIAS/is-light-color.ts' },
-        { name: 'use-media-query', type: 'ts', path: '$LIB-ALIAS/use-media-query.ts' },
-        { name: 'structure', type: 'ts', path: '$LIB-ALIAS/structure.ts' },
-
-        // Config
-        { name: 'types', type: 'ts', path: '$TYPES-ALIAS.ts' },
-        { name: 'mdx-components', type: 'tsx', path: './mdx-components.tsx' },
+        { name: 'useMediaQuery', type: 'ts', path: '$LIB-ALIAS/useMediaQuery.ts' },
+        { name: 'types', type: 'ts', path: '$LIB-ALIAS/types.ts' },
+        { name: 'utils', type: 'ts', path: '$LIB-ALIAS/utils.ts' },
+        { name: 'lib', type: 'ts', path: '$LIB-ALIAS/lib.ts' },
         { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
         { name: 'postcss-config', type: 'mjs', path: './postcss.config.mjs' },
         { name: 'tailwind-config', type: 'ts', path: './tailwind.config.ts' },
         { name: 'doxium-config', type: 'ts', path: './doxium.config.ts' },
         { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
         { name: 'favicon', type: 'ico', path: './app/favicon.ico' },
-        { name: 'Doxium-slim', type: 'svg', path: './public/Doxium-slim.svg' },
-        { name: 'DX-slim', type: 'svg', path: './public/DX-slim.svg' },
+        { name: 'Doxium-slim-dark', type: 'svg', path: './public/Doxium-slim-dark.svg' },
+        { name: 'Doxium-slim-light', type: 'svg', path: './public/Doxium-slim-light.svg' },
+        { name: 'DX-slim-dark', type: 'svg', path: './public/DX-slim-dark.svg' },
+        { name: 'DX-slim-light', type: 'svg', path: './public/DX-slim-light.svg' },
+        { name: 'globals', type: 'css', path: './app/globals.css' },
     ].map((file) => {
         return {
             ...file,
-            path: replaceFilePlaceholders(
-                file.path,
-                componentsAlias ?? 'components/doxium',
-                libAlias ?? 'lib',
-                typesAlias ?? 'types',
-            ),
+            path: replaceFilePlaceholders(file.path, componentsAlias ?? 'components/doxium', libAlias ?? 'lib'),
         };
     });
 
     !mute_output && console.log('\n' + infoText('Configuring Components...'));
+
     try {
+        await fs.mkdir(componentsAlias ? componentsAlias.replaceAll('@/', '') : 'components/doxium', {
+            recursive: true,
+        });
+
+        await fs.mkdir(libAlias ? libAlias.replaceAll('@/', '') : 'lib', { recursive: true });
+
+        await fs.mkdir('components/ui', { recursive: true });
+
+        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+
         // Rename next.config.ts to next.config.mjs, needed for proper MDX configuration
         if (await fs.pathExists('./next.config.ts')) {
             await fs.rename('./next.config.ts', './next.config.mjs');
@@ -106,7 +105,6 @@ export const configureComp = async (
                         response,
                         componentsAlias ?? '@/components/doxium',
                         libAlias ?? '@/lib',
-                        typesAlias ?? '@/types',
                     );
 
                     await fs.writeFile(file.path, content);
@@ -120,9 +118,9 @@ export const configureComp = async (
         spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
         if (response['use-docs']) {
-            installDocsFolder(response, pm, empty, typesAlias, libAlias, componentsAlias);
+            installDocsFolder(response, pm, empty, libAlias, componentsAlias);
         } else {
-            installNoDocsFolder(response, pm, empty, typesAlias, libAlias, componentsAlias);
+            installNoDocsFolder(response, pm, empty, libAlias, componentsAlias);
         }
     } catch (error) {
         console.error('Error creating custom components:', error);

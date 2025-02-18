@@ -25,6 +25,8 @@ const isExternal = (url: string) => {
     return /^(http|https):\/\//.test(url);
 };
 
+// Is this the correct way to do this?
+
 const VideoComponent = (props: VideoProps) => {
     if (isExternal(props.src)) {
         return (

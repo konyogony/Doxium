@@ -1,5 +1,6 @@
 import { default as NextImage } from 'next/image';
 
+// Is this the correct way to do this?
 export interface ImageProps {
     src: string;
     alt: string;
@@ -12,5 +13,3 @@ const Image = ({ src, alt, width, height }: ImageProps) => {
 };
 
 export default Image;
-
-// Not the best

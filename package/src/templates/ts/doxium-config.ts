@@ -1,27 +1,38 @@
 // @ts-nocheck
 
-import { DoxiumConfig } from 'types';
+import { DoxiumConfig } from 'lib/types';
 
 export default {
     style: {
-        'base-color': '$COLOR',
-        'accent-color': '$ACCENT-COLOR',
-        'shiki-theme': '$SHIKI-THEME',
+        colorScheme: '$SCHEME',
+        baseColor: '$COLOR',
+        accentColor: '$ACCENT-COLOR',
+        shikiTheme: '$SHIKI-THEME',
     },
     alias: {
         components: '$COMPONENTS-ALIAS',
         lib: '$LIB-ALIAS',
-        types: '$TYPES-ALIAS',
     },
-    'use-docs': $USEDOCS,
-    'base-url': '$BASE-URL',
-    'root-name': 'Getting Started',
+    useDocs: $USEDOCS,
+    baseUrl: '$BASE-URL',
+    rootTitle: 'Documentation',
+    rootBreadcrumb: 'Docs',
+    navLinks: {
+        Home: '/',
+    }, // { 'name': 'link', 'name2': 'link2' }
     socials: {
-        'github-repo': '$GITHUB-REPO',
+        githubRepo: '$GITHUB-REPO',
         twitter: '',
         discord: '',
     },
+    sidebarLinks: {}, // { 'name': 'link', 'name2': 'link2' }
     misc: {
+        toggleFolders: false, // Experimental feature
         separate: false,
+        appName: 'Doxium',
+        showAppNameInTitle: true,
+        scollHeightBreakpoint: 300,
+        extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'txt', 'mdx', 'bash', 'sh', 'js', 'css', 'json'], // Just default values
     },
-} satisfies DoxiumConfig;
+    authors: {}, // { name: 'link?', name2: 'link2?' }
+} as DoxiumConfig;

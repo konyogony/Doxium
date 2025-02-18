@@ -1,10 +1,10 @@
 'use client';
 
 import { FiChevronLeft, FiChevronRight } from 'icons/fi';
+import { TreeNode } from 'lib/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
-import { TreeNode } from 'types';
 
 interface DocsNavProps {
     tree: TreeNode[];

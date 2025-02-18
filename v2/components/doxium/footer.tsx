@@ -17,7 +17,7 @@ const Footer = () => {
                             target='_blank'
                             key={i}
                         >
-                            {v} {i === Object.keys(config.authors).length - 1 ? '' : '•'}
+                            {v} {!Object.keys(config.authors)[i + 1] ? '' : '•'}
                         </a>
                     ))}
                 </span>

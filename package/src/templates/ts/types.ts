@@ -1,17 +1,40 @@
 // @ts-nocheck
 
-import { BundledTheme } from 'shiki';
+import { BundledLanguage, BundledTheme, LanguageInput, SpecialLanguage, StringLiteralUnion } from 'shiki';
 
-export interface DocsNode {
+export type params = Promise<{
+    slug?: string[];
+}>;
+
+export type preProps = React.HTMLAttributes<HTMLPreElement> & {
+    lineNumbers?: boolean;
+    noTopBar?: boolean;
+    noCopyButton?: boolean;
+    twoSlash?: boolean;
+    name?: string;
+};
+
+export interface TreeNode {
     name: string;
-    path?: string;
-    nodes?: DocsNode[];
+    type: 'file' | 'folder';
+    sort: number;
+    slug?: string;
+    nodes?: TreeNode[];
+}
+
+export interface DoxiumFile {
+    title: string;
+    slug: string;
+    sort: number;
+    groupTitle?: string;
+    groupSort?: number;
 }
 
 export interface DoxiumConfig {
     style: {
-        'base-color': 'stone' | 'neutral' | 'zinc' | 'gray' | 'slate';
-        'accent-color':
+        colorScheme: 'dark' | 'light' | 'system'; // System doesnt really work yet
+        baseColor: 'stone' | 'neutral' | 'zinc' | 'gray' | 'slate';
+        accentColor:
             | 'red'
             | 'orange'
             | 'yellow'
@@ -23,23 +46,37 @@ export interface DoxiumConfig {
             | 'violet'
             | 'purple'
             | 'pink';
-        'shiki-theme': BundledTheme;
+        shikiTheme: BundledTheme;
     };
     alias: {
         components: string;
         lib: string;
-        types: string;
     };
-    'use-docs': boolean;
-    'base-url': string;
-    'root-name': string;
+    useDocs: boolean;
+    baseUrl: string;
+    rootTitle: string;
+    rootBreadcrumb: string;
+    navLinks: {
+        [key: string]: string;
+    };
+    sidebarLinks: {
+        [key: string]: string;
+    };
     socials: {
-        'github-repo': string;
+        githubRepo: string;
         twitter: string;
         discord: string;
     };
     misc: {
+        toggleFolders: boolean;
+        appName: string;
+        showAppNameInTitle: boolean;
         separate: boolean;
+        scollHeightBreakpoint: number;
+        extensions: (LanguageInput | SpecialLanguage | StringLiteralUnion<BundledLanguage, string>)[];
+    };
+    authors: {
+        [key: string]: string;
     };
 }
 
@@ -106,68 +143,59 @@ export const ShikiThemeBackgroundHexDefault: Record<BundledTheme, string> = {
     'vitesse-light': '#FFFFFF',
 };
 
-// Darker by 20%
 export const ShikiThemeBackgroundHexDimmed: Record<BundledTheme, string> = {
-    andromeeda: '#1F2226',
-    'aurora-x': '#06080D',
-    'ayu-dark': '#0A0C12',
-    'catppuccin-frappe': '#2B2F3F',
-    'catppuccin-latte': '#D8D9DC',
-    'catppuccin-macchiato': '#202536',
-    'catppuccin-mocha': '#1A1A29',
-    'dark-plus': '#1A1A1A',
-    dracula: '#24262F',
-    'dracula-soft': '#24262F',
-    'everforest-dark': '#293033',
-    'everforest-light': '#E6E0D3',
-    'github-dark': '#20252A',
-    'github-dark-default': '#0B0F14',
-    'github-dark-dimmed': '#1F242A',
-    'github-dark-high-contrast': '#090A0C',
-    'github-light': '#E6E6E6',
-    'github-light-default': '#E6E6E6',
-    'github-light-high-contrast': '#E6E6E6',
-    houston: '#15171A',
-    'kanagawa-dragon': '#131111',
-    'kanagawa-lotus': '#C1BC96',
-    'kanagawa-wave': '#181820',
-    laserwave: '#231D26',
-    'light-plus': '#E6E6E6',
-    'material-theme': '#232A2E',
-    'material-theme-darker': '#1E1E1E',
-    'material-theme-lighter': '#E6E6E6',
-    'material-theme-ocean': '#0D0F16',
-    'material-theme-palenight': '#262A36',
-    'min-dark': '#1B1B1B',
-    'min-light': '#E6E6E6',
-    monokai: '#23251F',
-    'night-owl': '#011422',
-    nord: '#2A2F3A',
-    'one-dark-pro': '#24282F',
-    'one-light': '#E6E6E6',
-    plastic: '#1E2025',
-    poimandres: '#181A22',
-    red: '#330000',
-    'rose-pine': '#17151F',
-    'rose-pine-dawn': '#E6E0D3',
-    'rose-pine-moon': '#1F1D2F',
-    'slack-dark': '#1F1F1F',
-    'slack-ochin': '#E6E6E6',
-    'snazzy-light': '#E6E6E6',
-    'solarized-dark': '#00262F',
-    'solarized-light': '#E6E0D3',
-    'synthwave-84': '#231F2F',
-    'tokyo-night': '#171A21',
-    vesper: '#0E0E0E',
+    andromeeda: '#282B33',
+    'aurora-x': '#090B11',
+    'ayu-dark': '#0D1018',
+    'catppuccin-frappe': '#3B3F54',
+    'catppuccin-latte': '#F0F2F7',
+    'catppuccin-macchiato': '#2E3144',
+    'catppuccin-mocha': '#262638',
+    'dark-plus': '#262626',
+    dracula: '#30323F',
+    'dracula-soft': '#30323F',
+    'everforest-dark': '#333B40',
+    'everforest-light': '#FAF4E8',
+    'github-dark': '#2B3036',
+    'github-dark-default': '#0F131C',
+    'github-dark-dimmed': '#292E36',
+    'github-dark-high-contrast': '#0B0E13',
+    'github-light': '#F2F2F2',
+    'github-light-default': '#F2F2F2',
+    'github-light-high-contrast': '#F2F2F2',
+    houston: '#1E2025',
+    'kanagawa-dragon': '#1B1919',
+    'kanagawa-lotus': '#D0CCB2',
+    'kanagawa-wave': '#22222B',
+    laserwave: '#2D2732',
+    'light-plus': '#F2F2F2',
+    'material-theme': '#2D353B',
+    'material-theme-darker': '#2A2A2A',
+    'material-theme-lighter': '#F2F2F2',
+    'material-theme-ocean': '#11141E',
+    'material-theme-palenight': '#323644',
+    'min-dark': '#272727',
+    'min-light': '#F2F2F2',
+    monokai: '#2D2E2A',
+    'night-owl': '#011526',
+    nord: '#363D49',
+    'one-dark-pro': '#30343D',
+    'one-light': '#F2F2F2',
+    plastic: '#282A2F',
+    poimandres: '#22242E',
+    red: '#400000',
+    'rose-pine': '#211F2B',
+    'rose-pine-dawn': '#FAF4E8',
+    'rose-pine-moon': '#29273D',
+    'slack-dark': '#2B2B2B',
+    'slack-ochin': '#F2F2F2',
+    'snazzy-light': '#F2F2F2',
+    'solarized-dark': '#002833',
+    'solarized-light': '#FAF4E8',
+    'synthwave-84': '#2D293B',
+    'tokyo-night': '#21242B',
+    vesper: '#151515',
     'vitesse-black': '#000000',
-    'vitesse-dark': '#0F0F0F',
-    'vitesse-light': '#E6E6E6',
-};
-
-export type preProps = React.HTMLAttributes<HTMLPreElement> & {
-    lineNumbers?: boolean;
-    noTopBar?: boolean;
-    noCopyButton?: boolean;
-    twoSlash?: boolean;
-    name?: string;
+    'vitesse-dark': '#171717',
+    'vitesse-light': '#D8D8D8',
 };

@@ -1,7 +1,6 @@
 import pc from 'picocolors';
 import prompts from 'prompts';
 import { configureComp } from '../config/configure-comp.js';
-import { configureShadcn } from '../config/configure-shadcn.js';
 import { createNewNext } from '../config/create-new-next.js';
 import { installDependencies } from '../config/install-dependencies.js';
 import { installPrettier } from '../config/install-prettier.js';
@@ -25,10 +24,10 @@ export const init = async (
     accentColor: string,
     shikiTheme: string,
     githubRepo: string,
-    typesAlias: string,
     libAlias: string,
     componentsAlias: string,
     directory: string,
+    colorScheme: string,
 ) => {
     let response_name: prompts.Answers<'app-name'>;
     let response_full: prompts.Answers<
@@ -41,6 +40,7 @@ export const init = async (
         | 'shiki-theme'
         | 'github-repo'
         | 'proceed'
+        | 'color-scheme'
     >;
 
     if (name) {
@@ -107,6 +107,7 @@ export const init = async (
             'accent-color': accentColor ?? 'blue',
             'shiki-theme': shikiTheme ?? 'github-dark-dimmed',
             'github-repo': githubRepo ?? '',
+            'color-scheme': colorScheme ?? 'light',
             proceed: true,
         };
     } else {
@@ -119,6 +120,7 @@ export const init = async (
             accentColor,
             shikiTheme,
             githubRepo,
+            colorScheme,
         );
     }
 
@@ -136,11 +138,8 @@ export const init = async (
     // Configure dependencies
     await installDependencies(pmi, mute_output);
 
-    // Configure shadcn
-    await configureShadcn(response, pmx, pm, mute_output, typesAlias, libAlias, componentsAlias);
-
     // Configure Components
-    await configureComp(response, pm, empty, mute_output, typesAlias, libAlias, componentsAlias);
+    await configureComp(response, pm, empty, mute_output, libAlias, componentsAlias);
 
     // Remove Prettier (if disabled)
     await removePrettier(response, pm, mute_output);

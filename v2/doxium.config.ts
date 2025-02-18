@@ -1,4 +1,4 @@
-import { DoxiumConfig } from 'types';
+import { DoxiumConfig } from 'lib/types';
 
 export default {
     style: {
@@ -32,6 +32,7 @@ export default {
         separate: false,
         appName: 'Doxium',
         showAppNameInTitle: true,
+        scollHeightBreakpoint: 300,
         extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'mdx', 'bash', 'sh', 'js', 'css', 'json'],
     },
     authors: {
