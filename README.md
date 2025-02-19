@@ -1,9 +1,9 @@
 # Doxium
-# Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared.
+> Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared.
 
-## Usage of `@doxium/cli` v0.0.2 - BEWARE, ALPHA VERSION
+## Usage of `@doxium/cli` v0.0.3 - **Beware, ALPHA version**
 ```sh
-bunx @doxium/cli [option] [name] [...args]
+bunx @doxium/cli init [name] [...args]
 ```
 help:
 ```sh
@@ -18,7 +18,7 @@ bunx @doxium/cli --help
 - [ ] Deploy to npmjs:
     - [ ] CLI
     - [ ] Library w/ components
-- [ ] Make a command to upograde and migrate from one version to another. (This re-write will act as a base layer)
+- [x] Make a command to upograde and migrate from one version to another. (This re-write will act as a base layer)
 - [ ] Imporve search by making it go through all the text.
       
 ## Techstack (Doxium)
