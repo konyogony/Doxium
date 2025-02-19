@@ -22,7 +22,6 @@
         "paths": {
             "icons/*": ["node_modules/@vertisanpro/react-icons/*"],
             "doxium/*": ["$TSCONFIG-COMPONENTS-ALIAS/*"],
-            "ui/*": ["components/ui/*"],
             "lib/*": ["$TSCONFIG-LIB-ALIAS/*"],
             "config": ["doxium.config.ts"],
             "@/*": ["./*"]

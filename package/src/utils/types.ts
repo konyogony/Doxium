@@ -5,7 +5,6 @@ export type responseT = Answers<
     | 'eslint'
     | 'prettier'
     | 'use-docs'
-    | 'shadcn-style'
     | 'base-color'
     | 'proceed'
     | 'github-repo'

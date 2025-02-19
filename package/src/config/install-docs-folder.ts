@@ -10,13 +10,14 @@ export const installDocsFolder = async (
     empty: boolean,
     libAlias: string,
     componentsAlias: string,
+    update: boolean,
 ) => {
     const filesHome = [
         { name: 'docs-[slug]-page', type: 'tsx', path: './app/[...slug]/page.tsx' },
         { name: 'docs-[slug]-layout', type: 'tsx', path: './app/[...slug]/layout.tsx' },
         { name: 'docs-layout', type: 'tsx', path: './app/layout.tsx' },
         { name: 'docs-page', type: 'tsx', path: './app/page.tsx' },
-        { name: 'index', type: 'mdx', path: './docs/index/page.mdx' },
+        !update && { name: 'index', type: 'mdx', path: './docs/index/page.mdx' },
         // !empty && { name: 'about', type: 'mdx', path: './app/docs/about/page.mdx' },
         // !empty && { name: 'getting-started', type: 'mdx', path: './app/docs/page.mdx' },
         // !empty && { name: 'code-block', type: 'mdx', path: './app/docs/components/code-block/page.mdx' },
@@ -25,12 +26,14 @@ export const installDocsFolder = async (
         // !empty && { name: 'routing', type: 'mdx', path: './app/docs/features/routing/page.mdx' },
         // !empty && { name: 'mdx', type: 'mdx', path: './app/docs/features/mdx/page.mdx' },
         // !empty && { name: 'sort-root', type: 'json', path: './app/docs/_sort.json' },
-    ].filter((file) => file !== (false || undefined));
+    ].filter((file) => file !== false);
 
     try {
-        await fs.mkdir('app/[...slug]');
-        await fs.mkdir('docs');
-        await fs.mkdir('docs/index');
+        await fs.mkdir('app/[...slug]', { recursive: true });
+        if (!update) {
+            await fs.mkdir('docs', { recursive: true });
+            await fs.mkdir('docs/index', { recursive: true });
+        }
         // if (!empty) {
         //     await fs.mkdir('app/docs/about');
         //     await fs.mkdir('app/docs/features');

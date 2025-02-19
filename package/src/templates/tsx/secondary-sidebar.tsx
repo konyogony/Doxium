@@ -27,7 +27,7 @@ const SecondarySidebar = ({ headings }: SecondarySidebarProps) => {
                             href={Object.values(sidebarLinks)[i]}
                             rel='noopener noreferrer'
                             target='_blank'
-                            className='flex flex-row items-center gap-1 text-sm text-base-400 transition-all duration-300 hover:underline'
+                            className='flex flex-row items-center gap-1 text-sm text-base-500 transition-all duration-300 hover:underline'
                         >
                             {v} <FiArrowUpRight />
                         </a>

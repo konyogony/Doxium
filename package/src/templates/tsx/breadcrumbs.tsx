@@ -3,11 +3,11 @@
 'use client';
 
 import config from 'config';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from 'doxium/breadcrumb';
 import { TreeNode } from 'lib/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useCallback, useMemo } from 'react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from 'ui/breadcrumb';
 
 interface BreadcrumbPath {
     name: string;
@@ -40,7 +40,7 @@ const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
     }, [pathname, tree, findPathInTree]);
 
     return (
-        <Breadcrumb className='not-prose text mb-8 mt-16 flex w-full lg:mb-2 lg:mt-4'>
+        <Breadcrumb className='not-prose text mt-16 flex w-full md:mb-8 lg:mb-2 lg:mt-4'>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>

@@ -19,7 +19,6 @@ export const init = async (
     eslint: boolean,
     prettier: boolean,
     useDocs: boolean,
-    shadcnStyle: 'default' | 'new-york',
     baseColor: string,
     accentColor: string,
     shikiTheme: string,
@@ -34,7 +33,6 @@ export const init = async (
         | 'eslint'
         | 'prettier'
         | 'use-docs'
-        | 'shadcn-style'
         | 'base-color'
         | 'accent-color'
         | 'shiki-theme'
@@ -82,18 +80,16 @@ export const init = async (
             console.log(
                 '\n' +
                     warningText(
-                        'Directory already contains a full Doxium project. Running `doxium update` to update components...',
+                        'Directory already contains a full Doxium project. Run `@doxium/cli update` to update...',
                     ),
             );
-            return update();
         } else {
             console.log(
                 '\n' +
                     warningText(
-                        'Directory already contains a Next.js project. Running `doxium link` to integrate Doxium...',
+                        'Directory already contains a Next.js project. Run `@doxium/cli link` to integrate Doxium (NOT SUPPORTED YET)...',
                     ),
             );
-            return link();
         }
     }
 
@@ -101,8 +97,7 @@ export const init = async (
         response_full = {
             eslint: eslint ?? true,
             prettier: prettier ?? true,
-            'use-docs': useDocs ?? true,
-            'shadcn-style': shadcnStyle ?? 'new-york',
+            'use-docs': useDocs ?? false,
             'base-color': baseColor ?? 'zinc',
             'accent-color': accentColor ?? 'blue',
             'shiki-theme': shikiTheme ?? 'github-dark-dimmed',
@@ -115,7 +110,6 @@ export const init = async (
             eslint,
             prettier,
             useDocs,
-            shadcnStyle,
             baseColor,
             accentColor,
             shikiTheme,
@@ -139,7 +133,7 @@ export const init = async (
     await installDependencies(pmi, mute_output);
 
     // Configure Components
-    await configureComp(response, pm, empty, mute_output, libAlias, componentsAlias);
+    await configureComp(response, pm, empty, mute_output, libAlias, componentsAlias, false);
 
     // Remove Prettier (if disabled)
     await removePrettier(response, pm, mute_output);

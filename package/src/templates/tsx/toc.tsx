@@ -18,7 +18,10 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
                     }
                 });
             },
-            { rootMargin: '0px 0px -10% 0px', threshold: [0.1, 0.5, 1.0] },
+            {
+                rootMargin: '-10% 0px -80% 0px',
+                threshold: 0,
+            },
         );
 
         headings.forEach((heading) => {
@@ -45,8 +48,8 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
                 className={cn(
                     'max-w-48 py-[4.5px] text-sm transition-all duration-200 hover:underline',
                     activeHeading === heading.id
-                        ? 'font-semibold text-accent-500'
-                        : 'font-normal text-base-700/80 dark:text-base-400',
+                        ? 'text-accent-500 font-semibold'
+                        : 'text-base-700/80 dark:text-base-400 font-normal',
                     heading.level === 1 && 'font-semibold',
                 )}
                 style={{

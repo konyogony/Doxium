@@ -13,12 +13,13 @@ export const configureComp = async (
     mute_output: boolean,
     libAlias: string,
     componentsAlias: string,
+    update: boolean,
 ) => {
     const alwaysInstall = [
-        { name: 'dialog', type: 'tsx', path: './components/ui/dialog.tsx' },
-        { name: 'command', type: 'tsx', path: './components/ui/command.tsx' },
-        { name: 'button', type: 'tsx', path: './components/ui/button.tsx' },
-        { name: 'breadcrumb', type: 'tsx', path: './components/ui/breadcrumb.tsx' },
+        { name: 'dialog', type: 'tsx', path: '$COMPONENTS-ALIAS/dialog.tsx' },
+        { name: 'command', type: 'tsx', path: '$COMPONENTS-ALIAS/command.tsx' },
+        { name: 'button', type: 'tsx', path: '$COMPONENTS-ALIAS/button.tsx' },
+        { name: 'breadcrumb', type: 'tsx', path: '$COMPONENTS-ALIAS/breadcrumb.tsx' },
         { name: 'copy-button', type: 'tsx', path: '$COMPONENTS-ALIAS/copy-button.tsx' },
         { name: 'navbar', type: 'tsx', path: '$COMPONENTS-ALIAS/navbar.tsx' },
         { name: 'cmdk', type: 'tsx', path: '$COMPONENTS-ALIAS/cmdk.tsx' },
@@ -36,8 +37,9 @@ export const configureComp = async (
         { name: 'toc', type: 'tsx', path: '$COMPONENTS-ALIAS/toc.tsx' },
         { name: 'toaster', type: 'tsx', path: '$COMPONENTS-ALIAS/toaster.tsx' },
         { name: 'tabs', type: 'tsx', path: '$COMPONENTS-ALIAS/tabs.tsx' },
-        { name: 'alerts', type: 'tsx', path: '$COMPONENTS-ALIAS/alerts.tsx' },
+        { name: 'alert', type: 'tsx', path: '$COMPONENTS-ALIAS/alert.tsx' },
         { name: 'card', type: 'tsx', path: '$COMPONENTS-ALIAS/card.tsx' },
+        { name: 'column', type: 'tsx', path: '$COMPONENTS-ALIAS/column.tsx' },
         { name: 'card-group', type: 'tsx', path: '$COMPONENTS-ALIAS/card-group.tsx' },
         { name: 'footer', type: 'tsx', path: '$COMPONENTS-ALIAS/footer.tsx' },
         { name: 'timeline', type: 'tsx', path: '$COMPONENTS-ALIAS/timeline.tsx' },
@@ -53,49 +55,58 @@ export const configureComp = async (
         { name: 'next-config', type: 'mjs', path: './next.config.mjs' },
         { name: 'postcss-config', type: 'mjs', path: './postcss.config.mjs' },
         { name: 'tailwind-config', type: 'ts', path: './tailwind.config.ts' },
-        { name: 'doxium-config', type: 'ts', path: './doxium.config.ts' },
-        { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
-        { name: 'favicon', type: 'ico', path: './app/favicon.ico' },
-        { name: 'Doxium-slim-dark', type: 'svg', path: './public/Doxium-slim-dark.svg' },
-        { name: 'Doxium-slim-light', type: 'svg', path: './public/Doxium-slim-light.svg' },
-        { name: 'DX-slim-dark', type: 'svg', path: './public/DX-slim-dark.svg' },
-        { name: 'DX-slim-light', type: 'svg', path: './public/DX-slim-light.svg' },
         { name: 'globals', type: 'css', path: './app/globals.css' },
-    ].map((file) => {
-        return {
-            ...file,
-            path: replaceFilePlaceholders(file.path, componentsAlias ?? 'components/doxium', libAlias ?? 'lib'),
-        };
-    });
+        { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
+        !update && { name: 'doxium-config', type: 'ts', path: './doxium.config.ts' },
+        !update && { name: 'favicon', type: 'ico', path: './app/favicon.ico' },
+        !update && { name: 'Doxium-slim-dark', type: 'svg', path: './public/Doxium-slim-dark.svg' },
+        !update && { name: 'Doxium-slim-light', type: 'svg', path: './public/Doxium-slim-light.svg' },
+        !update && { name: 'DX-slim-dark', type: 'svg', path: './public/DX-slim-dark.svg' },
+        !update && { name: 'DX-slim-light', type: 'svg', path: './public/DX-slim-light.svg' },
+    ]
+        .filter((v) => v !== false)
+        .map((file) => {
+            return {
+                ...file,
+                path: replaceFilePlaceholders(file.path, componentsAlias ?? 'components/doxium', libAlias ?? 'lib'),
+            };
+        });
 
     !mute_output && console.log('\n' + infoText('Configuring Components...'));
 
     try {
-        await fs.mkdir(componentsAlias ? componentsAlias.replaceAll('@/', '') : 'components/doxium', {
-            recursive: true,
-        });
+        if (update) {
+            await fs.rm('./app', { recursive: true });
+            await fs.rm('./components', { recursive: true });
+            await fs.mkdir('./app');
+            await fs.mkdir(componentsAlias ? componentsAlias.replaceAll('@/', '') : 'components/doxium', {
+                recursive: true,
+            });
+            await fs.mkdir(libAlias ? libAlias.replaceAll('@/', '') : 'lib', { recursive: true });
+        } else {
+            await fs.mkdir(componentsAlias ? componentsAlias.replaceAll('@/', '') : 'components/doxium', {
+                recursive: true,
+            });
 
-        await fs.mkdir(libAlias ? libAlias.replaceAll('@/', '') : 'lib', { recursive: true });
+            await fs.mkdir(libAlias ? libAlias.replaceAll('@/', '') : 'lib', { recursive: true });
 
-        await fs.mkdir('components/ui', { recursive: true });
+            spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+            // Rename next.config.ts to next.config.mjs, needed for proper MDX configuration
+            if (await fs.pathExists('./next.config.ts')) {
+                await fs.rename('./next.config.ts', './next.config.mjs');
+            }
 
-        // Rename next.config.ts to next.config.mjs, needed for proper MDX configuration
-        if (await fs.pathExists('./next.config.ts')) {
-            await fs.rename('./next.config.ts', './next.config.mjs');
+            // Remove app/fonts directory if it exists
+            if (await fs.pathExists('./app/fonts')) {
+                await fs.rm('./app/fonts', { recursive: true });
+            }
+
+            // Remove all files in app/public directory if it exists
+            if ((await fs.pathExists('./public')) && !update) {
+                await fs.rm('./public/*', { recursive: true, force: true });
+            }
         }
-
-        // Remove app/fonts directory if it exists
-        if (await fs.pathExists('./app/fonts')) {
-            await fs.rm('./app/fonts', { recursive: true });
-        }
-
-        // Remove all files in app/public directory if it exists
-        if (await fs.pathExists('./public')) {
-            await fs.rm('./public/*', { recursive: true, force: true });
-        }
-
         await Promise.all(
             alwaysInstall.map(async (file) => {
                 try {
@@ -116,11 +127,10 @@ export const configureComp = async (
         );
 
         spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
-
-        if (response['use-docs']) {
-            installDocsFolder(response, pm, empty, libAlias, componentsAlias);
+        if (response['use-docs'] === (typeof response['use-docs'] === 'boolean' ? true : 'true')) {
+            installDocsFolder(response, pm, empty, libAlias, componentsAlias, update);
         } else {
-            installNoDocsFolder(response, pm, empty, libAlias, componentsAlias);
+            installNoDocsFolder(response, pm, empty, libAlias, componentsAlias, update);
         }
     } catch (error) {
         console.error('Error creating custom components:', error);

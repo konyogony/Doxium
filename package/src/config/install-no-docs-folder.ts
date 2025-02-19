@@ -10,12 +10,13 @@ export const installNoDocsFolder = async (
     empty: boolean,
     libAlias: string,
     componentsAlias: string,
+    update: boolean,
 ) => {
     const filesNoHome = [
         { name: 'no-docs-[[slug]]-page', type: 'tsx', path: './app/[[...slug]]/page.tsx' },
         { name: 'no-docs-layout', type: 'tsx', path: './app/layout.tsx' },
         { name: 'not-found', type: 'tsx', path: './app/not-found.tsx' },
-        { name: 'index', type: 'mdx', path: './docs/index/page.mdx' },
+        !update && { name: 'index', type: 'mdx', path: './docs/index/page.mdx' },
 
         // !empty && { name: 'about', type: 'mdx', path: './app/about/page.mdx' },
         // !empty && { name: 'getting-started', type: 'mdx', path: './app/page.mdx' },
@@ -25,13 +26,15 @@ export const installNoDocsFolder = async (
         // !empty && { name: 'routing', type: 'mdx', path: './app/features/routing/page.mdx' },
         // !empty && { name: 'mdx', type: 'mdx', path: './app/features/mdx/page.mdx' },
         // !empty && { name: 'sort-root', type: 'json', path: './app/_sort.json' },
-    ].filter((file) => file !== (false || undefined));
+    ].filter((file) => file !== false);
 
     try {
-        await fs.rm('./app/page.tsx');
-        await fs.mkdir('app/[[...slug]]');
-        await fs.mkdir('docs');
-        await fs.mkdir('docs/index');
+        await fs.rm('./app/page.tsx', { force: true, recursive: true });
+        await fs.mkdir('app/[[...slug]]', { recursive: true });
+        if (!update) {
+            await fs.mkdir('docs', { recursive: true });
+            await fs.mkdir('docs/index', { recursive: true });
+        }
         // if (!empty) {
         //     await fs.mkdir('app/about');
         //     await fs.mkdir('app/features');

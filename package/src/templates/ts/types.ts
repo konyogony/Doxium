@@ -56,12 +56,8 @@ export interface DoxiumConfig {
     baseUrl: string;
     rootTitle: string;
     rootBreadcrumb: string;
-    navLinks: {
-        [key: string]: string;
-    };
-    sidebarLinks: {
-        [key: string]: string;
-    };
+    navLinks: Record<string, string>;
+    sidebarLinks: Record<string, string>;
     socials: {
         githubRepo: string;
         twitter: string;
@@ -74,10 +70,18 @@ export interface DoxiumConfig {
         separate: boolean;
         scollHeightBreakpoint: number;
         extensions: (LanguageInput | SpecialLanguage | StringLiteralUnion<BundledLanguage, string>)[];
+        navbarImage?: {
+            large?: {
+                dark?: string;
+                light?: string;
+            };
+            small?: {
+                dark?: string;
+                light?: string;
+            };
+        };
     };
-    authors: {
-        [key: string]: string;
-    };
+    authors: Record<string, string>;
 }
 
 export interface Heading {

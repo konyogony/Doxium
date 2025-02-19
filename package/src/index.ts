@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { program } from 'commander';
-import * as packageJson from '../package.json' assert { type: 'json' };
+import * as packageJson from '../package.json' with { type: 'json' };
 import { init } from './commands/init.js';
 import { link } from './commands/link.js';
 import { update } from './commands/update.js';
@@ -20,7 +20,6 @@ program
     .option('-l, --eslint <boolean>', 'enable eslint')
     .option('-p, --prettier <boolean>', 'enable prettier')
     .option('-u, --use-docs <boolean>', 'use the /docs folder')
-    .option('-c, --shadcn-style <string>', 'shadcn style (poor support)')
     .option('-b, --base-color <string>', 'base color')
     .option('-a, --accent-color <string>', 'accent color')
     .option('-t, --shiki-theme <string>', 'shiki theme')
@@ -30,10 +29,6 @@ program
     .option('--lib-alias <string>', 'lib alias')
     .option('--components-alias <string>', 'doxium components alias')
     .action((name, options) => {
-        if (options.shadcnStyle && options.shadcnStyle !== 'default' && options.shadcnStyle !== 'new-york') {
-            console.error("Invalid value for --shadcn-style. Allowed values are 'default' or 'new-york'.");
-            process.exit(1);
-        }
         if (
             options.baseColor &&
             !baseColors.map((color) => color.toLowerCase()).includes(options.baseColor.toLowerCase())
@@ -93,6 +88,7 @@ program
                 process.exit(1);
             }
         }
+
         init(
             name,
             options.empty,
@@ -100,8 +96,7 @@ program
             options.yes,
             options.eslint,
             options.prettier,
-            !options.useDocs,
-            options.shadcnStyle,
+            options.useDocs,
             options.baseColor,
             options.accentColor,
             options.shikiTheme,
@@ -109,11 +104,18 @@ program
             options.libAlias,
             options.componentsAlias,
             options.directory,
-            options.colorScheme
+            options.colorScheme,
         );
     });
 
-program.command('update').description('update Doxium using current configuration').action(update);
+program
+    .command('update')
+    .description('update Doxium using current configuration')
+    .option('-s, --silent', 'mute output / silent output (uses defaults, unless specified)')
+    .action((options) => {
+        update(options.silent);
+    });
+
 program.command('link').description('link Doxium to an existing project').action(link);
 program
     .command('add')

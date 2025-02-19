@@ -26,7 +26,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
         () => (
             <button
                 className={cn(
-                    'absolute right-[28px] top-2.5 w-fit cursor-pointer text-base-800 opacity-0 transition-all duration-150 hover:!text-accent-500 group-hover:opacity-100 dark:text-base-400',
+                    'absolute right-[28px] top-2.5 w-fit cursor-pointer text-base-800 md:opacity-0 transition-all duration-150 hover:!text-accent-500 group-hover:opacity-100 dark:text-base-400',
                 )}
                 onClick={clickCopy}
             >

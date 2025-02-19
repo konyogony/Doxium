@@ -2,10 +2,11 @@
 
 import config from 'config';
 import Accordion from 'doxium/accordion';
-import Alerts, { AlertsProps } from 'doxium/alerts';
+import Alert, { AlertProps } from 'doxium/alert';
 import Card, { CardProps } from 'doxium/card';
 import CardGroup, { CardGroupProps } from 'doxium/card-group';
 import CodeWrapper from 'doxium/code-wrapper';
+import { ColumnGroup, ColumnGroupProps, ColumnItem } from 'doxium/column';
 import { File, FileProps, Folder, FolderProps } from 'doxium/filetree';
 import HashtagButton from 'doxium/hashtag-button';
 import Image, { ImageProps } from 'doxium/image';
@@ -121,11 +122,11 @@ const mdxComponents = {
     Accordion: ({ children }: React.PropsWithChildren) => {
         return <Accordion>{children}</Accordion>;
     },
-    Alerts: ({ type = 'accent', children, link }: React.PropsWithChildren<AlertsProps>) => {
+    Alert: ({ type = 'accent', children, link, description }: React.PropsWithChildren<AlertProps>) => {
         return (
-            <Alerts type={type} link={link}>
+            <Alert type={type} link={link} description={description}>
                 {children}
-            </Alerts>
+            </Alert>
         );
     },
     CardGroup: ({ cols, children }: CardGroupProps) => {
@@ -172,6 +173,12 @@ const mdxComponents = {
     },
     File: ({ name }: FileProps) => {
         return <File name={name} />;
+    },
+    ColumnGroup: ({ children }: { children: ColumnGroupProps }) => {
+        return <ColumnGroup>{children}</ColumnGroup>;
+    },
+    ColumnItem: ({ children }: React.PropsWithChildren) => {
+        return <ColumnItem>{children}</ColumnItem>;
     },
 };
 

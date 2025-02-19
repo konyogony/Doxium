@@ -33,6 +33,17 @@ export default {
         showAppNameInTitle: true,
         scollHeightBreakpoint: 300,
         extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'txt', 'mdx', 'bash', 'sh', 'js', 'css', 'json'], // Just default values
+        navbarImage: {
+            // Optional
+            large: {
+                dark: '/Doxium-slim-dark.svg',
+                light: '/Doxium-slim-light.svg',
+            },
+            small: {
+                dark: '/DX-slim-dark.svg',
+                light: '/DX-slim-light.svg',
+            },
+        },
     },
     authors: {}, // { name: 'link?', name2: 'link2?' }
 } as DoxiumConfig;

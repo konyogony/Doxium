@@ -140,15 +140,12 @@ const SelectIcon = ({ type, extension, size }: SelectIconProps) => {
 };
 
 interface FiletreeProps {
-    children:
-        | ReactElement<typeof Folder>
-        | ReactElement<typeof File>
-        | Array<ReactElement<typeof Folder> | ReactElement<typeof File>>;
+    children: FolderChildren;
 }
 
 export const Filetree = ({ children }: FiletreeProps): ReactElement => {
     return (
-        <div className='my-2 flex h-fit w-full flex-col rounded-lg bg-base-300 px-4 py-2 dark:bg-base-900'>
+        <div className='bg-base-300 dark:bg-base-900 my-2 flex h-fit w-full flex-col rounded-lg px-4 py-2'>
             {children}
         </div>
     );
@@ -181,7 +178,7 @@ export const Folder = ({ name, children, defaultOpen = false, toggleable = true 
             )}
         >
             <button
-                className='group flex flex-row items-center gap-1 transition-all duration-150 hover:text-accent-600'
+                className='hover:text-accent-600 group flex flex-row items-center gap-1 transition-all duration-150'
                 onClick={toggleOpen}
             >
                 <SelectIcon type='folder' size={16} />
@@ -190,7 +187,7 @@ export const Folder = ({ name, children, defaultOpen = false, toggleable = true 
                     <FiChevronDown
                         size={16}
                         className={cn(
-                            'text-base-800 transition-all duration-150 group-hover:text-accent-600 dark:text-base-400',
+                            'text-base-800 group-hover:text-accent-600 dark:text-base-400 transition-all duration-150',
                             !open && '-rotate-90',
                         )}
                     />

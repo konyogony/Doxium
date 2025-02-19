@@ -43,7 +43,6 @@ export const installDependencies = async (pmi: string[], mute_output: boolean) =
                 '@shikijs/transformers',
                 '@shikijs/twoslash',
                 '@tailwindcss/typography',
-                '@theguild/remark-mermaid',
                 'shiki',
                 'rehype-mathjax',
                 'rehype-mdx-code-props',

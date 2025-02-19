@@ -5,7 +5,7 @@ import config from 'config';
 const Footer = () => {
     return (
         <div className='mt-auto flex w-full flex-col border-t border-black/15 px-[10vw] py-6 dark:border-white/15 lg:px-[20vw]'>
-            <div className='flex flex-row justify-between text-xs text-base-800 dark:text-base-400'>
+            <div className='flex flex-col md:flex-row justify-between text-xs text-base-800 dark:text-base-400'>
                 <span>
                     © {new Date().getFullYear()} {config.misc.appName || 'Doxium'}
                 </span>

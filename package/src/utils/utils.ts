@@ -17,7 +17,7 @@ export const isNextJsProject = async (folderPath: string) => {
 };
 
 export const isDoxiumProject = async (folderPath: string) => {
-    const patterns = [`${folderPath}/{doxium.json,lib}`];
+    const patterns = [`${folderPath}/{doxium.config.ts,lib,next.config.mjs}`];
     const matches = await fg(patterns);
     return matches.length > 0;
 };
@@ -28,7 +28,6 @@ export const replacePlaceholders = (content: string, response: responseT, compon
         .replaceAll(/\$APP-NAME/g, response['app-name'])
         .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
         .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])
-        .replaceAll(/\$SHADCN-STYLE/g, response['shadcn-style'])
         .replaceAll(/\$COLOR/g, response['base-color'])
         .replaceAll(/\$ACCENT-COLOR/g, response['accent-color'])
         .replaceAll(/\$USEDOCS/g, response['use-docs'])

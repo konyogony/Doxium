@@ -7,7 +7,6 @@ export const getFullResponse = async (
     eslint: boolean,
     prettier: boolean,
     useDocs: boolean,
-    shadcnStyle: 'default' | 'new-york',
     baseColor: string,
     accentColor: string,
     shikiTheme: string,
@@ -63,10 +62,10 @@ export const getFullResponse = async (
                 {
                     type: 'toggle',
                     name: 'use-docs',
-                    message: `Would you like to use ${pc.blue(`'/docs' folder`)}?`,
+                    message: `Would you like to use ${pc.blue(`'/docs' folder`)}? WARNING: DONT USE, BROKEN!`,
                     active: 'yes',
                     inactive: 'no',
-                    initial: true,
+                    initial: false,
                 },
                 {
                     onCancel: () => {
@@ -76,29 +75,6 @@ export const getFullResponse = async (
                 },
             )
         )['use-docs'];
-
-    const responseShadcnStyle =
-        shadcnStyle ??
-        (
-            await prompts(
-                {
-                    type: 'select',
-                    name: 'shadcn-style',
-                    message: `Choose your shadcn ${pc.blue('style')}:`,
-                    choices: [
-                        { title: 'New York', value: 'new-york' },
-                        { title: 'Default', value: 'default' },
-                    ],
-                    initial: 0,
-                },
-                {
-                    onCancel: () => {
-                        console.error(errorText('Setup cancelled.'));
-                        process.exit(1);
-                    },
-                },
-            )
-        )['shadcn-style'];
 
     const responseBaseColor =
         baseColor ??
@@ -226,7 +202,6 @@ export const getFullResponse = async (
         eslint: responseEslint,
         prettier: responsePrettier,
         'use-docs': responseUseDocs,
-        'shadcn-style': responseShadcnStyle,
         'base-color': responseBaseColor,
         'accent-color': responseAccentColor,
         'shiki-theme': responseShikiTheme,
@@ -247,16 +222,6 @@ export const getHalfResponse = async () => {
                 active: 'yes',
                 inactive: 'no',
                 initial: true,
-            },
-            {
-                type: 'select',
-                name: 'shadcn-style',
-                message: `Choose your shadcn ${pc.blue('style')}:`,
-                choices: [
-                    { title: 'New York', value: 'new-york' },
-                    { title: 'Default', value: 'default' },
-                ],
-                initial: 0,
             },
             {
                 type: 'select',
