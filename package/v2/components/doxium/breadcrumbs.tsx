@@ -1,11 +1,11 @@
 'use client';
 
 import config from 'config';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from 'doxium/breadcrumb';
 import { TreeNode } from 'lib/types';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useCallback, useMemo } from 'react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from 'ui/breadcrumb';
 
 interface BreadcrumbPath {
     name: string;

@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const TOC = ({ headings }: { headings: Heading[] }) => {
     const [activeHeading, setActiveHeading] = useState('');
+
     const updateHeadings = useCallback(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -16,7 +17,7 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
                 });
             },
             {
-                rootMargin: '-20% 0px -80% 0px',
+                rootMargin: '-10% 0px -80% 0px',
                 threshold: 0,
             },
         );

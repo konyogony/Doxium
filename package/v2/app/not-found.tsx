@@ -1,8 +1,8 @@
 import config from 'config';
+import { Button } from 'doxium/button';
 import SecondarySidebar from 'doxium/secondary-sidebar';
 import { cn } from 'lib/utils';
 import Link from 'next/link';
-import { Button } from 'ui/button';
 
 const colorScheme = config.style.colorScheme;
 

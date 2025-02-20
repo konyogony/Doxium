@@ -1,6 +1,6 @@
 import config from 'config';
 import Accordion from 'doxium/accordion';
-import Alerts, { AlertsProps } from 'doxium/alerts';
+import Alert, { AlertProps } from 'doxium/alert';
 import Card, { CardProps } from 'doxium/card';
 import CardGroup, { CardGroupProps } from 'doxium/card-group';
 import CodeWrapper from 'doxium/code-wrapper';
@@ -120,11 +120,11 @@ const mdxComponents = {
     Accordion: ({ children }: React.PropsWithChildren) => {
         return <Accordion>{children}</Accordion>;
     },
-    Alerts: ({ type = 'accent', children, link, description }: React.PropsWithChildren<AlertsProps>) => {
+    Alert: ({ type = 'accent', children, link, description }: React.PropsWithChildren<AlertProps>) => {
         return (
-            <Alerts type={type} link={link} description={description}>
+            <Alert type={type} link={link} description={description}>
                 {children}
-            </Alerts>
+            </Alert>
         );
     },
     CardGroup: ({ cols, children }: CardGroupProps) => {

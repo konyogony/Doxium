@@ -10,14 +10,14 @@ import {
 } from 'icons/fi';
 import { cn } from 'lib/utils';
 
-export interface AlertsProps {
+export interface AlertProps {
     type?: 'bookmark' | 'warning' | 'error' | 'success' | 'info' | 'star' | 'accent' | 'base';
     link?: string;
     description?: string;
 }
 
 // TODO: Adjust contrast between some of the colors
-const getAlertColor = (type: AlertsProps['type']) => {
+const getAlertColor = (type: AlertProps['type']) => {
     switch (type) {
         case 'bookmark':
             return 'bg-yellow-200 text-yellow-800 border-yellow-400 dark:bg-yellow-800 dark:text-yellow-200 dark:border-yellow-600';
@@ -41,7 +41,7 @@ const getAlertColor = (type: AlertsProps['type']) => {
 };
 
 // TODO: Icons size change depending on screen size
-const getAlertIcon = (type: AlertsProps['type']) => {
+const getAlertIcon = (type: AlertProps['type']) => {
     switch (type) {
         case 'bookmark':
             return <FiBookmark size={20} />;
@@ -64,7 +64,7 @@ const getAlertIcon = (type: AlertsProps['type']) => {
     }
 };
 
-const Alerts = ({ type = 'accent', children, link, description }: React.PropsWithChildren<AlertsProps>) => {
+const Alert = ({ type = 'accent', children, link, description }: React.PropsWithChildren<AlertProps>) => {
     return link ? (
         <a
             className={cn(
@@ -91,10 +91,10 @@ const Alerts = ({ type = 'accent', children, link, description }: React.PropsWit
             {getAlertIcon(type)}
             <div className='flex flex-col'>
                 <span className={cn('ml-2', description && 'text-base font-bold')}>{children}</span>
-                {description && <span className='ml-2 text-sm font-normal'>{description}</span>}{' '}
+                {description && <span className='ml-2 text-sm font-normal'>{description}</span>}
             </div>
         </span>
     );
 };
 
-export default Alerts;
+export default Alert;

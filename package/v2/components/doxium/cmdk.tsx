@@ -1,12 +1,12 @@
 'use client';
 
 import { DialogDescription, DialogTitle, type DialogProps } from '@radix-ui/react-dialog';
+import { Button } from 'doxium/button';
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from 'doxium/command';
 import { RxFile, RxMagnifyingGlass } from 'icons/rx';
 import { TreeNode } from 'lib/types';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import { Button } from 'ui/button';
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from 'ui/command';
 
 interface CmdkProps extends DialogProps {
     tree: TreeNode[];

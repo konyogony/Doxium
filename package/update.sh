@@ -2,5 +2,5 @@
 cd ..
 bun run build
 
-cd test
+cd v2
 bun run "../dist/index.js" update

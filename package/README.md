@@ -22,23 +22,23 @@ bunx @doxium/cli
 
 ## Updated Roadmap
 
--   [ ] Fix all the issues reported
--   [ ] Add li8n support, should consider the nextjs way and custom way.
--   [ ] Deploy to npmjs:
-    -   [ ] CLI
-    -   [ ] Library w/ components
--   [x] Make a command to upograde and migrate from one version to another. (This re-write will act as a base layer)
--   [ ] Imporve search by making it go through all the text.
--   [ ] TailwindCSS v4 (**Current version is v3**)
--   [ ] Proper README
+- [ ] Fix all the issues reported
+- [ ] Add li8n support, should consider the nextjs way and custom way.
+- [ ] Deploy to npmjs:
+    - [ ] CLI
+    - [ ] Library w/ components
+- [x] Make a command to upograde and migrate from one version to another. (This re-write will act as a base layer)
+- [ ] Imporve search by making it go through all the text.
+- [ ] TailwindCSS v4 (**Current version is v3**)
+- [ ] Proper README
 
 ## Techstack (Doxium)
 
--   [Next.js](https://nextjs.org/)
--   [shadcn](https://ui.shadcn.com/)
--   [Tailwindcss](https://tailwindcss.com/)
--   [MDX](https://mdxjs.com/)
--   [NCC](https://www.npmjs.com/package/@vercel/ncc)
+- [Next.js](https://nextjs.org/)
+- [shadcn](https://ui.shadcn.com/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [MDX](https://mdxjs.com/)
+- [NCC](https://www.npmjs.com/package/@vercel/ncc)
 
 ## Credit
 

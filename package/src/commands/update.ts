@@ -28,7 +28,7 @@ export const update = async (mute_output: boolean) => {
         'base-color': config.style.baseColor,
         'accent-color': config.style.accentColor,
         'shiki-theme': config.style.shikiTheme,
-        'github-repo': config.socials.githubRepo,
+        'github-repo': config.socials?.githubRepo ?? '',
         'color-scheme': config.style.colorScheme,
         proceed: true,
     } as responseT;

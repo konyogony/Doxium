@@ -18,7 +18,6 @@ const rootTitle = config.rootTitle;
 const configNavLinks = config.navLinks;
 const colorScheme = config.style.colorScheme;
 const navbarImage = config.misc.navbarImage;
-
 interface NavbarProps {
     tree: TreeNode[];
 }
@@ -86,12 +85,17 @@ const Navbar = ({ tree }: NavbarProps) => {
         [opened],
     );
 
+    useEffect(() => {
+        setOpened(false);
+    }, [pathname]);
+
+    // Actually awfull
     const NavbarImage = useMemo(
         () =>
             navbarImage && (
                 <Link
                     href='/'
-                    className='text-xl font-bold text-base-900 hover:text-base-950 dark:text-base-100 dark:hover:text-base-50'
+                    className='text-xs font-bold text-base-900 hover:text-base-950 dark:text-base-100 dark:hover:text-base-50'
                 >
                     {navbarImage.large && navbarImage.large.dark && navbarImage.large.light && (
                         <Image
@@ -152,10 +156,6 @@ const Navbar = ({ tree }: NavbarProps) => {
         [],
     );
 
-    useEffect(() => {
-        setOpened(false);
-    }, [pathname]);
-
     return (
         <>
             <div className='fixed inset-0 z-50 flex h-fit w-full flex-col'>
@@ -175,7 +175,7 @@ const Navbar = ({ tree }: NavbarProps) => {
             </div>
             <button
                 className={cn(
-                    'fixed inset-0 z-40 h-screen w-screen bg-base-950/40 transition-all duration-300',
+                    'fixed inset-0 z-40 h-screen w-screen bg-base-950/50 transition-all duration-300',
                     opened ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
                 )}
                 aria-label='Close menu'
