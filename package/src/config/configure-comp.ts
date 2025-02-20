@@ -40,7 +40,6 @@ export const configureComp = async (
         { name: 'alert', type: 'tsx', path: '$COMPONENTS-ALIAS/alert.tsx' },
         { name: 'card', type: 'tsx', path: '$COMPONENTS-ALIAS/card.tsx' },
         { name: 'column', type: 'tsx', path: '$COMPONENTS-ALIAS/column.tsx' },
-        { name: 'card-group', type: 'tsx', path: '$COMPONENTS-ALIAS/card-group.tsx' },
         { name: 'footer', type: 'tsx', path: '$COMPONENTS-ALIAS/footer.tsx' },
         { name: 'timeline', type: 'tsx', path: '$COMPONENTS-ALIAS/timeline.tsx' },
         { name: 'filetree', type: 'tsx', path: '$COMPONENTS-ALIAS/filetree.tsx' },
@@ -58,11 +57,11 @@ export const configureComp = async (
         { name: 'globals', type: 'css', path: './app/globals.css' },
         { name: 'tsconfig', type: 'json', path: './tsconfig.json' },
         !update && { name: 'doxium-config', type: 'ts', path: './doxium.config.ts' },
-        !update && { name: 'favicon', type: 'ico', path: './app/favicon.ico' },
-        !update && { name: 'Doxium-slim-dark', type: 'svg', path: './public/Doxium-slim-dark.svg' },
-        !update && { name: 'Doxium-slim-light', type: 'svg', path: './public/Doxium-slim-light.svg' },
-        !update && { name: 'DX-slim-dark', type: 'svg', path: './public/DX-slim-dark.svg' },
-        !update && { name: 'DX-slim-light', type: 'svg', path: './public/DX-slim-light.svg' },
+        !update && { name: 'favicon', type: 'ico', path: './public/favicon.ico' },
+        !update && { name: 'Doxium-slim-dark', type: 'svg', path: './public/doxium/DoxiumDark.svg' },
+        !update && { name: 'Doxium-slim-light', type: 'svg', path: './public/doxium/DoxiumLight.svg' },
+        !update && { name: 'DX-slim-dark', type: 'svg', path: './public/doxium/DXDark.svg' },
+        !update && { name: 'DX-slim-light', type: 'svg', path: './public/doxium/DXLight.svg' },
     ]
         .filter((v) => v !== false)
         .map((file) => {
@@ -101,6 +100,8 @@ export const configureComp = async (
             if (await fs.pathExists('./app/fonts')) {
                 await fs.rm('./app/fonts', { recursive: true });
             }
+
+            await fs.rm('./app/favicon.ico', { recursive: true });
 
             // Remove all files in app/public directory if it exists
             if ((await fs.pathExists('./public')) && !update) {

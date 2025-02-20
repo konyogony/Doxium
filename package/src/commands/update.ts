@@ -5,16 +5,19 @@ import { installPrettier } from '../config/install-prettier.js';
 import { readConfig } from '../config/read-config.js';
 import { getPmInfo } from '../utils/get-pm-info.js';
 import { responseT } from '../utils/types.js';
-import { infoText, isDoxiumProject, successText } from '../utils/utils.js';
+import { infoText, isDoxiumProject, successText, warningText } from '../utils/utils.js';
 
 export const update = async (mute_output: boolean) => {
     if (!(await isDoxiumProject('./'))) exit(1);
-    infoText('Updating Doxium');
-    infoText('Beware! This command will:');
-    infoText('1. Replace /components, /lib and /app directories');
-    infoText('2. Re-Install dependencies');
+    console.log(infoText('Updating Doxium'));
+    console.log(infoText('Beware! This command will:'));
+    console.log(infoText('1. Replace /components, /lib and /app directories'));
+    console.log(infoText('2. Re-Install dependencies'));
+    console.log(infoText('3. Not alter /docs, /public and doxiun.config.ts'));
 
-    const { pm, pmx, pmi } = await getPmInfo(mute_output);
+    // TODO: Add confirmation prompt
+
+    const { pm, pmi } = await getPmInfo(mute_output);
 
     installDependencies(pmi, mute_output);
     installPrettier();
@@ -35,5 +38,6 @@ export const update = async (mute_output: boolean) => {
 
     await configureComp(response, pm, false, mute_output, config.alias.lib, config.alias.components, true);
 
-    successText('Update complete');
+    console.log(successText('Update complete'));
+    console.log(warningText('Please make sure to update your doxium.config.ts file to match the new structure'));
 };

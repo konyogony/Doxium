@@ -3,8 +3,7 @@
 import config from 'config';
 import Accordion from 'doxium/accordion';
 import Alert, { AlertProps } from 'doxium/alert';
-import Card, { CardProps } from 'doxium/card';
-import CardGroup, { CardGroupProps } from 'doxium/card-group';
+import { CardGroup, CardGroupProps, CardItem, CardItemProps } from 'doxium/card';
 import CodeWrapper from 'doxium/code-wrapper';
 import { ColumnGroup, ColumnGroupProps, ColumnItem } from 'doxium/column';
 import { File, FileProps, Folder, FolderProps } from 'doxium/filetree';
@@ -19,6 +18,7 @@ import { preProps, ShikiThemeBackgroundHexDefault } from 'lib/types';
 import { cn } from 'lib/utils';
 import Link from 'next/link';
 import { BundledTheme } from 'shiki';
+import { ColumnItemProps } from './column';
 
 const theme = config.style.shikiTheme;
 
@@ -82,7 +82,7 @@ const mdxComponents = {
         return (
             <span
                 className={cn(
-                    'mx-0.5 my-2 rounded-md border border-black/5 px-1.5 py-0.5 text-[0.85em] font-semibold text-base-900 dark:border-white/5 dark:text-base-50',
+                    'text-base-900 dark:text-base-50 mx-0.5 my-2 rounded-md border border-black/5 px-1.5 py-0.5 text-[0.85em] font-semibold dark:border-white/5',
                     long ? 'whitespace-pre-wrap' : 'whitespace-nowrap',
                 )}
                 style={{ background: color }}
@@ -114,7 +114,7 @@ const mdxComponents = {
     },
     blockquote: ({ children }: React.HTMLAttributes<HTMLElement>) => {
         return (
-            <span className='my-2 flex border-l-2 border-base-950 py-2.5 pl-4 text-sm font-light italic text-base-950 !no-underline dark:border-base-600 dark:text-base-400 md:text-base'>
+            <span className='border-base-950 text-base-950 dark:border-base-600 dark:text-base-400 my-2 flex border-l-2 py-2.5 pl-4 text-sm font-light italic !no-underline md:text-base'>
                 <span className='not-prose'>{children}</span>
             </span>
         );
@@ -122,21 +122,25 @@ const mdxComponents = {
     Accordion: ({ children }: React.PropsWithChildren) => {
         return <Accordion>{children}</Accordion>;
     },
-    Alert: ({ type = 'accent', children, link, description }: React.PropsWithChildren<AlertProps>) => {
+    Alert: ({ type = 'accent', children, link, title }: React.PropsWithChildren<AlertProps>) => {
         return (
-            <Alert type={type} link={link} description={description}>
+            <Alert type={type} link={link} title={title}>
                 {children}
             </Alert>
         );
     },
-    CardGroup: ({ cols, children }: CardGroupProps) => {
-        return <CardGroup cols={cols}>{children}</CardGroup>;
-    },
-    Card: ({ title, href, children, full = false, newTab = false }: React.PropsWithChildren<CardProps>) => {
+    CardGroup: ({ cols, children, title }: CardGroupProps) => {
         return (
-            <Card title={title} href={href} full={full} newTab={newTab}>
+            <CardGroup cols={cols} title={title}>
                 {children}
-            </Card>
+            </CardGroup>
+        );
+    },
+    CardItem: ({ title, href, children, full = false, newTab = false }: React.PropsWithChildren<CardItemProps>) => {
+        return (
+            <CardItem title={title} href={href} full={full} newTab={newTab}>
+                {children}
+            </CardItem>
         );
     },
     Image: ({ src, alt, width, height }: ImageProps) => {
@@ -177,8 +181,8 @@ const mdxComponents = {
     ColumnGroup: ({ children }: { children: ColumnGroupProps }) => {
         return <ColumnGroup>{children}</ColumnGroup>;
     },
-    ColumnItem: ({ children }: React.PropsWithChildren) => {
-        return <ColumnItem>{children}</ColumnItem>;
+    ColumnItem: ({ children, center }: React.PropsWithChildren<ColumnItemProps>) => {
+        return <ColumnItem center={center}>{children}</ColumnItem>;
     },
 };
 

@@ -5,12 +5,14 @@ import { FiArrowUpRight } from 'icons/fi';
 import { usePathname } from 'next/navigation';
 
 const githubRepo = config.socials.githubRepo;
+const showEditInGithub = config.misc.showEditInGithub;
 
 const EditButton = () => {
     const pathnameNext = usePathname();
     const pathname = pathnameNext === '/' ? '/index' : pathnameNext;
     return (
-        githubRepo && (
+        githubRepo &&
+        showEditInGithub && (
             <a
                 href={`${githubRepo}/edit/main/docs${pathname}/page.mdx`}
                 rel='noopener noreferrer'

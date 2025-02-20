@@ -16,7 +16,7 @@ interface DoxiumConfig {
     baseUrl: string;
     rootTitle: string;
     rootBreadcrumb: string;
-    navLinks?: Record<string, string>;
+    navLinks: Record<string, string>;
     socials?: {
         githubRepo?: string;
         twitter?: string;
@@ -28,6 +28,7 @@ interface DoxiumConfig {
         separate?: boolean;
         appName?: string;
         showAppNameInTitle?: boolean;
+        showEditInGithub?: boolean;
         scollHeightBreakpoint?: number;
         extensions?: string[];
         navbarImage?: {
@@ -63,7 +64,6 @@ const defaultConfig: DoxiumConfig = {
     socials: {
         githubRepo: '',
     },
-    sidebarLinks: {},
 };
 
 // This is probably bad, but still copilot did it.

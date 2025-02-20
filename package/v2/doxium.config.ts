@@ -33,6 +33,7 @@ export default {
         appName: 'Doxium',
         showAppNameInTitle: true,
         scollHeightBreakpoint: 300,
+        showEditInGithub: false,
         extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'mdx', 'bash', 'sh', 'js', 'css', 'json'],
         navbarImage: {
             large: {

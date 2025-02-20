@@ -67,6 +67,7 @@ export interface DoxiumConfig {
         showAppNameInTitle: boolean;
         separate: boolean;
         scollHeightBreakpoint: number;
+        showEditInGithub: boolean;
         extensions: (LanguageInput | SpecialLanguage | StringLiteralUnion<BundledLanguage, string>)[];
         navbarImage?: {
             large?: {

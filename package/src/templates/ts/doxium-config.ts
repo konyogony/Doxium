@@ -19,31 +19,32 @@ export default {
     rootBreadcrumb: 'Docs',
     navLinks: {
         Home: '/',
-    }, // { 'name': 'link', 'name2': 'link2' }
+    },
     socials: {
         githubRepo: '$GITHUB-REPO',
         twitter: '',
         discord: '',
     },
-    sidebarLinks: {}, // { 'name': 'link', 'name2': 'link2' }
+    sidebarLinks: {},
     misc: {
-        toggleFolders: false, // Experimental feature
+        toggleFolders: false, // Beware! Experimental feature
         separate: false,
         appName: 'Doxium',
         showAppNameInTitle: true,
         scollHeightBreakpoint: 300,
-        extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'txt', 'mdx', 'bash', 'sh', 'js', 'css', 'json'], // Just default values
+        showEditInGithub: true,
+        breadcrumbSeparator: 'chevron',
+        extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'txt', 'mdx', 'bash', 'sh', 'js', 'css', 'json'], // Default extensions
         navbarImage: {
-            // Optional
             large: {
-                dark: '/Doxium-slim-dark.svg',
-                light: '/Doxium-slim-light.svg',
+                dark: '/doxium/DoxiumDark.svg',
+                light: '/doxium/DoxiumLight.svg',
             },
             small: {
-                dark: '/DX-slim-dark.svg',
-                light: '/DX-slim-light.svg',
+                dark: '/doxium/DXDark.svg',
+                light: '/doxium/DXLight.svg',
             },
         },
     },
-    authors: {}, // { name: 'link?', name2: 'link2?' }
+    authors: {},
 } as DoxiumConfig;

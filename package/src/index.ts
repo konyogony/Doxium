@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 import { program } from 'commander';
+import pc from 'picocolors';
 import * as packageJson from '../package.json' with { type: 'json' };
 import { init } from './commands/init.js';
 import { link } from './commands/link.js';
 import { update } from './commands/update.js';
 import { accentColors, baseColors, colorSchemes, shikiThemes } from './utils/types.js';
+
+console.log(pc.bold(pc.italic(pc.gray(`@doxium/cli v${packageJson.default.version} \n`))));
 
 program
     .name(packageJson.default.name)

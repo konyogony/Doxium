@@ -2,27 +2,32 @@
 
 import config from 'config';
 
+const authors = config.authors;
+const appName = config.misc.appName;
+
 const Footer = () => {
     return (
-        <div className='mt-auto flex w-full flex-col border-t border-black/15 px-[10vw] py-6 dark:border-white/15 lg:px-[20vw]'>
-            <div className='flex flex-col md:flex-row justify-between text-xs text-base-800 dark:text-base-400'>
+        <div className='mt-auto flex w-full flex-col border-t border-black/15 px-[10vw] py-6 lg:px-[20vw] dark:border-white/15'>
+            <div className='text-base-800 dark:text-base-400 flex flex-col justify-between text-xs md:flex-row'>
                 <span>
-                    © {new Date().getFullYear()} {config.misc.appName || 'Doxium'}
+                    © {new Date().getFullYear()} {appName || 'Doxium'}
                 </span>
-                <span>
-                    Made with &hearts; by&nbsp;
-                    {Object.keys(config.authors).map((v, i) => (
-                        <a
-                            href={Object.values(config.authors)[i]}
-                            className='text-primary mr-1'
-                            rel='noopener noreferrer'
-                            target='_blank'
-                            key={i}
-                        >
-                            {v} {!Object.keys(config.authors)[i + 1] ? '' : '•'}
-                        </a>
-                    ))}
-                </span>
+                {Object.keys(authors).length > 0 && (
+                    <span>
+                        Made with &hearts; by&nbsp;
+                        {Object.keys(authors).map((v, i) => (
+                            <a
+                                href={Object.values(authors)[i]}
+                                className='text-primary mr-1'
+                                rel='noopener noreferrer'
+                                target='_blank'
+                                key={i}
+                            >
+                                {v} {!Object.keys(authors)[i + 1] ? '' : '•'}
+                            </a>
+                        ))}
+                    </span>
+                )}
             </div>
         </div>
     );
