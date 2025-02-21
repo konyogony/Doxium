@@ -2,7 +2,7 @@
 
 > Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared.
 
-## Usage of `@doxium/cli` v0.0.6 - **Beware, ALPHA version**
+## Usage of `@doxium/cli` v0.0.7 - **Beware, ALPHA version**
 
 ```sh
 bunx @doxium/cli init [name] [...args]

@@ -14,7 +14,7 @@ export const cleanHeadingId = (id: string): string => {
         .replace(/`([^`]+)`/g, '$1')
         .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
         .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
-        .replace(/[*_~]/g, '') 
+        .replace(/[*_~]/g, '')
         .replace(/<[^>]+>/g, '')
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
@@ -40,15 +40,12 @@ export const getMdxData = async (slug: string) => {
     try {
         const fileContent = await fs.readFile(filePath, 'utf-8');
         const { data: frontmatter, content } = matter(fileContent);
-        console.log('Frontmatter:', frontmatter);
 
         // Remove code blocks and trim whitespace
         const contentWithoutCodeBlocks = content.replace(/```[\s\S]*?```/g, '').trim();
-        console.log('Content without code blocks:', contentWithoutCodeBlocks);
 
         const headings: Heading[] = [];
         const lines = contentWithoutCodeBlocks.split(/\r?\n/);
-        console.log('Lines:', lines);
 
         for (const line of lines) {
             const headingMatch = line.match(/^(#{1,3})\s+(.+)$/);
@@ -60,7 +57,6 @@ export const getMdxData = async (slug: string) => {
             }
         }
 
-        console.log('Headings:', headings);
         return { frontmatter, source: content, headings };
     } catch (error) {
         console.error(`Error reading file: ${error}`);
