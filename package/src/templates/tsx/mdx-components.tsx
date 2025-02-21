@@ -8,7 +8,6 @@ import CodeWrapper from 'doxium/code-wrapper';
 import { ColumnGroup, ColumnGroupProps, ColumnItem } from 'doxium/column';
 import { File, FileProps, Folder, FolderProps } from 'doxium/filetree';
 import HashtagButton from 'doxium/hashtag-button';
-import Image, { ImageProps } from 'doxium/image';
 import Outline from 'doxium/outline';
 import Tabs, { TabsProps } from 'doxium/tabs';
 import Timeline from 'doxium/timeline';
@@ -16,6 +15,7 @@ import Video, { VideoProps } from 'doxium/video';
 import { cleanHeadingId } from 'lib/lib';
 import { preProps, ShikiThemeBackgroundHexDefault } from 'lib/types';
 import { cn } from 'lib/utils';
+import Image from 'next/image';
 import Link from 'next/link';
 import { BundledTheme } from 'shiki';
 import { ColumnItemProps } from './column';
@@ -143,7 +143,7 @@ const mdxComponents = {
             </CardItem>
         );
     },
-    Image: ({ src, alt, width, height }: ImageProps) => {
+    Image: ({ src, alt, width, height }: { src: string; alt: string; width: number; height: number }) => {
         return <Image src={src} alt={alt} width={width} height={height} />;
     },
     Outline: ({ children }: { children: React.ReactNode }) => {

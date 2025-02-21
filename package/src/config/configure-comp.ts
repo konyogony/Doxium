@@ -43,7 +43,6 @@ export const configureComp = async (
         { name: 'footer', type: 'tsx', path: '$COMPONENTS-ALIAS/footer.tsx' },
         { name: 'timeline', type: 'tsx', path: '$COMPONENTS-ALIAS/timeline.tsx' },
         { name: 'filetree', type: 'tsx', path: '$COMPONENTS-ALIAS/filetree.tsx' },
-        { name: 'image', type: 'tsx', path: '$COMPONENTS-ALIAS/image.tsx' },
         { name: 'video', type: 'tsx', path: '$COMPONENTS-ALIAS/video.tsx' },
         { name: 'accordion', type: 'tsx', path: '$COMPONENTS-ALIAS/accordion.tsx' },
         { name: 'outline', type: 'tsx', path: '$COMPONENTS-ALIAS/outline.tsx' },
@@ -104,8 +103,8 @@ export const configureComp = async (
             await fs.rm('./app/favicon.ico', { recursive: true });
 
             const files = await fs.readdir('./public');
-            await Promise.all(files.map(file => fs.rm(`./public/${file}`, { recursive: true, force: true })));
-            await fs.mkdir('./public/doxium')
+            await Promise.all(files.map((file) => fs.rm(`./public/${file}`, { recursive: true, force: true })));
+            await fs.mkdir('./public/doxium');
         }
         await Promise.all(
             alwaysInstall.map(async (file) => {
