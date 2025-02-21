@@ -2,8 +2,10 @@
 
 'use client';
 
+import config from 'config';
 import { FiChevronLeft, FiChevronRight } from 'icons/fi';
 import { TreeNode } from 'lib/types';
+import { cn } from 'lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
@@ -11,6 +13,8 @@ import { useCallback, useMemo } from 'react';
 interface DocsNavProps {
     tree: TreeNode[];
 }
+
+const linkUnderline = config.misc.linkUnderline;
 
 const NavButtons = ({ tree }: DocsNavProps) => {
     const pathnameNext = usePathname();
@@ -43,8 +47,13 @@ const NavButtons = ({ tree }: DocsNavProps) => {
         <div className='not-prose mb-4 flex w-full flex-row items-center justify-between space-x-2 py-2'>
             {paths.prev && (
                 <Link href={paths.prev.path || ''} className='flex w-fit max-w-[50%] flex-col items-end'>
-                    <span className='text-sm text-base-800 dark:text-base-500'>Previous</span>
-                    <div className='flex max-w-full flex-row items-center text-base-950 transition-all duration-200 hover:text-accent-600 hover:underline dark:text-base-300'>
+                    <span className='text-base-800 dark:text-base-500 text-sm'>Previous</span>
+                    <div
+                        className={cn(
+                            'text-base-950 hover:text-accent-600 dark:text-base-300 flex max-w-full flex-row items-center transition-all duration-200',
+                            linkUnderline && 'hover:underline',
+                        )}
+                    >
                         <FiChevronLeft className='shrink-0' size={16} />
                         <span className='truncate' dir='rtl'>
                             {paths.prev.name}
@@ -54,8 +63,13 @@ const NavButtons = ({ tree }: DocsNavProps) => {
             )}
             {paths.next && (
                 <Link href={paths.next.path || ''} className='ml-auto flex w-fit max-w-[50%] flex-col items-start'>
-                    <span className='text-sm text-base-800 dark:text-base-500'>Next</span>
-                    <div className='flex max-w-full flex-row items-center text-base-950 transition-all duration-200 hover:text-accent-600 hover:underline dark:text-base-300'>
+                    <span className='text-base-800 dark:text-base-500 text-sm'>Next</span>
+                    <div
+                        className={cn(
+                            'text-base-950 hover:text-accent-600 dark:text-base-300 flex max-w-full flex-row items-center transition-all duration-200',
+                            linkUnderline && 'hover:underline',
+                        )}
+                    >
                         <span className='truncate'>{paths.next.name}</span>
                         <FiChevronRight className='shrink-0' size={16} />
                     </div>

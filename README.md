@@ -43,6 +43,9 @@ bunx @doxium/cli
 ## Credit
 
 Lead developer - [konyogony](https://github.com/konyogony)
+
 Beta Tester and a nice friend who helped - [PadowYT2](https://github.com/padowyt2)
+
 Credits to [Next.js documentation](https://nextjs.org/docs) and [Nextra](https://nextra.site/docs) since I was influenced by them
+
 [Doxium GitHub Repo](https://github.com/konyogony/Doxium)

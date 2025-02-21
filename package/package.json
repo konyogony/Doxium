@@ -4,6 +4,10 @@
     "author": "konyogony",
     "main": "index.js",
     "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/konyogony/Doxium.git"
+    },
     "bin": {
         "doxium": "./dist/index.js"
     },

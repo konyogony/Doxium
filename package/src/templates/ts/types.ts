@@ -73,6 +73,7 @@ export interface DoxiumConfig {
         scollHeightBreakpoint: number;
         showEditInGithub: boolean;
         breadcrumbSeparator: separatorType;
+        linkUnderline: boolean;
         extensions: (LanguageInput | SpecialLanguage | StringLiteralUnion<BundledLanguage, string>)[];
         navbarImage?: {
             large?: {

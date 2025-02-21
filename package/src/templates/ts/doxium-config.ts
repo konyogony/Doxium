@@ -35,6 +35,7 @@ export default {
         showEditInGithub: true,
         breadcrumbSeparator: 'chevron',
         extensions: ['ts', 'tsx', 'jsx', 'rs', 'html', 'txt', 'mdx', 'bash', 'sh', 'js', 'css', 'json'], // Default extensions
+        linkUnderline: true,
         navbarImage: {
             large: {
                 dark: '/doxium/DoxiumDark.svg',

@@ -20,6 +20,7 @@ const rootTitle = config.rootTitle;
 const configNavLinks = config.navLinks;
 const colorScheme = config.style.colorScheme;
 const navbarImage = config.misc.navbarImage;
+const linkUnderline = config.misc.linkUnderline;
 interface NavbarProps {
     tree: TreeNode[];
 }
@@ -57,7 +58,8 @@ const Navbar = ({ tree }: NavbarProps) => {
                         key={i}
                         href={Object.values(configNavLinks)[i]}
                         className={cn(
-                            'text-sm font-medium hover:underline',
+                            'text-sm font-medium',
+                            linkUnderline ? 'hover:underline' : 'hover:text-accent-500',
                             Object.values(configNavLinks)[i] ===
                                 (pathname.split('/')[0] === '' ? '/' : `/${pathname.split('/')[1]}`)
                                 ? 'text-accent-500'

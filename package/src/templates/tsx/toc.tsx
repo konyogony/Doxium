@@ -2,9 +2,12 @@
 
 'use client';
 
+import config from 'config';
 import { Heading } from 'lib/types';
 import { cn } from 'lib/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+
+const linkUnderline = config.misc.linkUnderline;
 
 const TOC = ({ headings }: { headings: Heading[] }) => {
     const [activeHeading, setActiveHeading] = useState('');
@@ -46,7 +49,8 @@ const TOC = ({ headings }: { headings: Heading[] }) => {
             <a
                 href={`#${heading.id}`}
                 className={cn(
-                    'max-w-48 py-[4.5px] text-sm transition-all duration-200 hover:underline',
+                    'max-w-48 py-[4.5px] text-sm transition-all duration-200',
+                    linkUnderline ? 'hover:underline' : 'hover:text-base-900 dark:hover:text-base-50',
                     activeHeading === heading.id
                         ? 'text-accent-500 font-semibold'
                         : 'text-base-700/80 dark:text-base-400 font-normal',
