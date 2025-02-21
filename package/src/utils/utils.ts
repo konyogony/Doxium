@@ -24,7 +24,8 @@ export const isDoxiumProject = async (folderPath: string) => {
 
 export const replacePlaceholders = (content: string, response: responseT, componentAlias: string, libAlias: string) => {
     return content
-        .replaceAll(/\/\/ @ts-nocheck\n/g, '')
+        .replaceAll(/\/\/ @ts-nocheck/g, '')
+        .replaceAll(/\/\/@ts-nocheck/g, '')
         .replaceAll(/\$APP-NAME/g, response['app-name'])
         .replaceAll(/\$GITHUB-REPO/g, response['github-repo'])
         .replaceAll(/\$SHIKI-THEME/g, response['shiki-theme'])

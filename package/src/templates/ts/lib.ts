@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 import fs from 'fs/promises';
 import path from 'path';
 import config from 'config';
@@ -9,14 +8,13 @@ import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } 
 
 const MDX_DIR = path.join(process.cwd(), 'docs');
 const extensions = config.misc.extensions;
-
 export const cleanHeadingId = (id: string): string => {
     return id
         .toLowerCase()
         .replace(/`([^`]+)`/g, '$1')
         .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
         .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
-        .replace(/[*_~]/g, '')
+        .replace(/[*_~]/g, '') 
         .replace(/<[^>]+>/g, '')
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '');
@@ -43,13 +41,13 @@ export const getMdxData = async (slug: string) => {
         const fileContent = await fs.readFile(filePath, 'utf-8');
         const { data: frontmatter, content } = matter(fileContent);
         console.log('Frontmatter:', frontmatter);
-        console.log('Content:', content);
-        // Really bad not going to lie, wanted to compile and extract headings, but ran into some issues.
-        const contentWithoutCodeBlocks = content.replace(/```[\s\S]*?```/g, '');
+
+        // Remove code blocks and trim whitespace
+        const contentWithoutCodeBlocks = content.replace(/```[\s\S]*?```/g, '').trim();
         console.log('Content without code blocks:', contentWithoutCodeBlocks);
 
         const headings: Heading[] = [];
-        const lines = contentWithoutCodeBlocks.split('\n');
+        const lines = contentWithoutCodeBlocks.split(/\r?\n/);
         console.log('Lines:', lines);
 
         for (const line of lines) {

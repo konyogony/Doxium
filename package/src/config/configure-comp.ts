@@ -103,10 +103,9 @@ export const configureComp = async (
 
             await fs.rm('./app/favicon.ico', { recursive: true });
 
-            // Remove all files in app/public directory if it exists
-            if ((await fs.pathExists('./public')) && !update) {
-                await fs.rm('./public/*', { recursive: true, force: true });
-            }
+            const files = await fs.readdir('./public');
+            await Promise.all(files.map(file => fs.rm(`./public/${file}`, { recursive: true, force: true })));
+            await fs.mkdir('./public/doxium')
         }
         await Promise.all(
             alwaysInstall.map(async (file) => {
