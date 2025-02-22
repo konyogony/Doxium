@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "Node",
+        "esModuleInterop": true,
+        "strict": true,
+        "skipLibCheck": true,
+
+        // Output directory for compiled files
+        "outDir": "./dist",
+
+        // Type declaration settings
+        "declaration": true,
+        "declarationDir": "./dist/types",
+        "emitDeclarationOnly": true,
+
+        // Path aliases
+        "baseUrl": ".",
+        "paths": {
+            "icons/*": ["node_modules/@vertisanpro/react-icons/*"],
+            "ts/*": ["src/ts/*"],
+            "tsx/*": ["src/tsx/*"],
+            "@/*": ["src/*"]
+        },
+
+        // ES module support
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true,
+
+        // Import helpers to reduce bundle size
+        "importHelpers": true,
+
+        // Better module support
+        "resolveJsonModule": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}

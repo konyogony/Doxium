@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "lib": ["esnext"],
+        "module": "NodeNext",
+        "target": "esnext",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node16",
+        "resolveJsonModule": true,
+        "noUncheckedIndexedAccess": true,
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "@/*": ["./*"]
+        }
+    },
+    "include": ["src", "src/templates"],
+    "exclude": ["node_modules"]
+}
