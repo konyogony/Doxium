@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { Button } from '@doxium/ui';
-import { FiChevronRight } from 'icons/fi';
+import { FiChevronRight } from '@vertisanpro/react-icons/fi';
 import Link from 'next/link';
 
 const Home = () => {

@@ -13,16 +13,13 @@
 
         // Type declaration settings
         "declaration": true,
-        "declarationDir": "./dist/types",
-        "emitDeclarationOnly": true,
+        "declarationDir": "./dist",
 
         // Path aliases
-        "baseUrl": ".",
+        "baseUrl": "src",
         "paths": {
-            "icons/*": ["node_modules/@vertisanpro/react-icons/*"],
-            "ts/*": ["src/ts/*"],
-            "tsx/*": ["src/tsx/*"],
-            "@/*": ["src/*"]
+            "server/*": ["components/server/*"],
+            "client/*": ["components/client/*"]
         },
 
         // ES module support
@@ -34,7 +31,10 @@
 
         // Better module support
         "resolveJsonModule": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+
+        // Root directory of input files
+        "rootDir": "src"
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist"]
