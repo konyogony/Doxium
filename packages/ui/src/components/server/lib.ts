@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
+import { DoxiumConfig, DoxiumFile, Heading, TreeNode } from 'server/types';
 import { BundledLanguage, BundledTheme, createHighlighter, HighlighterGeneric } from 'shiki';
-import { DoxiumConfig, DoxiumFile, Heading, TreeNode } from './types';
 
 const configPath = path.resolve(process.cwd(), 'doxium.config.ts');
 const MDX_DIR = path.join(process.cwd(), 'docs');

@@ -1,15 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { TabsProps } from 'server/types';
 import { cn } from 'server/utils';
-
-export interface TabsProps {
-    tabs: string[];
-    defaultTab?: string;
-    widthFull?: boolean;
-    sync?: boolean;
-    children: React.ReactNode[] | React.ReactNode;
-}
 
 const getTabGroupId = (tabs: string[]) => `tabs:${tabs.join(',')}`;
 

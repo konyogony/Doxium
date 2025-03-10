@@ -11,16 +11,30 @@ import {
 import { VscJson, VscSymbolFile } from '@vertisanpro/react-icons/vsc';
 import { JSX } from 'react';
 
-interface WikiCodeWrapperIconProps {
-    language: string;
-}
-
 interface WikiCodeWrapperIconReturn {
     icon: JSX.Element;
     lang: string;
 }
 
-export const wikiCodeWrapperIcon = ({ language }: WikiCodeWrapperIconProps): WikiCodeWrapperIconReturn => {
+interface WikiCodeWrapperIconProps {
+    language: string;
+    name: string | undefined;
+}
+
+export const WikiCodeWrapperIcon = ({ language, name }: WikiCodeWrapperIconProps) => {
+    return (
+        <>
+            {getIcon(language).icon}
+            {name ? (
+                <span className='text-xs text-gray-950 dark:text-gray-300/80'>{name}</span>
+            ) : (
+                getIcon(language).lang
+            )}
+        </>
+    );
+};
+
+const getIcon = (language: string): WikiCodeWrapperIconReturn => {
     switch (language) {
         case 'ts':
             return { icon: <SiTypescript size={16} />, lang: 'Typescript' };

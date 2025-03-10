@@ -39,18 +39,8 @@ import {
     SiYaml,
 } from '@vertisanpro/react-icons/si';
 import { ReactElement, useCallback, useState } from 'react';
+import { FileProps, FiletreeProps, FolderProps, SelectIconProps } from 'server/types';
 import { cn } from 'server/utils';
-
-interface SelectIconProps {
-    type: 'folder' | 'file';
-    extension?: string;
-    size?: number;
-}
-
-type FolderChildren =
-    | ReactElement<typeof Folder>
-    | ReactElement<typeof File>
-    | Array<ReactElement<typeof Folder> | ReactElement<typeof File>>;
 
 const SelectIcon = ({ type, extension, size }: SelectIconProps) => {
     if (type === 'folder') {
@@ -137,10 +127,6 @@ const SelectIcon = ({ type, extension, size }: SelectIconProps) => {
     }
 };
 
-interface FiletreeProps {
-    children: FolderChildren;
-}
-
 export const Filetree = ({ children }: FiletreeProps): ReactElement => {
     return (
         <div className='bg-base-300 dark:bg-base-900 my-2 flex h-fit w-full flex-col rounded-lg px-4 py-2'>
@@ -148,16 +134,6 @@ export const Filetree = ({ children }: FiletreeProps): ReactElement => {
         </div>
     );
 };
-
-interface Props {
-    name: string;
-    defaultOpen?: boolean;
-    toggleable?: boolean;
-}
-
-export interface FolderProps extends Props {
-    children: FolderChildren;
-}
 
 export const Folder = ({ name, children, defaultOpen = false, toggleable = true }: FolderProps) => {
     const [open, setOpen] = useState(defaultOpen);
@@ -197,10 +173,6 @@ export const Folder = ({ name, children, defaultOpen = false, toggleable = true 
         </div>
     );
 };
-
-export interface FileProps {
-    name: string;
-}
 
 export const File = ({ name }: FileProps) => {
     return (

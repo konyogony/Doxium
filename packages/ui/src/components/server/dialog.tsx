@@ -1,8 +1,10 @@
 // Taken from shadcn/ui
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { RxCross2 } from '@vertisanpro/react-icons/rx';
+import dynamic from 'next/dynamic';
 import { forwardRef } from 'react';
 import { cn } from 'server/utils';
+
+const RxCross2 = dynamic(() => import('@vertisanpro/react-icons/rx').then((mod) => mod.RxCross2));
 
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;

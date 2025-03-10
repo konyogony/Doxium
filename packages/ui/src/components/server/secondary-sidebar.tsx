@@ -1,7 +1,4 @@
-import { FiArrowUpRight } from '@vertisanpro/react-icons/fi';
-import { EditButton } from 'client/edit-button';
-import { ScrollBackButton } from 'client/scroll-back-button';
-import { TOC } from 'client/toc';
+import dynamic from 'next/dynamic';
 import { getConfig } from 'server/lib';
 import { Heading } from 'server/types';
 import { cn } from 'server/utils';
@@ -9,6 +6,11 @@ import { cn } from 'server/utils';
 interface SecondarySidebarProps {
     headings: Heading[] | null;
 }
+
+const FiArrowUpRight = dynamic(() => import('@vertisanpro/react-icons/fi').then((mod) => mod.FiArrowUpRight));
+const EditButton = dynamic(() => import('client/edit-button').then((mod) => mod.EditButton));
+const ScrollBackButton = dynamic(() => import('client/scroll-back-button').then((mod) => mod.ScrollBackButton));
+const TOC = dynamic(() => import('client/toc').then((mod) => mod.TOC));
 
 export const SecondarySidebar = async ({ headings }: SecondarySidebarProps) => {
     const config = await getConfig();

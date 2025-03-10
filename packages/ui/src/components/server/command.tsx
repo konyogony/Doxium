@@ -1,11 +1,13 @@
 // Taken from shadcn/ui
 
 import { type DialogProps } from '@radix-ui/react-dialog';
-import { RxMagnifyingGlass } from '@vertisanpro/react-icons/rx';
 import { Command as CommandPrimitive } from 'cmdk';
+import dynamic from 'next/dynamic';
 import { forwardRef } from 'react';
 import { Dialog, DialogContent } from 'server/dialog';
 import { cn } from 'server/utils';
+
+const RxMagnifyingGlass = dynamic(() => import('@vertisanpro/react-icons/rx').then((mod) => mod.RxMagnifyingGlass));
 
 const Command = forwardRef<
     React.ElementRef<typeof CommandPrimitive>,

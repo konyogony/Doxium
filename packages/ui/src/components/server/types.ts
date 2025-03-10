@@ -1,5 +1,43 @@
-// Import Shiki syntax highlighting types
+import dynamic from 'next/dynamic';
+import { ReactElement } from 'react';
 import { BundledLanguage, BundledTheme, LanguageInput, SpecialLanguage, StringLiteralUnion } from 'shiki';
+
+export interface TabsProps {
+    tabs: string[];
+    defaultTab?: string;
+    widthFull?: boolean;
+    sync?: boolean;
+    children: React.ReactNode[] | React.ReactNode;
+}
+
+export interface SelectIconProps {
+    type: 'folder' | 'file';
+    extension?: string;
+    size?: number;
+}
+
+export type FolderChildren =
+    | React.ReactElement<FolderProps>
+    | React.ReactElement<FileProps>
+    | Array<React.ReactElement<FolderProps> | React.ReactElement<FileProps>>;
+
+export interface FiletreeProps {
+    children: FolderChildren;
+}
+
+interface Props {
+    name: string;
+    defaultOpen?: boolean;
+    toggleable?: boolean;
+}
+
+export interface FolderProps extends Props {
+    children: FolderChildren;
+}
+
+export interface FileProps {
+    name: string;
+}
 
 // Type for URL parameters, currently only supports slug arrays
 export type params = Promise<{

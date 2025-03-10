@@ -4,37 +4,22 @@
         "module": "ESNext",
         "target": "ESNext",
         "moduleResolution": "Node",
-        "esModuleInterop": true,
         "strict": true,
         "skipLibCheck": true,
-
-        // Output directory for compiled files
-        "outDir": "./dist",
-
-        // Type declaration settings
+        "outDir": "dist",
         "declaration": true,
-        "declarationDir": "./dist",
-
-        // Path aliases
+        "declarationDir": "dist/types",
         "baseUrl": "src",
         "paths": {
             "server/*": ["components/server/*"],
-            "client/*": ["components/client/*"]
+            "client/*": ["components/client/*"],
+            "@/*": ["./*"]
         },
-
-        // ES module support
-        "allowSyntheticDefaultImports": true,
         "isolatedModules": true,
-
-        // Import helpers to reduce bundle size
         "importHelpers": true,
-
-        // Better module support
         "resolveJsonModule": true,
         "forceConsistentCasingInFileNames": true,
-
-        // Root directory of input files
-        "rootDir": "src"
+        "allowSyntheticDefaultImports": true
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist"]

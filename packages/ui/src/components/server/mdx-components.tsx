@@ -1,7 +1,4 @@
-import { Accordion } from 'client/accordion';
-import { File, FileProps, Folder, FolderProps } from 'client/filetree';
-import { HashtagButton } from 'client/hashtag-button';
-import { Tabs, TabsProps } from 'client/tabs';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Alert, AlertProps } from 'server/alert';
@@ -11,10 +8,16 @@ import { ColumnGroup, ColumnGroupProps, ColumnItem, ColumnItemProps } from 'serv
 import { cleanHeadingId, getConfig } from 'server/lib';
 import { Outline } from 'server/outline';
 import { Timeline } from 'server/timeline';
-import { preProps, ShikiThemeBackgroundHexDefault } from 'server/types';
+import { FileProps, FolderProps, preProps, ShikiThemeBackgroundHexDefault, TabsProps } from 'server/types';
 import { cn } from 'server/utils';
 import { VideoComponent, VideoProps } from 'server/video';
 import { BundledTheme } from 'shiki';
+
+const Accordion = dynamic(() => import('client/accordion').then((mod) => mod.Accordion));
+const File = dynamic(() => import('client/filetree').then((mod) => mod.File));
+const Folder = dynamic(() => import('client/filetree').then((mod) => mod.Folder));
+const HashtagButton = dynamic(() => import('client/hashtag-button').then((mod) => mod.HashtagButton));
+const Tabs = dynamic(() => import('client/tabs').then((mod) => mod.Tabs));
 
 export const mdxComponents = {
     a: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {

@@ -1,10 +1,13 @@
-import { DocLink, FiletreeNavigation } from 'client/filetree-navigation';
+import dynamic from 'next/dynamic';
 import { getConfig } from 'server/lib';
 import { TreeNode } from 'server/types';
 
 interface SidebarProps {
     tree: TreeNode[];
 }
+
+const DocLink = dynamic(() => import('client/filetree-navigation').then((mod) => mod.DocLink));
+const FiletreeNavigation = dynamic(() => import('client/filetree-navigation').then((mod) => mod.FiletreeNavigation));
 
 export const Sidebar = async ({ tree }: SidebarProps) => {
     const config = await getConfig();

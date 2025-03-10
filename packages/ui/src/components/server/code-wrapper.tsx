@@ -8,8 +8,7 @@ import {
     transformerRemoveNotationEscape,
 } from '@shikijs/transformers';
 import { transformerTwoslash } from '@shikijs/twoslash';
-import { CopyButton } from 'client/copy-button';
-import { wikiCodeWrapperIcon } from 'server/code-wrapper-icon';
+import dynamic from 'next/dynamic';
 import { getConfig, getHighlighterInstance, isLightColor } from 'server/lib';
 import { ShikiThemeBackgroundHexDimmed } from 'server/types';
 import { cn } from 'server/utils';
@@ -24,6 +23,9 @@ interface WikiCodeWrapperProps {
     twoSlash: boolean;
     name: string | undefined;
 }
+
+const CopyButton = dynamic(() => import('client/copy-button').then((mod) => mod.CopyButton));
+const WikiCodeWrapperIcon = dynamic(() => import('client/code-wrapper-icon').then((mod) => mod.WikiCodeWrapperIcon));
 
 export const CodeWrapper = async ({
     language = 'txt',
@@ -58,7 +60,6 @@ export const CodeWrapper = async ({
         ].filter((v) => v !== undefined) as ShikiTransformer[],
     });
 
-    const { icon: IconComponent, lang } = wikiCodeWrapperIcon({ language });
     const backgroundColor = ShikiThemeBackgroundHexDimmed[theme as keyof typeof ShikiThemeBackgroundHexDimmed];
     const textColor = isLightColor(backgroundColor) ? '#1e1e1e' : ''; // for icon
 
@@ -71,8 +72,7 @@ export const CodeWrapper = async ({
                     className='flex min-h-10 w-full flex-row items-center gap-2 border-b border-black/15 px-4 py-2.5 text-sm font-normal dark:border-white/15'
                     style={{ backgroundColor, color: textColor }}
                 >
-                    {IconComponent}
-                    {name ? <span className='text-xs text-gray-950 dark:text-gray-300/80'>{name}</span> : lang}
+                    <WikiCodeWrapperIcon language={language} name={name} />
                     {!noCopyButton && <CopyButton text={text} />}
                 </div>
             )}
