@@ -3,25 +3,25 @@
 import { type DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
 import dynamic from 'next/dynamic';
-import { forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ElementRef, forwardRef, HTMLAttributes } from 'react';
 import { Dialog, DialogContent } from 'server/dialog';
 import { cn } from 'server/utils';
 
+// Importing the "client" components dynamically
 const RxMagnifyingGlass = dynamic(() => import('@vertisanpro/react-icons/rx').then((mod) => mod.RxMagnifyingGlass));
 
-const Command = forwardRef<
-    React.ElementRef<typeof CommandPrimitive>,
-    React.ComponentPropsWithoutRef<typeof CommandPrimitive>
->(({ className, ...props }, ref) => (
-    <CommandPrimitive
-        ref={ref}
-        className={cn(
-            'text-base-950 dark:bg-base-950 dark:text-base-50 flex h-full w-full flex-col overflow-hidden rounded-md bg-white',
-            className,
-        )}
-        {...props}
-    />
-));
+const Command = forwardRef<ElementRef<typeof CommandPrimitive>, ComponentPropsWithoutRef<typeof CommandPrimitive>>(
+    ({ className, ...props }, ref) => (
+        <CommandPrimitive
+            ref={ref}
+            className={cn(
+                'text-base-950 dark:bg-base-950 dark:text-base-50 flex h-full w-full flex-col overflow-hidden rounded-md bg-white',
+                className,
+            )}
+            {...props}
+        />
+    ),
+);
 Command.displayName = CommandPrimitive.displayName;
 
 type CommandDialogProps = DialogProps;
@@ -39,8 +39,8 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
 };
 
 const CommandInput = forwardRef<
-    React.ElementRef<typeof CommandPrimitive.Input>,
-    React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
+    ElementRef<typeof CommandPrimitive.Input>,
+    ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
     <div className='flex items-center border-b border-white/15 px-3' cmdk-input-wrapper=''>
         <RxMagnifyingGlass className='mr-2 h-4 w-4 shrink-0 opacity-50' />
@@ -58,8 +58,8 @@ const CommandInput = forwardRef<
 CommandInput.displayName = CommandPrimitive.Input.displayName;
 
 const CommandList = forwardRef<
-    React.ElementRef<typeof CommandPrimitive.List>,
-    React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
+    ElementRef<typeof CommandPrimitive.List>,
+    ComponentPropsWithoutRef<typeof CommandPrimitive.List>
 >(({ className, ...props }, ref) => (
     <CommandPrimitive.List
         ref={ref}
@@ -71,15 +71,15 @@ const CommandList = forwardRef<
 CommandList.displayName = CommandPrimitive.List.displayName;
 
 const CommandEmpty = forwardRef<
-    React.ElementRef<typeof CommandPrimitive.Empty>,
-    React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
+    ElementRef<typeof CommandPrimitive.Empty>,
+    ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
 >((props, ref) => <CommandPrimitive.Empty ref={ref} className='py-6 text-center text-sm' {...props} />);
 
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
 
 const CommandGroup = forwardRef<
-    React.ElementRef<typeof CommandPrimitive.Group>,
-    React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>
+    ElementRef<typeof CommandPrimitive.Group>,
+    ComponentPropsWithoutRef<typeof CommandPrimitive.Group>
 >(({ className, ...props }, ref) => (
     <CommandPrimitive.Group
         ref={ref}
@@ -94,8 +94,8 @@ const CommandGroup = forwardRef<
 CommandGroup.displayName = CommandPrimitive.Group.displayName;
 
 const CommandSeparator = forwardRef<
-    React.ElementRef<typeof CommandPrimitive.Separator>,
-    React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
+    ElementRef<typeof CommandPrimitive.Separator>,
+    ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
 >(({ className, ...props }, ref) => (
     <CommandPrimitive.Separator
         ref={ref}
@@ -106,8 +106,8 @@ const CommandSeparator = forwardRef<
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
 const CommandItem = forwardRef<
-    React.ElementRef<typeof CommandPrimitive.Item>,
-    React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
+    ElementRef<typeof CommandPrimitive.Item>,
+    ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
 >(({ className, ...props }, ref) => (
     <CommandPrimitive.Item
         ref={ref}
@@ -121,7 +121,7 @@ const CommandItem = forwardRef<
 
 CommandItem.displayName = CommandPrimitive.Item.displayName;
 
-const CommandShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
+const CommandShortcut = ({ className, ...props }: HTMLAttributes<HTMLSpanElement>) => {
     return (
         <span
             className={cn('text-base-500 dark:text-base-400 ml-auto text-xs tracking-widest', className)}

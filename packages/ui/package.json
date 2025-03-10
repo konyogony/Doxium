@@ -1,6 +1,6 @@
 {
     "name": "@doxium/ui",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "author": "konyogony",
     "description": "UI library for Doxium applications.",
     "license": "MIT",
@@ -13,11 +13,6 @@
         "dist"
     ],
     "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.mjs",
-            "require": "./dist/index.js"
-        },
         "./server": {
             "types": "./dist/server/index.d.ts",
             "import": "./dist/server/index.mjs",
@@ -29,9 +24,6 @@
             "require": "./dist/client/index.js"
         }
     },
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
     "scripts": {
         "build": "rimraf ./dist && tsup",
         "pub": "npm publish"

@@ -25,8 +25,6 @@ const isExternal = (url: string) => {
     return /^(http|https):\/\//.test(url);
 };
 
-// Is this the correct way to do this?
-
 export const VideoComponent = (props: VideoProps) => {
     if (isExternal(props.src)) {
         return (
@@ -58,4 +56,5 @@ export const VideoComponent = (props: VideoProps) => {
     }
 };
 
+// Is this the correct way to do this?
 // This is hella bad btw

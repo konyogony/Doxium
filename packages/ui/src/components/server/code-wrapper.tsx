@@ -24,6 +24,7 @@ interface WikiCodeWrapperProps {
     name: string | undefined;
 }
 
+// Importing the client components dynamically
 const CopyButton = dynamic(() => import('client/copy-button').then((mod) => mod.CopyButton));
 const WikiCodeWrapperIcon = dynamic(() => import('client/code-wrapper-icon').then((mod) => mod.WikiCodeWrapperIcon));
 

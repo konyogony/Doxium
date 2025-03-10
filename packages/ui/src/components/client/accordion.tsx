@@ -1,14 +1,18 @@
 'use client';
 
 import { FiChevronDown } from '@vertisanpro/react-icons/fi';
-import React, { useState } from 'react';
-import { cn } from 'server/utils';
+import { ClassValue } from 'clsx';
+import dynamic from 'next/dynamic';
+import { Children, isValidElement, PropsWithChildren, ReactElement, ReactNode, useState } from 'react';
 
-export const Accordion = ({ children }: React.PropsWithChildren) => {
-    const groups = React.Children.toArray(children).reduce<React.ReactElement[][]>((acc, child) => {
-        if (React.isValidElement(child) && (child.props as { variant: string }).variant === 'h3') {
+// Import the server components dynamically
+const cn = dynamic(() => import('server/utils').then((mod) => mod.cn)) as (...input: ClassValue[]) => string;
+
+export const Accordion = ({ children }: PropsWithChildren) => {
+    const groups = Children.toArray(children).reduce<ReactElement[][]>((acc, child) => {
+        if (isValidElement(child) && (child.props as { variant: string }).variant === 'h3') {
             acc.push([child]);
-        } else if (React.isValidElement(child)) {
+        } else if (isValidElement(child)) {
             acc[acc.length - 1]?.push(child);
         }
         return acc;
@@ -27,7 +31,7 @@ export const Accordion = ({ children }: React.PropsWithChildren) => {
     return (
         <div className='flex h-fit w-full flex-col'>
             {groups.map(([heading, ...items], i) => {
-                const headingValue = (heading as React.ReactElement<{ children: React.ReactNode }>).props.children;
+                const headingValue = (heading as ReactElement<{ children: ReactNode }>).props.children;
                 const id = headingValue
                     ?.toString()
                     .trim()

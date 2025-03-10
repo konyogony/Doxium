@@ -1,5 +1,4 @@
-import dynamic from 'next/dynamic';
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { BundledLanguage, BundledTheme, LanguageInput, SpecialLanguage, StringLiteralUnion } from 'shiki';
 
 export interface TabsProps {
@@ -7,7 +6,7 @@ export interface TabsProps {
     defaultTab?: string;
     widthFull?: boolean;
     sync?: boolean;
-    children: React.ReactNode[] | React.ReactNode;
+    children: ReactNode[] | ReactNode;
 }
 
 export interface SelectIconProps {
@@ -17,9 +16,9 @@ export interface SelectIconProps {
 }
 
 export type FolderChildren =
-    | React.ReactElement<FolderProps>
-    | React.ReactElement<FileProps>
-    | Array<React.ReactElement<FolderProps> | React.ReactElement<FileProps>>;
+    | ReactElement<FolderProps>
+    | ReactElement<FileProps>
+    | Array<ReactElement<FolderProps> | ReactElement<FileProps>>;
 
 export interface FiletreeProps {
     children: FolderChildren;

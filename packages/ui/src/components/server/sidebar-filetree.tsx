@@ -6,6 +6,7 @@ interface SidebarProps {
     tree: TreeNode[];
 }
 
+// Importing the client components dynamically
 const DocLink = dynamic(() => import('client/filetree-navigation').then((mod) => mod.DocLink));
 const FiletreeNavigation = dynamic(() => import('client/filetree-navigation').then((mod) => mod.FiletreeNavigation));
 

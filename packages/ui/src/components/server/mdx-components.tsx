@@ -13,6 +13,7 @@ import { cn } from 'server/utils';
 import { VideoComponent, VideoProps } from 'server/video';
 import { BundledTheme } from 'shiki';
 
+// Importing the client components dynamically
 const Accordion = dynamic(() => import('client/accordion').then((mod) => mod.Accordion));
 const File = dynamic(() => import('client/filetree').then((mod) => mod.File));
 const Folder = dynamic(() => import('client/filetree').then((mod) => mod.Folder));

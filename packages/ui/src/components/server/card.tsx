@@ -1,5 +1,5 @@
 import { FiArrowUpRight } from '@vertisanpro/react-icons/fi';
-import React, { ReactElement } from 'react';
+import { Children, cloneElement, isValidElement, PropsWithChildren, ReactElement } from 'react';
 import { cn } from 'server/utils';
 
 export interface CardItemProps {
@@ -9,13 +9,7 @@ export interface CardItemProps {
     full?: boolean;
 }
 
-export const CardItem = ({
-    title,
-    href,
-    children,
-    full = false,
-    newTab = false,
-}: React.PropsWithChildren<CardItemProps>) => {
+export const CardItem = ({ title, href, children, full = false, newTab = false }: PropsWithChildren<CardItemProps>) => {
     return href ? (
         <a
             href={href}
@@ -57,9 +51,9 @@ export interface CardGroupProps {
 }
 
 export const CardGroup = ({ cols, children, title }: CardGroupProps) => {
-    const modifiedChildren = React.Children.map(children, (child) => {
-        if (React.isValidElement<CardItemProps>(child)) {
-            return React.cloneElement(child, {
+    const modifiedChildren = Children.map(children, (child) => {
+        if (isValidElement<CardItemProps>(child)) {
+            return cloneElement(child, {
                 ...child.props,
                 full: true,
             });

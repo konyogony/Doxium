@@ -1,11 +1,11 @@
-import React, { isValidElement, ReactElement } from 'react';
+import { isValidElement, PropsWithChildren, ReactElement } from 'react';
 import { cn } from 'server/utils';
 
 export interface ColumnItemProps {
     center?: boolean;
 }
 
-export const ColumnItem = ({ children, center }: React.PropsWithChildren<ColumnItemProps>) => {
+export const ColumnItem = ({ children, center }: PropsWithChildren<ColumnItemProps>) => {
     return <div className={cn('flex w-full flex-col py-2', center && 'items-center justify-center')}>{children}</div>;
 };
 

@@ -7,6 +7,7 @@ interface SecondarySidebarProps {
     headings: Heading[] | null;
 }
 
+// Importing the client components dynamically
 const FiArrowUpRight = dynamic(() => import('@vertisanpro/react-icons/fi').then((mod) => mod.FiArrowUpRight));
 const EditButton = dynamic(() => import('client/edit-button').then((mod) => mod.EditButton));
 const ScrollBackButton = dynamic(() => import('client/scroll-back-button').then((mod) => mod.ScrollBackButton));
