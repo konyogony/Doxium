@@ -108,7 +108,8 @@ export interface DoxiumConfig {
     };
     misc: {
         toggleFolders: boolean; // Experimental: Folder collapse feature
-        appName: string;
+        appName?: string;
+        appDescription?: string;
         showAppNameInTitle: boolean;
         separate: boolean;
         scollHeightBreakpoint: number;

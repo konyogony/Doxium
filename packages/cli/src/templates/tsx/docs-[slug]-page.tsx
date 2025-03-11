@@ -16,6 +16,8 @@ import rehypeMdxCodeProps from 'rehype-mdx-code-props';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
+const colorScheme = config.style.colorScheme;
+
 export const generateStaticParams = async () => {
     try {
         const files = await getAllMdxSlugs();
@@ -45,8 +47,6 @@ export const generateMetadata = async ({ params }: { params: params }) => {
         publisher: frontmatter.publisher,
     };
 };
-
-const colorScheme = config.style.colorScheme;
 
 const Page = async ({ params }: { params: params }) => {
     try {

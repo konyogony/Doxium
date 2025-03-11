@@ -26,6 +26,7 @@ export default {
         toggleFolders: false, // Beware! Experimental feature
         separate: false,
         appName: 'Doxium',
+        appDescription: 'A documentation system for Next.js',
         showAppNameInTitle: true,
         scollHeightBreakpoint: 300,
         showEditInGithub: true,
