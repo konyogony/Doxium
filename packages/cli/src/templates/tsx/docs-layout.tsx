@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import { cn } from '@doxium/ui';
 import config from 'config';
+import { cn } from 'doxium/utils';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';

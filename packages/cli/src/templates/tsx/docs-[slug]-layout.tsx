@@ -1,6 +1,10 @@
 // @ts-nocheck
 
-import { Footer, getDocsTree, Navbar, Sidebar, Toaster } from '@doxium/ui';
+import { Footer } from 'doxium/components/footer';
+import { Navbar } from 'doxium/components/navbar';
+import { Sidebar } from 'doxium/components/sidebar-filetree';
+import { Toaster } from 'doxium/components/toaster';
+import { getDocsTree } from 'doxium/lib';
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
     const tree = await getDocsTree();

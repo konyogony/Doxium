@@ -1,7 +1,0 @@
-# .npmignore
-src/
-tsconfig.json
-*.ts
-*.tsx
-*.md
-*.mdx

@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { DoxiumConfig } from '@doxium/ui';
+import { DoxiumConfig } from 'doxium/types';
 
 export default {
     style: {
