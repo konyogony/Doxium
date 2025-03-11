@@ -4,7 +4,7 @@ import { cn } from 'doxium/utils';
 import { Children, isValidElement, PropsWithChildren, ReactElement } from 'react';
 
 // Might be better to use css and pseduoelements to add numbers and stuff, but its to complicated for me
-export const Timeline = ({ children }: PropsWithChildren) => {
+const Timeline = ({ children }: PropsWithChildren) => {
     const groups = Children.toArray(children).reduce<ReactElement[][]>((acc, child) => {
         if (isValidElement(child) && typeof child.type === 'function' && child.type.name === 'h2') {
             acc.push([child]);
@@ -31,3 +31,5 @@ export const Timeline = ({ children }: PropsWithChildren) => {
         </div>
     );
 };
+
+export default Timeline;

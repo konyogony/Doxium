@@ -8,7 +8,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const linkUnderline = config.misc.linkUnderline;
 
-export const TOC = ({ headings }: { headings: Heading[] }) => {
+const TOC = ({ headings }: { headings: Heading[] }) => {
     const [activeHeading, setActiveHeading] = useState('');
 
     const updateHeadings = useCallback(() => {
@@ -67,3 +67,5 @@ export const TOC = ({ headings }: { headings: Heading[] }) => {
 
     return memoizedHeadings;
 };
+
+export default TOC;

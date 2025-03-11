@@ -6,7 +6,7 @@ import { cn } from 'doxium/utils';
 import { FiChevronDown } from 'icons/fi';
 import { Children, isValidElement, PropsWithChildren, ReactElement, ReactNode, useState } from 'react';
 
-export const Accordion = ({ children }: PropsWithChildren) => {
+const Accordion = ({ children }: PropsWithChildren) => {
     const groups = Children.toArray(children).reduce<ReactElement[][]>((acc, child) => {
         if (isValidElement(child) && (child.props as { variant: string }).variant === 'h3') {
             acc.push([child]);
@@ -66,3 +66,5 @@ export const Accordion = ({ children }: PropsWithChildren) => {
         </div>
     );
 };
+
+export default Accordion;

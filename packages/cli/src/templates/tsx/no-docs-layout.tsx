@@ -1,10 +1,10 @@
 // @ts-nocheck
 
 import config from 'config';
-import { Footer } from 'doxium/components/footer';
-import { Navbar } from 'doxium/components/navbar';
-import { Sidebar } from 'doxium/components/sidebar-filetree';
-import { Toaster } from 'doxium/components/toaster';
+import Footer from 'doxium/components/footer';
+import Navbar from 'doxium/components/navbar';
+import Sidebar from 'doxium/components/sidebar-filetree';
+import Toaster from 'doxium/components/toaster';
 import { getDocsTree } from 'doxium/lib';
 import { cn } from 'doxium/utils';
 import { Metadata } from 'next';

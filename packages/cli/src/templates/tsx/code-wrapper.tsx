@@ -11,8 +11,8 @@ import {
 } from '@shikijs/transformers';
 import { transformerTwoslash } from '@shikijs/twoslash';
 import config from 'config';
-import { WikiCodeWrapperIcon } from 'doxium/components/code-wrapper-icon';
-import { CopyButton } from 'doxium/components/copy-button';
+import WikiCodeWrapperIcon from 'doxium/components/code-wrapper-icon';
+import CopyButton from 'doxium/components/copy-button';
 import { getHighlighterInstance, isLightColor } from 'doxium/lib';
 import { ShikiThemeBackgroundHexDimmed } from 'doxium/types';
 import { cn } from 'doxium/utils';
@@ -28,7 +28,7 @@ interface WikiCodeWrapperProps {
     name: string | undefined;
 }
 
-export const CodeWrapper = async ({
+const CodeWrapper = async ({
     language = 'txt',
     children,
     lineNumbers,
@@ -84,3 +84,5 @@ export const CodeWrapper = async ({
         </div>
     );
 };
+
+export default CodeWrapper;

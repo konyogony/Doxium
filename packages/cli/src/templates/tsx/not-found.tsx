@@ -2,7 +2,7 @@
 
 import config from 'config';
 import { Button } from 'doxium/components/button';
-import { SecondarySidebar } from 'doxium/components/secondary-sidebar';
+import SecondarySidebar from 'doxium/components/secondary-sidebar';
 import { cn } from 'doxium/utils';
 import Link from 'next/link';
 

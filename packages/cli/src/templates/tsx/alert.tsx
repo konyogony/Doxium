@@ -66,7 +66,7 @@ const getAlertIcon = (type: AlertProps['type']) => {
     }
 };
 
-export const Alert = ({ type = 'accent', children, link, title }: React.PropsWithChildren<AlertProps>) => {
+const Alert = ({ type = 'accent', children, link, title }: React.PropsWithChildren<AlertProps>) => {
     return link ? (
         <a
             className={cn(
@@ -98,3 +98,5 @@ export const Alert = ({ type = 'accent', children, link, title }: React.PropsWit
         </span>
     );
 };
+
+export default Alert;

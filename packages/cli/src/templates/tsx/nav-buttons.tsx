@@ -15,7 +15,7 @@ interface DocsNavProps {
 
 const linkUnderline = config.misc.linkUnderline;
 
-export const NavButtons = ({ tree }: DocsNavProps) => {
+const NavButtons = ({ tree }: DocsNavProps) => {
     const pathnameNext = usePathname();
     const pathname = pathnameNext === '/' ? '/index' : pathnameNext;
 
@@ -77,3 +77,5 @@ export const NavButtons = ({ tree }: DocsNavProps) => {
         </div>
     );
 };
+
+export default NavButtons;

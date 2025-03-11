@@ -1,9 +1,9 @@
 // @ts-nocheck
 
 import config from 'config';
-import { EditButton } from 'doxium/components/edit-button';
-import { ScrollBackButton } from 'doxium/components/scroll-back-button';
-import { TOC } from 'doxium/components/toc';
+import EditButton from 'doxium/components/edit-button';
+import ScrollBackButton from 'doxium/components/scroll-back-button';
+import TOC from 'doxium/components/toc';
 import { Heading } from 'doxium/types';
 import { cn } from 'doxium/utils';
 import { FiArrowUpRight } from 'icons/fi';
@@ -15,7 +15,7 @@ interface SecondarySidebarProps {
 const sidebarLinks = config.sidebarLinks;
 const linkUnderline = config.misc.linkUnderline;
 
-export const SecondarySidebar = ({ headings }: SecondarySidebarProps) => {
+const SecondarySidebar = ({ headings }: SecondarySidebarProps) => {
     return (
         <div className='sticky top-24 hidden h-fit w-fit min-w-[20vh] shrink-0 flex-col items-start xl:flex'>
             <span className='text-base-950 dark:text-base-50 py-2 text-sm font-bold'>On this page</span>
@@ -44,3 +44,5 @@ export const SecondarySidebar = ({ headings }: SecondarySidebarProps) => {
         </div>
     );
 };
+
+export default SecondarySidebar;

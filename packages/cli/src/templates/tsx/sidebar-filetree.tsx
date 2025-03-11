@@ -11,7 +11,7 @@ interface SidebarProps {
 const separate = config.misc.separate;
 const rootTitle = config.rootTitle;
 
-export const Sidebar = ({ tree }: SidebarProps) => {
+const Sidebar = ({ tree }: SidebarProps) => {
     return (
         <div className='sticky top-24 hidden h-full w-fit min-w-[15vh] shrink-0 flex-col items-start lg:flex'>
             <DocLink name={rootTitle} isFirstNode={true} isRootTitle={true} />
@@ -19,3 +19,5 @@ export const Sidebar = ({ tree }: SidebarProps) => {
         </div>
     );
 };
+
+export default Sidebar;

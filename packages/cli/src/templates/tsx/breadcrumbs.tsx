@@ -22,7 +22,7 @@ interface BreadcrumbPath {
 
 const rootBreadcrumb = config.rootBreadcrumb;
 
-export const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
+const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
     const pathname = usePathname();
 
     const findPathInTree = useCallback(
@@ -46,7 +46,7 @@ export const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
     }, [pathname, tree, findPathInTree]);
 
     return (
-        <Breadcrumb className='not-prose text mt-16 flex w-full md:mb-8 lg:mt-4 lg:mb-2'>
+        <Breadcrumb className='not-prose text mt-16 flex w-full md:mb-8 lg:mb-2 lg:mt-4'>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>
@@ -69,3 +69,5 @@ export const Breadcrumbs = ({ tree }: { tree: TreeNode[] }) => {
         </Breadcrumb>
     );
 };
+
+export default Breadcrumbs;

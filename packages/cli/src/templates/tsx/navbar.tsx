@@ -2,7 +2,7 @@
 'use client';
 
 import config from 'config';
-import { Cmdk } from 'doxium/components/cmdk';
+import Cmdk from 'doxium/components/cmdk';
 import { DocLink, FiletreeNavigation } from 'doxium/components/filetree-navigation';
 import { TreeNode } from 'doxium/types';
 import { cn } from 'doxium/utils';
@@ -25,7 +25,7 @@ const colorScheme = config.style.colorScheme;
 const navbarImage = config.misc.navbarImage;
 const linkUnderline = config.misc.linkUnderline;
 
-export const Navbar = ({ tree }: NavbarProps) => {
+const Navbar = ({ tree }: NavbarProps) => {
     const pathname = usePathname();
     const [opened, setOpened] = useState(false);
 
@@ -188,3 +188,5 @@ export const Navbar = ({ tree }: NavbarProps) => {
         </>
     );
 };
+
+export default Navbar;

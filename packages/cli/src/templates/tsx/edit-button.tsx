@@ -10,7 +10,7 @@ const githubRepo = config.socials.githubRepo;
 const showEditInGithub = config.misc.showEditInGithub;
 const linkUnderline = config.misc.linkUnderline;
 
-export const EditButton = () => {
+const EditButton = () => {
     const pathnameNext = usePathname();
     const pathname = pathnameNext === '/' ? '/index' : pathnameNext;
     return (
@@ -30,3 +30,5 @@ export const EditButton = () => {
         )
     );
 };
+
+export default EditButton;

@@ -1,17 +1,17 @@
 // @ts-nocheck
 
 import config from 'config';
-import { Accordion } from 'doxium/components/accordion';
-import { Alert, AlertProps } from 'doxium/components/alert';
+import Accordion from 'doxium/components/accordion';
+import Alert, { AlertProps } from 'doxium/components/alert';
 import { CardGroup, CardGroupProps, CardItem, CardItemProps } from 'doxium/components/card';
-import { CodeWrapper } from 'doxium/components/code-wrapper';
+import CodeWrapper from 'doxium/components/code-wrapper';
 import { ColumnGroup, ColumnGroupProps, ColumnItem, ColumnItemProps } from 'doxium/components/column';
 import { File, Folder } from 'doxium/components/filetree';
-import { HashtagButton } from 'doxium/components/hashtag-button';
-import { Outline } from 'doxium/components/outline';
-import { Tabs } from 'doxium/components/tabs';
-import { Timeline } from 'doxium/components/timeline';
-import { VideoComponent, VideoProps } from 'doxium/components/video';
+import HashtagButton from 'doxium/components/hashtag-button';
+import Outline from 'doxium/components/outline';
+import Tabs from 'doxium/components/tabs';
+import Timeline from 'doxium/components/timeline';
+import VideoComponent, { VideoProps } from 'doxium/components/video';
 import { cleanHeadingId } from 'doxium/lib';
 import { FileProps, FolderProps, preProps, ShikiThemeBackgroundHexDefault, TabsProps } from 'doxium/types';
 import { cn } from 'doxium/utils';
@@ -21,7 +21,7 @@ import { BundledTheme } from 'shiki';
 
 const theme = config.style.shikiTheme;
 
-export const mdxComponents = {
+const mdxComponents = {
     a: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
         const external = props.href?.toString().startsWith('http');
         return external ? (
@@ -194,3 +194,5 @@ export const mdxComponents = {
         return <ColumnItem center={center}>{children}</ColumnItem>;
     },
 };
+
+export default mdxComponents;

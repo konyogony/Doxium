@@ -27,7 +27,7 @@ const isExternal = (url: string) => {
     return /^(http|https):\/\//.test(url);
 };
 
-export const VideoComponent = (props: VideoProps) => {
+const VideoComponent = (props: VideoProps) => {
     if (isExternal(props.src)) {
         return (
             <iframe
@@ -57,6 +57,8 @@ export const VideoComponent = (props: VideoProps) => {
         );
     }
 };
+
+export default VideoComponent;
 
 // Is this the correct way to do this?
 // This is hella bad btw

@@ -2,10 +2,10 @@
 
 import { remarkMermaid } from '@theguild/remark-mermaid';
 import config from 'config';
-import { Breadcrumbs } from 'doxium/components/breadcrumbs';
-import { mdxComponents } from 'doxium/components/mdx-components';
-import { NavButtons } from 'doxium/components/nav-buttons';
-import { SecondarySidebar } from 'doxium/components/secondary-sidebar';
+import Breadcrumbs from 'doxium/components/breadcrumbs';
+import mdxComponents from 'doxium/components/mdx-components';
+import NavButtons from 'doxium/components/nav-buttons';
+import SecondarySidebar from 'doxium/components/secondary-sidebar';
 import { getAllMdxSlugs, getDocsTree, getMdxData } from 'doxium/lib';
 import { params } from 'doxium/types';
 import { cn } from 'doxium/utils';

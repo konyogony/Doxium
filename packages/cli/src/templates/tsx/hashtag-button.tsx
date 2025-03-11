@@ -11,7 +11,7 @@ interface HashtagButtonProps {
     variant?: 'h1' | 'h2' | 'h3';
 }
 
-export const HashtagButton = ({ id, variant: Var = 'h1', children }: PropsWithChildren<HashtagButtonProps>) => {
+const HashtagButton = ({ id, variant: Var = 'h1', children }: PropsWithChildren<HashtagButtonProps>) => {
     const clickCopy = useCallback(() => {
         if (typeof window !== 'undefined') {
             const path = window.location.href.replace(/#.*$/, '') + '#' + id;
@@ -38,3 +38,5 @@ export const HashtagButton = ({ id, variant: Var = 'h1', children }: PropsWithCh
         [id, Var, children, clickCopy],
     );
 };
+
+export default HashtagButton;

@@ -15,7 +15,7 @@ interface WikiCodeWrapperIconProps {
     name: string | undefined;
 }
 
-export const WikiCodeWrapperIcon = ({ language, name }: WikiCodeWrapperIconProps) => {
+const WikiCodeWrapperIcon = ({ language, name }: WikiCodeWrapperIconProps) => {
     return (
         <>
             {getIcon(language).icon}
@@ -54,3 +54,5 @@ const getIcon = (language: string): WikiCodeWrapperIconReturn => {
             return { icon: <VscSymbolFile size={16} />, lang: 'File' };
     }
 };
+
+export default WikiCodeWrapperIcon;

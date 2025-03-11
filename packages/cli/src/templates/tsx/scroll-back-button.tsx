@@ -9,7 +9,7 @@ import { useEffect, useMemo, useState } from 'react';
 const scrollHeightBreakpoint = config.misc.scollHeightBreakpoint;
 const linkUnderline = config.misc.linkUnderline;
 
-export const ScrollBackButton = () => {
+const ScrollBackButton = () => {
     const [scrollHeight, setScrollHeight] = useState(0);
 
     useEffect(() => {
@@ -36,3 +36,5 @@ export const ScrollBackButton = () => {
 
     return scrollHeight > scrollHeightBreakpoint && backToTopButton;
 };
+
+export default ScrollBackButton;

@@ -18,4 +18,4 @@ const DocsToaster = () => {
     );
 };
 
-export { DocsToaster as Toaster };
+export default DocsToaster;

@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 const getTabGroupId = (tabs: string[]) => `tabs:${tabs.join(',')}`;
 
-export const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, children }: TabsProps) => {
+const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = false, children }: TabsProps) => {
     const defaultIndex = tabs.indexOf(defaultTab);
     const [activeIndex, setActiveIndex] = useState(defaultIndex);
     const tabGroupId = getTabGroupId(tabs);
@@ -78,3 +78,5 @@ export const Tabs = ({ tabs, defaultTab = tabs[0], widthFull = true, sync = fals
         </div>
     );
 };
+
+export default Tabs;

@@ -12,7 +12,7 @@ interface CopyButtonProps {
     text: string;
 }
 
-export const CopyButton = ({ text }: CopyButtonProps) => {
+const CopyButton = ({ text }: CopyButtonProps) => {
     const [clicked, setClicked] = useState(false);
 
     const clickCopy = useCallback(() => {
@@ -25,9 +25,7 @@ export const CopyButton = ({ text }: CopyButtonProps) => {
     return useMemo(
         () => (
             <button
-                className={cn(
-                    'text-base-800 hover:!text-accent-500 dark:text-base-400 absolute right-[28px] top-2.5 w-fit cursor-pointer transition-all duration-150 group-hover:opacity-100 md:opacity-0',
-                )}
+                className='text-base-800 hover:!text-accent-500 dark:text-base-400 absolute right-[28px] top-2.5 w-fit cursor-pointer transition-all duration-150 group-hover:opacity-100 md:opacity-0'
                 onClick={clickCopy}
             >
                 <FiCheck
@@ -49,3 +47,5 @@ export const CopyButton = ({ text }: CopyButtonProps) => {
         [clickCopy, clicked],
     );
 };
+
+export default CopyButton;

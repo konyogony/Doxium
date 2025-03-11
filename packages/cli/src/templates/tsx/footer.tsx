@@ -5,7 +5,7 @@ import config from 'config';
 const authors = config.authors;
 const appName = config.misc.appName;
 
-export const Footer = () => {
+const Footer = () => {
     return (
         <div className='mt-auto flex w-full flex-col border-t border-black/15 px-[10vw] py-6 lg:px-[20vw] dark:border-white/15'>
             <div className='text-base-800 dark:text-base-400 flex flex-col justify-between text-xs md:flex-row'>
@@ -32,3 +32,5 @@ export const Footer = () => {
         </div>
     );
 };
+
+export default Footer;

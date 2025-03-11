@@ -21,7 +21,7 @@ interface CmdkProps extends DialogProps {
     tree: TreeNode[];
 }
 
-export const Cmdk = ({ tree, ...props }: CmdkProps) => {
+const Cmdk = ({ tree, ...props }: CmdkProps) => {
     const [open, setOpen] = useState(false);
     const navigator = useRouter();
 
@@ -62,7 +62,7 @@ export const Cmdk = ({ tree, ...props }: CmdkProps) => {
             >
                 <span className='hidden xl:flex'>Search documentation...</span>
                 <span className='flex text-xs xl:hidden'>Search</span>
-                <kbd className='bg-base-200/50 dark:bg-base-700/50 ml-auto flex flex-row items-center -space-x-0.5 rounded-xs px-2 py-0.5 text-[10px] backdrop-blur-xs'>
+                <kbd className='bg-base-200/50 dark:bg-base-700/50 rounded-xs backdrop-blur-xs ml-auto flex flex-row items-center -space-x-0.5 px-2 py-0.5 text-[10px]'>
                     ⌘ K
                 </kbd>
             </Button>
@@ -116,3 +116,5 @@ export const Cmdk = ({ tree, ...props }: CmdkProps) => {
         </>
     );
 };
+
+export default Cmdk;
