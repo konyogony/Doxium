@@ -1,12 +1,12 @@
+import { responseT } from '@/lib/types';
+import { errorText, infoText, successText } from '@/lib/utils';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
-import { responseT } from '../utils/types.js';
-import { errorText, infoText, successText } from '../utils/utils.js';
 
 export const removePrettier = async (response: responseT, pm: string, mute_output: boolean) => {
     try {
         if (!response['prettier']) {
-            spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+            spawn.sync(pm, ['run', 'prettier', './', '-w', '--ignore-path=.prettierignore'], { stdio: 'ignore' });
             spawn.sync(
                 pm,
                 [
@@ -21,11 +21,12 @@ export const removePrettier = async (response: responseT, pm: string, mute_outpu
             );
             await fs.remove('./.prettierrc.json');
         } else {
-            !mute_output && console.log('\n' + infoText('Installing Prettier...'));
-            !mute_output && console.log(successText('Prettier installed successfully!'));
+            if (!mute_output) infoText('\n' + 'Installing Prettier...');
+            if (!mute_output) successText('Prettier installed successfully!');
         }
     } catch (error) {
-        console.error(errorText(`Error removing Prettier:`), error);
+        errorText(`Error removing Prettier:`);
+        console.error(error);
         process.exit(1);
     }
 };

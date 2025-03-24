@@ -15,29 +15,39 @@
         "dist"
     ],
     "dependencies": {
-        "commander": "^12.1.0",
+        "commander": "^13.1.0",
         "cross-spawn": "^7.0.6",
-        "fast-glob": "^3.3.2",
-        "fs-extra": "^11.2.0",
+        "fast-glob": "^3.3.3",
+        "fs-extra": "^11.3.0",
         "picocolors": "^1.1.1",
         "prompts": "^2.4.2"
     },
     "devDependencies": {
+        "@eslint/js": "^9.23.0",
         "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
         "@types/commander": "^2.12.5",
         "@types/cross-spawn": "^6.0.6",
         "@types/fs-extra": "^11.0.4",
-        "@types/node": "^22.10.2",
+        "@types/node": "^22.13.13",
         "@types/prompts": "^2.4.9",
-        "prettier": "^3.4.2",
-        "typescript": "^5.7.2"
+        "@typescript-eslint/eslint-plugin": "^8.27.0",
+        "@typescript-eslint/parser": "^8.27.0",
+        "eslint": "^9.23.0",
+        "globals": "^16.0.0",
+        "jiti": "^2.4.2",
+        "ncc": "^0.3.6",
+        "prettier": "^3.5.3",
+        "rimraf": "^6.0.1",
+        "typescript": "^5.8.2",
+        "typescript-eslint": "^8.27.0"
     },
     "description": "CLI tool for creating and managing Doxium applications.",
     "license": "MIT",
     "scripts": {
         "pub": "bun publish --access public",
-        "dev": "bun run ./src/index.ts init",
-        "build": "rm -rf ./dist & ncc build src/index.ts -o dist -m"
+        "dev": "bun run build && bun run ./dist/index.js init",
+        "build": "bun rimraf ./dist & ncc build src/index.ts -o dist -m",
+        "lint": "bun eslint ."
     },
     "keywords": [
         "doxium",

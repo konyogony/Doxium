@@ -1,6 +1,6 @@
 import path from 'path';
+import { errorText, templatesDir } from '@/lib/utils';
 import fs from 'fs-extra';
-import { errorText, templatesDir } from '../utils/utils.js';
 
 const files = [
     { name: 'prettierrc', type: 'json', path: './.prettierrc.json' },
@@ -16,7 +16,7 @@ export const installPrettier = async () => {
 
                 await fs.writeFile(file.path, content);
             } catch (error) {
-                console.error(errorText(`Error configuring prettier: ${file.name}, error: ${error}`));
+                errorText(`Error configuring prettier: ${file.name}, error: ${error}`);
                 process.exit(1);
             }
         }),

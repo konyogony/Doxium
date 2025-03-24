@@ -1,8 +1,8 @@
 import path from 'path';
+import { responseT } from '@/lib/types';
+import { replacePlaceholders, templatesDir } from '@/lib/utils';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
-import { responseT } from '../utils/types.js';
-import { replacePlaceholders, templatesDir } from '../utils/utils.js';
 
 export const installDocsFolder = async (response: responseT, pm: string, empty: boolean, update: boolean) => {
     const filesHome = [
@@ -51,7 +51,7 @@ export const installDocsFolder = async (response: responseT, pm: string, empty: 
             }),
         );
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w', '--ignore-path=.prettierignore'], { stdio: 'ignore' });
     } catch (error) {
         console.error('Error creating custom components:', error);
         process.exit(1);

@@ -1,6 +1,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { DoxiumConfig } from '../utils/types.js';
+import { DoxiumConfig } from '@/lib/types';
+import { errorText } from '@/lib/utils';
 
 const defaultConfig: DoxiumConfig = {
     style: {
@@ -51,6 +52,8 @@ export const readConfig = async (configPath?: string): Promise<DoxiumConfig> => 
 
         return { ...defaultConfig, ...config };
     } catch (error) {
+        errorText('Error reading doxium.config.ts file');
+        console.error(error);
         return defaultConfig;
     }
 };

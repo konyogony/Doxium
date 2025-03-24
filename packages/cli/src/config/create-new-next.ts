@@ -1,15 +1,15 @@
+import { responseT } from '@/lib/types';
+import { infoText, successText } from '@/lib/utils';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
-import { responseT } from '../utils/types.js';
-import { infoText, successText } from '../utils/utils.js';
 
 export const createNewNext = async (response: responseT, pmx: string[], mute_output: boolean, directory: string) => {
     if (!pmx[0]) return;
 
     try {
-        !mute_output && console.log('\n' + infoText('Installing Next.js...'));
-        directory && (await fs.mkdir(directory, { recursive: true }));
-        directory && process.chdir(directory);
+        if (!mute_output) infoText('Installing Next.js...', true);
+        await fs.mkdir(directory, { recursive: true });
+        if (directory) process.chdir(directory);
         const result = spawn.sync(
             pmx[0],
             [
@@ -34,10 +34,10 @@ export const createNewNext = async (response: responseT, pmx: string[], mute_out
             throw result.error;
         }
 
-        !mute_output && console.log(successText(`Created a new next.js app`));
+        if (!mute_output) successText(`Created a new next.js app`);
         process.chdir(response['app-name']);
 
-        !mute_output && console.log(successText('Next.js installed successfully!'));
+        if (!mute_output) successText('Next.js installed successfully!');
     } catch (error) {
         console.error(error);
         process.exit(1);

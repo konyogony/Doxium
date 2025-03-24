@@ -1,12 +1,44 @@
 import path from 'path';
+import { responseT } from '@/lib/types';
 import fg from 'fast-glob';
 import pc from 'picocolors';
-import { responseT } from './types.js';
 
-export const errorText = (text: string) => pc.red('✖ ') + pc.bold(text);
-export const successText = (text: string) => pc.green('✔ ') + pc.bold(text);
-export const infoText = (text: string) => pc.blue('ℹ ') + pc.bold(text);
-export const warningText = (text: string) => pc.yellow('⚠ ') + pc.bold(pc.yellow(text));
+const logMessage = (type: 'error' | 'success' | 'info' | 'warning', text: string, newLine = false) => {
+    const icons = {
+        error: '✖ ',
+        success: '✔ ',
+        info: 'ℹ ',
+        warning: '⚠ ',
+    };
+
+    const colors = {
+        error: pc.red,
+        success: pc.green,
+        info: pc.blue,
+        warning: pc.yellow,
+    };
+
+    const colorText = colors[type](text);
+    const icon = colors[type](icons[type]);
+
+    const message = `${icon}${newLine ? '\n' : ''}${colorText}`;
+
+    const logFunctions: Record<string, (msg: string) => void> = {
+        error: console.error,
+        success: console.log,
+        info: console.log,
+        warning: console.warn,
+    };
+
+    logFunctions[type](message);
+};
+
+export const errorText = (text: string, newLine = false) => logMessage('error', text, newLine);
+export const successText = (text: string, newLine = false) => logMessage('success', text, newLine);
+export const infoText = (text: string, newLine = false) => logMessage('info', text, newLine);
+export const warningText = (text: string, newLine = false) => logMessage('warning', text, newLine);
+
+export const boldText = (text: string) => console.log(pc.bold(text));
 
 export const templatesDir = path.resolve(__dirname, '../templates');
 
@@ -40,7 +72,7 @@ export const getPmInfo = async (mute_output: boolean) => {
     const userAgent = process.env.npm_config_user_agent;
 
     if (!userAgent) {
-        console.error(errorText('Error detecting package manager:'));
+        errorText('Error detecting package manager:');
         process.exit(1);
     }
 
@@ -57,7 +89,7 @@ export const getPmInfo = async (mute_output: boolean) => {
         return 'npm';
     })();
 
-    !mute_output && console.log('\n' + successText(`Detected package manager: ${pc.blue(pm)}.`));
+    if (!mute_output) successText(`Detected package manager: ${pc.blue(pm)}`, true);
 
     let pmx: string[];
     let pmi: string[];

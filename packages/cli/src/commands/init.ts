@@ -1,12 +1,11 @@
-import pc from 'picocolors';
-import prompts from 'prompts';
-import { configureComp } from '../config/configure-comp.js';
-import { createNewNext } from '../config/create-new-next.js';
-import { installDependencies } from '../config/install-dependencies.js';
-import { installPrettier } from '../config/install-prettier.js';
-import { removePrettier } from '../config/remove-prettier.js';
-import { getFullResponse } from '../utils/get-response.js';
+import { configureComp } from '@/config/configure-comp';
+import { createNewNext } from '@/config/create-new-next';
+import { installDependencies } from '@/config/install-dependencies';
+import { installPrettier } from '@/config/install-prettier';
+import { removePrettier } from '@/config/remove-prettier';
+import { getFullResponse } from '@/lib/get-response';
 import {
+    boldText,
     errorText,
     getPmInfo,
     infoText,
@@ -14,7 +13,9 @@ import {
     isNextJsProject,
     successText,
     warningText,
-} from '../utils/utils.js';
+} from '@/lib/utils';
+import pc from 'picocolors';
+import prompts from 'prompts';
 
 export const init = async (
     name: string,
@@ -46,7 +47,7 @@ export const init = async (
 
     if (name) {
         if (/[A-Z]/.test(name)) {
-            console.error(errorText('Name must not contain uppercase letters, due to NPM rules'));
+            errorText('Name must not contain uppercase letters, due to NPM rules');
             process.exit(1);
         }
         response_name = { 'app-name': name };
@@ -70,7 +71,7 @@ export const init = async (
             ],
             {
                 onCancel: () => {
-                    console.error(errorText('Setup cancelled.'));
+                    errorText('Setup cancelled.');
                     process.exit(1);
                 },
             },
@@ -80,18 +81,14 @@ export const init = async (
     const appPath = `./${directory ? directory.replaceAll('./', '') + '/' : ''}${response_name['app-name']}`;
     if (await isNextJsProject(appPath)) {
         if (await isDoxiumProject(appPath)) {
-            console.log(
-                '\n' +
-                    warningText(
-                        'Directory already contains a full Doxium project. Run `@doxium/cli update` to update...',
-                    ),
+            warningText(
+                'Directory already contains a full Doxium project. Run `@doxium/cli update` to update...',
+                true,
             );
         } else {
-            console.log(
-                '\n' +
-                    warningText(
-                        'Directory already contains a Next.js project. Run `@doxium/cli link` to integrate Doxium (NOT SUPPORTED YET)...',
-                    ),
+            warningText(
+                'Directory already contains a Next.js project. Run `@doxium/cli link` to integrate Doxium (NOT SUPPORTED YET)...',
+                true,
             );
         }
     }
@@ -141,12 +138,11 @@ export const init = async (
     // Remove Prettier (if disabled)
     await removePrettier(response, pm, mute_output);
 
-    !mute_output && console.log('\n' + successText('Installation of project successful!'));
-    !mute_output && console.log(infoText('Run the following commands to start the project:'));
-    !mute_output && console.log(pc.bold(`- cd ${pc.blue(response['app-name'])}`));
-    !mute_output && console.log(pc.bold(`- ${pm} install`));
-    !mute_output && console.log(pc.bold(`- ${pm} run dev / build`));
+    if (!mute_output) successText('Installation of project successful!', true);
+    if (!mute_output) infoText('Run the following commands to start the project:');
+    if (!mute_output) boldText(`- cd ${pc.blue(response['app-name'])}`);
+    if (!mute_output) boldText(`- ${pm} install`);
+    if (!mute_output) boldText(`- ${pm} run dev / build`);
 
-    !mute_output &&
-        console.log('\n' + infoText(`Recommend reading the ${pc.blue('README.md')} file for more information.`));
+    if (!mute_output) infoText(`Recommend reading the ${pc.blue('README.md')} file for more information`, true);
 };

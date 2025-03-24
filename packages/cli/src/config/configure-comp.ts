@@ -1,10 +1,10 @@
 import path from 'path';
+import { installDocsFolder } from '@/config/install-docs-folder';
+import { installNoDocsFolder } from '@/config/install-no-docs-folder';
+import { responseT } from '@/lib/types';
+import { infoText, replacePlaceholders, successText, templatesDir } from '@/lib/utils';
 import spawn from 'cross-spawn';
 import fs from 'fs-extra';
-import { responseT } from '../utils/types.js';
-import { infoText, replacePlaceholders, successText, templatesDir } from '../utils/utils.js';
-import { installDocsFolder } from './install-docs-folder.js';
-import { installNoDocsFolder } from './install-no-docs-folder.js';
 
 export const configureComp = async (
     response: responseT,
@@ -64,20 +64,21 @@ export const configureComp = async (
         !update && { name: 'DX-slim-light', type: 'svg', path: './public/doxium/DXLight.svg' },
     ].filter((v) => v !== false);
 
-    !mute_output && console.log('\n' + infoText('Configuring Components...'));
+    if (!mute_output) infoText('Configuring Components...', true);
 
     try {
         if (update) {
-            await fs.rm('./app', { recursive: true });
-            await fs.rm('./doxium', { recursive: true });
+            console.log(1);
+            if (fs.existsSync('./app')) await fs.rm('./app', { recursive: true });
+            if (fs.existsSync('./doxium')) await fs.rm('./doxium', { recursive: true });
             await fs.mkdir('./app');
             await fs.mkdir('./doxium');
-            await fs.mkdir('./doxium/components');
+            await fs.mkdir('./doxium/components', { recursive: true });
         } else {
-            spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+            spawn.sync(pm, ['run', 'prettier', './', '-w', '--ignore-path=.prettierignore'], { stdio: 'ignore' });
 
-            await fs.rm('./app/fonts', { recursive: true });
-            await fs.rm('./app/favicon.ico', { recursive: true });
+            if (fs.existsSync('./app/fonts')) await fs.rm('./app/fonts', { recursive: true });
+            if (fs.existsSync('./app/favicon.ico')) await fs.rm('./app/favicon.ico', { recursive: true });
 
             const files = await fs.readdir('./public');
             await Promise.all(files.map((file) => fs.rm(`./public/${file}`, { recursive: true, force: true })));
@@ -99,7 +100,7 @@ export const configureComp = async (
             }),
         );
 
-        spawn.sync(pm, ['run', 'prettier', './', '-w'], { stdio: 'ignore' });
+        spawn.sync(pm, ['run', 'prettier', './', '-w', '--ignore-path=.prettierignore'], { stdio: 'ignore' });
         if (response['use-docs'] === (typeof response['use-docs'] === 'boolean' ? true : 'true')) {
             installDocsFolder(response, pm, empty, update);
         } else {
@@ -110,5 +111,5 @@ export const configureComp = async (
         process.exit(1);
     }
 
-    !mute_output && console.log(successText('Components configured successfully!'));
+    if (!mute_output) successText('Components configured successfully!');
 };

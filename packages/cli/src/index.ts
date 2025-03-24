@@ -1,18 +1,18 @@
 #!/usr/bin/env node
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { init } from '@/commands/init';
+import { link } from '@/commands/link';
+import { update } from '@/commands/update';
+import { accentColors, baseColors, colorSchemes, shikiThemes } from '@/lib/types';
 import { program } from 'commander';
 import pc from 'picocolors';
-import * as packageJson from '../package.json' with { type: 'json' };
-import { init } from './commands/init.js';
-import { link } from './commands/link.js';
-import { update } from './commands/update.js';
-import { accentColors, baseColors, colorSchemes, shikiThemes } from './utils/types.js';
 
-console.log(pc.bold(pc.italic(pc.gray(`@doxium/cli v${packageJson.default.version} \n`))));
+const packageJson = JSON.parse(readFileSync(join(import.meta.dirname, '../package.json'), 'utf8'));
 
-program
-    .name(packageJson.default.name)
-    .description(packageJson.default.description)
-    .version(packageJson.default.version, '-v, --version');
+console.log(pc.bold(pc.italic(pc.gray(`@doxium/cli v${packageJson.version} \n`))));
+
+program.name(packageJson.name).description(packageJson.description).version(packageJson.version, '-v, --version');
 
 program
     .command('init [name]')
@@ -67,7 +67,7 @@ program
             console.error('Invalid value for --github-repo. Please provide a valid GitHub repository.');
             process.exit(1);
         }
-        const directoryPattern = /^\.\.?(\/[^\/]+)*\/?$/;
+        const directoryPattern = /^\.\.?(\/?[^/]+)*\/?$/;
         if (options.directory) {
             if (!directoryPattern.test(options.directory)) {
                 console.error(
@@ -103,6 +103,7 @@ program
     });
 
 program.command('link').description('link Doxium to an existing project').action(link);
+
 program
     .command('add')
     .description('add a new component')
