@@ -1,7 +1,7 @@
-import * as fs from 'fs/promises';
 import * as path from 'path';
 import { DoxiumConfig } from '@/lib/types';
 import { errorText } from '@/lib/utils';
+import * as fs from 'fs-extra';
 
 const defaultConfig: DoxiumConfig = {
     style: {
@@ -24,7 +24,6 @@ const defaultConfig: DoxiumConfig = {
     },
 };
 
-// This is probably bad, but still copilot did it.
 export const readConfig = async (configPath?: string): Promise<DoxiumConfig> => {
     const configFilePath = configPath || path.join(process.cwd(), 'doxium.config.ts');
 

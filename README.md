@@ -3,7 +3,7 @@
 > Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared. \
 > **Beware, ALPHA version**
 
-## Usage of `@doxium/cli` v0.0.7
+## Usage of `@doxium/cli` v0.0.8-alpha.1
 
 Creating new app:
 
