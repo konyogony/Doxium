@@ -21,7 +21,8 @@ export const removePrettier = async (response: responseT, pm: string, mute_outpu
             );
             await fs.remove('./.prettierrc.json');
         } else {
-            if (!mute_output) infoText('\n' + 'Installing Prettier...');
+            if (!mute_output) console.log();
+            if (!mute_output) infoText('Installing Prettier...');
             if (!mute_output) successText('Prettier installed successfully!');
         }
     } catch (error) {

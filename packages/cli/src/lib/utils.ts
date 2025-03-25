@@ -3,7 +3,7 @@ import { responseT } from '@/lib/types';
 import fg from 'fast-glob';
 import pc from 'picocolors';
 
-const logMessage = (type: 'error' | 'success' | 'info' | 'warning', text: string, newLine = false) => {
+const logMessage = (type: 'error' | 'success' | 'info' | 'warning', text: string) => {
     const icons = {
         error: '✖ ',
         success: '✔ ',
@@ -21,7 +21,7 @@ const logMessage = (type: 'error' | 'success' | 'info' | 'warning', text: string
     const colorText = colors[type](text);
     const icon = colors[type](icons[type]);
 
-    const message = `${icon}${newLine ? '\n' : ''}${colorText}`;
+    const message = `${icon}${colorText}`;
 
     const logFunctions: Record<string, (msg: string) => void> = {
         error: console.error,
@@ -33,10 +33,10 @@ const logMessage = (type: 'error' | 'success' | 'info' | 'warning', text: string
     logFunctions[type](message);
 };
 
-export const errorText = (text: string, newLine = false) => logMessage('error', text, newLine);
-export const successText = (text: string, newLine = false) => logMessage('success', text, newLine);
-export const infoText = (text: string, newLine = false) => logMessage('info', text, newLine);
-export const warningText = (text: string, newLine = false) => logMessage('warning', text, newLine);
+export const errorText = (text: string) => logMessage('error', text);
+export const successText = (text: string) => logMessage('success', text);
+export const infoText = (text: string) => logMessage('info', text);
+export const warningText = (text: string) => logMessage('warning', text);
 
 export const boldText = (text: string) => console.log(pc.bold(text));
 
@@ -89,7 +89,8 @@ export const getPmInfo = async (mute_output: boolean) => {
         return 'npm';
     })();
 
-    if (!mute_output) successText(`Detected package manager: ${pc.blue(pm)}`, true);
+    if (!mute_output) console.log();
+    if (!mute_output) successText(`Detected package manager: ${pc.blue(pm)}`);
 
     let pmx: string[];
     let pmi: string[];

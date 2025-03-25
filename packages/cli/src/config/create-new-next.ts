@@ -7,8 +7,10 @@ export const createNewNext = async (response: responseT, pmx: string[], mute_out
     if (!pmx[0]) return;
 
     try {
-        if (!mute_output) infoText('Installing Next.js...', true);
-        await fs.mkdir(directory, { recursive: true });
+        if (!mute_output) console.log();
+        if (!mute_output) infoText('Installing Next.js...');
+        if (directory) console.log(directory);
+        if (directory) await fs.mkdir(directory, { recursive: true });
         if (directory) process.chdir(directory);
         const result = spawn.sync(
             pmx[0],

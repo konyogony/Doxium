@@ -1,23 +1,26 @@
 # Doxium
 
-> Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared.
+> Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared. \
+> **Beware, ALPHA version**
 
-## Usage of `@doxium/cli` v0.0.7 - **Beware, ALPHA version**
+## Usage of `@doxium/cli` v0.0.7
+
+Creating new app:
 
 ```sh
 bunx @doxium/cli init [name] [...args]
 ```
 
-update:
+Updating existing app:
 
 ```sh
 bunx @doxium/cli update
 ```
 
-help:
+Help:
 
 ```sh
-bunx @doxium/cli
+bunx @doxium/cli --help
 ```
 
 ## Updated Roadmap
@@ -25,11 +28,11 @@ bunx @doxium/cli
 - [ ] Fix all the issues reported
 - [ ] Add li8n support, should consider the nextjs way and custom way.
 - [ ] Deploy to npmjs:
-    - [ ] CLI
-    - [ ] Library w/ components
+    - [x] CLI
+    - [x] ~~Library w/ components~~ **Cancelled because of the complexity (Ive spent 3 weeks trying to do this to no avail)**
 - [x] Make a command to upograde and migrate from one version to another. (This re-write will act as a base layer)
 - [ ] Imporve search by making it go through all the text.
-- [ ] TailwindCSS v4 (**Current version is v3**)
+- [x] TailwindCSS v4
 - [ ] Proper README
 
 ## Techstack (Doxium)

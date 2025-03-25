@@ -64,7 +64,8 @@ export const configureComp = async (
         !update && { name: 'DX-slim-light', type: 'svg', path: './public/doxium/DXLight.svg' },
     ].filter((v) => v !== false);
 
-    if (!mute_output) infoText('Configuring Components...', true);
+    if (!mute_output) console.log();
+    if (!mute_output) infoText('Configuring Components...');
 
     try {
         if (update) {

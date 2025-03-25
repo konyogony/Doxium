@@ -81,15 +81,14 @@ export const init = async (
     const appPath = `./${directory ? directory.replaceAll('./', '') + '/' : ''}${response_name['app-name']}`;
     if (await isNextJsProject(appPath)) {
         if (await isDoxiumProject(appPath)) {
-            warningText(
-                'Directory already contains a full Doxium project. Run `@doxium/cli update` to update...',
-                true,
-            );
+            if (!mute_output)
+                warningText('Directory already contains a full Doxium project. Run `@doxium/cli update` to update...');
+            // TODO: Add logic after the warning
         } else {
-            warningText(
-                'Directory already contains a Next.js project. Run `@doxium/cli link` to integrate Doxium (NOT SUPPORTED YET)...',
-                true,
-            );
+            if (!mute_output)
+                warningText(
+                    'Directory already contains a Next.js project. Run `@doxium/cli link` to integrate Doxium (NOT SUPPORTED YET)...',
+                );
         }
     }
 
@@ -138,11 +137,14 @@ export const init = async (
     // Remove Prettier (if disabled)
     await removePrettier(response, pm, mute_output);
 
-    if (!mute_output) successText('Installation of project successful!', true);
-    if (!mute_output) infoText('Run the following commands to start the project:');
-    if (!mute_output) boldText(`- cd ${pc.blue(response['app-name'])}`);
-    if (!mute_output) boldText(`- ${pm} install`);
-    if (!mute_output) boldText(`- ${pm} run dev / build`);
-
-    if (!mute_output) infoText(`Recommend reading the ${pc.blue('README.md')} file for more information`, true);
+    if (!mute_output) {
+        console.log();
+        successText('Installation of project successful!');
+        infoText('Run the following commands to start the project:');
+        boldText(`- cd ${pc.blue(response['app-name'])}`);
+        boldText(`- ${pm} install`);
+        boldText(`- ${pm} run dev / build`);
+        console.log();
+        infoText(`Recommend reading the ${pc.blue('README.md')} file for more information`);
+    }
 };

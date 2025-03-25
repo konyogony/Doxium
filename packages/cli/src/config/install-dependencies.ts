@@ -4,7 +4,8 @@ import spawn from 'cross-spawn';
 export const installDependencies = async (pmi: string[], mute_output: boolean) => {
     if (!pmi[0]) return;
     try {
-        if (!mute_output) infoText('\n' + 'Installing dependencies...');
+        if (!mute_output) console.log();
+        if (!mute_output) infoText('Installing dependencies...');
         spawn.sync(
             pmi[0],
             [

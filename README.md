@@ -2,18 +2,23 @@
 
 > Rewrite in progress! Some features may be raw or not work properly. Please create an issue if encountared. \
 > **Beware, ALPHA version**
+
 ## Usage of `@doxium/cli` v0.0.7
+
 Creating new app:
+
 ```sh
 bunx @doxium/cli init [name] [...args]
 ```
 
 Updating existing app:
+
 ```sh
 bunx @doxium/cli update
 ```
 
 Help:
+
 ```sh
 bunx @doxium/cli --help
 ```
