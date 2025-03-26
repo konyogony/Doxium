@@ -1,6 +1,6 @@
 {
     "name": "@doxium/cli",
-    "version": "0.0.8-alpha.1",
+    "version": "0.0.8-alpha.5",
     "author": "konyogony",
     "main": "index.js",
     "type": "module",
@@ -25,13 +25,13 @@
     "devDependencies": {
         "@eslint/js": "^9.23.0",
         "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
-        "@types/commander": "^2.12.5",
+        "@types/commander": "^2.12.0",
         "@types/cross-spawn": "^6.0.6",
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^22.13.13",
         "@types/prompts": "^2.4.9",
-        "@typescript-eslint/eslint-plugin": "^8.27.0",
-        "@typescript-eslint/parser": "^8.27.0",
+        "@typescript-eslint/eslint-plugin": "^8.28.0",
+        "@typescript-eslint/parser": "^8.28.0",
         "eslint": "^9.23.0",
         "globals": "^16.0.0",
         "jiti": "^2.4.2",
@@ -39,14 +39,14 @@
         "prettier": "^3.5.3",
         "rimraf": "^6.0.1",
         "typescript": "^5.8.2",
-        "typescript-eslint": "^8.27.0"
+        "typescript-eslint": "^8.28.0"
     },
     "description": "CLI tool for creating and managing Doxium applications.",
     "license": "MIT",
     "scripts": {
         "pub": "bun publish --access public",
         "dev": "bun run build && bun run ./dist/index.js init",
-        "build": "bun rimraf ./dist & ncc build src/index.ts -o dist -m",
+        "build": "bun rimraf ./dist && ncc build src/index.ts -o dist -m && cp -r src/templates dist",
         "lint": "bun eslint ."
     },
     "keywords": [

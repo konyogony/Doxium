@@ -25,6 +25,7 @@ const defaultConfig: DoxiumConfig = {
 };
 
 export const readConfig = async (configPath?: string): Promise<DoxiumConfig> => {
+    console.log('read-config.ts', configPath, path.join(process.cwd(), 'doxium.config.ts'));
     const configFilePath = configPath || path.join(process.cwd(), 'doxium.config.ts');
 
     try {

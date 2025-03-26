@@ -11,6 +11,7 @@ export const installPrettier = async () => {
     await Promise.all(
         files.map(async (file) => {
             try {
+                console.log('install-prettier.ts', templatesDir, file.type, file.name, file.path);
                 const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
                 const content = await fs.readFile(templatePath, 'utf8');
 

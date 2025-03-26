@@ -1,7 +1,46 @@
-import path from 'path';
+import { existsSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 import { responseT } from '@/lib/types';
 import fg from 'fast-glob';
 import pc from 'picocolors';
+
+const debugTemplatesPath = (paths: string[]) => {
+    console.error('Templates directory not found!');
+    console.error('Attempted paths:');
+    paths.forEach((path: string) => console.error(`- ${path} (exists: ${existsSync(path)})`));
+};
+
+const findTemplatesDir = () => {
+    try {
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = dirname(__filename);
+
+        const possiblePaths = [
+            join(__dirname, 'templates'),
+            join(__dirname, '../templates'),
+            join(dirname(__dirname), 'templates'),
+            join(process.cwd(), 'templates'),
+            join(process.cwd(), 'node_modules/@doxium/cli/dist/templates'),
+        ];
+
+        for (const path of possiblePaths) {
+            if (existsSync(path)) {
+                console.log(`Found templates at: ${path}`);
+                return path;
+            }
+        }
+
+        debugTemplatesPath(possiblePaths);
+
+        return join(__dirname, 'templates');
+    } catch (error) {
+        console.error('Error finding templates directory:', error);
+        process.exit(1);
+    }
+};
+
+export const templatesDir = findTemplatesDir();
 
 const logMessage = (type: 'error' | 'success' | 'info' | 'warning', text: string) => {
     const icons = {
@@ -39,8 +78,6 @@ export const infoText = (text: string) => logMessage('info', text);
 export const warningText = (text: string) => logMessage('warning', text);
 
 export const boldText = (text: string) => console.log(pc.bold(text));
-
-export const templatesDir = path.resolve(__dirname, '../templates');
 
 export const isNextJsProject = async (folderPath: string) => {
     const patterns = [`${folderPath}/{app,package.json,node_modules}`];

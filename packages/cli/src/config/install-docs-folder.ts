@@ -41,6 +41,7 @@ export const installDocsFolder = async (response: responseT, pm: string, empty: 
         await Promise.all(
             filesHome.map(async (file) => {
                 try {
+                    console.log('install-docs-folder.ts', templatesDir, file.type, file.name, file.path);
                     const templatePath = path.join(templatesDir, `${file.type}`, `${file.name}.${file.type}`);
                     const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
                     await fs.writeFile(file.path, content);

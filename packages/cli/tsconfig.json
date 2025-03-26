@@ -14,7 +14,7 @@
         },
         "lib": ["es2022"],
         "sourceMap": true,
-        "declaration": true
+        "declaration": false
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist", "**/templates/**/*"]

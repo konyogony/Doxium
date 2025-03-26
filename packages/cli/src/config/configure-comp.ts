@@ -90,6 +90,7 @@ export const configureComp = async (
         await Promise.all(
             alwaysInstall.map(async (file) => {
                 try {
+                    console.log('configure-comp.ts', templatesDir, file.type, `${file.name}.${file.type}`);
                     const templatePath = path.join(templatesDir, file.type, `${file.name}.${file.type}`);
                     const content = replacePlaceholders(await fs.readFile(templatePath, 'utf8'), response);
 
